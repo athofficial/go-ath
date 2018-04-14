@@ -22,11 +22,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 func init() {

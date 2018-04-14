@@ -21,9 +21,9 @@ import (
 	"hash"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto/sha3"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto/sha3"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 type hasher struct {

@@ -24,11 +24,11 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/swarm/network"
-	"github.com/ubiq/go-ubiq/swarm/services/swap"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/swarm/network"
+	"github.com/atheioschain/go-atheios/swarm/services/swap"
+	"github.com/atheioschain/go-atheios/swarm/storage"
 )
 
 const (

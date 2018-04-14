@@ -20,8 +20,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 type DumpAccount struct {

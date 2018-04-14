@@ -26,23 +26,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discover"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/pow"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/core/state"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/eth"
+	"github.com/atheioschain/go-atheios/eth/downloader"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/event"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/atheioschain/go-atheios/p2p/discv5"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/pow"
+	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/atheioschain/go-atheios/trie"
 )
 
 const (
@@ -283,7 +283,7 @@ func (pm *ProtocolManager) Start(srvr *p2p.Server) {
 func (pm *ProtocolManager) Stop() {
 	// Showing a log message. During download / process this could actually
 	// take between 5 to 10 seconds and therefor feedback is required.
-	glog.V(logger.Info).Infoln("Stopping light ubiq protocol handler...")
+	glog.V(logger.Info).Infoln("Stopping light atheios protocol handler...")
 
 	// Quit the sync loop.
 	// After this send has completed, no new peers will be accepted.
@@ -300,7 +300,7 @@ func (pm *ProtocolManager) Stop() {
 	// Wait for any process action
 	pm.wg.Wait()
 
-	glog.V(logger.Info).Infoln("Light ubiq protocol handler stopped")
+	glog.V(logger.Info).Infoln("Light atheios protocol handler stopped")
 }
 
 func (pm *ProtocolManager) newPeer(pv, nv int, p *p2p.Peer, rw p2p.MsgReadWriter) *peer {

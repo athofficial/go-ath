@@ -21,8 +21,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/types"
 	"golang.org/x/net/context"
 )
 

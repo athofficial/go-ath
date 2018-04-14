@@ -22,8 +22,8 @@ import (
 	_ "net/http/pprof"
 	"runtime"
 
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
 	"gopkg.in/urfave/cli.v1"
 )
 

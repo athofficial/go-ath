@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.ethereum</groupId>
-  <artifactId>gubiq</artifactId>
+  <artifactId>gath</artifactId>
   <version>{{.Version}}</version>
   <packaging>aar</packaging>
 
   <name>Android Ethereum Client</name>
-  <description>Android port of the go-ubiq libraries and node</description>
-  <url>https://github.com/ubiq/go-ubiq</url>
+  <description>Android port of the go-atheios libraries and node</description>
+  <url>https://github.com/atheioschain/go-atheios</url>
   <inceptionYear>2015</inceptionYear>
 
   <licenses>
@@ -48,10 +48,10 @@
 
   <issueManagement>
     <system>GitHub Issues</system>
-    <url>https://github.com/ubiq/go-ubiq/issues/</url>
+    <url>https://github.com/atheioschain/go-atheios/issues/</url>
   </issueManagement>
 
   <scm>
-    <url>https://github.com/ubiq/go-ubiq</url>
+    <url>https://github.com/atheioschain/go-atheios</url>
   </scm>
 </project>

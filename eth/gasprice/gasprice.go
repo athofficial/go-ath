@@ -21,12 +21,12 @@ import (
 	"math/rand"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/event"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
 )
 
 const (

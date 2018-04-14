@@ -22,12 +22,12 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/atheioschain/go-atheios/trie"
 )
 
 var emptyCodeHash = crypto.Keccak256(nil)

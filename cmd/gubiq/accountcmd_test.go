@@ -43,22 +43,22 @@ func tmpDatadirWithKeystore(t *testing.T) string {
 }
 
 func TestAccountListEmpty(t *testing.T) {
-	gubiq := runGubiq(t, "account")
-	gubiq.expectExit()
+	gath := rungath(t, "account")
+	gath.expectExit()
 }
 
 func TestAccountList(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
-	gubiq := runGubiq(t, "--datadir", datadir, "account")
-	defer gubiq.expectExit()
+	gath := rungath(t, "--datadir", datadir, "account")
+	defer gath.expectExit()
 	if runtime.GOOS == "windows" {
-		gubiq.expect(`
+		gath.expect(`
 Account #0: {7ef5a6135f1fd6a02593eedc869c6d41d934aef8} keystore://{{.Datadir}}\keystore\UTC--2016-03-22T12-57-55.920751759Z--7ef5a6135f1fd6a02593eedc869c6d41d934aef8
 Account #1: {f466859ead1932d743d622cb74fc058882e8648a} keystore://{{.Datadir}}\keystore\aaa
 Account #2: {289d485d9771714cce91d3393d764e1311907acc} keystore://{{.Datadir}}\keystore\zzz
 `)
 	} else {
-		gubiq.expect(`
+		gath.expect(`
 Account #0: {7ef5a6135f1fd6a02593eedc869c6d41d934aef8} keystore://{{.Datadir}}/keystore/UTC--2016-03-22T12-57-55.920751759Z--7ef5a6135f1fd6a02593eedc869c6d41d934aef8
 Account #1: {f466859ead1932d743d622cb74fc058882e8648a} keystore://{{.Datadir}}/keystore/aaa
 Account #2: {289d485d9771714cce91d3393d764e1311907acc} keystore://{{.Datadir}}/keystore/zzz
@@ -67,21 +67,21 @@ Account #2: {289d485d9771714cce91d3393d764e1311907acc} keystore://{{.Datadir}}/k
 }
 
 func TestAccountNew(t *testing.T) {
-	gubiq := runGubiq(t, "--lightkdf", "account", "new")
-	defer gubiq.expectExit()
-	gubiq.expect(`
+	gath := rungath(t, "--lightkdf", "account", "new")
+	defer gath.expectExit()
+	gath.expect(`
 Your new account is locked with a password. Please give a password. Do not forget this password.
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "foobar"}}
 Repeat passphrase: {{.InputLine "foobar"}}
 `)
-	gubiq.expectRegexp(`Address: \{[0-9a-f]{40}\}\n`)
+	gath.expectRegexp(`Address: \{[0-9a-f]{40}\}\n`)
 }
 
 func TestAccountNewBadRepeat(t *testing.T) {
-	gubiq := runGubiq(t, "--lightkdf", "account", "new")
-	defer gubiq.expectExit()
-	gubiq.expect(`
+	gath := rungath(t, "--lightkdf", "account", "new")
+	defer gath.expectExit()
+	gath.expect(`
 Your new account is locked with a password. Please give a password. Do not forget this password.
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "something"}}
@@ -92,11 +92,11 @@ Fatal: Passphrases do not match
 
 func TestAccountUpdate(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--datadir", datadir, "--lightkdf",
 		"account", "update", "f466859ead1932d743d622cb74fc058882e8648a")
-	defer gubiq.expectExit()
-	gubiq.expect(`
+	defer gath.expectExit()
+	gath.expect(`
 Unlocking account f466859ead1932d743d622cb74fc058882e8648a | Attempt 1/3
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "foobar"}}
@@ -107,24 +107,24 @@ Repeat passphrase: {{.InputLine "foobar2"}}
 }
 
 func TestWalletImport(t *testing.T) {
-	gubiq := runGubiq(t, "--lightkdf", "wallet", "import", "testdata/guswallet.json")
-	defer gubiq.expectExit()
-	gubiq.expect(`
+	gath := rungath(t, "--lightkdf", "wallet", "import", "testdata/guswallet.json")
+	defer gath.expectExit()
+	gath.expect(`
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "foo"}}
 Address: {d4584b5f6229b7be90727b0fc8c6b91bb427821f}
 `)
 
-	files, err := ioutil.ReadDir(filepath.Join(gubiq.Datadir, "keystore"))
+	files, err := ioutil.ReadDir(filepath.Join(gath.Datadir, "keystore"))
 	if len(files) != 1 {
 		t.Errorf("expected one key file in keystore directory, found %d files (error: %v)", len(files), err)
 	}
 }
 
 func TestWalletImportBadPassword(t *testing.T) {
-	gubiq := runGubiq(t, "--lightkdf", "wallet", "import", "testdata/guswallet.json")
-	defer gubiq.expectExit()
-	gubiq.expect(`
+	gath := rungath(t, "--lightkdf", "wallet", "import", "testdata/guswallet.json")
+	defer gath.expectExit()
+	gath.expect(`
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "wrong"}}
 Fatal: could not decrypt key with given passphrase
@@ -133,22 +133,22 @@ Fatal: could not decrypt key with given passphrase
 
 func TestUnlockFlag(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--datadir", datadir, "--nat", "none", "--nodiscover", "--dev",
 		"--unlock", "f466859ead1932d743d622cb74fc058882e8648a",
 		"js", "testdata/empty.js")
-	gubiq.expect(`
+	gath.expect(`
 Unlocking account f466859ead1932d743d622cb74fc058882e8648a | Attempt 1/3
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "foobar"}}
 `)
-	gubiq.expectExit()
+	gath.expectExit()
 
 	wantMessages := []string{
 		"Unlocked account f466859ead1932d743d622cb74fc058882e8648a",
 	}
 	for _, m := range wantMessages {
-		if !strings.Contains(gubiq.stderrText(), m) {
+		if !strings.Contains(gath.stderrText(), m) {
 			t.Errorf("stderr text does not contain %q", m)
 		}
 	}
@@ -156,11 +156,11 @@ Passphrase: {{.InputLine "foobar"}}
 
 func TestUnlockFlagWrongPassword(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--datadir", datadir, "--nat", "none", "--nodiscover", "--dev",
 		"--unlock", "f466859ead1932d743d622cb74fc058882e8648a")
-	defer gubiq.expectExit()
-	gubiq.expect(`
+	defer gath.expectExit()
+	gath.expect(`
 Unlocking account f466859ead1932d743d622cb74fc058882e8648a | Attempt 1/3
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "wrong1"}}
@@ -172,28 +172,28 @@ Fatal: Failed to unlock account f466859ead1932d743d622cb74fc058882e8648a (could 
 `)
 }
 
-// https://github.com/ubiq/go-ubiq/issues/1785
+// https://github.com/atheioschain/go-atheios/issues/1785
 func TestUnlockFlagMultiIndex(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--datadir", datadir, "--nat", "none", "--nodiscover", "--dev",
 		"--unlock", "0,2",
 		"js", "testdata/empty.js")
-	gubiq.expect(`
+	gath.expect(`
 Unlocking account 0 | Attempt 1/3
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "foobar"}}
 Unlocking account 2 | Attempt 1/3
 Passphrase: {{.InputLine "foobar"}}
 `)
-	gubiq.expectExit()
+	gath.expectExit()
 
 	wantMessages := []string{
 		"Unlocked account 7ef5a6135f1fd6a02593eedc869c6d41d934aef8",
 		"Unlocked account 289d485d9771714cce91d3393d764e1311907acc",
 	}
 	for _, m := range wantMessages {
-		if !strings.Contains(gubiq.stderrText(), m) {
+		if !strings.Contains(gath.stderrText(), m) {
 			t.Errorf("stderr text does not contain %q", m)
 		}
 	}
@@ -201,18 +201,18 @@ Passphrase: {{.InputLine "foobar"}}
 
 func TestUnlockFlagPasswordFile(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--datadir", datadir, "--nat", "none", "--nodiscover", "--dev",
 		"--password", "testdata/passwords.txt", "--unlock", "0,2",
 		"js", "testdata/empty.js")
-	gubiq.expectExit()
+	gath.expectExit()
 
 	wantMessages := []string{
 		"Unlocked account 7ef5a6135f1fd6a02593eedc869c6d41d934aef8",
 		"Unlocked account 289d485d9771714cce91d3393d764e1311907acc",
 	}
 	for _, m := range wantMessages {
-		if !strings.Contains(gubiq.stderrText(), m) {
+		if !strings.Contains(gath.stderrText(), m) {
 			t.Errorf("stderr text does not contain %q", m)
 		}
 	}
@@ -220,29 +220,29 @@ func TestUnlockFlagPasswordFile(t *testing.T) {
 
 func TestUnlockFlagPasswordFileWrongPassword(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--datadir", datadir, "--nat", "none", "--nodiscover", "--dev",
 		"--password", "testdata/wrong-passwords.txt", "--unlock", "0,2")
-	defer gubiq.expectExit()
-	gubiq.expect(`
+	defer gath.expectExit()
+	gath.expect(`
 Fatal: Failed to unlock account 0 (could not decrypt key with given passphrase)
 `)
 }
 
 func TestUnlockFlagAmbiguous(t *testing.T) {
 	store := filepath.Join("..", "..", "accounts", "keystore", "testdata", "dupes")
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--keystore", store, "--nat", "none", "--nodiscover", "--dev",
 		"--unlock", "f466859ead1932d743d622cb74fc058882e8648a",
 		"js", "testdata/empty.js")
-	defer gubiq.expectExit()
+	defer gath.expectExit()
 
 	// Helper for the expect template, returns absolute keystore path.
-	gubiq.setTemplateFunc("keypath", func(file string) string {
+	gath.setTemplateFunc("keypath", func(file string) string {
 		abs, _ := filepath.Abs(filepath.Join(store, file))
 		return abs
 	})
-	gubiq.expect(`
+	gath.expect(`
 Unlocking account f466859ead1932d743d622cb74fc058882e8648a | Attempt 1/3
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "foobar"}}
@@ -254,13 +254,13 @@ Your passphrase unlocked keystore://{{keypath "1"}}
 In order to avoid this warning, you need to remove the following duplicate key files:
    keystore://{{keypath "2"}}
 `)
-	gubiq.expectExit()
+	gath.expectExit()
 
 	wantMessages := []string{
 		"Unlocked account f466859ead1932d743d622cb74fc058882e8648a",
 	}
 	for _, m := range wantMessages {
-		if !strings.Contains(gubiq.stderrText(), m) {
+		if !strings.Contains(gath.stderrText(), m) {
 			t.Errorf("stderr text does not contain %q", m)
 		}
 	}
@@ -268,17 +268,17 @@ In order to avoid this warning, you need to remove the following duplicate key f
 
 func TestUnlockFlagAmbiguousWrongPassword(t *testing.T) {
 	store := filepath.Join("..", "..", "accounts", "keystore", "testdata", "dupes")
-	gubiq := runGubiq(t,
+	gath := rungath(t,
 		"--keystore", store, "--nat", "none", "--nodiscover", "--dev",
 		"--unlock", "f466859ead1932d743d622cb74fc058882e8648a")
-	defer gubiq.expectExit()
+	defer gath.expectExit()
 
 	// Helper for the expect template, returns absolute keystore path.
-	gubiq.setTemplateFunc("keypath", func(file string) string {
+	gath.setTemplateFunc("keypath", func(file string) string {
 		abs, _ := filepath.Abs(filepath.Join(store, file))
 		return abs
 	})
-	gubiq.expect(`
+	gath.expect(`
 Unlocking account f466859ead1932d743d622cb74fc058882e8648a | Attempt 1/3
 !! Unsupported terminal, password will be echoed.
 Passphrase: {{.InputLine "wrong"}}
@@ -288,5 +288,5 @@ Multiple key files exist for address f466859ead1932d743d622cb74fc058882e8648a:
 Testing your passphrase against all of them...
 Fatal: None of the listed files could be unlocked.
 `)
-	gubiq.expectExit()
+	gath.expectExit()
 }

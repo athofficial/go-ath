@@ -22,12 +22,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/atheioschain/go-atheios"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/common/hexutil"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/atheioschain/go-atheios/rpc"
 	"golang.org/x/net/context"
 )
 

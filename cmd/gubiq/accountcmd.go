@@ -20,13 +20,13 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/console"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
+	"github.com/atheioschain/go-atheios/accounts"
+	"github.com/atheioschain/go-atheios/accounts/keystore"
+	"github.com/atheioschain/go-atheios/cmd/utils"
+	"github.com/atheioschain/go-atheios/console"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -37,7 +37,7 @@ var (
 		ArgsUsage: "",
 		Category:  "ACCOUNT COMMANDS",
 		Description: `
-    gubiq wallet import /path/to/my/presale.wallet
+    gath wallet import /path/to/my/presale.wallet
 
 will prompt for your password and imports your ether presale account.
 It can be used non-interactively with the --password option taking a
@@ -108,7 +108,7 @@ TODO: Please write this
 				Usage:     "Create a new account",
 				ArgsUsage: " ",
 				Description: `
-    gubiq account new
+    gath account new
 
 Creates a new account. Prints the address.
 
@@ -118,7 +118,7 @@ You must remember this passphrase to unlock your account in the future.
 
 For non-interactive use the passphrase can be specified with the --password flag:
 
-    gubiq --password <passwordfile> account new
+    gath --password <passwordfile> account new
 
 Note, this is meant to be used for testing only, it is a bad idea to save your
 password to file or expose in any other way.
@@ -130,7 +130,7 @@ password to file or expose in any other way.
 				Usage:     "Update an existing account",
 				ArgsUsage: "<address>",
 				Description: `
-    gubiq account update <address>
+    gath account update <address>
 
 Update an existing account.
 
@@ -142,7 +142,7 @@ format to the newest format or change the password for an account.
 
 For non-interactive use the passphrase can be specified with the --password flag:
 
-    gubiq --password <passwordfile> account update <address>
+    gath --password <passwordfile> account update <address>
 
 Since only one password can be given, only format update can be performed,
 changing your password is only possible interactively.
@@ -154,7 +154,7 @@ changing your password is only possible interactively.
 				Usage:     "Import a private key into a new account",
 				ArgsUsage: "<keyFile>",
 				Description: `
-    gubiq account import <keyfile>
+    gath account import <keyfile>
 
 Imports an unencrypted private key from <keyfile> and creates a new account.
 Prints the address.
@@ -167,7 +167,7 @@ You must remember this passphrase to unlock your account in the future.
 
 For non-interactive use the passphrase can be specified with the -password flag:
 
-    gubiq --password <passwordfile> account import <keyfile>
+    gath --password <passwordfile> account import <keyfile>
 
 Note:
 As you can directly copy your encrypted accounts to another ethereum instance,

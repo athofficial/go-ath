@@ -29,25 +29,25 @@ import (
 	"time"
 
 	"github.com/ethereum/ethash"
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/core/vm"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/eth/filters"
-	"github.com/ubiq/go-ubiq/eth/gasprice"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/miner"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/pow"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/atheioschain/go-atheios/accounts"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/core/vm"
+	"github.com/atheioschain/go-atheios/eth/downloader"
+	"github.com/atheioschain/go-atheios/eth/filters"
+	"github.com/atheioschain/go-atheios/eth/gasprice"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/event"
+	"github.com/atheioschain/go-atheios/internal/ethapi"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/miner"
+	"github.com/atheioschain/go-atheios/node"
+	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/pow"
+	"github.com/atheioschain/go-atheios/rpc"
 )
 
 const (
@@ -189,7 +189,7 @@ func New(ctx *node.ServiceContext, config *Config) (*Ethereum, error) {
 	if !config.SkipBcVersionCheck {
 		bcVersion := core.GetBlockChainVersion(chainDb)
 		if bcVersion != core.BlockChainVersion && bcVersion != 0 {
-			return nil, fmt.Errorf("Blockchain DB version mismatch (%d / %d). Run gubiq upgradedb.\n", bcVersion, core.BlockChainVersion)
+			return nil, fmt.Errorf("Blockchain DB version mismatch (%d / %d). Run gath upgradedb.\n", bcVersion, core.BlockChainVersion)
 		}
 		core.WriteBlockChainVersion(chainDb, core.BlockChainVersion)
 	}
@@ -202,7 +202,7 @@ func New(ctx *node.ServiceContext, config *Config) (*Ethereum, error) {
 		if err != nil {
 			return nil, err
 		}
-		glog.V(logger.Info).Infoln("WARNING: Wrote default ubiq genesis block")
+		glog.V(logger.Info).Infoln("WARNING: Wrote default atheios genesis block")
 	}
 
 	if config.ChainConfig == nil {

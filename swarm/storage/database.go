@@ -22,7 +22,7 @@ package storage
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/compression/rle"
+	"github.com/atheioschain/go-atheios/compression/rle"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
 	"github.com/syndtr/goleveldb/leveldb/opt"

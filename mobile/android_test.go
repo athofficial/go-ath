@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-package gubiq
+package gath
 
 import (
 	"io/ioutil"
@@ -25,7 +25,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/internal/build"
+	"github.com/atheioschain/go-atheios/internal/build"
 )
 
 // androidTestClass is a Java class to do some lightweight tests against the Android
@@ -37,14 +37,14 @@ package go;
 import android.test.InstrumentationTestCase;
 import android.test.MoreAsserts;
 
-import org.ethereum.gubiq.*;
+import org.ethereum.gath.*;
 
 public class AndroidTest extends InstrumentationTestCase {
 	public AndroidTest() {}
 
 	public void testAccountManagement() {
 		// Create an encrypted keystore with light crypto parameters.
-		KeyStore ks = new KeyStore(getInstrumentation().getContext().getFilesDir() + "/keystore", Gubiq.LightScryptN, Gubiq.LightScryptP);
+		KeyStore ks = new KeyStore(getInstrumentation().getContext().getFilesDir() + "/keystore", gath.LightScryptN, gath.LightScryptP);
 
 		try {
 			// Create a new account with the specified encryption passphrase.
@@ -93,7 +93,7 @@ public class AndroidTest extends InstrumentationTestCase {
 
 		try {
 			// Start up a new inprocess node
-			Node node = new Node(getInstrumentation().getContext().getFilesDir() + "/.ubiq", new NodeConfig());
+			Node node = new Node(getInstrumentation().getContext().getFilesDir() + "/.atheios", new NodeConfig());
 			node.start();
 
 			// Retrieve some data via function calls (we don't really care about the results)
@@ -150,7 +150,7 @@ func TestAndroid(t *testing.T) {
 		t.Logf("initialization took %v", time.Since(start))
 	}
 	// Create and switch to a temporary workspace
-	workspace, err := ioutil.TempDir("", "gubiq-android-")
+	workspace, err := ioutil.TempDir("", "gath-android-")
 	if err != nil {
 		t.Fatalf("failed to create temporary workspace: %v", err)
 	}
@@ -166,21 +166,21 @@ func TestAndroid(t *testing.T) {
 	defer os.Chdir(pwd)
 
 	// Create the skeleton of the Android project
-	for _, dir := range []string{"src/main", "src/androidTest/java/org/ethereum/gubiqtest", "libs"} {
+	for _, dir := range []string{"src/main", "src/androidTest/java/org/ethereum/gathtest", "libs"} {
 		err = os.MkdirAll(dir, os.ModePerm)
 		if err != nil {
 			t.Fatal(err)
 		}
 	}
-	// Generate the mobile bindings for Gubiq and add the tester class
-	gobind := exec.Command("gomobile", "bind", "-javapkg", "org.ethereum", "github.com/ubiq/go-ubiq/mobile")
+	// Generate the mobile bindings for gath and add the tester class
+	gobind := exec.Command("gomobile", "bind", "-javapkg", "org.ethereum", "github.com/atheioschain/go-atheios/mobile")
 	if output, err := gobind.CombinedOutput(); err != nil {
 		t.Logf("%s", output)
 		t.Fatalf("failed to run gomobile bind: %v", err)
 	}
-	build.CopyFile(filepath.Join("libs", "gubiq.aar"), "gubiq.aar", os.ModePerm)
+	build.CopyFile(filepath.Join("libs", "gath.aar"), "gath.aar", os.ModePerm)
 
-	if err = ioutil.WriteFile(filepath.Join("src", "androidTest", "java", "org", "ubiq", "gubiqtest", "AndroidTest.java"), []byte(androidTestClass), os.ModePerm); err != nil {
+	if err = ioutil.WriteFile(filepath.Join("src", "androidTest", "java", "org", "atheios", "gathtest", "AndroidTest.java"), []byte(androidTestClass), os.ModePerm); err != nil {
 		t.Fatalf("failed to write Android test class: %v", err)
 	}
 	// Finish creating the project and run the tests via gradle
@@ -198,7 +198,7 @@ func TestAndroid(t *testing.T) {
 
 const androidManifest = `<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.ethereum.gubiqtest"
+          package="org.ethereum.gathtest"
 	  android:versionCode="1"
 	  android:versionName="1.0">
 
@@ -227,6 +227,6 @@ repositories {
 }
 dependencies {
     compile 'com.android.support:appcompat-v7:19.0.0'
-    compile(name: "gubiq", ext: "aar")
+    compile(name: "gath", ext: "aar")
 }
 `

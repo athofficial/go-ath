@@ -20,11 +20,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/light"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/light"
 	"golang.org/x/net/context"
 )
 

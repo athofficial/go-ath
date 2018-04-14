@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
 
-// gubiq is the official command-line client for Ethereum.
+// gath is the official command-line client for Ethereum.
 package main
 
 import (
@@ -25,42 +25,42 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/console"
-	"github.com/ubiq/go-ubiq/contracts/release"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/ethclient"
-	"github.com/ubiq/go-ubiq/internal/debug"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/accounts"
+	"github.com/atheioschain/go-atheios/accounts/keystore"
+	"github.com/atheioschain/go-atheios/cmd/utils"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/console"
+	"github.com/atheioschain/go-atheios/contracts/release"
+	"github.com/atheioschain/go-atheios/eth"
+	"github.com/atheioschain/go-atheios/ethclient"
+	"github.com/atheioschain/go-atheios/internal/debug"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/metrics"
+	"github.com/atheioschain/go-atheios/node"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/rlp"
 	"gopkg.in/urfave/cli.v1"
 )
 
 const (
-	clientIdentifier = "gubiq" // Client identifier to advertise over the network
+	clientIdentifier = "gath" // Client identifier to advertise over the network
 )
 
 var (
 	// Git SHA1 commit hash of the release (set via linker flags)
 	gitCommit = ""
-	// Ethereum address of the Gubiq release oracle.
+	// Ethereum address of the gath release oracle.
 	relOracle = common.HexToAddress("0xfa7b9770ca4cb04296cac84f37736d4041251cdf")
 	// The app that holds all commands and flags.
-	app = utils.NewApp(gitCommit, "the go-ubiq command line interface")
+	app = utils.NewApp(gitCommit, "the go-atheios command line interface")
 )
 
 func init() {
-	// Initialize the CLI app and start Gubiq
-	app.Action = gubiq
+	// Initialize the CLI app and start gath
+	app.Action = gath
 	app.HideVersion = true // we have a command to print the version
-	app.Copyright = "Copyright 2013-2016 The go-ubiq Authors"
+	app.Copyright = "Copyright 2013-2016 The go-atheios Authors"
 	app.Commands = []cli.Command{
 		// See chaincmd.go:
 		initCommand,
@@ -183,10 +183,10 @@ func main() {
 	}
 }
 
-// gubiq is the main entry point into the system if no special subcommand is ran.
+// gath is the main entry point into the system if no special subcommand is ran.
 // It creates a default node based on the command line arguments and runs it in
 // blocking mode, waiting for it to be shut down.
-func gubiq(ctx *cli.Context) error {
+func gath(ctx *cli.Context) error {
 	node := makeFullNode(ctx)
 	startNode(ctx, node)
 	node.Wait()
@@ -235,7 +235,7 @@ func makeFullNode(ctx *cli.Context) *node.Node {
 		copy(config.Commit[:], commit)
 		return release.NewReleaseService(ctx, config)
 	}); err != nil {
-		utils.Fatalf("Failed to register the Gubiq release oracle service: %v", err)
+		utils.Fatalf("Failed to register the gath release oracle service: %v", err)
 	}
 	return stack
 }
@@ -296,7 +296,7 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 	if ctx.GlobalBool(utils.MiningEnabledFlag.Name) {
 		var ethereum *eth.Ethereum
 		if err := stack.Service(&ethereum); err != nil {
-			utils.Fatalf("ubiq service not running: %v", err)
+			utils.Fatalf("atheios service not running: %v", err)
 		}
 		if err := ethereum.StartMining(ctx.GlobalInt(utils.MinerThreadsFlag.Name)); err != nil {
 			utils.Fatalf("Failed to start mining: %v", err)

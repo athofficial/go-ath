@@ -19,8 +19,8 @@ package ethapi
 import (
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common/compiler"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/atheioschain/go-atheios/common/compiler"
+	"github.com/atheioschain/go-atheios/rpc"
 )
 
 func makeCompilerAPIs(solcPath string) []rpc.API {

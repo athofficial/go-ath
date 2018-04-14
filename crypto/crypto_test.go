@@ -27,8 +27,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto/secp256k1"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto/secp256k1"
 )
 
 var testAddrHex = "970e8128ab834e8eac17ab8e3812f010678cf791"

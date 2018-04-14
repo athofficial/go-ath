@@ -16,12 +16,12 @@
 
 // Contains all the wrappers from the params package.
 
-package gubiq
+package gath
 
 import (
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/p2p/discv5"
+	"github.com/atheioschain/go-atheios/params"
 )
 
 // MainnetChainConfig returns the chain configurations for the main Ethereum network.

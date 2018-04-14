@@ -1,7 +1,7 @@
 os: Visual Studio 2015
 
 # Clone directly into GOPATH.
-clone_folder: C:\gopath\src\github.com\ubiq\go-ubiq
+clone_folder: C:\gopath\src\github.com\atheios\go-atheios
 clone_depth: 5
 version: "{branch}.{build}"
 environment:
@@ -31,8 +31,8 @@ build_script:
   - go run build\ci.go install
 
 after_build:
-  - go run build\ci.go archive -type zip -signer WINDOWS_SIGNING_KEY -upload gubiqstore/builds
-  - go run build\ci.go nsis -signer WINDOWS_SIGNING_KEY -upload gubiqstore/builds
+  - go run build\ci.go archive -type zip -signer WINDOWS_SIGNING_KEY -upload gathstore/builds
+  - go run build\ci.go nsis -signer WINDOWS_SIGNING_KEY -upload gathstore/builds
 
 test_script:
   - set CGO_ENABLED=1

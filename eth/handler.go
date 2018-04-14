@@ -26,20 +26,20 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/eth/fetcher"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discover"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/pow"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/eth/downloader"
+	"github.com/atheioschain/go-atheios/eth/fetcher"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/event"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/pow"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 const (
@@ -223,7 +223,7 @@ func (pm *ProtocolManager) Start() {
 }
 
 func (pm *ProtocolManager) Stop() {
-	glog.V(logger.Info).Infoln("Stopping ubiq protocol handler...")
+	glog.V(logger.Info).Infoln("Stopping atheios protocol handler...")
 
 	pm.txSub.Unsubscribe()         // quits txBroadcastLoop
 	pm.minedBlockSub.Unsubscribe() // quits blockBroadcastLoop
@@ -244,7 +244,7 @@ func (pm *ProtocolManager) Stop() {
 	// Wait for all peer handler goroutines and the loops to come down.
 	pm.wg.Wait()
 
-	glog.V(logger.Info).Infoln("Ubiq protocol handler stopped")
+	glog.V(logger.Info).Infoln("atheios protocol handler stopped")
 }
 
 func (pm *ProtocolManager) newPeer(pv int, p *p2p.Peer, rw p2p.MsgReadWriter) *peer {

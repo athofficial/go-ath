@@ -19,10 +19,10 @@ package runtime
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/core/state"
+	"github.com/atheioschain/go-atheios/core/vm"
 )
 
 func NewEnv(cfg *Config, state *state.StateDB) *vm.EVM {

@@ -17,7 +17,7 @@
 package api
 
 import (
-	"github.com/ubiq/go-ubiq/swarm/network"
+	"github.com/atheioschain/go-atheios/swarm/network"
 )
 
 type Control struct {

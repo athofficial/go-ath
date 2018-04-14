@@ -21,11 +21,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/vm"
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/atheioschain/go-atheios/accounts/abi"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/state"
+	"github.com/atheioschain/go-atheios/core/vm"
+	"github.com/atheioschain/go-atheios/ethdb"
 )
 
 func TestDefaults(t *testing.T) {

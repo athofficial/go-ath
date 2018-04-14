@@ -27,21 +27,21 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/console"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethclient"
-	"github.com/ubiq/go-ubiq/internal/debug"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discover"
-	"github.com/ubiq/go-ubiq/swarm"
-	bzzapi "github.com/ubiq/go-ubiq/swarm/api"
+	"github.com/atheioschain/go-atheios/accounts"
+	"github.com/atheioschain/go-atheios/accounts/keystore"
+	"github.com/atheioschain/go-atheios/cmd/utils"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/console"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/ethclient"
+	"github.com/atheioschain/go-atheios/internal/debug"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/node"
+	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/atheioschain/go-atheios/swarm"
+	bzzapi "github.com/atheioschain/go-atheios/swarm/api"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -52,7 +52,7 @@ const (
 
 var (
 	gitCommit        string // Git SHA1 commit hash of the release (set via linker flags)
-	app              = utils.NewApp(gitCommit, "Ubiq Swarm")
+	app              = utils.NewApp(gitCommit, "atheios Swarm")
 	testbetBootNodes = []string{}
 )
 
@@ -88,7 +88,7 @@ var (
 	EthAPIFlag = cli.StringFlag{
 		Name:  "ethapi",
 		Usage: "URL of the Ethereum API provider",
-		Value: node.DefaultIPCEndpoint("gubiq"),
+		Value: node.DefaultIPCEndpoint("gath"),
 	}
 	SwarmApiFlag = cli.StringFlag{
 		Name:  "bzzapi",
@@ -114,7 +114,7 @@ var (
 )
 
 func init() {
-	// Override flag defaults so bzzd can run alongside gubiq.
+	// Override flag defaults so bzzd can run alongside gath.
 	utils.ListenPortFlag.Value = 30399
 	utils.IPCPathFlag.Value = utils.DirectoryString{Value: "bzzd.ipc"}
 	utils.IPCApiFlag.Value = "admin, bzz, chequebook, debug, rpc, web3"

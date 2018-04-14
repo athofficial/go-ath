@@ -22,13 +22,13 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/p2p/discover"
-	"github.com/ubiq/go-ubiq/p2p/netutil"
-	"github.com/ubiq/go-ubiq/swarm/network/kademlia"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/atheioschain/go-atheios/p2p/netutil"
+	"github.com/atheioschain/go-atheios/swarm/network/kademlia"
+	"github.com/atheioschain/go-atheios/swarm/storage"
 )
 
 // Hive is the logistic manager of the swarm

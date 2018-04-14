@@ -19,8 +19,8 @@ package core
 import (
 	"runtime"
 
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/pow"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/pow"
 )
 
 // nonceCheckResult contains the result of a nonce verification.

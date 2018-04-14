@@ -16,13 +16,13 @@
 
 // Contains a wrapper for the Ethereum client.
 
-package gubiq
+package gath
 
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethclient"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/ethclient"
 )
 
 // EthereumClient provides access to the Ethereum APIs.

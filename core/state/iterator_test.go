@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/ethdb"
 )
 
 // Tests that the node iterator indeed walks over the entire database contents.

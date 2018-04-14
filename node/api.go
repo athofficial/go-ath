@@ -22,10 +22,10 @@ import (
 	"time"
 
 	"github.com/rcrowley/go-metrics"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discover"
+	"github.com/atheioschain/go-atheios/common/hexutil"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/atheioschain/go-atheios/p2p/discover"
 )
 
 // PrivateAdminAPI is the collection of administrative API methods exposed only

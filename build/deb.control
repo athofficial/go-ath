@@ -5,14 +5,14 @@ Maintainer: {{.Author}}
 Build-Depends: debhelper (>= 8.0.0), golang-1.7
 Standards-Version: 3.9.5
 Homepage: https://ethereum.org
-Vcs-Git: git://github.com/ubiq/go-ubiq.git
-Vcs-Browser: https://github.com/ubiq/go-ubiq
+Vcs-Git: git://github.com/atheioschain/go-atheios.git
+Vcs-Browser: https://github.com/atheioschain/go-atheios
 
 Package: {{.Name}}
 Architecture: any
 Depends: ${misc:Depends}, {{.ExeList}}
-Description: Meta-package to install gubiq and other tools
- Meta-package to install gubiq and other tools
+Description: Meta-package to install gath and other tools
+ Meta-package to install gath and other tools
  
 {{range .Executables}}
 Package: {{$.ExeName .}}

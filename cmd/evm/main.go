@@ -24,14 +24,14 @@ import (
 	goruntime "runtime"
 	"time"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/vm"
-	"github.com/ubiq/go-ubiq/core/vm/runtime"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/logger/glog"
+	"github.com/atheioschain/go-atheios/cmd/utils"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/state"
+	"github.com/atheioschain/go-atheios/core/vm"
+	"github.com/atheioschain/go-atheios/core/vm/runtime"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/logger/glog"
 	"gopkg.in/urfave/cli.v1"
 )
 

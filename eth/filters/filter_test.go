@@ -24,13 +24,13 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/event"
+	"github.com/atheioschain/go-atheios/params"
 )
 
 func makeReceipt(addr common.Address) *types.Receipt {
@@ -56,7 +56,7 @@ func BenchmarkMipmaps(b *testing.B) {
 		key1, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		addr1   = crypto.PubkeyToAddress(key1.PublicKey)
 		addr2   = common.BytesToAddress([]byte("jeff"))
-		addr3   = common.BytesToAddress([]byte("ubiq"))
+		addr3   = common.BytesToAddress([]byte("atheios"))
 		addr4   = common.BytesToAddress([]byte("random addresses please"))
 	)
 	defer db.Close()

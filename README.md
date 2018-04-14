@@ -1,23 +1,23 @@
-## Ubiq Go
+## atheios Go
 
-Official golang implementation of the Ubiq protocol.
+Official golang implementation of the atheios protocol.
 
 [![API Reference](
 https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667
-)](https://godoc.org/github.com/ubiq/go-ubiq)
+)](https://godoc.org/github.com/atheioschain/go-atheios)
 
 Automated builds are available for stable releases and the unstable master branch.
-Binary archives are published at [releases](https://github.com/ubiq/go-ubiq/releases) page.
+Binary archives are published at [releases](https://github.com/atheioschain/go-atheios/releases) page.
 
 ## Building the source
 
 For prerequisites and detailed build instructions please read the [Ethereum's Installation Instructions](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum) on their wiki. 
 
-*Note*: Keep in mind that Ubiq aims to be 100% compatible with Ethereum, so mostly all the documentation you can find on Ethereum wiki, will apply for sure to Ubiq.
+*Note*: Keep in mind that atheios aims to be 100% compatible with Ethereum, so mostly all the documentation you can find on Ethereum wiki, will apply for sure to atheios.
 
-Building gubiq requires both a Go and a C compiler. You can install them using your favourite package manager. Once the dependencies are installed, run
+Building gath requires both a Go and a C compiler. You can install them using your favourite package manager. Once the dependencies are installed, run
 
-    make gubiq
+    make gath
 
 or, to build the full suite of utilities:
 
@@ -25,50 +25,50 @@ or, to build the full suite of utilities:
 
 ## Executables
 
-The go-ubiq project comes with several wrappers/executables found in the `cmd` directory.
+The go-atheios project comes with several wrappers/executables found in the `cmd` directory.
 
 | Command    | Description |
 |:----------:|-------------|
-| **`gubiq`** | Our main Ubiq CLI client. It is the entry point into the Ubiq network (main-, test- or private net), capable of running as a full node (default) archive node (retaining all historical state) or a light node (retrieving data live). It can be used by other processes as a gateway into the Ubiq network via JSON RPC endpoints exposed on top of HTTP, WebSocket and/or IPC transports. `gubiq --help` and the [CLI Wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for command line options |
-| `abigen` | Source code generator to convert Ubiq contract definitions into easy to use, compile-time type-safe Go packages. It operates on plain [Ethereum contract ABIs](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI) with expanded functionality if the contract bytecode is also available. However it also accepts Solidity source files, making development much more streamlined. Please see [Ethereum Native DApps](https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts) wiki page for details. |
-| `bootnode` | Stripped down version of our Ubiq client implementation that only takes part in the network node discovery protocol, but does not run any of the higher level application protocols. It can be used as a lightweight bootstrap node to aid in finding peers in private networks. |
+| **`gath`** | Our main atheios CLI client. It is the entry point into the atheios network (main-, test- or private net), capable of running as a full node (default) archive node (retaining all historical state) or a light node (retrieving data live). It can be used by other processes as a gateway into the atheios network via JSON RPC endpoints exposed on top of HTTP, WebSocket and/or IPC transports. `gath --help` and the [CLI Wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for command line options |
+| `abigen` | Source code generator to convert atheios contract definitions into easy to use, compile-time type-safe Go packages. It operates on plain [Ethereum contract ABIs](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI) with expanded functionality if the contract bytecode is also available. However it also accepts Solidity source files, making development much more streamlined. Please see [Ethereum Native DApps](https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts) wiki page for details. |
+| `bootnode` | Stripped down version of our atheios client implementation that only takes part in the network node discovery protocol, but does not run any of the higher level application protocols. It can be used as a lightweight bootstrap node to aid in finding peers in private networks. |
 | `disasm` | Bytecode disassembler to convert EVM (Ethereum Virtual Machine) bytecode into more user friendly assembly-like opcodes (e.g. `echo "6001" | disasm`). For details on the individual opcodes, please see pages 22-30 of the [Ethereum Yellow Paper](http://gavwood.com/paper.pdf). |
 | `evm` | Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode. Its purpose is to allow insolated, fine-grained debugging of EVM opcodes (e.g. `evm --code 60ff60ff --debug`). |
-| `gubiqrpctest` | Developer utility tool to support our [ubiq/rpc-test](https://github.com/ubiq/rpc-tests) test suite which validates baseline conformity to the [Ethereum JSON RPC](https://github.com/ubiq/wiki/wiki/JSON-RPC) specs. Please see the [test suite's readme](https://github.com/ubiq/rpc-tests/blob/master/README.md) for details. |
-| `rlpdump` | Developer utility tool to convert binary RLP ([Recursive Length Prefix](https://github.com/ubiq/wiki/wiki/RLP)) dumps (data encoding used by the Ethereum protocol both network as well as consensus wise) to user friendlier hierarchical representation (e.g. `rlpdump --hex CE0183FFFFFFC4C304050583616263`). |
+| `gathrpctest` | Developer utility tool to support our [atheios/rpc-test](https://github.com/atheios/rpc-tests) test suite which validates baseline conformity to the [Ethereum JSON RPC](https://github.com/atheios/wiki/wiki/JSON-RPC) specs. Please see the [test suite's readme](https://github.com/atheios/rpc-tests/blob/master/README.md) for details. |
+| `rlpdump` | Developer utility tool to convert binary RLP ([Recursive Length Prefix](https://github.com/atheios/wiki/wiki/RLP)) dumps (data encoding used by the Ethereum protocol both network as well as consensus wise) to user friendlier hierarchical representation (e.g. `rlpdump --hex CE0183FFFFFFC4C304050583616263`). |
 
-## Running gubiq
+## Running gath
 
 Going through all the possible command line flags is out of scope here (please consult 
 [Ethereum CLI Wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options)), but we've
 enumerated a few common parameter combos to get you up to speed quickly on how you can run your
-own Gubiq instance.
+own gath instance.
 
-### Full node on the main Ubiq network
+### Full node on the main atheios network
 
-By far the most common scenario is people wanting to simply interact with the Ubiq network:
+By far the most common scenario is people wanting to simply interact with the atheios network:
 create accounts; transfer funds; deploy and interact with contracts. For this particular use-case
 the user doesn't care about years-old historical data, so we can fast-sync quickly to the current
 state of the network. To do so:
 
 ```
-$ gubiq --fast --cache=512 console
+$ gath --fast --cache=512 console
 ```
 
 This command will:
 
- * Start gubiq in fast sync mode (`--fast`), causing it to download more data in exchange for avoiding
+ * Start gath in fast sync mode (`--fast`), causing it to download more data in exchange for avoiding
    processing the entire history of the Ethereum network, which is very CPU intensive.
  * Bump the memory allowance of the database to 512MB (`--cache=512`), which can help significantly in
    sync times especially for HDD users. This flag is optional and you can set it as high or as low as
    you'd like, though we'd recommend the 512MB - 2GB range.
- * Start up Gubiq's built-in interactive [JavaScript console](https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console),
+ * Start up gath's built-in interactive [JavaScript console](https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console),
    (via the trailing `console` subcommand) through which you can invoke all official [`web3` methods](https://github.com/ethereum/wiki/wiki/JavaScript-API)
-   as well as Gubiq's own [management APIs](https://github.com/ethereum/go-ethereum/wiki/Management-APIs).
-   This too is optional and if you leave it out you can always attach to an already running Gubiq instance
-   with `gubiq --attach`.
+   as well as gath's own [management APIs](https://github.com/ethereum/go-ethereum/wiki/Management-APIs).
+   This too is optional and if you leave it out you can always attach to an already running gath instance
+   with `gath --attach`.
 
-### Full node on the Ubiq test network
+### Full node on the atheios test network
 
 Transitioning towards developers, if you'd like to play around with creating Ethereum contracts, you
 almost certainly would like to do that without any real money involved until you get the hang of the
@@ -76,47 +76,47 @@ entire system. In other words, instead of attaching to the main network, you wan
 network with your node, which is fully equivalent to the main network, but with play-Ether only.
 
 ```
-$ gubiq --testnet --fast --cache=512 console
+$ gath --testnet --fast --cache=512 console
 ```
 
 The `--fast`, `--cache` flags and `console` subcommand have the exact same meaning as above and they
 are equially useful on the testnet too. Please see above for their explanations if you've skipped to
 here.
 
-Specifying the `--testnet` flag however will reconfigure your Gubiq instance a bit:
+Specifying the `--testnet` flag however will reconfigure your gath instance a bit:
 
- * Instead of using the default data directory (`~/.ubiq` on Linux for example), Gubiq will nest
-   itself one level deeper into a `testnet` subfolder (`~/.ubiq/testnet` on Linux).
- * Instead of connecting the main Ubiq network, the client will connect to the test network,
+ * Instead of using the default data directory (`~/.atheios` on Linux for example), gath will nest
+   itself one level deeper into a `testnet` subfolder (`~/.atheios/testnet` on Linux).
+ * Instead of connecting the main atheios network, the client will connect to the test network,
    which uses different P2P bootnodes, different network IDs and genesis states.
 
 *Note: Although there are some internal protective measures to prevent transactions from crossing
 over between the main network and test network (different starting nonces), you should make sure to
-always use separate accounts for play-money and real-money. Unless you manually move accounts, Gubiq
+always use separate accounts for play-money and real-money. Unless you manually move accounts, gath
 will by default correctly separate the two networks and will not make any accounts available between
 them.*
 
 #### Docker quick start
 
-One of the quickest ways to get Ubiq up and running on your machine is by using Docker:
+One of the quickest ways to get atheios up and running on your machine is by using Docker:
 
 ```
-docker run -d --name ubiq-node -v /Users/alice/ubiq:/root \
+docker run -d --name atheios-node -v /Users/alice/atheios:/root \
            -p 8588:8588 -p 30388:30388 \
-           ubiqsmart/gubiq --fast --cache=512
+           atheiossmart/gath --fast --cache=512
 ```
 
-This will start gubiq in fast sync mode with a DB memory allowance of 512MB just as the above command does.  It will also create a persistent volume in your home directory for saving your blockchain as well as map the default ports.
+This will start gath in fast sync mode with a DB memory allowance of 512MB just as the above command does.  It will also create a persistent volume in your home directory for saving your blockchain as well as map the default ports.
 
-### Programatically interfacing Gubiq nodes
+### Programatically interfacing gath nodes
 
-As a developer, sooner rather than later you'll want to start interacting with Gubiq and the Ubiq
-network via your own programs and not manually through the console. To aid this, Gubiq has built in
+As a developer, sooner rather than later you'll want to start interacting with gath and the atheios
+network via your own programs and not manually through the console. To aid this, gath has built in
 support for a JSON-RPC based APIs ([standard APIs](https://github.com/ethereum/wiki/wiki/JSON-RPC) and
-[Gubiq specific APIs](https://github.com/ethereum/go-ethereum/wiki/Management-APIs)). These can be
+[gath specific APIs](https://github.com/ethereum/go-ethereum/wiki/Management-APIs)). These can be
 exposed via HTTP, WebSockets and IPC (unix sockets on unix based platroms, and named pipes on Windows).
 
-The IPC interface is enabled by default and exposes all the APIs supported by Gubiq, whereas the HTTP
+The IPC interface is enabled by default and exposes all the APIs supported by gath, whereas the HTTP
 and WS interfaces need to manually be enabled and only expose a subset of APIs due to security reasons.
 These can be turned on/off and configured as you'd expect.
 
@@ -137,7 +137,7 @@ HTTP based JSON-RPC API options:
   * `--ipcpath` Filename for IPC socket/pipe within the datadir (explicit paths escape it)
 
 You'll need to use your own programming environments' capabilities (libraries, tools, etc) to connect
-via HTTP, WS or IPC to a Gubiq node configured with the above flags and you'll need to speak [JSON-RPC](http://www.jsonrpc.org/specification)
+via HTTP, WS or IPC to a gath node configured with the above flags and you'll need to speak [JSON-RPC](http://www.jsonrpc.org/specification)
 on all transports. You can reuse the same connection for multiple requests!
 
 **Note: Please understand the security implications of opening up an HTTP/WS based transport before
@@ -181,11 +181,11 @@ configs:
 }
 ```
 
-With the genesis state defined in the above JSON file, you'll need to initialize **every** Gubiq node
+With the genesis state defined in the above JSON file, you'll need to initialize **every** gath node
 with it prior to starting it up to ensure all blockchain parameters are correctly set:
 
 ```
-$ gubiq init path/to/genesis.json
+$ gath init path/to/genesis.json
 ```
 
 #### Creating the rendezvous point
@@ -204,17 +204,17 @@ that other nodes can use to connect to it and exchange peer information. Make su
 displayed IP address information (most probably `[::]`) with your externally accessible IP to get the
 actual `enode` URL.
 
-*Note: You could also use a full fledged Gubiq node as a bootnode, but it's the less recommended way.*
+*Note: You could also use a full fledged gath node as a bootnode, but it's the less recommended way.*
 
 #### Starting up your member nodes
 
 With the bootnode operational and externally reachable (you can try `telnet <ip> <port>` to ensure
-it's indeed reachable), start every subsequent Gubiq node pointed to the bootnode for peer discovery
+it's indeed reachable), start every subsequent gath node pointed to the bootnode for peer discovery
 via the `--bootnodes` flag. It will probably also be desirable to keep the data directory of your
 private network separated, so do also specify a custom `--datadir` flag.
 
 ```
-$ gubiq --datadir=path/to/custom/data/folder --bootnodes=<bootnode-enode-url-from-above>
+$ gath --datadir=path/to/custom/data/folder --bootnodes=<bootnode-enode-url-from-above>
 ```
 
 *Note: Since your network will be completely cut off from the main and test networks, you'll also
@@ -225,7 +225,7 @@ need to configure a miner to process transactions and create new blocks for you.
 Thank you for considering to help out with the source code! We welcome contributions from
 anyone on the internet, and are grateful for even the smallest of fixes!
 
-If you'd like to contribute to go-ubiq, please fork, fix, commit and send a pull request
+If you'd like to contribute to go-atheios, please fork, fix, commit and send a pull request
 for the maintainers to review and merge into the main code base. If you wish to submit more
 complex changes though, please check up with the core devs first on [our Discord channel](https://discord.gg/HF6vEGF)
 to ensure those changes are in line with the general philosophy of the project and/or get some
@@ -245,10 +245,10 @@ for more details on configuring your environment, managing project dependencies 
 
 ## License
 
-    The go-ubiq library (i.e. all code outside of the `cmd` directory) is licensed under the
+    The go-atheios library (i.e. all code outside of the `cmd` directory) is licensed under the
     [GNU Lesser General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html), also
     included in our repository in the `COPYING.LESSER` file.
 
-    The go-ubiq binaries (i.e. all code inside of the `cmd` directory) is licensed under the
+    The go-atheios binaries (i.e. all code inside of the `cmd` directory) is licensed under the
     [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html), also included
     in our repository in the `COPYING` file.

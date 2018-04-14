@@ -24,8 +24,8 @@ import (
 	"io"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto/sha3"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto/sha3"
 )
 
 type Hasher func() hash.Hash

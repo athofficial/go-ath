@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/rpc"
 )
 
 func TestUnmarshalJSONNewFilterArgs(t *testing.T) {

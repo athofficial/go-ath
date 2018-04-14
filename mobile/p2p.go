@@ -16,12 +16,12 @@
 
 // Contains wrappers for the p2p package.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 
-	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/atheioschain/go-atheios/p2p"
 )
 
 // NodeInfo represents pi short summary of the information known about the host.

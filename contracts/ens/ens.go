@@ -22,11 +22,11 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/contracts/ens/contract"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/atheioschain/go-atheios/accounts/abi/bind"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/contracts/ens/contract"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/crypto"
 )
 
 // swarm domain name registry and resolver

@@ -20,8 +20,8 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/params"
 )
 
 // Type is the VM type accepted by **NewVm**

@@ -1779,7 +1779,7 @@ var ETH_UNITS = [
     'ether',
     'grand',
     'Mether',
-    'Gubiqer',
+    'gather',
     'Tether',
     'Pether',
     'Eether',
@@ -5699,7 +5699,7 @@ module.exports = Shh;
  * @author Alex Beregszaszi <alex@rtfs.hu>
  * @date 2016
  *
- * Reference: https://github.com/ubiq/go-ubiq/blob/swarm/internal/web3ext/web3ext.go#L33
+ * Reference: https://github.com/atheioschain/go-atheios/blob/swarm/internal/web3ext/web3ext.go#L33
  */
 
 "use strict";

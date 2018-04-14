@@ -82,7 +82,7 @@ var customGenesisTests = []struct {
 	},
 }
 
-// Tests that initializing Gubiq with a custom genesis block and chain definitions
+// Tests that initializing gath with a custom genesis block and chain definitions
 // work properly.
 func TestCustomGenesis(t *testing.T) {
 	for i, tt := range customGenesisTests {
@@ -95,14 +95,14 @@ func TestCustomGenesis(t *testing.T) {
 		if err := ioutil.WriteFile(json, []byte(tt.genesis), 0600); err != nil {
 			t.Fatalf("test %d: failed to write genesis file: %v", i, err)
 		}
-		runGubiq(t, "--datadir", datadir, "init", json).cmd.Wait()
+		rungath(t, "--datadir", datadir, "init", json).cmd.Wait()
 
 		// Query the custom genesis block
-		gubiq := runGubiq(t,
+		gath := rungath(t,
 			"--datadir", datadir, "--maxpeers", "0", "--port", "0",
 			"--nodiscover", "--nat", "none", "--ipcdisable",
 			"--exec", tt.query, "console")
-		gubiq.expectRegexp(tt.result)
-		gubiq.expectExit()
+		gath.expectRegexp(tt.result)
+		gath.expectExit()
 	}
 }

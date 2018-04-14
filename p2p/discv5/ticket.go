@@ -25,9 +25,9 @@ import (
 	"sort"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/common/mclock"
+	"github.com/atheioschain/go-atheios/crypto"
 )
 
 const (

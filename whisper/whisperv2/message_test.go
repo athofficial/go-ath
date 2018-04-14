@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/crypto/secp256k1"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/crypto/secp256k1"
 )
 
 // Tests whether a message can be wrapped without any identity or encryption.

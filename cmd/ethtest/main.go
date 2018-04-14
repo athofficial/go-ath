@@ -25,9 +25,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/tests"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/tests"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -201,10 +201,10 @@ func main() {
 
 	app := cli.NewApp()
 	app.Name = "ethtest"
-	app.Usage = "go-ubiq test interface"
+	app.Usage = "go-atheios test interface"
 	app.Action = setupApp
 	app.Version = "0.2.0"
-	app.Author = "go-ubiq team"
+	app.Author = "go-atheios team"
 
 	app.Flags = []cli.Flag{
 		TestFlag,

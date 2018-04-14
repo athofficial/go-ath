@@ -22,11 +22,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/pow"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/pow"
 )
 
 // failPow is a non-validating proof of work implementation, that returns true

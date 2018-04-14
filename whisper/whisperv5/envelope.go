@@ -26,10 +26,10 @@ import (
 	"math"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/crypto/ecies"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/crypto/ecies"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 // Envelope represents a clear-text data packet to transmit through the Whisper

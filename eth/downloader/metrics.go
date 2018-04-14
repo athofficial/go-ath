@@ -19,7 +19,7 @@
 package downloader
 
 import (
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/atheioschain/go-atheios/metrics"
 )
 
 var (

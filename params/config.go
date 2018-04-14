@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 // MainnetChainConfig is the chain parameters to run a node on the main network.

@@ -34,12 +34,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/crypto/ecies"
-	"github.com/ubiq/go-ubiq/crypto/secp256k1"
-	"github.com/ubiq/go-ubiq/crypto/sha3"
-	"github.com/ubiq/go-ubiq/p2p/discover"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/crypto/ecies"
+	"github.com/atheioschain/go-atheios/crypto/secp256k1"
+	"github.com/atheioschain/go-atheios/crypto/sha3"
+	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 const (

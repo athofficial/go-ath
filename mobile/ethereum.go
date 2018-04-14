@@ -16,14 +16,14 @@
 
 // Contains all the wrappers from the go-ethereum root package.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 	"math/big"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common"
+	ethereum "github.com/atheioschain/go-atheios"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 // Subscription represents an event subscription where events are

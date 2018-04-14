@@ -25,14 +25,14 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/metrics"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 var (
@@ -54,7 +54,7 @@ var (
 	mipmapPre    = []byte("mipmap-log-bloom-")
 	MIPMapLevels = []uint64{1000000, 500000, 100000, 50000, 1000}
 
-	configPrefix = []byte("ubiq-config-") // config prefix for the db
+	configPrefix = []byte("atheios-config-") // config prefix for the db
 
 	// used by old (non-sequential keys) db, now only used for conversion
 	oldBlockPrefix         = []byte("block-")

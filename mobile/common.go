@@ -16,7 +16,7 @@
 
 // Contains all the wrappers from the common package.
 
-package gubiq
+package gath
 
 import (
 	"encoding/hex"
@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 // Hash represents the 32 byte Keccak256 hash of arbitrary data.

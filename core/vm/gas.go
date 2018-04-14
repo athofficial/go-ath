@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/params"
 )
 
 var (

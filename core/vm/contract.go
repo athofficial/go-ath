@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 // ContractRef is a reference to the contract's backing object

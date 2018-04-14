@@ -19,8 +19,8 @@ package miner
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/types"
 )
 
 // noopHeaderRetriever is an implementation of headerRetriever that always

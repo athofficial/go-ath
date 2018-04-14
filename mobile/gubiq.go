@@ -17,25 +17,25 @@
 // Contains all the wrappers from the node package to support client side node
 // management on mobile platforms.
 
-package gubiq
+package gath
 
 import (
 	"fmt"
 	"math/big"
 	"path/filepath"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/ethclient"
-	"github.com/ubiq/go-ubiq/ethstats"
-	"github.com/ubiq/go-ubiq/les"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/whisper/whisperv2"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/eth"
+	"github.com/atheioschain/go-atheios/ethclient"
+	"github.com/atheioschain/go-atheios/ethstats"
+	"github.com/atheioschain/go-atheios/les"
+	"github.com/atheioschain/go-atheios/node"
+	"github.com/atheioschain/go-atheios/p2p/nat"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/whisper/whisperv2"
 )
 
-// NodeConfig represents the collection of configuration values to fine tune the Gubiq
+// NodeConfig represents the collection of configuration values to fine tune the gath
 // node embedded into a mobile process. The available values are a subset of the
 // entire API provided by go-ethereum to reduce the maintenance surface and dev
 // complexity.
@@ -93,12 +93,12 @@ func NewNodeConfig() *NodeConfig {
 	return &config
 }
 
-// Node represents a Gubiq Ethereum node instance.
+// Node represents a gath Ethereum node instance.
 type Node struct {
 	node *node.Node
 }
 
-// NewNode creates and configures a new Gubiq node.
+// NewNode creates and configures a new gath node.
 func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 	// If no or partial configurations were specified, use defaults
 	if config == nil {
@@ -154,7 +154,7 @@ func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 		if err := rawStack.Register(func(ctx *node.ServiceContext) (node.Service, error) {
 			return les.New(ctx, ethConf)
 		}); err != nil {
-			return nil, fmt.Errorf("ubiq init: %v", err)
+			return nil, fmt.Errorf("atheios init: %v", err)
 		}
 		// If netstats reporting is requested, do it
 		if config.EthereumNetStats != "" {

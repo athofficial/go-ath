@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	DefaultIPCSocket = "gubiq.ipc"  // Default (relative) name of the IPC RPC socket
+	DefaultIPCSocket = "gath.ipc"  // Default (relative) name of the IPC RPC socket
 	DefaultHTTPHost  = "localhost" // Default host interface for the HTTP RPC server
 	DefaultHTTPPort  = 8588        // Default TCP port for the HTTP RPC server
 	DefaultWSHost    = "localhost" // Default host interface for the websocket RPC server
@@ -38,11 +38,11 @@ func DefaultDataDir() string {
 	home := homeDir()
 	if home != "" {
 		if runtime.GOOS == "darwin" {
-			return filepath.Join(home, "Library", "Ubiq")
+			return filepath.Join(home, "Library", "atheios")
 		} else if runtime.GOOS == "windows" {
-			return filepath.Join(home, "AppData", "Roaming", "Ubiq")
+			return filepath.Join(home, "AppData", "Roaming", "atheios")
 		} else {
-			return filepath.Join(home, ".ubiq")
+			return filepath.Join(home, ".atheios")
 		}
 	}
 	// As we cannot guess a stable location, return empty and handle later

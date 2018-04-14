@@ -20,11 +20,11 @@ import (
 	"container/list"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/core/types"
-	// "github.com/ubiq/go-ubiq/crypto"
+	"github.com/atheioschain/go-atheios/core/types"
+	// "github.com/atheioschain/go-atheios/crypto"
 
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/event"
 )
 
 // Implement our EthTest Manager

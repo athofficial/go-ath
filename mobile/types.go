@@ -16,13 +16,13 @@
 
 // Contains all the wrappers from the core/types package.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/atheioschain/go-atheios/core/types"
 )
 
 // A Nonce is a 64-bit hash which proves (combined with the mix-hash) that

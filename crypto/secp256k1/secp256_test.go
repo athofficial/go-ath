@@ -24,7 +24,7 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/crypto/randentropy"
+	"github.com/atheioschain/go-atheios/crypto/randentropy"
 )
 
 const TestCount = 1000

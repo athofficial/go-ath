@@ -29,7 +29,7 @@ import (
 	"net"
 	"sort"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 const (

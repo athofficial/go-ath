@@ -30,11 +30,11 @@ import (
 	"encoding/hex"
 	"errors"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto/ecies"
-	"github.com/ubiq/go-ubiq/crypto/secp256k1"
-	"github.com/ubiq/go-ubiq/crypto/sha3"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto/ecies"
+	"github.com/atheioschain/go-atheios/crypto/secp256k1"
+	"github.com/atheioschain/go-atheios/crypto/sha3"
+	"github.com/atheioschain/go-atheios/rlp"
 	"golang.org/x/crypto/ripemd160"
 )
 

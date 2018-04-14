@@ -19,7 +19,7 @@ package errs
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/logger/glog"
+	"github.com/atheioschain/go-atheios/logger/glog"
 )
 
 /*

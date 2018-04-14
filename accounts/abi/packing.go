@@ -19,7 +19,7 @@ package abi
 import (
 	"reflect"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 // packBytesSlice packs the given bytes as [L, V] as the canonical representation

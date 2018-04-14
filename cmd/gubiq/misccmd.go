@@ -26,9 +26,9 @@ import (
 	"strings"
 
 	"github.com/ethereum/ethash"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/cmd/utils"
+	"github.com/atheioschain/go-atheios/eth"
+	"github.com/atheioschain/go-atheios/params"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -68,7 +68,7 @@ The output of this command is supposed to be machine-readable.
 func makedag(ctx *cli.Context) error {
 	args := ctx.Args()
 	wrongArgs := func() {
-		utils.Fatalf(`Usage: gubiq makedag <block number> <outputdir>`)
+		utils.Fatalf(`Usage: gath makedag <block number> <outputdir>`)
 	}
 	switch {
 	case len(args) == 2:
@@ -111,18 +111,18 @@ func version(ctx *cli.Context) error {
 }
 
 func license(_ *cli.Context) error {
-	fmt.Println(`Gubiq is free software: you can redistribute it and/or modify
+	fmt.Println(`gath is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Gubiq is distributed in the hope that it will be useful,
+gath is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with gubiq. If not, see <http://www.gnu.org/licenses/>.
+along with gath. If not, see <http://www.gnu.org/licenses/>.
 `)
 	return nil
 }

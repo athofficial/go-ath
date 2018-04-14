@@ -22,9 +22,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/common/hexutil"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 var errMissingLogFields = errors.New("missing required JSON log fields")

@@ -42,7 +42,7 @@ import (
 	"hash"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/crypto/secp256k1"
+	"github.com/atheioschain/go-atheios/crypto/secp256k1"
 )
 
 var (

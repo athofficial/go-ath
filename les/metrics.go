@@ -17,8 +17,8 @@
 package les
 
 import (
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/atheioschain/go-atheios/metrics"
+	"github.com/atheioschain/go-atheios/p2p"
 )
 
 var (

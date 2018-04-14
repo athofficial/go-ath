@@ -1,14 +1,14 @@
 # common
 
 [![Build
-Status](https://travis-ci.org/ubiq/go-ubiq.png?branch=master)](https://travis-ci.org/ubiq/go-ubiq)
+Status](https://travis-ci.org/atheios/go-atheios.png?branch=master)](https://travis-ci.org/atheios/go-atheios)
 
 The common package contains the ethereum utility library.
 
 # Installation
 
-As a subdirectory the main go-ubiq repository, you get it with
-`go get github.com/ubiq/go-ubiq`.
+As a subdirectory the main go-atheios repository, you get it with
+`go get github.com/atheioschain/go-atheios`.
 
 # Usage
 

@@ -29,13 +29,13 @@ import (
 	"time"
 
 	"github.com/hashicorp/golang-lru"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/pow"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/pow"
 )
 
 const (
@@ -103,7 +103,7 @@ func NewHeaderChain(chainDb ethdb.Database, config *params.ChainConfig, getValid
 		if err != nil {
 			return nil, err
 		}
-		glog.V(logger.Info).Infoln("WARNING: Wrote default ubiq genesis block")
+		glog.V(logger.Info).Infoln("WARNING: Wrote default atheios genesis block")
 		hc.genesisHeader = genesisBlock.Header()
 	}
 

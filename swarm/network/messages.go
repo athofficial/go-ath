@@ -21,11 +21,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/ubiq/go-ubiq/contracts/chequebook"
-	"github.com/ubiq/go-ubiq/p2p/discover"
-	"github.com/ubiq/go-ubiq/swarm/network/kademlia"
-	"github.com/ubiq/go-ubiq/swarm/services/swap"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/atheioschain/go-atheios/contracts/chequebook"
+	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/atheioschain/go-atheios/swarm/network/kademlia"
+	"github.com/atheioschain/go-atheios/swarm/services/swap"
+	"github.com/atheioschain/go-atheios/swarm/storage"
 )
 
 /*

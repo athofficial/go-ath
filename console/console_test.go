@@ -27,11 +27,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/internal/jsre"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/eth"
+	"github.com/atheioschain/go-atheios/internal/jsre"
+	"github.com/atheioschain/go-atheios/node"
+	"github.com/atheioschain/go-atheios/params"
 )
 
 const (

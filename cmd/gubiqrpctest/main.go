@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
 
-// gubiqrpctest is a command to run the external RPC tests.
+// gathrpctest is a command to run the external RPC tests.
 package main
 
 import (
@@ -23,15 +23,15 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/tests"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv2"
+	"github.com/atheioschain/go-atheios/accounts/keystore"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/eth"
+	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/node"
+	"github.com/atheioschain/go-atheios/params"
+	"github.com/atheioschain/go-atheios/tests"
+	whisper "github.com/atheioschain/go-atheios/whisper/whisperv2"
 )
 
 const defaultTestKey = "b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291"

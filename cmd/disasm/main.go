@@ -24,7 +24,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/atheioschain/go-atheios/core/vm"
 )
 
 func main() {

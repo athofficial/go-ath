@@ -593,7 +593,7 @@ func Futimes(fd int, tv []Timeval) error {
 
 // TODO: wrap
 //	Acct(name nil-string) (err error)
-//	Gubiqostuuid(uuid *byte, timeout *Timespec) (err error)
+//	gathostuuid(uuid *byte, timeout *Timespec) (err error)
 //	Madvise(addr *byte, len int, behav int) (err error)
 //	Mprotect(addr *byte, len int, prot int) (err error)
 //	Msync(addr *byte, len int, flags int) (err error)

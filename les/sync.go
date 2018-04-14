@@ -19,9 +19,9 @@ package les
 import (
 	"time"
 
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/light"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/eth/downloader"
+	"github.com/atheioschain/go-atheios/light"
 	"golang.org/x/net/context"
 )
 

@@ -25,11 +25,11 @@ import (
 	"io/ioutil"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/accounts/abi/bind/backends"
-	"github.com/ubiq/go-ubiq/contracts/chequebook/contract"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/atheioschain/go-atheios/accounts/abi/bind"
+	"github.com/atheioschain/go-atheios/accounts/abi/bind/backends"
+	"github.com/atheioschain/go-atheios/contracts/chequebook/contract"
+	"github.com/atheioschain/go-atheios/core"
+	"github.com/atheioschain/go-atheios/crypto"
 )
 
 var (

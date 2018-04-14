@@ -21,7 +21,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/event"
+	"github.com/atheioschain/go-atheios/event"
 )
 
 // Manager is an overarching account manager that can communicate with various

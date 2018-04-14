@@ -15,7 +15,7 @@
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
 // Contains the Whisper protocol Envelope element. For formal details please see
-// the specs at https://github.com/ubiq/wiki/wiki/Whisper-PoC-1-Protocol-Spec#envelopes.
+// the specs at https://github.com/atheios/wiki/wiki/Whisper-PoC-1-Protocol-Spec#envelopes.
 
 package whisperv2
 
@@ -25,10 +25,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/crypto/ecies"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/crypto/ecies"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 // Envelope represents a clear-text data packet to transmit through the Whisper

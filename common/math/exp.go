@@ -19,7 +19,7 @@ package math
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 // wordSize is the size number of bits in a big.Int Word.

@@ -21,7 +21,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/params"
 )
 
 func TestTransactions(t *testing.T) {

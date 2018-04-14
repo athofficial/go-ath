@@ -20,18 +20,18 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
 )
 
 /*
 http roundtripper to register for bzz url scheme
-see https://github.com/ubiq/go-ubiq/issues/2040
+see https://github.com/atheioschain/go-atheios/issues/2040
 Usage:
 
 import (
- "github.com/ubiq/go-ubiq/common/httpclient"
- "github.com/ubiq/go-ubiq/swarm/api/http"
+ "github.com/atheioschain/go-atheios/common/httpclient"
+ "github.com/atheioschain/go-atheios/swarm/api/http"
 )
 client := httpclient.New()
 // for (private) swarm proxy running locally

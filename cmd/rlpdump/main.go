@@ -26,7 +26,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/atheioschain/go-atheios/rlp"
 )
 
 var (

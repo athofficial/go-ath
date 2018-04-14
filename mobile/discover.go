@@ -17,12 +17,12 @@
 // Contains all the wrappers from the accounts package to support client side enode
 // management on mobile platforms.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 
-	"github.com/ubiq/go-ubiq/p2p/discv5"
+	"github.com/atheioschain/go-atheios/p2p/discv5"
 )
 
 // Enode represents a host on the network.

@@ -19,7 +19,7 @@ package p2p
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/p2p/discover"
+	"github.com/atheioschain/go-atheios/p2p/discover"
 )
 
 // Protocol represents a P2P subprotocol implementation.

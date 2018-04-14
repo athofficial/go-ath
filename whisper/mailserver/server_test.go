@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv5"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/crypto"
+	whisper "github.com/atheioschain/go-atheios/whisper/whisperv5"
 )
 
 const powRequirement = 0.00001

@@ -20,7 +20,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/mclock"
+	"github.com/atheioschain/go-atheios/common/mclock"
 	"golang.org/x/net/context"
 )
 

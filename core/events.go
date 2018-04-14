@@ -19,8 +19,8 @@ package core
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/core/types"
 )
 
 // TxPreEvent is posted when a transaction enters the transaction pool.

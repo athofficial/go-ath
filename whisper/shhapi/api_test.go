@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/whisper/whisperv5"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/whisper/whisperv5"
 )
 
 func TestBasic(t *testing.T) {

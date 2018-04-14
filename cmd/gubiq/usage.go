@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
 
-// Contains the gubiq command usage template and generator.
+// Contains the gath command usage template and generator.
 
 package main
 
 import (
 	"io"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/internal/debug"
+	"github.com/atheioschain/go-atheios/cmd/utils"
+	"github.com/atheioschain/go-atheios/internal/debug"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -30,7 +30,7 @@ import (
 var AppHelpTemplate = `NAME:
    {{.App.Name}} - {{.App.Usage}}
 
-   Copyright 2013-2016 The go-ubiq Authors
+   Copyright 2013-2016 The go-atheios Authors
 
 USAGE:
    {{.App.HelpName}} [options]{{if .App.Commands}} command [command options]{{end}} {{if .App.ArgsUsage}}{{.App.ArgsUsage}}{{else}}[arguments...]{{end}}

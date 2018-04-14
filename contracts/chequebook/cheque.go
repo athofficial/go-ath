@@ -35,14 +35,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/contracts/chequebook/contract"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/logger"
-	"github.com/ubiq/go-ubiq/logger/glog"
-	"github.com/ubiq/go-ubiq/swarm/services/swap/swap"
+	"github.com/atheioschain/go-atheios/accounts/abi/bind"
+	"github.com/atheioschain/go-atheios/common"
+	"github.com/atheioschain/go-atheios/contracts/chequebook/contract"
+	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/atheioschain/go-atheios/logger"
+	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/atheioschain/go-atheios/swarm/services/swap/swap"
 	"golang.org/x/net/context"
 )
 

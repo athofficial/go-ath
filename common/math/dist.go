@@ -20,7 +20,7 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/atheioschain/go-atheios/common"
 )
 
 type Summer interface {

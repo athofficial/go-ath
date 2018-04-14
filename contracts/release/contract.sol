@@ -15,12 +15,12 @@
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
 // ReleaseOracle is an Ethereum contract to store the current and previous
-// versions of the go-ethereum implementation. Its goal is to allow Gubiq to
+// versions of the go-ethereum implementation. Its goal is to allow gath to
 // check for new releases automatically without the need to consult a central
 // repository.
 //
 // The contract takes a vote based approach on both assigning authorised signers
-// as well as signing off on new Gubiq releases.
+// as well as signing off on new gath releases.
 //
 // Note, when a signer is demoted, the currently pending release is auto-nuked.
 // The reason is to prevent suprises where a demotion actually tilts the votes
@@ -33,7 +33,7 @@ contract ReleaseOracle {
     address[] fail; // List of signers voting to fail a proposal
   }
 
-  // Version is the version details of a particular Gubiq release
+  // Version is the version details of a particular gath release
   struct Version {
     uint32  major;  // Major version component of the release
     uint32  minor;  // Minor version component of the release

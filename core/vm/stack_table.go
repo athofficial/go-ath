@@ -3,7 +3,7 @@ package vm
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/atheioschain/go-atheios/params"
 )
 
 func makeStackFunc(pop, diff int) stackValidationFunc {

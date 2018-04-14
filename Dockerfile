@@ -10,18 +10,18 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-2.25-r0.apk
 RUN apk add --no-cache make gcc musl-dev linux-headers git glibc-2.25-r0.apk
 
-# Fetch Gubiq source and build it
-RUN git clone https://github.com/ubiq/go-ubiq go-ubiq/
-RUN cd go-ubiq && make gubiq
+# Fetch gath source and build it
+RUN git clone https://github.com/atheioschain/go-atheios go-atheios/
+RUN cd go-atheios && make gath
 
-# Pull Gubiq into another container
+# Pull gath into another container
 FROM alpine:latest
 
 RUN apk add --no-cache ca-certificates
-COPY --from=builder /go/go-ubiq/build/bin/gubiq /usr/local/bin/
+COPY --from=builder /go/go-atheios/build/bin/gath /usr/local/bin/
 
 # Expose ports
 EXPOSE 8588 8588
 
 # Entry point
-ENTRYPOINT ["gubiq"]
+ENTRYPOINT ["gath"]
