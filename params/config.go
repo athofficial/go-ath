@@ -63,12 +63,8 @@ type ChainConfig struct {
 
 // String implements the Stringer interface.
 func (c *ChainConfig) String() string {
-	return fmt.Sprintf("{ChainID: %v Homestead: %v EIP150: %v EIP155: %v EIP158: %v}",
+	return fmt.Sprintf("{ChainID: %v  Atheios Gath}",
 		c.ChainId,
-		c.HomesteadBlock,
-		c.EIP150Block,
-		c.EIP155Block,
-		c.EIP158Block,
 	)
 }
 

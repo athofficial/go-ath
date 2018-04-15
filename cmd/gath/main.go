@@ -60,7 +60,7 @@ func init() {
 	// Initialize the CLI app and start gath
 	app.Action = gath
 	app.HideVersion = true // we have a command to print the version
-	app.Copyright = "Copyright 2013-2016 The go-atheios Authors"
+	app.Copyright = "Copyright 2013-2018 The go-atheios Authors"
 	app.Commands = []cli.Command{
 		// See chaincmd.go:
 		initCommand,
