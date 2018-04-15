@@ -112,7 +112,7 @@ func initialize(t *testing.T) {
 
 	var err error
 	ip := net.IPv4(127, 0, 0, 1)
-	port0 := 30388
+	port0 := 30696
 
 	for i := 0; i < NumNodes; i++ {
 		var node TestNode
@@ -128,7 +128,7 @@ func initialize(t *testing.T) {
 			t.Fatalf("failed convert the key: %s.", keys[i])
 		}
 		port := port0 + i
-		addr := fmt.Sprintf(":%d", port) // e.g. ":30388"
+		addr := fmt.Sprintf(":%d", port) // e.g. ":30696"
 		name := common.MakeName("whisper-go", "2.0")
 		var peers []*discover.Node
 		if i > 0 {
