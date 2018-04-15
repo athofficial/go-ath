@@ -8,7 +8,7 @@ RUN \
   apk del go git make gcc musl-dev linux-headers && \
   rm -rf /go-atheios && rm -rf /var/cache/apk/*
 
-EXPOSE 8588
-EXPOSE 30388
+EXPOSE 8696
+EXPOSE 30696
 
 ENTRYPOINT ["/gath"]

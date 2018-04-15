@@ -9,7 +9,7 @@ RUN \
   apt-get remove -y golang git make gcc libc-dev && apt autoremove -y && apt-get clean && \
   rm -rf /go-atheios
 
-EXPOSE 8588
-EXPOSE 30388
+EXPOSE 8696
+EXPOSE 30696
 
 ENTRYPOINT ["/gath"]

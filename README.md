@@ -102,7 +102,7 @@ One of the quickest ways to get atheios up and running on your machine is by usi
 
 ```
 docker run -d --name atheios-node -v /Users/alice/atheios:/root \
-           -p 8588:8588 -p 30388:30388 \
+           -p 8696:8696 -p 30696:30696 \
            atheioschain/gath --fast --cache=512
 ```
 
@@ -124,12 +124,12 @@ HTTP based JSON-RPC API options:
 
   * `--rpc` Enable the HTTP-RPC server
   * `--rpcaddr` HTTP-RPC server listening interface (default: "localhost")
-  * `--rpcport` HTTP-RPC server listening port (default: 8588)
+  * `--rpcport` HTTP-RPC server listening port (default: 8696)
   * `--rpcapi` API's offered over the HTTP-RPC interface (default: "eth,net,web3")
   * `--rpccorsdomain` Comma separated list of domains from which to accept cross origin requests (browser enforced)
   * `--ws` Enable the WS-RPC server
   * `--wsaddr` WS-RPC server listening interface (default: "localhost")
-  * `--wsport` WS-RPC server listening port (default: 8589)
+  * `--wsport` WS-RPC server listening port (default: 8697)
   * `--wsapi` API's offered over the WS-RPC interface (default: "eth,net,web3")
   * `--wsorigins` Origins from which to accept websockets requests
   * `--ipcdisable` Disable the IPC-RPC server

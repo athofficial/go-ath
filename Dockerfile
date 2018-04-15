@@ -21,7 +21,7 @@ RUN apk add --no-cache ca-certificates
 COPY --from=builder /go/go-atheios/build/bin/gath /usr/local/bin/
 
 # Expose ports
-EXPOSE 8588 8588
+EXPOSE 8696 8696
 
 # Entry point
 ENTRYPOINT ["gath"]
