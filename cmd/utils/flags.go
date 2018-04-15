@@ -28,7 +28,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/ethash"
 	"github.com/atheioschain/go-atheios/accounts"
 	"github.com/atheioschain/go-atheios/accounts/keystore"
 	"github.com/atheioschain/go-atheios/common"
@@ -53,6 +52,7 @@ import (
 	"github.com/atheioschain/go-atheios/pow"
 	"github.com/atheioschain/go-atheios/rpc"
 	whisper "github.com/atheioschain/go-atheios/whisper/whisperv2"
+	"github.com/ethereum/ethash"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -758,7 +758,7 @@ func RegisterEthService(ctx *cli.Context, stack *node.Node, extra []byte) {
 	switch {
 	case ctx.GlobalBool(TestNetFlag.Name):
 		if !ctx.GlobalIsSet(NetworkIdFlag.Name) {
-			ethConf.NetworkId = 9
+			ethConf.NetworkId = 11235813
 		}
 		ethConf.Genesis = core.DefaultTestnetGenesisBlock()
 
