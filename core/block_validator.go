@@ -34,7 +34,7 @@ import (
 var (
 	big88               = big.NewInt(22)
 	bigMinus99          = big.NewInt(-99)
-	nPowAveragingWindow = big.NewInt(84)
+	nPowAveragingWindow = big.NewInt(22)
 	nPowMaxAdjustDown   = big.NewInt(16) // 16% adjustment down
 	nPowMaxAdjustUp     = big.NewInt(8)  // 8% adjustment up
 
