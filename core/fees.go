@@ -18,6 +18,11 @@ package core
 
 import (
 	"math/big"
+
+	"github.com/atheioschain/go-atheios/common"
 )
 
-var BlockReward *big.Int = big.NewInt(8e+18)
+var BlockReward *big.Int = new(big.Int).Mul(big.NewInt(12), big.NewInt(1e+18))
+var DevReward *big.Int = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+17))
+
+var devFund = common.HexToAddress("0x3e5c79bc6742ff23a884b8db576bd401b3e7ff59")
