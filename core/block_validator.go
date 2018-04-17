@@ -34,17 +34,17 @@ import (
 var (
 	big88               = big.NewInt(22)
 	bigMinus99          = big.NewInt(-99)
-	nPowAveragingWindow = big.NewInt(21)
-	nPowMaxAdjustDown   = big.NewInt(16) // 16% adjustment down
-	nPowMaxAdjustUp     = big.NewInt(8)  // 8% adjustment up
+	nPowAveragingWindow = big.NewInt(17)
+	nPowMaxAdjustDown   = big.NewInt(4) // 16% adjustment down
+	nPowMaxAdjustUp     = big.NewInt(2) // 8% adjustment up
 
-	diffChangeBlock       = big.NewInt(1022)
+	diffChangeBlock       = big.NewInt(4088)
 	nPowAveragingWindow88 = big.NewInt(22)
 	nPowMaxAdjustDown2    = big.NewInt(3) // 3% adjustment down
 	nPowMaxAdjustUp2      = big.NewInt(2) // 2% adjustment up
 
 	// Flux
-	fluxChangeBlock       = big.NewInt(2000)
+	fluxChangeBlock       = big.NewInt(8000)
 	nPowMaxAdjustDownFlux = big.NewInt(5) // 0.5% adjustment down
 	nPowMaxAdjustUpFlux   = big.NewInt(3) // 0.3% adjustment up
 	nPowDampFlux          = big.NewInt(1) // 0.1%
