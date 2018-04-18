@@ -132,52 +132,52 @@ func AccumulateRewards(statedb *state.StateDB, header *types.Header, uncles []*t
 	rewardDev := new(big.Int).Set(DevReward)
 
 	// Epoch 1 - Beyond Block 716727
-	if header.Number.Cmp(big.NewInt(200)) > 0 {
+	if header.Number.Cmp(big.NewInt(716727)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(10), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(2), big.NewInt(1e+17))
 	}
 	// Epoch 2 - Beyond Block 1433454
-	if header.Number.Cmp(big.NewInt(300)) > 0 {
+	if header.Number.Cmp(big.NewInt(1433454)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(9), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(3), big.NewInt(1e+17))
 	}
 	// Epoch 3 - Beyond Block 2866908
-	if header.Number.Cmp(big.NewInt(400)) > 0 {
+	if header.Number.Cmp(big.NewInt(2866908)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(8), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(2), big.NewInt(1e+17))
 	}
 	// Epoch 4 - Beyond Block 4300362
-	if header.Number.Cmp(big.NewInt(500)) > 0 {
+	if header.Number.Cmp(big.NewInt(4300362)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(7), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(18), big.NewInt(1e+16))
 	}
 	// Epoch 5 - Beyond Block 5733816
-	if header.Number.Cmp(big.NewInt(600)) > 0 {
+	if header.Number.Cmp(big.NewInt(5733816)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(6), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(15), big.NewInt(1e+16))
 	}
 	// Epoch 6 - Beyond Block 7167270
-	if header.Number.Cmp(big.NewInt(700)) > 0 {
+	if header.Number.Cmp(big.NewInt(7167270)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(5), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+17))
 	}
 	// Epoch 7 - Beyond Block 8600724
-	if header.Number.Cmp(big.NewInt(800)) > 0 {
+	if header.Number.Cmp(big.NewInt(8600724)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(4), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(8), big.NewInt(1e+16))
 	}
 	// Epoch 8 - Beyond Block 10034178
-	if header.Number.Cmp(big.NewInt(900)) > 0 {
+	if header.Number.Cmp(big.NewInt(10034178)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(3), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(5), big.NewInt(1e+16))
 	}
 	// Epoch 9 - Beyond Block 11467632
-	if header.Number.Cmp(big.NewInt(1000)) > 0 {
+	if header.Number.Cmp(big.NewInt(11467632)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(2), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(3), big.NewInt(1e+16))
 	}
 	// Epoch 10 - Beyond Block 14334540
-	if header.Number.Cmp(big.NewInt(1100)) > 0 {
+	if header.Number.Cmp(big.NewInt(14334540)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+16))
 	}
