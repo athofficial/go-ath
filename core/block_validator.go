@@ -32,7 +32,7 @@ import (
 )
 
 var (
-	big88               = big.NewInt(22)
+	big22               = big.NewInt(22)
 	bigMinus99          = big.NewInt(-99)
 	nPowAveragingWindow = big.NewInt(22)
 	nPowMaxAdjustDown   = big.NewInt(16) // 16% adjustment down
@@ -52,7 +52,7 @@ var (
 
 func AveragingWindowTimespan() *big.Int {
 	x := new(big.Int)
-	return x.Mul(nPowAveragingWindow, big88)
+	return x.Mul(nPowAveragingWindow, big22)
 }
 
 func MinActualTimespan() *big.Int {
@@ -79,7 +79,7 @@ func MaxActualTimespan() *big.Int {
 
 func AveragingWindowTimespan88() *big.Int {
 	x := new(big.Int)
-	return x.Mul(nPowAveragingWindow88, big88)
+	return x.Mul(nPowAveragingWindow88, big22)
 }
 
 func MinActualTimespan2() *big.Int {
@@ -529,17 +529,17 @@ func FluxDifficulty(time, parentTime uint64, parentNumber, parentDiff *big.Int, 
 	nActualTimespan.Add(y, AveragingWindowTimespan88())
 
 	if nActualTimespan.Cmp(MinActualTimespanFlux(false)) < 0 {
-		doubleBig88 := new(big.Int)
-		doubleBig88.Mul(big88, big.NewInt(2))
-		if diffTime.Cmp(doubleBig88) > 0 {
+		doubleBig22 := new(big.Int)
+		doubleBig22.Mul(big22, big.NewInt(2))
+		if diffTime.Cmp(doubleBig22) > 0 {
 			nActualTimespan.Set(MinActualTimespanFlux(true))
 		} else {
 			nActualTimespan.Set(MinActualTimespanFlux(false))
 		}
 	} else if nActualTimespan.Cmp(MaxActualTimespanFlux(false)) > 0 {
-		halfBig88 := new(big.Int)
-		halfBig88.Div(big88, big.NewInt(2))
-		if diffTime.Cmp(halfBig88) < 0 {
+		halfBig22 := new(big.Int)
+		halfBig22.Div(big22, big.NewInt(2))
+		if diffTime.Cmp(halfBig22) < 0 {
 			nActualTimespan.Set(MaxActualTimespanFlux(true))
 		} else {
 			nActualTimespan.Set(MaxActualTimespanFlux(false))
@@ -658,17 +658,17 @@ func FluxDifficultyHeaderChain(time, parentTime uint64, parentNumber, parentDiff
 	nActualTimespan.Add(y, AveragingWindowTimespan88())
 
 	if nActualTimespan.Cmp(MinActualTimespanFlux(false)) < 0 {
-		doubleBig88 := new(big.Int)
-		doubleBig88.Mul(big88, big.NewInt(2))
-		if diffTime.Cmp(doubleBig88) > 0 {
+		doubleBig22 := new(big.Int)
+		doubleBig22.Mul(big22, big.NewInt(2))
+		if diffTime.Cmp(doubleBig22) > 0 {
 			nActualTimespan.Set(MinActualTimespanFlux(true))
 		} else {
 			nActualTimespan.Set(MinActualTimespanFlux(false))
 		}
 	} else if nActualTimespan.Cmp(MaxActualTimespanFlux(false)) > 0 {
-		halfBig88 := new(big.Int)
-		halfBig88.Div(big88, big.NewInt(2))
-		if diffTime.Cmp(halfBig88) < 0 {
+		halfBig22 := new(big.Int)
+		halfBig22.Div(big22, big.NewInt(2))
+		if diffTime.Cmp(halfBig22) < 0 {
 			nActualTimespan.Set(MaxActualTimespanFlux(true))
 		} else {
 			nActualTimespan.Set(MaxActualTimespanFlux(false))
@@ -693,7 +693,7 @@ func CalcDifficultyLegacy(config *params.ChainConfig, time, parentTime uint64, p
 	y := new(big.Int)
 
 	x.Sub(bigTime, bigParentTime)
-	x.Div(x, big88)
+	x.Div(x, big22)
 	x.Sub(common.Big1, x)
 
 	if x.Cmp(bigMinus99) < 0 {
