@@ -38,7 +38,7 @@ var TestnetChainConfig = &ChainConfig{
 	ChainId:        big.NewInt(1619),
 	HomesteadBlock: big.NewInt(0),
 	EIP150Block:    big.NewInt(0),
-	EIP150Hash:     common.HexToHash("0xcc84be4e00a8ef21d3de15825cd0ac606825ef172fab4a8cc778f2035f834557"),
+	EIP150Hash:     common.HexToHash("0xe23d4b1b6f8a4bbbf3f578a469728034fc98697dc9c22040405457cfb82a33e6"),
 	EIP155Block:    big.NewInt(10),
 	EIP158Block:    big.NewInt(10),
 }
