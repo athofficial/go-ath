@@ -5,23 +5,22 @@ matrix:
   include:
     - os: linux
       dist: trusty
-      go: 1.5.4
-      env:
-        - GO15VENDOREXPERIMENT=1
+      go: 1.7.5
     - os: linux
       dist: trusty
-      go: 1.6.2
-    - os: linux
-      dist: trusty
-      go: 1.7.4
+      go: 1.8
+      script:
+        - go run build/ci.go install
+        - go run build/ci.go test -coverage -vet -misspell
     - os: osx
-      go: 1.7.4
-
-    # This builder does the Ubuntu PPA and Linux Azure uploads
+      go: 1.8
+      script:
+        - go run build/ci.go install
+        - go run build/ci.go test -coverage -vet -misspell
     - os: linux
       dist: trusty
       sudo: required
-      go: 1.7.4
+      go: 1.8
       env:
         - ubuntu-ppa
         - azure-linux
@@ -32,6 +31,7 @@ matrix:
             - debhelper
             - dput
             - gcc-multilib
+
       script:
         # Build for the primary platforms that Trusty can manage
         - go run build/ci.go debsrc -signer "Go Ethereum Linux Builder <gath-ci@ethereum.org>" -upload ppa:ethereum/ethereum

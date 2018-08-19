@@ -157,12 +157,19 @@ func doInstall(cmdline []string) {
 
 	// Check Go version. People regularly open issues about compilation
 	// failure with outdated Go. This should save them the trouble.
-	if runtime.Version() < "go1.4" && !strings.HasPrefix(runtime.Version(), "devel") {
-		log.Println("You have Go version", runtime.Version())
-		log.Println("go-atheios requires at least Go version 1.4 and cannot")
-		log.Println("be compiled with an earlier version. Please upgrade your Go installation.")
-		os.Exit(1)
+	if !strings.Contains(runtime.Version(), "devel") {
+		// Figure out the minor version number since we can't textually compare (1.10 < 1.7)
+		var minor int
+		fmt.Sscanf(strings.TrimPrefix(runtime.Version(), "go1."), "%d", &minor)
+
+		if minor < 7 {
+			log.Println("You have Go version", runtime.Version())
+			log.Println("go-ethereum requires at least Go version 1.7 and cannot")
+			log.Println("be compiled with an earlier version. Please upgrade your Go installation.")
+			os.Exit(1)
+		}
 	}
+
 	// Compile packages given as arguments, or everything if there are no arguments.
 	packages := []string{"./..."}
 	if flag.NArg() > 0 {
@@ -214,16 +221,9 @@ func buildFlags(env build.Environment) (flags []string) {
 		flags = append(flags, "-tags", "opencl")
 	}
 
-	// Since Go 1.5, the separator char for link time assignments
-	// is '=' and using ' ' prints a warning. However, Go < 1.5 does
-	// not support using '='.
-	sep := " "
-	if runtime.Version() > "go1.5" || strings.Contains(runtime.Version(), "devel") {
-		sep = "="
-	}
 	// Set gitCommit constant via link-time assignment.
 	if env.Commit != "" {
-		flags = append(flags, "-ldflags", "-X main.gitCommit"+sep+env.Commit)
+		flags = append(flags, "-ldflags", "-X main.gitCommit="+env.Commit)
 	}
 	return flags
 }
@@ -240,14 +240,16 @@ func goToolArch(arch string, subcmd string, args ...string) *exec.Cmd {
 	if subcmd == "build" || subcmd == "install" || subcmd == "test" {
 		// Go CGO has a Windows linker error prior to 1.8 (https://github.com/golang/go/issues/8756).
 		// Work around issue by allowing multiple definitions for <1.8 builds.
-		if runtime.GOOS == "windows" && runtime.Version() < "go1.8" {
+
+		var minor int
+		fmt.Sscanf(strings.TrimPrefix(runtime.Version(), "go1."), "%d", &minor)
+
+		if runtime.GOOS == "windows" && minor < 8 {
 			cmd.Args = append(cmd.Args, []string{"-ldflags", "-extldflags -Wl,--allow-multiple-definition"}...)
 		}
 	}
-	cmd.Env = []string{
-		"GO15VENDOREXPERIMENT=1",
-		"GOPATH=" + build.GOPATH(),
-	}
+
+	cmd.Env = []string{"GOPATH=" + build.GOPATH()}
 	if arch == "" || arch == runtime.GOARCH {
 		cmd.Env = append(cmd.Env, "GOBIN="+GOBIN)
 	} else {
@@ -362,7 +364,7 @@ func doArchive(cmdline []string) {
 	var (
 		env      = build.Env()
 		base     = archiveBasename(*arch, env)
-		gath    = "gath-" + base + ext
+		gath     = "gath-" + base + ext
 		alltools = "gath-alltools-" + base + ext
 	)
 	maybeSkipArchive(env)
@@ -642,8 +644,8 @@ func doWindowsInstaller(cmdline []string) {
 
 	// Aggregate binaries that are included in the installer
 	var (
-		devTools  []string
-		allTools  []string
+		devTools []string
+		allTools []string
 		gathTool string
 	)
 	for _, file := range allToolsArchiveFiles {
@@ -662,7 +664,7 @@ func doWindowsInstaller(cmdline []string) {
 	// first section contains the gath binary, second section holds the dev tools.
 	templateData := map[string]interface{}{
 		"License":  "COPYING",
-		"gath":    gathTool,
+		"gath":     gathTool,
 		"DevTools": devTools,
 	}
 	build.Render("build/nsis.gath.nsi", filepath.Join(*workdir, "gath.nsi"), 0644, nil)
