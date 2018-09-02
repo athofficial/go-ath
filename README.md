@@ -103,10 +103,12 @@ One of the quickest ways to get atheios up and running on your machine is by usi
 ```
 docker run -d --name atheios-node -v /Users/alice/atheios:/root \
            -p 8696:8696 -p 30696:30696 \
-           atheioschain/gath --fast --cache=512
+           atheios/gath --fast --cache=512
 ```
 
 This will start gath in fast sync mode with a DB memory allowance of 512MB just as the above command does.  It will also create a persistent volume in your home directory for saving your blockchain as well as map the default ports.
+
+Gath is available on Docker Hub here: https://hub.docker.com/r/atheios/gath/
 
 ### Programatically interfacing gath nodes
 
