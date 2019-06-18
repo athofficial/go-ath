@@ -16,7 +16,7 @@
 
 package bind
 
-import "github.com/atheioschain/go-atheios/accounts/abi"
+import "github.com/kek-mex/go-atheios/accounts/abi"
 
 // tmplData is the data structure required to fill the binding template.
 type tmplData struct {

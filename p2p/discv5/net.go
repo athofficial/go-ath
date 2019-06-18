@@ -24,15 +24,15 @@ import (
 	"net"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/common/mclock"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/crypto/sha3"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/p2p/nat"
-	"github.com/atheioschain/go-atheios/p2p/netutil"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common/mclock"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto/sha3"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/p2p/nat"
+	"github.com/kek-mex/go-atheios/p2p/netutil"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 var (

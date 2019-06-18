@@ -28,8 +28,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/params"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/params"
+	"github.com/kek-mex/go-atheios/rpc"
 )
 
 // Tests that a node embedded within a console can be started up properly and

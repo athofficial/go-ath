@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/crypto/sha3"
-	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto/sha3"
+	"github.com/kek-mex/go-atheios/p2p/discover"
 )
 
 func init() {

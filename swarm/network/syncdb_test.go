@@ -24,10 +24,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/swarm/storage"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/swarm/storage"
 )
 
 func init() {

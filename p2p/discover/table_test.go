@@ -27,8 +27,8 @@ import (
 	"testing/quick"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 func TestTable_pingReplace(t *testing.T) {

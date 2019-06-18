@@ -19,7 +19,7 @@ package number
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 var tt256 = new(big.Int).Lsh(big.NewInt(1), 256)

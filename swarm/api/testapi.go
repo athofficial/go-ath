@@ -17,7 +17,7 @@
 package api
 
 import (
-	"github.com/atheioschain/go-atheios/swarm/network"
+	"github.com/kek-mex/go-atheios/swarm/network"
 )
 
 type Control struct {

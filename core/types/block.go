@@ -28,10 +28,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/common/hexutil"
-	"github.com/atheioschain/go-atheios/crypto/sha3"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common/hexutil"
+	"github.com/kek-mex/go-atheios/crypto/sha3"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 var (

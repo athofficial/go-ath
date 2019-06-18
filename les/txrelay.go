@@ -19,8 +19,8 @@ package les
 import (
 	"sync"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 type ltrInfo struct {

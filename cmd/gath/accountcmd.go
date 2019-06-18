@@ -20,13 +20,13 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/atheioschain/go-atheios/accounts"
-	"github.com/atheioschain/go-atheios/accounts/keystore"
-	"github.com/atheioschain/go-atheios/cmd/utils"
-	"github.com/atheioschain/go-atheios/console"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/accounts/keystore"
+	"github.com/kek-mex/go-atheios/cmd/utils"
+	"github.com/kek-mex/go-atheios/console"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
 	"gopkg.in/urfave/cli.v1"
 )
 

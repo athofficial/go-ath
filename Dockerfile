@@ -11,7 +11,7 @@ RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/
 RUN apk add --no-cache make gcc musl-dev linux-headers git glibc-2.28-r0.apk
 
 # Fetch gath source and build it
-RUN git clone https://github.com/atheioschain/go-atheios go-atheios/
+RUN git clone https://github.com/kek-mex/go-atheios go-atheios/
 RUN cd go-atheios && make gath
 
 # Pull gath into another container

@@ -25,7 +25,7 @@ package usbwallet
 import (
 	"errors"
 
-	"github.com/atheioschain/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/accounts"
 )
 
 // Here be dragons! There is no USB support on iOS.

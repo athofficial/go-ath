@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/rpc"
 )
 
 func TestUnmarshalJSONNewFilterArgs(t *testing.T) {

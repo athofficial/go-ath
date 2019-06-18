@@ -19,9 +19,9 @@ package core
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/core/state"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/core/vm"
+	"github.com/kek-mex/go-atheios/core/state"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/core/vm"
 )
 
 // Validator is an interface which defines the standard for block validation.

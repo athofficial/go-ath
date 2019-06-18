@@ -22,8 +22,8 @@ import (
 	"errors"
 	"math/big"
 
-	ethereum "github.com/atheioschain/go-atheios"
-	"github.com/atheioschain/go-atheios/common"
+	ethereum "github.com/kek-mex/go-atheios"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // Subscription represents an event subscription where events are

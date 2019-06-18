@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 // headerCheckFn is a callback type for verifying a header's presence in the local chain.

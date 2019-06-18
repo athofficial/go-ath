@@ -21,8 +21,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 var indices = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "[17]"}

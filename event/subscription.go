@@ -20,7 +20,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common/mclock"
+	"github.com/kek-mex/go-atheios/common/mclock"
 	"golang.org/x/net/context"
 )
 

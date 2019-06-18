@@ -22,11 +22,11 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/accounts/abi/bind"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/contracts/ens/contract"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/accounts/abi/bind"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/contracts/ens/contract"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 // swarm domain name registry and resolver

@@ -20,14 +20,14 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/eth/downloader"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/rlp"
-	"github.com/atheioschain/go-atheios/trie"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/eth/downloader"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/trie"
 )
 
 func expectResponse(r p2p.MsgReader, msgcode, reqID, bv uint64, data interface{}) error {

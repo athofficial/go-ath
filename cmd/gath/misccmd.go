@@ -26,9 +26,9 @@ import (
 	"strings"
 
 	"github.com/ethereum/ethash"
-	"github.com/atheioschain/go-atheios/cmd/utils"
-	"github.com/atheioschain/go-atheios/eth"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/cmd/utils"
+	"github.com/kek-mex/go-atheios/eth"
+	"github.com/kek-mex/go-atheios/params"
 	"gopkg.in/urfave/cli.v1"
 )
 

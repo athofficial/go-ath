@@ -26,8 +26,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 func tmpKeyStoreIface(t *testing.T, encrypted bool) (dir string, ks keyStore) {

@@ -21,8 +21,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/p2p/discover"
 )
 
 // Tests that fast sync gets disabled as soon as a real block is successfully

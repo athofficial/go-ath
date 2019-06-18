@@ -24,7 +24,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // The ABI holds information about a contract's context and available

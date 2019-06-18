@@ -24,7 +24,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 // Tests that datadirs can be successfully created, be them manually configured

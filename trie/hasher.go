@@ -21,9 +21,9 @@ import (
 	"hash"
 	"sync"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto/sha3"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto/sha3"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 type hasher struct {

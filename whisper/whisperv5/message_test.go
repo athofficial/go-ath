@@ -21,8 +21,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 func copyFromBuf(dst []byte, src []byte, beg int) int {

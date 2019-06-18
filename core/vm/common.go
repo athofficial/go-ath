@@ -20,8 +20,8 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 // Type is the VM type accepted by **NewVm**

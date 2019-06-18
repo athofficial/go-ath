@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/rpc"
 )
 
 var (

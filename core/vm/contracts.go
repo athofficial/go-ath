@@ -19,11 +19,11 @@ package vm
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 // Precompiled contract is the basic interface for native Go contracts. The implementation

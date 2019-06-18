@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/rlp"
-	"github.com/atheioschain/go-atheios/trie"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/trie"
 )
 
 // NodeIterator is an iterator to traverse the entire state trie post-order,

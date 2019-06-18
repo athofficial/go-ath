@@ -30,9 +30,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/crypto/secp256k1"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto/secp256k1"
 )
 
 const NodeIDBits = 512

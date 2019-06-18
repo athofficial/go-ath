@@ -19,7 +19,7 @@ package trie
 import (
 	"fmt"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // MissingNodeError is returned by the trie functions (TryGet, TryUpdate, TryDelete)

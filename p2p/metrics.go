@@ -21,7 +21,7 @@ package p2p
 import (
 	"net"
 
-	"github.com/atheioschain/go-atheios/metrics"
+	"github.com/kek-mex/go-atheios/metrics"
 )
 
 var (

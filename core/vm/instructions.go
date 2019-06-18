@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/common/math"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common/math"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 func opAdd(pc *uint64, env *EVM, contract *Contract, memory *Memory, stack *Stack) ([]byte, error) {

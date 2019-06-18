@@ -21,11 +21,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/atheioschain/go-atheios/contracts/chequebook"
-	"github.com/atheioschain/go-atheios/p2p/discover"
-	"github.com/atheioschain/go-atheios/swarm/network/kademlia"
-	"github.com/atheioschain/go-atheios/swarm/services/swap"
-	"github.com/atheioschain/go-atheios/swarm/storage"
+	"github.com/kek-mex/go-atheios/contracts/chequebook"
+	"github.com/kek-mex/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/swarm/network/kademlia"
+	"github.com/kek-mex/go-atheios/swarm/services/swap"
+	"github.com/kek-mex/go-atheios/swarm/storage"
 )
 
 /*

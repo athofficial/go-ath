@@ -24,12 +24,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/accounts/abi/bind"
-	"github.com/atheioschain/go-atheios/accounts/abi/bind/backends"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/contracts/chequebook/contract"
-	"github.com/atheioschain/go-atheios/core"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/accounts/abi/bind"
+	"github.com/kek-mex/go-atheios/accounts/abi/bind/backends"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/contracts/chequebook/contract"
+	"github.com/kek-mex/go-atheios/core"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 var (

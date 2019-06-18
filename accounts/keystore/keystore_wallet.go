@@ -19,9 +19,9 @@ package keystore
 import (
 	"math/big"
 
-	ethereum "github.com/atheioschain/go-atheios"
-	"github.com/atheioschain/go-atheios/accounts"
-	"github.com/atheioschain/go-atheios/core/types"
+	ethereum "github.com/kek-mex/go-atheios"
+	"github.com/kek-mex/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 // keystoreWallet implements the accounts.Wallet interface for the original

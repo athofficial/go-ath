@@ -27,12 +27,12 @@ import (
 	"os"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/p2p/nat"
-	"github.com/atheioschain/go-atheios/whisper"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/p2p/nat"
+	"github.com/kek-mex/go-atheios/whisper"
 )
 
 func main() {

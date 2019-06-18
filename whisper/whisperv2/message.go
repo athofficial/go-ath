@@ -15,7 +15,7 @@
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
 // Contains the Whisper protocol Message element. For formal details please see
-// the specs at https://github.com/atheioschain/wiki/wiki/Whisper-PoC-1-Protocol-Spec#messages.
+// the specs at https://github.com/kek-mex/wiki/wiki/Whisper-PoC-1-Protocol-Spec#messages.
 
 package whisperv2
 
@@ -24,10 +24,10 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
 )
 
 // Message represents an end-user data packet to transmit through the Whisper

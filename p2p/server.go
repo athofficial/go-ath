@@ -25,12 +25,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/p2p/discover"
-	"github.com/atheioschain/go-atheios/p2p/discv5"
-	"github.com/atheioschain/go-atheios/p2p/nat"
-	"github.com/atheioschain/go-atheios/p2p/netutil"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/p2p/discv5"
+	"github.com/kek-mex/go-atheios/p2p/nat"
+	"github.com/kek-mex/go-atheios/p2p/netutil"
 )
 
 const (

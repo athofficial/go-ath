@@ -20,7 +20,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 func newDb() *LDBDatabase {

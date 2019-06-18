@@ -22,11 +22,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common/mclock"
-	"github.com/atheioschain/go-atheios/ethdb"
-	"github.com/atheioschain/go-atheios/light"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/common/mclock"
+	"github.com/kek-mex/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/light"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
 	"golang.org/x/net/context"
 )
 

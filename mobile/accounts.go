@@ -23,8 +23,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/atheioschain/go-atheios/accounts"
-	"github.com/atheioschain/go-atheios/accounts/keystore"
+	"github.com/kek-mex/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/accounts/keystore"
 )
 
 const (

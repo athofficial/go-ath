@@ -20,10 +20,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/atheioschain/go-atheios/node"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/p2p/discover"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/node"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/rpc"
 )
 
 // SampleService is a trivial network service that can be attached to a node for

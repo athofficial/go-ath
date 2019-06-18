@@ -22,10 +22,10 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/atheioschain/go-atheios/accounts/keystore"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/accounts/keystore"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 // NewTransactor is a utility method to easily create a transaction signer from

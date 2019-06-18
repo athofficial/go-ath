@@ -19,9 +19,9 @@
 package gath
 
 import (
-	"github.com/atheioschain/go-atheios/core"
-	"github.com/atheioschain/go-atheios/p2p/discv5"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/core"
+	"github.com/kek-mex/go-atheios/p2p/discv5"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 // MainnetChainConfig returns the chain configurations for the main Ethereum network.

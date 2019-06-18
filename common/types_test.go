@@ -21,7 +21,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common/hexutil"
+	"github.com/kek-mex/go-atheios/common/hexutil"
 )
 
 func TestBytesConversion(t *testing.T) {

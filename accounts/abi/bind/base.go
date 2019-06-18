@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios"
-	"github.com/atheioschain/go-atheios/accounts/abi"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios"
+	"github.com/kek-mex/go-atheios/accounts/abi"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/crypto"
 	"golang.org/x/net/context"
 )
 

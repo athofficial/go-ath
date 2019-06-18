@@ -4,7 +4,7 @@
 # Ethash
 
 For details on this project, please see the Ethereum wiki:
-https://github.com/atheioschain/wiki/wiki/Ethash
+https://github.com/kek-mex/wiki/wiki/Ethash
 
 ### Coding Style for C++ code:
 

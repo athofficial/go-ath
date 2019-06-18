@@ -28,8 +28,8 @@ import (
 
 	"github.com/cespare/cp"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/atheioschain/go-atheios/accounts"
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 var (

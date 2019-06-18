@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // destinations stores one map per contract (keyed by hash of code).

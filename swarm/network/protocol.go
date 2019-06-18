@@ -36,15 +36,15 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/atheioschain/go-atheios/contracts/chequebook"
-	"github.com/atheioschain/go-atheios/errs"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/p2p/discover"
-	bzzswap "github.com/atheioschain/go-atheios/swarm/services/swap"
-	"github.com/atheioschain/go-atheios/swarm/services/swap/swap"
-	"github.com/atheioschain/go-atheios/swarm/storage"
+	"github.com/kek-mex/go-atheios/contracts/chequebook"
+	"github.com/kek-mex/go-atheios/errs"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/p2p/discover"
+	bzzswap "github.com/kek-mex/go-atheios/swarm/services/swap"
+	"github.com/kek-mex/go-atheios/swarm/services/swap/swap"
+	"github.com/kek-mex/go-atheios/swarm/storage"
 )
 
 const (

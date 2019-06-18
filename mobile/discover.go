@@ -22,7 +22,7 @@ package gath
 import (
 	"errors"
 
-	"github.com/atheioschain/go-atheios/p2p/discv5"
+	"github.com/kek-mex/go-atheios/p2p/discv5"
 )
 
 // Enode represents a host on the network.

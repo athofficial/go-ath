@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // Hash represents the 32 byte Keccak256 hash of arbitrary data.

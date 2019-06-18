@@ -21,7 +21,7 @@ package whisperv2
 import (
 	"crypto/ecdsa"
 
-	"github.com/atheioschain/go-atheios/event/filter"
+	"github.com/kek-mex/go-atheios/event/filter"
 )
 
 // Filter is used to subscribe to specific types of whisper messages.

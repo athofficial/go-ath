@@ -19,8 +19,8 @@ package core
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 // TxPreEvent is posted when a transaction enters the transaction pool.

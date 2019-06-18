@@ -24,8 +24,8 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/atheioschain/go-atheios/p2p/discover"
-	"github.com/atheioschain/go-atheios/p2p/netutil"
+	"github.com/kek-mex/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/p2p/netutil"
 )
 
 func init() {

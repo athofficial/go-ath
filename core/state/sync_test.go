@@ -21,10 +21,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/ethdb"
-	"github.com/atheioschain/go-atheios/trie"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/trie"
 )
 
 // testAccount is the data associated with an account used by the state tests.

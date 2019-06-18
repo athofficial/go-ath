@@ -40,11 +40,11 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/pow"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/pow"
 )
 
 var (
@@ -369,7 +369,7 @@ func (pow *Full) Search(block pow.Block, stop <-chan struct{}, index int) (nonce
 			ret := C.ethash_full_compute(dag.ptr, hash, C.uint64_t(nonce))
 			result := h256ToHash(ret.result).Big()
 
-			// TODO: disagrees with the spec https://github.com/atheioschain/wiki/wiki/Ethash#mining
+			// TODO: disagrees with the spec https://github.com/kek-mex/wiki/wiki/Ethash#mining
 			if ret.success && result.Cmp(target) <= 0 {
 				mixDigest = C.GoBytes(unsafe.Pointer(&ret.mix_hash), C.int(32))
 				atomic.AddInt32(&pow.hashRate, -previousHashrate)

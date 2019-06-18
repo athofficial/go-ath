@@ -21,7 +21,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/rpc"
 	"golang.org/x/net/context"
 )
 

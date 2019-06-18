@@ -22,9 +22,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/ethdb"
 )
 
 func newEmptySecure() *SecureTrie {

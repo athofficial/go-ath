@@ -21,10 +21,10 @@ import (
 	"os/signal"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/cmd/utils"
-	"github.com/atheioschain/go-atheios/console"
-	"github.com/atheioschain/go-atheios/node"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/cmd/utils"
+	"github.com/kek-mex/go-atheios/console"
+	"github.com/kek-mex/go-atheios/node"
+	"github.com/kek-mex/go-atheios/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -38,7 +38,7 @@ var (
 		Description: `
 The gath console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/atheioschain/go-atheios/wiki/Javascipt-Console
+See https://github.com/kek-mex/go-atheios/wiki/Javascipt-Console
 `,
 	}
 	attachCommand = cli.Command{
@@ -50,7 +50,7 @@ See https://github.com/atheioschain/go-atheios/wiki/Javascipt-Console
 		Description: `
 The gath console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/atheioschain/go-atheios/wiki/Javascipt-Console.
+See https://github.com/kek-mex/go-atheios/wiki/Javascipt-Console.
 This command allows to open a console on a running gath node.
 `,
 	}
@@ -62,7 +62,7 @@ This command allows to open a console on a running gath node.
 		Category:  "CONSOLE COMMANDS",
 		Description: `
 The JavaScript VM exposes a node admin interface as well as the Ðapp
-JavaScript API. See https://github.com/atheioschain/go-atheios/wiki/Javascipt-Console
+JavaScript API. See https://github.com/kek-mex/go-atheios/wiki/Javascipt-Console
 `,
 	}
 )

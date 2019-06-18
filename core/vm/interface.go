@@ -19,8 +19,8 @@ package vm
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 // StateDB is an EVM database for full state querying.

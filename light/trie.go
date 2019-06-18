@@ -17,8 +17,8 @@
 package light
 
 import (
-	"github.com/atheioschain/go-atheios/ethdb"
-	"github.com/atheioschain/go-atheios/trie"
+	"github.com/kek-mex/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/trie"
 	"golang.org/x/net/context"
 )
 

@@ -22,9 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/common/hexutil"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common/hexutil"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 // PublicWhisperAPI provides the whisper RPC service.

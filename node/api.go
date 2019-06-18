@@ -22,10 +22,10 @@ import (
 	"time"
 
 	"github.com/rcrowley/go-metrics"
-	"github.com/atheioschain/go-atheios/common/hexutil"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/common/hexutil"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/p2p/discover"
 )
 
 // PrivateAdminAPI is the collection of administrative API methods exposed only

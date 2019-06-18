@@ -17,7 +17,7 @@
 package geth
 
 import (
-	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/logger/glog"
 )
 
 // SetVerbosity sets the global verbosity level (between 0 and 6 - see logger/verbosity.go).

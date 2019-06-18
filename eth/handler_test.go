@@ -23,17 +23,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core"
-	"github.com/atheioschain/go-atheios/core/state"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/core/vm"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/eth/downloader"
-	"github.com/atheioschain/go-atheios/ethdb"
-	"github.com/atheioschain/go-atheios/event"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core"
+	"github.com/kek-mex/go-atheios/core/state"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/core/vm"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/eth/downloader"
+	"github.com/kek-mex/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/event"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 // Tests that protocol versions and modes of operations are matched up properly.

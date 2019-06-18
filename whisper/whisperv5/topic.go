@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // Topic represents a cryptographically secure, probabilistic partial

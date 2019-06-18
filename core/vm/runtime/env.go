@@ -19,10 +19,10 @@ package runtime
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core"
-	"github.com/atheioschain/go-atheios/core/state"
-	"github.com/atheioschain/go-atheios/core/vm"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core"
+	"github.com/kek-mex/go-atheios/core/state"
+	"github.com/kek-mex/go-atheios/core/vm"
 )
 
 func NewEnv(cfg *Config, state *state.StateDB) *vm.EVM {

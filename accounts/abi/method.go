@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 // Callable method given a `Name` and whether the method is a constant.

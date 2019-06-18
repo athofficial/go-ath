@@ -8,7 +8,7 @@ The common package contains the ethereum utility library.
 # Installation
 
 As a subdirectory the main go-atheios repository, you get it with
-`go get github.com/atheioschain/go-atheios`.
+`go get github.com/kek-mex/go-atheios`.
 
 # Usage
 

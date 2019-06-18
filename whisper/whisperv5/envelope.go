@@ -26,10 +26,10 @@ import (
 	"math"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/crypto/ecies"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto/ecies"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 // Envelope represents a clear-text data packet to transmit through the Whisper

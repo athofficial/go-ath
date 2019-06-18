@@ -16,7 +16,7 @@
 
 package ethclient
 
-import "github.com/atheioschain/go-atheios"
+import "github.com/kek-mex/go-atheios"
 
 // Verify that Client implements the ethereum interfaces.
 var (

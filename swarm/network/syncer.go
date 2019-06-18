@@ -22,9 +22,9 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/swarm/storage"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/swarm/storage"
 )
 
 // syncer parameters (global, not peer specific) default values

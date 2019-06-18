@@ -18,7 +18,7 @@ package discv5
 
 import (
 	//"github.com/btcsuite/btcd/btcec"
-	"github.com/atheioschain/go-atheios/crypto/secp256k1"
+	"github.com/kek-mex/go-atheios/crypto/secp256k1"
 )
 
 func S256() *secp256k1.BitCurve {

@@ -19,7 +19,7 @@ package event_test
 import (
 	"fmt"
 
-	"github.com/atheioschain/go-atheios/event"
+	"github.com/kek-mex/go-atheios/event"
 )
 
 func ExampleFeed_acknowledgedEvents() {

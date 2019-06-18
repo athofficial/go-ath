@@ -9,9 +9,9 @@ before_install:
   # Set up go-ethereum
   - sudo apt-get update -y -qq
   - sudo apt-get install -yqq libgmp3-dev 
-  - git clone --depth=10 https://github.com/atheioschain/go-atheios ${GOPATH}/src/github.com/atheioschain/go-atheios
+  - git clone --depth=10 https://github.com/kek-mex/go-atheios ${GOPATH}/src/github.com/kek-mex/go-atheios
   # use canned dependencies from the go-ethereum repository
-  - export GOPATH=$GOPATH:$GOPATH/src/github.com/atheioschain/go-atheios/Godeps/_workspace/
+  - export GOPATH=$GOPATH:$GOPATH/src/github.com/kek-mex/go-atheios/Godeps/_workspace/
   - echo $GOPATH
 
 install:

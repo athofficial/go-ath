@@ -1,4 +1,4 @@
-# Adjusted from https://github.com/atheioschain/go-atheios/blob/develop/Dockerfile
+# Adjusted from https://github.com/kek-mex/go-atheios/blob/develop/Dockerfile
 FROM ubuntu:14.04
 
 ## Environment setup
@@ -34,14 +34,14 @@ RUN go install -v
 ADD https://api.github.com/repos/atheios/go-atheios/git/refs/heads/develop unused.txt 
 
 ## Fetch and install go-atheios
-RUN go get -u -v -d github.com/atheioschain/go-atheios/...
-WORKDIR $GOPATH/src/github.com/atheioschain/go-atheios
+RUN go get -u -v -d github.com/kek-mex/go-atheios/...
+WORKDIR $GOPATH/src/github.com/kek-mex/go-atheios
 
 RUN git checkout develop
 RUN git pull
 
 
-RUN ETH_DEPS=$(go list -f '{{.Imports}} {{.TestImports}} {{.XTestImports}}' github.com/atheioschain/go-atheios/... | sed -e 's/\[//g' | sed -e 's/\]//g' | sed -e 's/C //g'); if [ "$ETH_DEPS" ]; then go get $ETH_DEPS; fi
+RUN ETH_DEPS=$(go list -f '{{.Imports}} {{.TestImports}} {{.XTestImports}}' github.com/kek-mex/go-atheios/... | sed -e 's/\[//g' | sed -e 's/\]//g' | sed -e 's/C //g'); if [ "$ETH_DEPS" ]; then go get $ETH_DEPS; fi
 RUN go install -v ./cmd/ethtest
 
 ENTRYPOINT ["ethtest"]

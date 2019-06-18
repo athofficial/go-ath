@@ -16,7 +16,7 @@
 
 package core
 
-import "github.com/atheioschain/go-atheios/common"
+import "github.com/kek-mex/go-atheios/common"
 
 // Set of manually tracked bad hashes (usually hard forks)
 var BadHashes = map[common.Hash]bool{}

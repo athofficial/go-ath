@@ -25,8 +25,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 // formatSilceOutput add padding to the value and adds a size

@@ -24,11 +24,11 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/swarm/network"
-	"github.com/atheioschain/go-atheios/swarm/services/swap"
-	"github.com/atheioschain/go-atheios/swarm/storage"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/swarm/network"
+	"github.com/kek-mex/go-atheios/swarm/services/swap"
+	"github.com/kek-mex/go-atheios/swarm/storage"
 )
 
 const (

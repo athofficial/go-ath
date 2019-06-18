@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 func (Address) Generate(rand *rand.Rand, size int) reflect.Value {

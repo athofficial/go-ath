@@ -25,9 +25,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/atheioschain/go-atheios/cmd/utils"
-	"github.com/atheioschain/go-atheios/node"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/cmd/utils"
+	"github.com/kek-mex/go-atheios/node"
+	"github.com/kek-mex/go-atheios/rpc"
 	"github.com/gizak/termui"
 	"gopkg.in/urfave/cli.v1"
 )

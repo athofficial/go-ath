@@ -21,8 +21,8 @@ package gath
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/ethclient"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/ethclient"
 )
 
 // EthereumClient provides access to the Ethereum APIs.

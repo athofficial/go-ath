@@ -17,8 +17,8 @@
 package eth
 
 import (
-	"github.com/atheioschain/go-atheios/metrics"
-	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/metrics"
+	"github.com/kek-mex/go-atheios/p2p"
 )
 
 var (

@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 func TestNetwork_Lookup(t *testing.T) {

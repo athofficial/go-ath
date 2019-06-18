@@ -30,11 +30,11 @@ import (
 	"encoding/hex"
 	"errors"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto/ecies"
-	"github.com/atheioschain/go-atheios/crypto/secp256k1"
-	"github.com/atheioschain/go-atheios/crypto/sha3"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto/ecies"
+	"github.com/kek-mex/go-atheios/crypto/secp256k1"
+	"github.com/kek-mex/go-atheios/crypto/sha3"
+	"github.com/kek-mex/go-atheios/rlp"
 	"golang.org/x/crypto/ripemd160"
 )
 

@@ -26,17 +26,17 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/accounts"
-	"github.com/atheioschain/go-atheios/accounts/keystore"
-	"github.com/atheioschain/go-atheios/accounts/usbwallet"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/p2p/discover"
-	"github.com/atheioschain/go-atheios/p2p/discv5"
-	"github.com/atheioschain/go-atheios/p2p/nat"
-	"github.com/atheioschain/go-atheios/p2p/netutil"
+	"github.com/kek-mex/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/accounts/keystore"
+	"github.com/kek-mex/go-atheios/accounts/usbwallet"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/p2p/discover"
+	"github.com/kek-mex/go-atheios/p2p/discv5"
+	"github.com/kek-mex/go-atheios/p2p/nat"
+	"github.com/kek-mex/go-atheios/p2p/netutil"
 )
 
 var (

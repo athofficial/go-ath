@@ -19,9 +19,9 @@ package downloader
 import (
 	"sync"
 
-	ethereum "github.com/atheioschain/go-atheios"
-	"github.com/atheioschain/go-atheios/event"
-	"github.com/atheioschain/go-atheios/rpc"
+	ethereum "github.com/kek-mex/go-atheios"
+	"github.com/kek-mex/go-atheios/event"
+	"github.com/kek-mex/go-atheios/rpc"
 	"golang.org/x/net/context"
 )
 

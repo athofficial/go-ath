@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/swarm/api"
-	"github.com/atheioschain/go-atheios/swarm/storage"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/swarm/api"
+	"github.com/kek-mex/go-atheios/swarm/storage"
 )
 
 func TestBzzrGetPath(t *testing.T) {

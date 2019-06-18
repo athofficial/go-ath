@@ -28,10 +28,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/atheioschain/go-atheios/accounts"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
 )
 
 // Minimum amount of time between cache reloads. This limit applies if the platform does

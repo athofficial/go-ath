@@ -24,7 +24,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 const (

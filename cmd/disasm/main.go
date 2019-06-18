@@ -24,7 +24,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/core/vm"
+	"github.com/kek-mex/go-atheios/core/vm"
 )
 
 func main() {

@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/crypto/secp256k1"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto/secp256k1"
 )
 
 // Tests whether a message can be wrapped without any identity or encryption.

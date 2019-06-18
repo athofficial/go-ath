@@ -20,7 +20,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 const Version = "1.0"

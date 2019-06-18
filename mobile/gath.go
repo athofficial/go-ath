@@ -24,15 +24,15 @@ import (
 	"math/big"
 	"path/filepath"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/eth"
-	"github.com/atheioschain/go-atheios/ethclient"
-	"github.com/atheioschain/go-atheios/ethstats"
-	"github.com/atheioschain/go-atheios/les"
-	"github.com/atheioschain/go-atheios/node"
-	"github.com/atheioschain/go-atheios/p2p/nat"
-	"github.com/atheioschain/go-atheios/params"
-	"github.com/atheioschain/go-atheios/whisper/whisperv2"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/eth"
+	"github.com/kek-mex/go-atheios/ethclient"
+	"github.com/kek-mex/go-atheios/ethstats"
+	"github.com/kek-mex/go-atheios/les"
+	"github.com/kek-mex/go-atheios/node"
+	"github.com/kek-mex/go-atheios/p2p/nat"
+	"github.com/kek-mex/go-atheios/params"
+	"github.com/kek-mex/go-atheios/whisper/whisperv2"
 )
 
 // NodeConfig represents the collection of configuration values to fine tune the gath

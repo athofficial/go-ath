@@ -27,9 +27,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/internal/jsre"
-	"github.com/atheioschain/go-atheios/internal/web3ext"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/internal/jsre"
+	"github.com/kek-mex/go-atheios/internal/web3ext"
+	"github.com/kek-mex/go-atheios/rpc"
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
 	"github.com/robertkrimen/otto"

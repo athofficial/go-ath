@@ -27,7 +27,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 // Msg defines the structure of a p2p message.

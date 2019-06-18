@@ -21,7 +21,7 @@ import (
 	"bytes"
 	"errors"
 
-	"github.com/atheioschain/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/crypto"
 )
 
 const (

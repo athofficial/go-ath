@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 type dummyContractRef struct {

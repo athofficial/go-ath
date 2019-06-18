@@ -19,9 +19,9 @@ package types
 import (
 	"bytes"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/rlp"
-	"github.com/atheioschain/go-atheios/trie"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/trie"
 )
 
 type DerivableList interface {

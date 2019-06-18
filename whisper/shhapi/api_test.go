@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/whisper/whisperv5"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/whisper/whisperv5"
 )
 
 func TestBasic(t *testing.T) {

@@ -19,7 +19,7 @@ package state
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 type journalEntry interface {

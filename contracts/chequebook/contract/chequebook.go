@@ -7,10 +7,10 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/accounts/abi"
-	"github.com/atheioschain/go-atheios/accounts/abi/bind"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/accounts/abi"
+	"github.com/kek-mex/go-atheios/accounts/abi/bind"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 // ChequebookABI is the input ABI used to generate the binding from.

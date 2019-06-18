@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/ethdb"
 )
 
 // makeTestTrie create a sample test trie to test node-wise reconstruction.

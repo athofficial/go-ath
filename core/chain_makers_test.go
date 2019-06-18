@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/core/vm"
-	"github.com/atheioschain/go-atheios/crypto"
-	"github.com/atheioschain/go-atheios/ethdb"
-	"github.com/atheioschain/go-atheios/event"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/core/vm"
+	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/kek-mex/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/event"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 func ExampleGenerateChain() {

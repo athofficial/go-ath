@@ -23,8 +23,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/rlp"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/rlp"
 )
 
 // from bcValidBlockTest.json, "SimpleTx"

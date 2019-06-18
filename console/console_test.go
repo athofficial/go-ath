@@ -27,11 +27,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/eth"
-	"github.com/atheioschain/go-atheios/internal/jsre"
-	"github.com/atheioschain/go-atheios/node"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/eth"
+	"github.com/kek-mex/go-atheios/internal/jsre"
+	"github.com/kek-mex/go-atheios/node"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 const (

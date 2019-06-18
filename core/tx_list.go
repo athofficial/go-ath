@@ -22,7 +22,7 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 // nonceHeap is a heap.Interface implementation over 64bit unsigned integers for

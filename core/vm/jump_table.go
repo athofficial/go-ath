@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 type (

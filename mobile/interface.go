@@ -22,7 +22,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // Interface represents a wrapped version of Go's interface{}, with the capacity

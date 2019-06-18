@@ -22,7 +22,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/atheioschain/go-atheios/swarm/storage"
+	"github.com/kek-mex/go-atheios/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 

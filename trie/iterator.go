@@ -16,7 +16,7 @@
 
 package trie
 
-import "github.com/atheioschain/go-atheios/common"
+import "github.com/kek-mex/go-atheios/common"
 
 // Iterator is a key-value trie iterator that traverses a Trie.
 type Iterator struct {

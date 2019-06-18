@@ -22,11 +22,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/types"
-	"github.com/atheioschain/go-atheios/ethdb"
-	"github.com/atheioschain/go-atheios/params"
-	"github.com/atheioschain/go-atheios/pow"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/params"
+	"github.com/kek-mex/go-atheios/pow"
 )
 
 // failPow is a non-validating proof of work implementation, that returns true

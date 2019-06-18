@@ -17,7 +17,7 @@
 // Package bind generates Ethereum contract Go bindings.
 //
 // Detailed usage document and tutorial available on the go-ethereum Wiki page:
-// https://github.com/atheioschain/go-atheios/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
+// https://github.com/kek-mex/go-atheios/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
 package bind
 
 import (
@@ -28,7 +28,7 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/atheioschain/go-atheios/accounts/abi"
+	"github.com/kek-mex/go-atheios/accounts/abi"
 	"golang.org/x/tools/imports"
 )
 

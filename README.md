@@ -2,16 +2,12 @@
 
 Official golang implementation of the atheios protocol.
 
-[![API Reference](
-https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667
-)](https://godoc.org/github.com/atheioschain/go-atheios)
-
 Automated builds are available for stable releases and the unstable master branch.
-Binary archives are published at [releases](https://github.com/atheioschain/go-atheios/releases) page.
+Binary archives are published at [releases](https://github.com/kek-mex/go-atheios/releases) page.
 
 ## Building the source
 
-For prerequisites and detailed build instructions please read the [Ethereum's Installation Instructions](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum) on their wiki. 
+For prerequisites and detailed build instructions please read the [Ethereum's Installation Instructions](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum) on their wiki.
 
 *Note*: Keep in mind that atheios aims to be 100% compatible with Ethereum, so mostly all the documentation you can find on Ethereum wiki, will apply for sure to atheios.
 
@@ -34,8 +30,6 @@ The go-atheios project comes with several wrappers/executables found in the `cmd
 | `bootnode` | Stripped down version of our atheios client implementation that only takes part in the network node discovery protocol, but does not run any of the higher level application protocols. It can be used as a lightweight bootstrap node to aid in finding peers in private networks. |
 | `disasm` | Bytecode disassembler to convert EVM (Ethereum Virtual Machine) bytecode into more user friendly assembly-like opcodes (e.g. `echo "6001" | disasm`). For details on the individual opcodes, please see pages 22-30 of the [Ethereum Yellow Paper](http://gavwood.com/paper.pdf). |
 | `evm` | Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode. Its purpose is to allow insolated, fine-grained debugging of EVM opcodes (e.g. `evm --code 60ff60ff --debug`). |
-| `gathrpctest` | Developer utility tool to support our [atheios/rpc-test](https://github.com/atheioschain/rpc-tests) test suite which validates baseline conformity to the [Ethereum JSON RPC](https://github.com/atheioschain/wiki/wiki/JSON-RPC) specs. Please see the [test suite's readme](https://github.com/atheioschain/rpc-tests/blob/master/README.md) for details. |
-| `rlpdump` | Developer utility tool to convert binary RLP ([Recursive Length Prefix](https://github.com/atheioschain/wiki/wiki/RLP)) dumps (data encoding used by the Ethereum protocol both network as well as consensus wise) to user friendlier hierarchical representation (e.g. `rlpdump --hex CE0183FFFFFFC4C304050583616263`). |
 
 ## Running gath
 
@@ -107,8 +101,6 @@ docker run -d --name atheios-node -v /Users/alice/atheios:/root \
 ```
 
 This will start gath in fast sync mode with a DB memory allowance of 512MB just as the above command does.  It will also create a persistent volume in your home directory for saving your blockchain as well as map the default ports.
-
-Gath is available on Docker Hub here: https://hub.docker.com/r/atheios/gath/
 
 ### Programatically interfacing gath nodes
 
@@ -229,7 +221,7 @@ anyone on the internet, and are grateful for even the smallest of fixes!
 
 If you'd like to contribute to go-atheios, please fork, fix, commit and send a pull request
 for the maintainers to review and merge into the main code base. If you wish to submit more
-complex changes though, please check up with the core devs first on [our Discord channel](https://discord.gg/HF6vEGF)
+complex changes though, please check up with the core devs first on [our Discord channel](https://discord.gg/CMckecF)
 to ensure those changes are in line with the general philosophy of the project and/or get some
 early feedback which can make both your efforts much lighter as well as our review and merge
 procedures quick and simple.

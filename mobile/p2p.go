@@ -21,7 +21,7 @@ package gath
 import (
 	"errors"
 
-	"github.com/atheioschain/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/p2p"
 )
 
 // NodeInfo represents pi short summary of the information known about the host.

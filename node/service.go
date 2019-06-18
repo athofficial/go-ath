@@ -19,11 +19,11 @@ package node
 import (
 	"reflect"
 
-	"github.com/atheioschain/go-atheios/accounts"
-	"github.com/atheioschain/go-atheios/ethdb"
-	"github.com/atheioschain/go-atheios/event"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/accounts"
+	"github.com/kek-mex/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/event"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/rpc"
 )
 
 // ServiceContext is a collection of service independent options inherited from

@@ -3,8 +3,8 @@ package vm
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 func memoryGasCost(mem *Memory, newMemSize *big.Int) *big.Int {

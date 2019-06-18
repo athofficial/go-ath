@@ -19,9 +19,9 @@ package les
 import (
 	"time"
 
-	"github.com/atheioschain/go-atheios/core"
-	"github.com/atheioschain/go-atheios/eth/downloader"
-	"github.com/atheioschain/go-atheios/light"
+	"github.com/kek-mex/go-atheios/core"
+	"github.com/kek-mex/go-atheios/eth/downloader"
+	"github.com/kek-mex/go-atheios/light"
 	"golang.org/x/net/context"
 )
 

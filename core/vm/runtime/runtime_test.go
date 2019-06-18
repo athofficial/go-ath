@@ -21,11 +21,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/accounts/abi"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/core/state"
-	"github.com/atheioschain/go-atheios/core/vm"
-	"github.com/atheioschain/go-atheios/ethdb"
+	"github.com/kek-mex/go-atheios/accounts/abi"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/core/state"
+	"github.com/kek-mex/go-atheios/core/vm"
+	"github.com/kek-mex/go-atheios/ethdb"
 )
 
 func TestDefaults(t *testing.T) {

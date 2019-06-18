@@ -22,7 +22,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/params"
+	"github.com/kek-mex/go-atheios/params"
 )
 
 func BenchmarkStateCall1024(b *testing.B) {

@@ -21,9 +21,9 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/internal/ethapi"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/internal/ethapi"
+	"github.com/kek-mex/go-atheios/rpc"
 	"golang.org/x/net/context"
 )
 

@@ -19,7 +19,7 @@ package math
 import (
 	"math/big"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 // wordSize is the size number of bits in a big.Int Word.

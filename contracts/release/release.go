@@ -24,16 +24,16 @@ import (
 	"strings"
 	"time"
 
-	"github.com/atheioschain/go-atheios/accounts/abi/bind"
-	"github.com/atheioschain/go-atheios/common"
-	"github.com/atheioschain/go-atheios/eth"
-	"github.com/atheioschain/go-atheios/internal/ethapi"
-	"github.com/atheioschain/go-atheios/les"
-	"github.com/atheioschain/go-atheios/logger"
-	"github.com/atheioschain/go-atheios/logger/glog"
-	"github.com/atheioschain/go-atheios/node"
-	"github.com/atheioschain/go-atheios/p2p"
-	"github.com/atheioschain/go-atheios/rpc"
+	"github.com/kek-mex/go-atheios/accounts/abi/bind"
+	"github.com/kek-mex/go-atheios/common"
+	"github.com/kek-mex/go-atheios/eth"
+	"github.com/kek-mex/go-atheios/internal/ethapi"
+	"github.com/kek-mex/go-atheios/les"
+	"github.com/kek-mex/go-atheios/logger"
+	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/kek-mex/go-atheios/node"
+	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/kek-mex/go-atheios/rpc"
 	"golang.org/x/net/context"
 )
 
@@ -141,7 +141,7 @@ func (r *ReleaseService) checker() {
 
 				warning := fmt.Sprintf("Client v%d.%d.%d-%x seems older than the latest upstream release v%d.%d.%d-%x",
 					r.config.Major, r.config.Minor, r.config.Patch, r.config.Commit[:4], version.Major, version.Minor, version.Patch, version.Commit[:4])
-				howtofix := fmt.Sprintf("Please check https://github.com/atheioschain/go-atheios/releases for new releases")
+				howtofix := fmt.Sprintf("Please check https://github.com/kek-mex/go-atheios/releases for new releases")
 				separator := strings.Repeat("-", len(warning))
 
 				glog.V(logger.Warn).Info(separator)

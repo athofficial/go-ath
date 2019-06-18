@@ -15,11 +15,11 @@
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
 // Contains the Whisper protocol Topic element. For formal details please see
-// the specs at https://github.com/atheioschain/wiki/wiki/Whisper-PoC-1-Protocol-Spec#topics.
+// the specs at https://github.com/kek-mex/wiki/wiki/Whisper-PoC-1-Protocol-Spec#topics.
 
 package whisperv2
 
-import "github.com/atheioschain/go-atheios/crypto"
+import "github.com/kek-mex/go-atheios/crypto"
 
 // Topic represents a cryptographically secure, probabilistic partial
 // classifications of a message, determined as the first (left) 4 bytes of the

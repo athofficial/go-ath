@@ -20,7 +20,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

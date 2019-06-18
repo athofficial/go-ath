@@ -11,7 +11,7 @@
 
   <name>Android Ethereum Client</name>
   <description>Android port of the go-atheios libraries and node</description>
-  <url>https://github.com/atheioschain/go-atheios</url>
+  <url>https://github.com/kek-mex/go-atheios</url>
   <inceptionYear>2015</inceptionYear>
 
   <licenses>
@@ -48,10 +48,10 @@
 
   <issueManagement>
     <system>GitHub Issues</system>
-    <url>https://github.com/atheioschain/go-atheios/issues/</url>
+    <url>https://github.com/kek-mex/go-atheios/issues/</url>
   </issueManagement>
 
   <scm>
-    <url>https://github.com/atheioschain/go-atheios</url>
+    <url>https://github.com/kek-mex/go-atheios</url>
   </scm>
 </project>

@@ -24,7 +24,7 @@ import (
 	"path"
 	"testing"
 
-	"github.com/atheioschain/go-atheios/common"
+	"github.com/kek-mex/go-atheios/common"
 )
 
 const (

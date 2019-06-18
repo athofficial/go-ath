@@ -22,7 +22,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/atheioschain/go-atheios/core/types"
+	"github.com/kek-mex/go-atheios/core/types"
 )
 
 // A Nonce is a 64-bit hash which proves (combined with the mix-hash) that

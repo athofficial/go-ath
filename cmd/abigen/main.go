@@ -24,8 +24,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/atheioschain/go-atheios/accounts/abi/bind"
-	"github.com/atheioschain/go-atheios/common/compiler"
+	"github.com/kek-mex/go-atheios/accounts/abi/bind"
+	"github.com/kek-mex/go-atheios/common/compiler"
 )
 
 var (

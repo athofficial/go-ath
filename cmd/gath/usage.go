@@ -21,8 +21,8 @@ package main
 import (
 	"io"
 
-	"github.com/atheioschain/go-atheios/cmd/utils"
-	"github.com/atheioschain/go-atheios/internal/debug"
+	"github.com/kek-mex/go-atheios/cmd/utils"
+	"github.com/kek-mex/go-atheios/internal/debug"
 	"gopkg.in/urfave/cli.v1"
 )
 
