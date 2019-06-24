@@ -40,11 +40,11 @@ ADD genesis.json /genesis.json
 	ADD signer.pass /signer.pass
 {{end}}
 RUN \
-  echo 'gubiq --cache 512 init /genesis.json' > gubiq.sh && \{{if .Unlock}}
-	echo 'mkdir -p /root/.ubiq/keystore/ && cp /signer.json /root/.ubiq/keystore/' >> gubiq.sh && \{{end}}
-	echo $'exec gubiq --networkid {{.NetworkID}} --cache 512 --port {{.Port}} --nat extip:{{.IP}} --maxpeers {{.Peers}} {{.LightFlag}} --ethstats \'{{.Ethstats}}\' {{if .Bootnodes}}--bootnodes {{.Bootnodes}}{{end}} {{if .Etherbase}}--miner.etherbase {{.Etherbase}} --mine --miner.threads 1{{end}} {{if .Unlock}}--unlock 0 --password /signer.pass --mine{{end}} --miner.gastarget {{.GasTarget}} --miner.gaslimit {{.GasLimit}} --miner.gasprice {{.GasPrice}}' >> gubiq.sh
+  echo 'gath --cache 512 init /genesis.json' > gath.sh && \{{if .Unlock}}
+	echo 'mkdir -p /root/.ubiq/keystore/ && cp /signer.json /root/.ubiq/keystore/' >> gath.sh && \{{end}}
+	echo $'exec gath --networkid {{.NetworkID}} --cache 512 --port {{.Port}} --nat extip:{{.IP}} --maxpeers {{.Peers}} {{.LightFlag}} --ethstats \'{{.Ethstats}}\' {{if .Bootnodes}}--bootnodes {{.Bootnodes}}{{end}} {{if .Etherbase}}--miner.etherbase {{.Etherbase}} --mine --miner.threads 1{{end}} {{if .Unlock}}--unlock 0 --password /signer.pass --mine{{end}} --miner.gastarget {{.GasTarget}} --miner.gaslimit {{.GasLimit}} --miner.gasprice {{.GasPrice}}' >> gath.sh
 
-ENTRYPOINT ["/bin/sh", "gubiq.sh"]
+ENTRYPOINT ["/bin/sh", "gath.sh"]
 `
 
 // nodeComposefile is the docker-compose.yml file required to deploy and maintain
@@ -229,7 +229,7 @@ func checkNode(client *sshClient, network string, boot bool) (*nodeInfos, error)
 
 	// Container available, retrieve its node ID and its genesis json
 	var out []byte
-	if out, err = client.Run(fmt.Sprintf("docker exec %s_%s_1 gubiq --exec admin.nodeInfo.enode --cache=16 attach", network, kind)); err != nil {
+	if out, err = client.Run(fmt.Sprintf("docker exec %s_%s_1 gath --exec admin.nodeInfo.enode --cache=16 attach", network, kind)); err != nil {
 		return nil, ErrServiceUnreachable
 	}
 	enode := bytes.Trim(bytes.TrimSpace(out), "\"")

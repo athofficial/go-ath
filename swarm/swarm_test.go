@@ -199,8 +199,8 @@ func TestParseEnsAPIAddress(t *testing.T) {
 	}{
 		{
 			description: "IPC endpoint",
-			value:       "/data/testnet/gubiq.ipc",
-			endpoint:    "/data/testnet/gubiq.ipc",
+			value:       "/data/testnet/gath.ipc",
+			endpoint:    "/data/testnet/gath.ipc",
 		},
 		{
 			description: "HTTP endpoint",
@@ -214,8 +214,8 @@ func TestParseEnsAPIAddress(t *testing.T) {
 		},
 		{
 			description: "IPC Endpoint and TLD",
-			value:       "test:/data/testnet/gubiq.ipc",
-			endpoint:    "/data/testnet/gubiq.ipc",
+			value:       "test:/data/testnet/gath.ipc",
+			endpoint:    "/data/testnet/gath.ipc",
 			tld:         "test",
 		},
 		{
@@ -232,8 +232,8 @@ func TestParseEnsAPIAddress(t *testing.T) {
 		},
 		{
 			description: "IPC Endpoint and contract address",
-			value:       "314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gubiq.ipc",
-			endpoint:    "/data/testnet/gubiq.ipc",
+			value:       "314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gath.ipc",
+			endpoint:    "/data/testnet/gath.ipc",
 			addr:        common.HexToAddress("314159265dD8dbb310642f98f50C066173C1259b"),
 		},
 		{
@@ -250,8 +250,8 @@ func TestParseEnsAPIAddress(t *testing.T) {
 		},
 		{
 			description: "IPC Endpoint, TLD and contract address",
-			value:       "test:314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gubiq.ipc",
-			endpoint:    "/data/testnet/gubiq.ipc",
+			value:       "test:314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gath.ipc",
+			endpoint:    "/data/testnet/gath.ipc",
 			addr:        common.HexToAddress("314159265dD8dbb310642f98f50C066173C1259b"),
 			tld:         "test",
 		},

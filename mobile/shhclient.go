@@ -16,7 +16,7 @@
 
 // Contains a wrapper for the Whisper client.
 
-package gubiq
+package gath
 
 import (
 	"github.com/kek-mex/go-ath/whisper/shhclient"

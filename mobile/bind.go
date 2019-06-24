@@ -16,7 +16,7 @@
 
 // Contains all the wrappers from the bind package.
 
-package gubiq
+package gath
 
 import (
 	"math/big"

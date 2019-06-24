@@ -170,7 +170,7 @@ func main() {
 }
 
 func emitMetrics(ctx *cli.Context) error {
-	if gubiqmetrics.Enabled {
+	if gethmetrics.Enabled {
 		var (
 			endpoint = ctx.GlobalString(swarmmetrics.MetricsInfluxDBEndpointFlag.Name)
 			database = ctx.GlobalString(swarmmetrics.MetricsInfluxDBDatabaseFlag.Name)

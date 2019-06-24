@@ -17,7 +17,7 @@
 // Contains all the wrappers from the node package to support client side node
 // management on mobile platforms.
 
-package gubiq
+package gath
 
 import (
 	"encoding/json"
@@ -38,7 +38,7 @@ import (
 	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
 )
 
-// NodeConfig represents the collection of configuration values to fine tune the Gubiq
+// NodeConfig represents the collection of configuration values to fine tune the gath
 // node embedded into a mobile process. The available values are a subset of the
 // entire API provided by go-ethereum to reduce the maintenance surface and dev
 // complexity.
@@ -94,12 +94,12 @@ func NewNodeConfig() *NodeConfig {
 	return &config
 }
 
-// Node represents a Gubiq Ethereum node instance.
+// Node represents a gath Ethereum node instance.
 type Node struct {
 	node *node.Node
 }
 
-// NewNode creates and configures a new Gubiq node.
+// NewNode creates and configures a new gath node.
 func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 	// If no or partial configurations were specified, use defaults
 	if config == nil {

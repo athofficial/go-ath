@@ -473,7 +473,7 @@ func TestConfigValidate(t *testing.T) {
 	}{
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"/data/testnet/gubiq.ipc",
+				"/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -488,7 +488,7 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"test:/data/testnet/gubiq.ipc",
+				"test:/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -498,7 +498,7 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gubiq.ipc",
+				"314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -513,7 +513,7 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"test:314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gubiq.ipc",
+				"test:314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -546,9 +546,9 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"@/data/testnet/gubiq.ipc",
+				"@/data/testnet/gath.ipc",
 			}},
-			err: "invalid format [tld:][contract-addr@]url for ENS API endpoint configuration \"@/data/testnet/gubiq.ipc\": missing contract address",
+			err: "invalid format [tld:][contract-addr@]url for ENS API endpoint configuration \"@/data/testnet/gath.ipc\": missing contract address",
 		},
 	} {
 		err := validateConfig(c.cfg)

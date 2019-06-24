@@ -16,7 +16,7 @@
 
 // Contains all the wrappers from the params package.
 
-package gubiq
+package gath
 
 import (
 	"encoding/json"

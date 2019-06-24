@@ -50,7 +50,7 @@ const (
 // all registered services.
 type Config struct {
 	// Name sets the instance name of the node. It must not contain the / character and is
-	// used in the devp2p node identifier. The instance name of gubiq is "gubiq". If no
+	// used in the devp2p node identifier. The instance name of gath is "gath". If no
 	// value is specified, the basename of the current executable is used.
 	Name string `toml:"-"`
 
@@ -156,7 +156,7 @@ type Config struct {
 
 	staticNodesWarning     bool
 	trustedNodesWarning    bool
-	oldGubiqResourceWarning bool
+	oldgathResourceWarning bool
 }
 
 // IPCEndpoint resolves an IPC endpoint based on a configured value, taking into
@@ -237,9 +237,9 @@ func DefaultWSEndpoint() string {
 // NodeName returns the devp2p node identifier.
 func (c *Config) NodeName() string {
 	name := c.name()
-	// Backwards compatibility: previous versions used title-cased "Gubiq", keep that.
-	if name == "gubiq" || name == "gubiq-testnet" {
-		name = "Gubiq"
+	// Backwards compatibility: previous versions used title-cased "gath", keep that.
+	if name == "gath" || name == "gath-testnet" {
+		name = "gath"
 	}
 	if c.UserIdent != "" {
 		name += "/" + c.UserIdent
@@ -263,8 +263,8 @@ func (c *Config) name() string {
 	return c.Name
 }
 
-// These resources are resolved differently for "gubiq" instances.
-var isOldGubiqResource = map[string]bool{
+// These resources are resolved differently for "gath" instances.
+var isOldgathResource = map[string]bool{
 	"chaindata":          true,
 	"nodes":              true,
 	"nodekey":            true,
@@ -281,15 +281,15 @@ func (c *Config) ResolvePath(path string) string {
 		return ""
 	}
 	// Backwards-compatibility: ensure that data directory files created
-	// by gubiq 1.4 are used if they exist.
-	if warn, isOld := isOldGubiqResource[path]; isOld {
+	// by gath 1.4 are used if they exist.
+	if warn, isOld := isOldgathResource[path]; isOld {
 		oldpath := ""
-		if c.name() == "gubiq" {
+		if c.name() == "gath" {
 			oldpath = filepath.Join(c.DataDir, path)
 		}
 		if oldpath != "" && common.FileExist(oldpath) {
 			if warn {
-				c.warnOnce(&c.oldGubiqResourceWarning, "Using deprecated resource file %s, please move this file to the 'geth' subdirectory of datadir.", oldpath)
+				c.warnOnce(&c.oldgathResourceWarning, "Using deprecated resource file %s, please move this file to the 'geth' subdirectory of datadir.", oldpath)
 			}
 			return oldpath
 		}

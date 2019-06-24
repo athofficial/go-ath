@@ -1,7 +1,7 @@
 Clef
 ----
-Clef can be used to sign transactions and data and is meant as a replacement for gubiq's account management.
-This allows DApps not to depend on gubiq's account management. When a DApp wants to sign data it can send the data to
+Clef can be used to sign transactions and data and is meant as a replacement for gath's account management.
+This allows DApps not to depend on gath's account management. When a DApp wants to sign data it can send the data to
 the signer, the signer will then provide the user with context and asks the user for permission to sign the data. If
 the users grants the signing request the signer will send the signature back to the DApp.
   
@@ -65,10 +65,10 @@ The security model of the signer is as follows:
 * The signer binary also communicates with whatever process that invoked the binary, via stdin/stdout.
   * This channel is considered 'trusted'. Over this channel, approvals and passwords are communicated.
 
-The general flow for signing a transaction using e.g. gubiq is as follows:
+The general flow for signing a transaction using e.g. gath is as follows:
 ![image](sign_flow.png)
 
-In this case, `gubiq` would be started with `--externalsigner=http://localhost:8550` and would relay requests to `eth.sendTransaction`.
+In this case, `gath` would be started with `--externalsigner=http://localhost:8550` and would relay requests to `eth.sendTransaction`.
 
 ## TODOs
 
@@ -101,14 +101,14 @@ invoking methods with the following info:
       * the total amount
       * the number of unique recipients
 
-* Gubiq todos
+* gath todos
     - The signer should pass the `Origin` header as call-info to the UI. As of right now, the way that info about the request is
 put together is a bit of a hack into the http server. This could probably be greatly improved
-    - Relay: Gubiq should be started in `gubiq --external_signer localhost:8550`.
-    - Currently, the Gubiq APIs use `common.Address` in the arguments to transaction submission (e.g `to` field). This
+    - Relay: gath should be started in `gath --external_signer localhost:8550`.
+    - Currently, the gath APIs use `common.Address` in the arguments to transaction submission (e.g `to` field). This
   type is 20 `bytes`, and is incapable of carrying checksum information. The signer uses `common.MixedcaseAddress`, which
   retains the original input.
-    - The Gubiq api should switch to use the same type, and relay `to`-account verbatim to the external api.
+    - The gath api should switch to use the same type, and relay `to`-account verbatim to the external api.
 
 * [x] Storage
     * [x] An encrypted key-value storage should be implemented
@@ -116,7 +116,7 @@ put together is a bit of a hack into the http server. This could probably be gre
 
 * Another potential thing to introduce is pairing.
   * To prevent spurious requests which users just accept, implement a way to "pair" the caller with the signer (external API).
-  * Thus gubiq/mist/cpp would cryptographically handshake and afterwards the caller would be allowed to make signing requests.
+  * Thus gath/mist/cpp would cryptographically handshake and afterwards the caller would be allowed to make signing requests.
   * This feature would make the addition of rules less dangerous.
 
 * Wallets / accounts. Add API methods for wallets.
@@ -125,7 +125,7 @@ put together is a bit of a hack into the http server. This could probably be gre
 
 ### External API
 
-The signer listens to HTTP requests on `rpcaddr`:`rpcport`, with the same JSONRPC standard as Gubiq. The messages are
+The signer listens to HTTP requests on `rpcaddr`:`rpcport`, with the same JSONRPC standard as gath. The messages are
 expected to be JSON [jsonrpc 2.0 standard](http://www.jsonrpc.org/specification).
 
 Some of these call can require user interaction. Clients must be aware that responses

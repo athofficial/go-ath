@@ -1,4 +1,4 @@
-Name "gubiq ${MAJORVERSION}.${MINORVERSION}.${BUILDVERSION}" # VERSION variables set through command line arguments
+Name "gath ${MAJORVERSION}.${MINORVERSION}.${BUILDVERSION}" # VERSION variables set through command line arguments
 InstallDir "$InstDir"
 OutFile "${OUTPUTFILE}" # set through command line arguments
 
@@ -12,30 +12,30 @@ PageEx license
   LicenseData {{.License}}
 PageExEnd
 
-# Install gubiq binary
-Section "Gubiq" GUBIQ_IDX
+# Install gath binary
+Section "gath" gath_IDX
   SetOutPath $INSTDIR
-  file {{.Gubiq}}
+  file {{.gath}}
 
   # Create start menu launcher
   createDirectory "$SMPROGRAMS\${APPNAME}"
-  createShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\gubiq.exe" "--fast" "--cache=512"
-  createShortCut "$SMPROGRAMS\${APPNAME}\Attach.lnk" "$INSTDIR\gubiq.exe" "attach" "" ""
+  createShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\gath.exe" "--fast" "--cache=512"
+  createShortCut "$SMPROGRAMS\${APPNAME}\Attach.lnk" "$INSTDIR\gath.exe" "attach" "" ""
   createShortCut "$SMPROGRAMS\${APPNAME}\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "" ""
 
   # Firewall - remove rules (if exists)
-  SimpleFC::AdvRemoveRule "Gubiq incoming peers (TCP:30388)"
-  SimpleFC::AdvRemoveRule "Gubiq outgoing peers (TCP:30388)"
-  SimpleFC::AdvRemoveRule "Gubiq UDP discovery (UDP:30388)"
+  SimpleFC::AdvRemoveRule "gath incoming peers (TCP:30388)"
+  SimpleFC::AdvRemoveRule "gath outgoing peers (TCP:30388)"
+  SimpleFC::AdvRemoveRule "gath UDP discovery (UDP:30388)"
 
   # Firewall - add rules
-  SimpleFC::AdvAddRule "Gubiq incoming peers (TCP:30388)" ""  6 1 1 2147483647 1 "$INSTDIR\gubiq.exe" "" "" "Ubiq" 30388 "" "" ""
-  SimpleFC::AdvAddRule "Gubiq outgoing peers (TCP:30388)" ""  6 2 1 2147483647 1 "$INSTDIR\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
-  SimpleFC::AdvAddRule "Gubiq UDP discovery (UDP:30388)" "" 17 2 1 2147483647 1 "$INSTDIR\gubiq.exe" "" "" "Ubiq" "" 30388 "" ""
+  SimpleFC::AdvAddRule "gath incoming peers (TCP:30388)" ""  6 1 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "Ubiq" 30388 "" "" ""
+  SimpleFC::AdvAddRule "gath outgoing peers (TCP:30388)" ""  6 2 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "Ubiq" "" 30388 "" ""
+  SimpleFC::AdvAddRule "gath UDP discovery (UDP:30388)" "" 17 2 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "Ubiq" "" 30388 "" ""
 
   # Set default IPC endpoint (https://github.com/ethereum/EIPs/issues/147)
-  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "R" "HKLM" "\\.\pipe\gubiq.ipc"
-  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "A" "HKLM" "\\.\pipe\gubiq.ipc"
+  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "R" "HKLM" "\\.\pipe\gath.ipc"
+  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "A" "HKLM" "\\.\pipe\gath.ipc"
 
   # Add instdir to PATH
   Push "$INSTDIR"
@@ -54,8 +54,8 @@ Var GetInstalledSize.total
 Function GetInstalledSize
   StrCpy $GetInstalledSize.total 0
 
-  ${if} ${SectionIsSelected} ${GUBIQ_IDX}
-    SectionGetSize ${GUBIQ_IDX} $0
+  ${if} ${SectionIsSelected} ${gath_IDX}
+    SectionGetSize ${gath_IDX} $0
     IntOp $GetInstalledSize.total $GetInstalledSize.total + $0
   ${endif}
 

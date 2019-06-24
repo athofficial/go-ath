@@ -16,7 +16,7 @@
 
 // Contains a wrapper for the Ubiq client.
 
-package gubiq
+package gath
 
 import (
 	"math/big"

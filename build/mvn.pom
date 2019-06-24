@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.ubiq</groupId>
-  <artifactId>gubiq</artifactId>
+  <artifactId>gath</artifactId>
   <version>{{.Version}}</version>
   <packaging>aar</packaging>
 

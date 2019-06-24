@@ -16,7 +16,7 @@
 
 // Contains initialization code for the mbile library.
 
-package gubiq
+package gath
 
 import (
 	"os"

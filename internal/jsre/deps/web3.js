@@ -1779,7 +1779,7 @@ var ETH_UNITS = [
     'ether',
     'grand',
     'Mether',
-    'Gubiqer',
+    'gather',
     'Tether',
     'Pether',
     'Eether',
@@ -2150,7 +2150,7 @@ var getValueOfUnit = function (unit) {
  * - ether      --             --
  * - kether                    --           grand
  * - mether
- * - gubiqer
+ * - gather
  * - tether
  *
  * @method fromWei
@@ -2178,7 +2178,7 @@ var fromWei = function(number, unit) {
  * - ether      --             --
  * - kether                    --           grand
  * - mether
- * - gubiqer
+ * - gather
  * - tether
  *
  * @method toWei

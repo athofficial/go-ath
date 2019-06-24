@@ -79,7 +79,7 @@ var Flags = []cli.Flag{
 }
 
 func Setup(ctx *cli.Context) {
-	if gubiqmetrics.Enabled {
+	if gethmetrics.Enabled {
 		log.Info("Enabling swarm metrics collection")
 		var (
 			endpoint               = ctx.GlobalString(MetricsInfluxDBEndpointFlag.Name)
@@ -91,7 +91,7 @@ func Setup(ctx *cli.Context) {
 		)
 
 		// Start system runtime metrics collection
-		go gubiqmetrics.CollectProcessMetrics(2 * time.Second)
+		go gethmetrics.CollectProcessMetrics(2 * time.Second)
 
 		tagsMap := utils.SplitTagsFlag(ctx.GlobalString(MetricsInfluxDBTagsFlag.Name))
 
