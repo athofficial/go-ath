@@ -20,11 +20,11 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/rlp"
 )
 
 // Prove constructs a merkle proof for key. The result contains all encoded nodes

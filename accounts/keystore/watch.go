@@ -21,7 +21,7 @@ package keystore
 import (
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/kek-mex/go-ath/log"
 	"github.com/rjeczalik/notify"
 )
 

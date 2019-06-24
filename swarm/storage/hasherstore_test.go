@@ -21,9 +21,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/storage/encryption"
+	"github.com/kek-mex/go-ath/swarm/storage/encryption"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/kek-mex/go-ath/common"
 )
 
 func TestHasherStore(t *testing.T) {

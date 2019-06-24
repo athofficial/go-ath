@@ -21,8 +21,8 @@ package gubiq
 import (
 	"errors"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common"
+	ethereum "github.com/kek-mex/go-ath"
+	"github.com/kek-mex/go-ath/common"
 )
 
 // Subscription represents an event subscription where events are

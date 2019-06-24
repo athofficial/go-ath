@@ -21,7 +21,7 @@ package gubiq
 import (
 	"errors"
 
-	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/kek-mex/go-ath/p2p"
 )
 
 // NodeInfo represents pi short summary of the information known about the host.

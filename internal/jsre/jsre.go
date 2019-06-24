@@ -27,8 +27,8 @@ import (
 	"time"
 
 	"github.com/robertkrimen/otto"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/internal/jsre/deps"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/internal/jsre/deps"
 )
 
 var (

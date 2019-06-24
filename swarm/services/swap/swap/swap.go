@@ -22,7 +22,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/log"
 )
 
 // SwAP Swarm Accounting Protocol with

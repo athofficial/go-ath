@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/params"
 )
 
 // Forks table defines supported forks and their chain config.

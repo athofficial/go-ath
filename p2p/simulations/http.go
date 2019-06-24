@@ -29,11 +29,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/kek-mex/go-ath/event"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/rpc"
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/net/websocket"
 )

@@ -21,10 +21,10 @@ import (
 	"encoding/binary"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/rlp"
 )
 
 // ReadCanonicalHash retrieves the hash assigned to a canonical block number.

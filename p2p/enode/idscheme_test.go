@@ -23,9 +23,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p/enr"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/p2p/enr"
+	"github.com/kek-mex/go-ath/rlp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

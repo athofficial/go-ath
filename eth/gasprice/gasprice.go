@@ -22,11 +22,11 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/internal/ethapi"
+	"github.com/kek-mex/go-ath/params"
+	"github.com/kek-mex/go-ath/rpc"
 )
 
 var maxPrice = big.NewInt(500 * params.GWei)

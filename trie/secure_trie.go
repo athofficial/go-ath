@@ -19,8 +19,8 @@ package trie
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/log"
 )
 
 // SecureTrie wraps a trie with key hashing. In a secure trie, all

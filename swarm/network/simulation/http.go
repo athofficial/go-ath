@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/simulations"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/p2p/simulations"
 )
 
 // Package defaults.

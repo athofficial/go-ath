@@ -19,7 +19,7 @@
 package downloader
 
 import (
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/kek-mex/go-ath/metrics"
 )
 
 var (

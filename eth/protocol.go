@@ -21,11 +21,11 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/event"
+	"github.com/kek-mex/go-ath/rlp"
 )
 
 // Constants to match up protocol versions and messages

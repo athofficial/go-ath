@@ -22,9 +22,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	"github.com/ubiq/go-ubiq/swarm/network"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/swarm/network"
 )
 
 func TestWaitTillHealthy(t *testing.T) {

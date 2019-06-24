@@ -25,11 +25,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	"github.com/ubiq/go-ubiq/swarm/state"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/p2p/protocols"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/swarm/state"
 	colorable "github.com/mattn/go-colorable"
 )
 

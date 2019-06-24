@@ -25,10 +25,10 @@ import (
 	"sort"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/mclock"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/log"
 )
 
 const (

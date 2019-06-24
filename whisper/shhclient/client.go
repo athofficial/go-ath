@@ -19,10 +19,10 @@ package shhclient
 import (
 	"context"
 
-	"github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/rpc"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/kek-mex/go-ath"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/kek-mex/go-ath/rpc"
+	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
 )
 
 // Client defines typed wrappers for the Whisper v6 RPC API.

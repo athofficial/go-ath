@@ -24,10 +24,10 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/swarm/storage/feed/lookup"
+	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
 
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/storage"
 )
 
 type Handler struct {

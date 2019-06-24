@@ -28,11 +28,11 @@
 //  	"context"
 //  	"fmt"
 //  	"os"
-//  	pss "github.com/ubiq/go-ubiq/swarm/pss/client"
-//  	"github.com/ubiq/go-ubiq/p2p/protocols"
-//  	"github.com/ubiq/go-ubiq/p2p"
-//  	"github.com/ubiq/go-ubiq/swarm/pot"
-//  	"github.com/ubiq/go-ubiq/swarm/log"
+//  	pss "github.com/kek-mex/go-ath/swarm/pss/client"
+//  	"github.com/kek-mex/go-ath/p2p/protocols"
+//  	"github.com/kek-mex/go-ath/p2p"
+//  	"github.com/kek-mex/go-ath/swarm/pot"
+//  	"github.com/kek-mex/go-ath/swarm/log"
 //  )
 //
 //  type FooMsg struct {

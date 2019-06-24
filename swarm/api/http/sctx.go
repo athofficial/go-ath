@@ -3,8 +3,8 @@ package http
 import (
 	"context"
 
-	"github.com/ubiq/go-ubiq/swarm/api"
-	"github.com/ubiq/go-ubiq/swarm/sctx"
+	"github.com/kek-mex/go-ath/swarm/api"
+	"github.com/kek-mex/go-ath/swarm/sctx"
 )
 
 type uriKey struct{}

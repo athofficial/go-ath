@@ -17,9 +17,9 @@
 package core
 
 import (
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/kek-mex/go-ath/core/state"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/core/vm"
 )
 
 // Validator is an interface which defines the standard for block validation. It

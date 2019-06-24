@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/rlp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/kek-mex/go-ath/common"
 )
 
 func TestWhisperBasic(t *testing.T) {

@@ -25,14 +25,14 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed/lookup"
+	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	swarmhttp "github.com/ubiq/go-ubiq/swarm/api/http"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/swarm/api"
+	swarmhttp "github.com/kek-mex/go-ath/swarm/api/http"
+	"github.com/kek-mex/go-ath/swarm/storage/feed"
 )
 
 func serverFunc(api *api.API) swarmhttp.TestServer {

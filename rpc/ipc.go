@@ -20,8 +20,8 @@ import (
 	"context"
 	"net"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/netutil"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/p2p/netutil"
 )
 
 // ServeListener accepts connections on l, serving JSON-RPC on them.

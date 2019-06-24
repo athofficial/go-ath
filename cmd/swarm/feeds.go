@@ -21,13 +21,13 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/kek-mex/go-ath/crypto"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	swarm "github.com/ubiq/go-ubiq/swarm/api/client"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	swarm "github.com/kek-mex/go-ath/swarm/api/client"
+	"github.com/kek-mex/go-ath/swarm/storage/feed"
 	"gopkg.in/urfave/cli.v1"
 )
 

@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	ch "github.com/ubiq/go-ubiq/swarm/chunk"
+	ch "github.com/kek-mex/go-ath/swarm/chunk"
 )
 
 var (

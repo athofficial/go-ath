@@ -21,10 +21,10 @@ import (
 	"hash"
 	"strconv"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed/lookup"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
 
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/swarm/storage"
 )
 
 // ID uniquely identifies an update on the network.

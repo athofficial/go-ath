@@ -25,14 +25,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	"github.com/ubiq/go-ubiq/swarm/network/simulation"
-	"github.com/ubiq/go-ubiq/swarm/state"
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/swarm/network/simulation"
+	"github.com/kek-mex/go-ath/swarm/state"
+	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/kek-mex/go-ath/swarm/testutil"
 )
 
 func TestIntervalsLive(t *testing.T) {

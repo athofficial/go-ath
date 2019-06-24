@@ -21,7 +21,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/kek-mex/go-ath/core/vm"
 )
 
 // Iterator for disassembled EVM instructions

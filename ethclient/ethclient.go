@@ -24,12 +24,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/kek-mex/go-ath"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/rlp"
+	"github.com/kek-mex/go-ath/rpc"
 )
 
 // Client defines typed wrappers for the Ethereum RPC API.

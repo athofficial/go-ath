@@ -24,8 +24,8 @@ import (
 
 	"strings"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/internal/debug"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/internal/debug"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

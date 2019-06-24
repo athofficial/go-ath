@@ -4,14 +4,14 @@ Official golang implementation of the Ubiq protocol.
 
 [![API Reference](
 https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667
-)](https://godoc.org/github.com/ubiq/go-ubiq)
+)](https://godoc.org/github.com/kek-mex/go-ath)
 
 Automated builds are available for stable releases and the unstable master branch.
-Binary archives are published at [releases](https://github.com/ubiq/go-ubiq/releases) page.
+Binary archives are published at [releases](https://github.com/kek-mex/go-ath/releases) page.
 
 ## Building the source
 
-For prerequisites and detailed build instructions please read the [Ubiq's Installation Instructions](https://github.com/ubiq/go-ubiq/wiki/Building-Ubiq) on their wiki. 
+For prerequisites and detailed build instructions please read the [Ubiq's Installation Instructions](https://github.com/kek-mex/go-ath/wiki/Building-Ubiq) on their wiki. 
 
 *Note*: Keep in mind that Ubiq aims to be 100% compatible with Ethereum, so mostly all the documentation you can find on Ethereum wiki, will apply for sure to Ubiq.
 
@@ -29,19 +29,19 @@ The go-ubiq project comes with several wrappers/executables found in the `cmd` d
 
 | Command    | Description |
 |:----------:|-------------|
-| **`gubiq`** | Our main Ubiq CLI client. It is the entry point into the Ubiq network (main-, test- or private net), capable of running as a full node (default), archive node (retaining all historical state) or a light node (retrieving data live). It can be used by other processes as a gateway into the Ubiq network via JSON RPC endpoints exposed on top of HTTP, WebSocket and/or IPC transports. `gubiq --help` and the [CLI Wiki page](https://github.com/ubiq/go-ubiq/wiki/Command-Line-Options) for command line options. |
-| `abigen` | Source code generator to convert Ubiq contract definitions into easy to use, compile-time type-safe Go packages. It operates on plain [Ubiq contract ABIs](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI) with expanded functionality if the contract bytecode is also available. However it also accepts Solidity source files, making development much more streamlined. Please see our [Native DApps](https://github.com/ubiq/go-ubiq/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts) wiki page for details. |
+| **`gubiq`** | Our main Ubiq CLI client. It is the entry point into the Ubiq network (main-, test- or private net), capable of running as a full node (default), archive node (retaining all historical state) or a light node (retrieving data live). It can be used by other processes as a gateway into the Ubiq network via JSON RPC endpoints exposed on top of HTTP, WebSocket and/or IPC transports. `gubiq --help` and the [CLI Wiki page](https://github.com/kek-mex/go-ath/wiki/Command-Line-Options) for command line options. |
+| `abigen` | Source code generator to convert Ubiq contract definitions into easy to use, compile-time type-safe Go packages. It operates on plain [Ubiq contract ABIs](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI) with expanded functionality if the contract bytecode is also available. However it also accepts Solidity source files, making development much more streamlined. Please see our [Native DApps](https://github.com/kek-mex/go-ath/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts) wiki page for details. |
 | `bootnode` | Stripped down version of our Ubiq client implementation that only takes part in the network node discovery protocol, but does not run any of the higher level application protocols. It can be used as a lightweight bootstrap node to aid in finding peers in private networks. |
 | `evm` | Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode. Its purpose is to allow isolated, fine-grained debugging of EVM opcodes (e.g. `evm --code 60ff60ff --debug`). |
 | `gubiqrpctest` | Developer utility tool to support our [ethereum/rpc-test](https://github.com/ethereum/rpc-tests) test suite which validates baseline conformity to the [Ethereum JSON RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC) specs. Please see the [test suite's readme](https://github.com/ethereum/rpc-tests/blob/master/README.md) for details. |
 | `rlpdump` | Developer utility tool to convert binary RLP ([Recursive Length Prefix](https://github.com/ethereum/wiki/wiki/RLP)) dumps (data encoding used by the Ubiq protocol both network as well as consensus wise) to user friendlier hierarchical representation (e.g. `rlpdump --hex CE0183FFFFFFC4C304050583616263`). |
-| `swarm`    | Swarm daemon and tools. This is the entrypoint for the Swarm network. `swarm --help` for command line options and subcommands. See [Swarm README](https://github.com/ubiq/go-ubiq/tree/master/swarm) for more information. |
+| `swarm`    | Swarm daemon and tools. This is the entrypoint for the Swarm network. `swarm --help` for command line options and subcommands. See [Swarm README](https://github.com/kek-mex/go-ath/tree/master/swarm) for more information. |
 | `puppeth`    | a CLI wizard that aids in creating a new Ubiq network. |
 
 ## Running gubiq
 
 Going through all the possible command line flags is out of scope here (please consult 
-[Ubiq CLI Wiki page](https://github.com/ubiq/go-ubiq/wiki/Command-Line-Options)), but we've
+[Ubiq CLI Wiki page](https://github.com/kek-mex/go-ath/wiki/Command-Line-Options)), but we've
 enumerated a few common parameter combos to get you up to speed quickly on how you can run your
 own Gubiq instance.
 
@@ -61,9 +61,9 @@ This command will:
  * Start gubiq in fast sync mode (default, can be changed with the `--syncmode` flag), causing it to
    download more data in exchange for avoiding processing the entire history of the Ubiq network,
    which is very CPU intensive.
- * Start up Gubiq's built-in interactive [JavaScript console](https://github.com/ubiq/go-ubiq/wiki/JavaScript-Console),
+ * Start up Gubiq's built-in interactive [JavaScript console](https://github.com/kek-mex/go-ath/wiki/JavaScript-Console),
    (via the trailing `console` subcommand) through which you can invoke all official [`web3` methods](https://github.com/ethereum/wiki/wiki/JavaScript-API)
-   as well as Gubiq's own [management APIs](https://github.com/ubiq/go-ubiq/wiki/Management-APIs).
+   as well as Gubiq's own [management APIs](https://github.com/kek-mex/go-ath/wiki/Management-APIs).
    This tool is optional and if you leave it out you can always attach to an already running Gubiq instance
    with `gubiq attach`.
 
@@ -131,7 +131,7 @@ Do not forget `--rpcaddr 0.0.0.0`, if you want to access RPC from other containe
 As a developer, sooner rather than later you'll want to start interacting with Gubiq and the Ubiq
 network via your own programs and not manually through the console. To aid this, Gubiq has built-in
 support for a JSON-RPC based APIs ([standard APIs](https://github.com/ethereum/wiki/wiki/JSON-RPC) and
-[Gubiq specific APIs](https://github.com/ubiq/go-ubiq/wiki/Management-APIs)). These can be
+[Gubiq specific APIs](https://github.com/kek-mex/go-ath/wiki/Management-APIs)). These can be
 exposed via HTTP, WebSockets and IPC (unix sockets on unix based platforms, and named pipes on Windows).
 
 The IPC interface is enabled by default and exposes all the APIs supported by Gubiq, whereas the HTTP
@@ -284,7 +284,7 @@ Please make sure your contributions adhere to our coding guidelines:
  * Commit messages should be prefixed with the package(s) they modify.
    * E.g. "eth, rpc: make trace configs optional"
 
-Please see the [Developers' Guide](https://github.com/ubiq/go-ubiq/wiki/Developers'-Guide)
+Please see the [Developers' Guide](https://github.com/kek-mex/go-ath/wiki/Developers'-Guide)
 for more details on configuring your environment, managing project dependencies and testing procedures.
 
 ## License

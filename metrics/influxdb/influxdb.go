@@ -5,8 +5,8 @@ import (
 	uurl "net/url"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/metrics"
 	"github.com/influxdata/influxdb/client"
 )
 

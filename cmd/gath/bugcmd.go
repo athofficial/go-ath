@@ -26,22 +26,22 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/cmd/internal/browser"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/cmd/internal/browser"
+	"github.com/kek-mex/go-ath/params"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
+	"github.com/kek-mex/go-ath/cmd/utils"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
 var bugCommand = cli.Command{
 	Action:    utils.MigrateFlags(reportBug),
 	Name:      "bug",
-	Usage:     "opens a window to report a bug on the gubiq repo",
+	Usage:     "opens a window to report a bug on the gath repo",
 	ArgsUsage: " ",
 	Category:  "MISCELLANEOUS COMMANDS",
 }
 
-const issueURL = "https://github.com/ubiq/go-ubiq/issues/new"
+const issueURL = "https://github.com/kek-mex/go-ath/issues/new"
 
 // reportBug reports a bug by opening a new URL to the go-ethereum GH issue
 // tracker and setting default values as the issue body.

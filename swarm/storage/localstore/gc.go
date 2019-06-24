@@ -92,8 +92,8 @@ package localstore
 import (
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/shed"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/swarm/shed"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

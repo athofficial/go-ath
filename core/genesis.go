@@ -25,16 +25,16 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/common/math"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/kek-mex/go-ath/common/math"
+	"github.com/kek-mex/go-ath/core/rawdb"
+	"github.com/kek-mex/go-ath/core/state"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/params"
+	"github.com/kek-mex/go-ath/rlp"
 )
 
 //go:generate gencodec -type Genesis -field-override genesisSpecMarshaling -out gen_genesis.go

@@ -5,10 +5,10 @@ import (
 	"math/big"
 	"testing"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
+	ethereum "github.com/kek-mex/go-ath"
+	"github.com/kek-mex/go-ath/accounts/abi"
+	"github.com/kek-mex/go-ath/accounts/abi/bind"
+	"github.com/kek-mex/go-ath/common"
 )
 
 type mockCaller struct {

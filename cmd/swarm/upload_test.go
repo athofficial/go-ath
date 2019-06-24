@@ -30,9 +30,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	swarmapi "github.com/ubiq/go-ubiq/swarm/api/client"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/kek-mex/go-ath/log"
+	swarmapi "github.com/kek-mex/go-ath/swarm/api/client"
+	"github.com/kek-mex/go-ath/swarm/testutil"
 	"github.com/mattn/go-colorable"
 )
 

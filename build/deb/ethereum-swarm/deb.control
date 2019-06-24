@@ -5,8 +5,8 @@ Maintainer: {{.Author}}
 Build-Depends: debhelper (>= 8.0.0), golang-1.10
 Standards-Version: 3.9.5
 Homepage: https://ethereum.org
-Vcs-Git: git://github.com/ubiq/go-ubiq.git
-Vcs-Browser: https://github.com/ubiq/go-ubiq
+Vcs-Git: git://github.com/kek-mex/go-ath.git
+Vcs-Browser: https://github.com/kek-mex/go-ath
 
 {{range .Executables}}
 Package: {{$.ExeName .}}

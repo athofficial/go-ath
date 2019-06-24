@@ -22,7 +22,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/core/asm"
+	"github.com/kek-mex/go-ath/core/asm"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

@@ -24,10 +24,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/p2p/protocols"
+	"github.com/kek-mex/go-ath/rlp"
+	"github.com/kek-mex/go-ath/swarm/log"
 )
 
 const (

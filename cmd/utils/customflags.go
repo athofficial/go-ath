@@ -27,7 +27,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/kek-mex/go-ath/common/math"
 	"gopkg.in/urfave/cli.v1"
 )
 

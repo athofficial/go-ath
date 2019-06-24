@@ -21,9 +21,9 @@ package gubiq
 import (
 	"encoding/json"
 
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/p2p/discv5"
+	"github.com/kek-mex/go-ath/params"
 )
 
 // MainnetGenesis returns the JSON spec to use for the main Ubiq network. It

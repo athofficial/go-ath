@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/kek-mex/go-ath/common/math"
 )
 
 // Memory implements a simple memory model for the ethereum virtual machine.

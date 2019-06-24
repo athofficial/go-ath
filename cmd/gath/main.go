@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
 
-// gubiq is the official command-line client for Ethereum.
+// gath is the official command-line client for Ethereum.
 package main
 
 import (
@@ -28,21 +28,21 @@ import (
 	"time"
 
 	"github.com/elastic/gosigar"
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/console"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/ethclient"
-	"github.com/ubiq/go-ubiq/internal/debug"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/node"
+	"github.com/kek-mex/go-ath/accounts"
+	"github.com/kek-mex/go-ath/accounts/keystore"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/console"
+	"github.com/kek-mex/go-ath/eth"
+	"github.com/kek-mex/go-ath/ethclient"
+	"github.com/kek-mex/go-ath/internal/debug"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/metrics"
+	"github.com/kek-mex/go-ath/node"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
 const (
-	clientIdentifier = "gubiq" // Client identifier to advertise over the network
+	clientIdentifier = "gath" // Client identifier to advertise over the network
 )
 
 var (
@@ -169,8 +169,8 @@ var (
 )
 
 func init() {
-	// Initialize the CLI app and start Gubiq
-	app.Action = gubiq
+	// Initialize the CLI app and start gath
+	app.Action = gath
 	app.HideVersion = true // we have a command to print the version
 	app.Copyright = "Copyright 2013-2018 The go-ubiq Authors"
 	app.Commands = []cli.Command{
@@ -257,10 +257,10 @@ func main() {
 	}
 }
 
-// gubiq is the main entry point into the system if no special subcommand is ran.
+// gath is the main entry point into the system if no special subcommand is ran.
 // It creates a default node based on the command line arguments and runs it in
 // blocking mode, waiting for it to be shut down.
-func gubiq(ctx *cli.Context) error {
+func gath(ctx *cli.Context) error {
 	if args := ctx.Args(); len(args) > 0 {
 		return fmt.Errorf("invalid command: %q", args[0])
 	}

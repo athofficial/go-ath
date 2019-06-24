@@ -23,10 +23,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/fuse"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/rpc"
+	"github.com/kek-mex/go-ath/swarm/fuse"
 	"gopkg.in/urfave/cli.v1"
 )
 

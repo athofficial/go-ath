@@ -23,15 +23,15 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	swarm "github.com/ubiq/go-ubiq/swarm/api/client"
-	swarmhttp "github.com/ubiq/go-ubiq/swarm/api/http"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed/lookup"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/swarm/api"
+	swarm "github.com/kek-mex/go-ath/swarm/api/client"
+	swarmhttp "github.com/kek-mex/go-ath/swarm/api/http"
+	"github.com/kek-mex/go-ath/swarm/storage/feed"
+	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
+	"github.com/kek-mex/go-ath/swarm/testutil"
 )
 
 func TestCLIFeedUpdate(t *testing.T) {

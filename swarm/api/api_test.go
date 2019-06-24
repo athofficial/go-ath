@@ -28,11 +28,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/sctx"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/swarm/sctx"
+	"github.com/kek-mex/go-ath/swarm/storage"
 )
 
 func init() {

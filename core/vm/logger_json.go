@@ -22,8 +22,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/math"
 )
 
 type JSONLogger struct {

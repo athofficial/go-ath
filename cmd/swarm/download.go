@@ -21,10 +21,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	swarm "github.com/ubiq/go-ubiq/swarm/api/client"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/swarm/api"
+	swarm "github.com/kek-mex/go-ath/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

@@ -19,8 +19,8 @@ package main
 import (
 	"os"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/log"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

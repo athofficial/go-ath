@@ -24,12 +24,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/accounts/abi/bind/backends"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/contracts/chequebook/contract"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/kek-mex/go-ath/accounts/abi/bind"
+	"github.com/kek-mex/go-ath/accounts/abi/bind/backends"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/contracts/chequebook/contract"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/crypto"
 )
 
 var (

@@ -24,12 +24,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/rlp"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	p2ptest "github.com/ubiq/go-ubiq/p2p/testing"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	p2ptest "github.com/kek-mex/go-ath/p2p/testing"
 )
 
 // handshake message type

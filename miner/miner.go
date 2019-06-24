@@ -22,15 +22,15 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/consensus"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/core/state"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/eth/downloader"
+	"github.com/kek-mex/go-ath/event"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/params"
 )
 
 // Backend wraps all methods required for mining.

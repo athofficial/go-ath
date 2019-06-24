@@ -20,7 +20,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/log"
 )
 
 func newTestMemStore() *MemStore {

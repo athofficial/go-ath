@@ -19,8 +19,8 @@ package pow
 import (
 	"math/big"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core/types"
 )
 
 type Block interface {

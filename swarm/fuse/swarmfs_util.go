@@ -24,7 +24,7 @@ import (
 	"os/exec"
 	"runtime"
 
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/log"
 )
 
 func externalUnmount(mountPoint string) error {

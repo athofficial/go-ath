@@ -27,11 +27,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
+	"github.com/kek-mex/go-ath/swarm/storage/feed"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/storage"
 )
 
 const (

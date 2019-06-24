@@ -19,7 +19,7 @@
 package ethdb_test
 
 import (
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/kek-mex/go-ath/ethdb"
 )
 
 var _ ethdb.Database = &ethdb.LDBDatabase{}

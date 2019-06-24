@@ -22,8 +22,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core/types"
 )
 
 // NotFound is returned by API methods if the requested item does not exist.

@@ -22,7 +22,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/kek-mex/go-ath/log"
 )
 
 func init() {

@@ -19,10 +19,10 @@ package core
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/consensus"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/core/vm"
 )
 
 // ChainContext supports retrieving headers and consensus parameters from the

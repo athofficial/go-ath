@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/ubiq/go-ubiq/swarm/chunk"
+	"github.com/kek-mex/go-ath/swarm/chunk"
 )
 
 // ProtocolVersion defines the current version of the protocol that will be included in each update message

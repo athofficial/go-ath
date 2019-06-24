@@ -21,8 +21,8 @@ package gubiq
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethclient"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/ethclient"
 )
 
 // EthereumClient provides access to the Ethereum APIs.

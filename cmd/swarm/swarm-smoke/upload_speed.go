@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/metrics"
+	"github.com/kek-mex/go-ath/swarm/testutil"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

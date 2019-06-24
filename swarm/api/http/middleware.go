@@ -7,11 +7,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/sctx"
-	"github.com/ubiq/go-ubiq/swarm/spancontext"
+	"github.com/kek-mex/go-ath/metrics"
+	"github.com/kek-mex/go-ath/swarm/api"
+	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/sctx"
+	"github.com/kek-mex/go-ath/swarm/spancontext"
 	"github.com/pborman/uuid"
 )
 

@@ -26,10 +26,10 @@ package rpc
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/rpc"
+	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/storage/mock"
 )
 
 // GlobalStore is rpc.Client that connects to a centralized mock store.

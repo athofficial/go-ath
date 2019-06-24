@@ -29,10 +29,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/params"
 )
 
 // makeGenesis creates a new genesis struct based on some user input.

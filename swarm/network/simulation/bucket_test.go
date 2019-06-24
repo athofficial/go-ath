@@ -20,8 +20,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
 )
 
 // TestServiceBucket tests all bucket functionality using subtests.

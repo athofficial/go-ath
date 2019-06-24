@@ -19,9 +19,9 @@ package core
 import (
 	"container/list"
 
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/kek-mex/go-ath/event"
 )
 
 // Implement our EthTest Manager

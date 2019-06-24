@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/log"
 )
 
 const (

@@ -21,7 +21,7 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/kek-mex/go-ath/common"
 )
 
 // Genesis hashes to enforce below configs on.

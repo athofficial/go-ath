@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed/lookup"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
 )
 
 // Query is used to specify constraints when performing an update lookup

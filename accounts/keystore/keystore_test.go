@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/event"
+	"github.com/kek-mex/go-ath/accounts"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/event"
 )
 
 var testSigData = make([]byte, 32)

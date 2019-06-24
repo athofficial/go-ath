@@ -21,12 +21,12 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/rlp"
+	"github.com/kek-mex/go-ath/swarm/storage"
+	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
 )
 
 const (

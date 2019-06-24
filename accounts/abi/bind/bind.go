@@ -17,7 +17,7 @@
 // Package bind generates Ubiq contract Go bindings.
 //
 // Detailed usage document and tutorial available on the go-ethereum Wiki page:
-// https://github.com/ubiq/go-ubiq/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
+// https://github.com/kek-mex/go-ath/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
 package bind
 
 import (
@@ -29,7 +29,7 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/ubiq/go-ubiq/accounts/abi"
+	"github.com/kek-mex/go-ath/accounts/abi"
 )
 
 // Lang is a target programming language selector to generate bindings for.

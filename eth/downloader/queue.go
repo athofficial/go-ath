@@ -25,11 +25,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/prque"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/prque"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/metrics"
 )
 
 var (

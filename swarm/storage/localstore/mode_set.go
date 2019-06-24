@@ -17,7 +17,7 @@
 package localstore
 
 import (
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/swarm/storage"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

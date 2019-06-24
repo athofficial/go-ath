@@ -26,11 +26,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/chunk"
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed/lookup"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/swarm/chunk"
+	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
 )
 
 var (

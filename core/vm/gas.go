@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/params"
 )
 
 // Gas costs

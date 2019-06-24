@@ -20,8 +20,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/crypto"
 )
 
 // Tests that transactions can be added to strict lists and list contents and

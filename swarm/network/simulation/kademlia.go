@@ -21,10 +21,10 @@ import (
 	"encoding/hex"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/swarm/network"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/kek-mex/go-ath/swarm/network"
 )
 
 // BucketKeyKademlia is the key to be used for storing the kademlia

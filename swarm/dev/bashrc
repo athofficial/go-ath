@@ -1,4 +1,4 @@
-export ROOT="${GOPATH}/src/github.com/ubiq/go-ubiq"
+export ROOT="${GOPATH}/src/github.com/kek-mex/go-ath"
 export PATH="${ROOT}/swarm/dev/bin:${PATH}"
 
 cd "${ROOT}/swarm/dev"

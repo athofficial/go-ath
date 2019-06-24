@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p/simulations/pipes"
+	"github.com/kek-mex/go-ath/p2p/simulations/pipes"
 )
 
 func TestTCPPipe(t *testing.T) {

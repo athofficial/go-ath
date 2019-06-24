@@ -22,11 +22,11 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/metrics"
+	"github.com/kek-mex/go-ath/swarm/log"
+	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
 )
 
 type KeyStore struct {

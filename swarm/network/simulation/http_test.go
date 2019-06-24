@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
 )
 
 func TestSimulationWithHTTPServer(t *testing.T) {

@@ -16,7 +16,7 @@
 
 package bind
 
-import "github.com/ubiq/go-ubiq/accounts/abi"
+import "github.com/kek-mex/go-ath/accounts/abi"
 
 // tmplData is the data structure required to fill the binding template.
 type tmplData struct {
@@ -68,12 +68,12 @@ import (
 	"math/big"
 	"strings"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/event"
+	ethereum "github.com/kek-mex/go-ath"
+	"github.com/kek-mex/go-ath/accounts/abi"
+	"github.com/kek-mex/go-ath/accounts/abi/bind"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/event"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

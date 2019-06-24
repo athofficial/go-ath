@@ -23,9 +23,9 @@ import (
 	"errors"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/p2p/protocols"
+	"github.com/kek-mex/go-ath/swarm/log"
 )
 
 // Generic ping protocol implementation for

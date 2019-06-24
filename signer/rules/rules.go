@@ -22,12 +22,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/signer/core"
-	"github.com/ubiq/go-ubiq/signer/rules/deps"
-	"github.com/ubiq/go-ubiq/signer/storage"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/internal/ethapi"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/signer/core"
+	"github.com/kek-mex/go-ath/signer/rules/deps"
+	"github.com/kek-mex/go-ath/signer/storage"
 	"github.com/robertkrimen/otto"
 )
 

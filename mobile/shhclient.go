@@ -19,8 +19,8 @@
 package gubiq
 
 import (
-	"github.com/ubiq/go-ubiq/whisper/shhclient"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/kek-mex/go-ath/whisper/shhclient"
+	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
 )
 
 // WhisperClient provides access to the Ethereum APIs.

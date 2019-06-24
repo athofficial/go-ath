@@ -17,9 +17,9 @@
 package simulation
 
 import (
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
 )
 
 // Service returns a single Service by name on a particular node

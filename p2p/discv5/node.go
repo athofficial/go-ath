@@ -30,8 +30,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/crypto"
 )
 
 // Node represents a host on the network.

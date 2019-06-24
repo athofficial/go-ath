@@ -36,7 +36,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/kek-mex/go-ath/common"
 )
 
 // ErrNotFound indicates that the chunk is not found.

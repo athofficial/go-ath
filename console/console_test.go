@@ -26,12 +26,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/internal/jsre"
-	"github.com/ubiq/go-ubiq/node"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/consensus/ubqhash"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/eth"
+	"github.com/kek-mex/go-ath/internal/jsre"
+	"github.com/kek-mex/go-ath/node"
 )
 
 const (

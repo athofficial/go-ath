@@ -38,12 +38,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/swarm/spancontext"
-	"github.com/ubiq/go-ubiq/swarm/tracing"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/metrics"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/rlp"
+	"github.com/kek-mex/go-ath/swarm/spancontext"
+	"github.com/kek-mex/go-ath/swarm/tracing"
 	opentracing "github.com/opentracing/opentracing-go"
 )
 

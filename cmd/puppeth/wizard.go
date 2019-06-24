@@ -31,9 +31,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/log"
 	"golang.org/x/crypto/ssh/terminal"
 )
 

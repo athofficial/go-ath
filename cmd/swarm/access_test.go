@@ -31,12 +31,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/crypto/ecies"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	swarmapi "github.com/ubiq/go-ubiq/swarm/api/client"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/crypto/ecies"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/swarm/api"
+	swarmapi "github.com/kek-mex/go-ath/swarm/api/client"
+	"github.com/kek-mex/go-ath/swarm/testutil"
 	"golang.org/x/crypto/sha3"
 )
 

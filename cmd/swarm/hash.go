@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 

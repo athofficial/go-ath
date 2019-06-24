@@ -19,8 +19,8 @@ package api
 import (
 	"context"
 
-	"github.com/ubiq/go-ubiq/swarm/network"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/swarm/network"
+	"github.com/kek-mex/go-ath/swarm/storage"
 )
 
 type Inspector struct {

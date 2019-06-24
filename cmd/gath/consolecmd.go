@@ -24,10 +24,10 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/console"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/console"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -41,9 +41,9 @@ var (
 		Flags:    append(append(append(nodeFlags, rpcFlags...), consoleFlags...), whisperFlags...),
 		Category: "CONSOLE COMMANDS",
 		Description: `
-The Gubiq console is an interactive shell for the JavaScript runtime environment
+The gath console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/ubiq/go-ubiq/wiki/JavaScript-Console.`,
+See https://github.com/kek-mex/go-ath/wiki/JavaScript-Console.`,
 	}
 
 	attachCommand = cli.Command{
@@ -54,10 +54,10 @@ See https://github.com/ubiq/go-ubiq/wiki/JavaScript-Console.`,
 		Flags:     append(consoleFlags, utils.DataDirFlag),
 		Category:  "CONSOLE COMMANDS",
 		Description: `
-The Gubiq console is an interactive shell for the JavaScript runtime environment
+The gath console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/ubiq/go-ubiq/wiki/JavaScript-Console.
-This command allows to open a console on a running gubiq node.`,
+See https://github.com/kek-mex/go-ath/wiki/JavaScript-Console.
+This command allows to open a console on a running gath node.`,
 	}
 
 	javascriptCommand = cli.Command{
@@ -69,11 +69,11 @@ This command allows to open a console on a running gubiq node.`,
 		Category:  "CONSOLE COMMANDS",
 		Description: `
 The JavaScript VM exposes a node admin interface as well as the Ðapp
-JavaScript API. See https://github.com/ubiq/go-ubiq/wiki/JavaScript-Console`,
+JavaScript API. See https://github.com/kek-mex/go-ath/wiki/JavaScript-Console`,
 	}
 )
 
-// localConsole starts a new gubiq node, attaching a JavaScript console to it at the
+// localConsole starts a new gath node, attaching a JavaScript console to it at the
 // same time.
 func localConsole(ctx *cli.Context) error {
 	// Create and start the node based on the CLI flags
@@ -84,7 +84,7 @@ func localConsole(ctx *cli.Context) error {
 	// Attach to the newly started node and start the JavaScript console
 	client, err := node.Attach()
 	if err != nil {
-		utils.Fatalf("Failed to attach to the inproc gubiq: %v", err)
+		utils.Fatalf("Failed to attach to the inproc gath: %v", err)
 	}
 	config := console.Config{
 		DataDir: utils.MakeDataDir(ctx),
@@ -111,10 +111,10 @@ func localConsole(ctx *cli.Context) error {
 	return nil
 }
 
-// remoteConsole will connect to a remote gubiq instance, attaching a JavaScript
+// remoteConsole will connect to a remote gath instance, attaching a JavaScript
 // console to it.
 func remoteConsole(ctx *cli.Context) error {
-	// Attach to a remotely running gubiq instance and start the JavaScript console
+	// Attach to a remotely running gath instance and start the JavaScript console
 	endpoint := ctx.Args().First()
 	if endpoint == "" {
 		path := node.DefaultDataDir()
@@ -126,11 +126,11 @@ func remoteConsole(ctx *cli.Context) error {
 				path = filepath.Join(path, "testnet")
 			}
 		}
-		endpoint = fmt.Sprintf("%s/gubiq.ipc", path)
+		endpoint = fmt.Sprintf("%s/gath.ipc", path)
 	}
 	client, err := dialRPC(endpoint)
 	if err != nil {
-		utils.Fatalf("Unable to attach to remote gubiq: %v", err)
+		utils.Fatalf("Unable to attach to remote gath: %v", err)
 	}
 	config := console.Config{
 		DataDir: utils.MakeDataDir(ctx),
@@ -159,19 +159,19 @@ func remoteConsole(ctx *cli.Context) error {
 
 // dialRPC returns a RPC client which connects to the given endpoint.
 // The check for empty endpoint implements the defaulting logic
-// for "gubiq attach" and "gubiq monitor" with no argument.
+// for "gath attach" and "gath monitor" with no argument.
 func dialRPC(endpoint string) (*rpc.Client, error) {
 	if endpoint == "" {
 		endpoint = node.DefaultIPCEndpoint(clientIdentifier)
 	} else if strings.HasPrefix(endpoint, "rpc:") || strings.HasPrefix(endpoint, "ipc:") {
-		// Backwards compatibility with gubiq < 1.5 which required
+		// Backwards compatibility with gath < 1.5 which required
 		// these prefixes.
 		endpoint = endpoint[4:]
 	}
 	return rpc.Dial(endpoint)
 }
 
-// ephemeralConsole starts a new gubiq node, attaches an ephemeral JavaScript
+// ephemeralConsole starts a new gath node, attaches an ephemeral JavaScript
 // console to it, executes each of the files specified as arguments and tears
 // everything down.
 func ephemeralConsole(ctx *cli.Context) error {
@@ -183,7 +183,7 @@ func ephemeralConsole(ctx *cli.Context) error {
 	// Attach to the newly started node and start the JavaScript console
 	client, err := node.Attach()
 	if err != nil {
-		utils.Fatalf("Failed to attach to the inproc gubiq: %v", err)
+		utils.Fatalf("Failed to attach to the inproc gath: %v", err)
 	}
 	config := console.Config{
 		DataDir: utils.MakeDataDir(ctx),

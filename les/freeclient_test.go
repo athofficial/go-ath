@@ -24,8 +24,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/kek-mex/go-ath/common/mclock"
+	"github.com/kek-mex/go-ath/ethdb"
 )
 
 func TestFreeClientPoolL10C100(t *testing.T) {

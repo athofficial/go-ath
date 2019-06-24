@@ -165,7 +165,7 @@ class Footer extends Component<Props> {
 					{general.commit && (
 						<Typography type='caption' color='inherit'>
 							<span style={commonStyles.light}>{'Commit '}</span>
-							<a href={`https://github.com/ubiq/go-ubiq/commit/${general.commit}`} target='_blank' style={{color: 'inherit', textDecoration: 'none'}} >
+							<a href={`https://github.com/kek-mex/go-ath/commit/${general.commit}`} target='_blank' style={{color: 'inherit', textDecoration: 'none'}} >
 								{general.commit.substring(0, 8)}
 							</a>
 						</Typography>

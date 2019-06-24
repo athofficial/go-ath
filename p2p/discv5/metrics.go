@@ -1,6 +1,6 @@
 package discv5
 
-import "github.com/ubiq/go-ubiq/metrics"
+import "github.com/kek-mex/go-ath/metrics"
 
 var (
 	ingressTrafficMeter = metrics.NewRegisteredMeter("discv5/InboundTraffic", nil)

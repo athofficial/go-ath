@@ -21,11 +21,11 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/math"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/crypto/bn256"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/math"
+	"github.com/kek-mex/go-ath/crypto"
+	"github.com/kek-mex/go-ath/crypto/bn256"
+	"github.com/kek-mex/go-ath/params"
 	"golang.org/x/crypto/ripemd160"
 )
 

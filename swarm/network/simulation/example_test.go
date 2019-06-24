@@ -22,11 +22,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	"github.com/ubiq/go-ubiq/swarm/network"
-	"github.com/ubiq/go-ubiq/swarm/network/simulation"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	"github.com/kek-mex/go-ath/swarm/network"
+	"github.com/kek-mex/go-ath/swarm/network/simulation"
 )
 
 // Every node can have a Kademlia associated using the node bucket under

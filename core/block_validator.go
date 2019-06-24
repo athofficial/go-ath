@@ -19,10 +19,10 @@ package core
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/consensus"
+	"github.com/kek-mex/go-ath/core/state"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/params"
 )
 
 // BlockValidator is responsible for validating block headers, uncles and

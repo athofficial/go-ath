@@ -3,7 +3,7 @@ package feed
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common/hexutil"
+	"github.com/kek-mex/go-ath/common/hexutil"
 )
 
 func TestTopic(t *testing.T) {

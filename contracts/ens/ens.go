@@ -23,11 +23,11 @@ package ens
 import (
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/contracts/ens/contract"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/kek-mex/go-ath/accounts/abi/bind"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/contracts/ens/contract"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/crypto"
 )
 
 var (

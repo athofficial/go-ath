@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/kek-mex/go-ath/trie"
 	lru "github.com/hashicorp/golang-lru"
 )
 

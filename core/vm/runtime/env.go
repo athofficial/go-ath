@@ -17,9 +17,9 @@
 package runtime
 
 import (
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/core/vm"
 )
 
 func NewEnv(cfg *Config) *vm.EVM {

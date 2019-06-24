@@ -23,12 +23,12 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	math2 "github.com/ubiq/go-ubiq/common/math"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	math2 "github.com/kek-mex/go-ath/common/math"
+	"github.com/kek-mex/go-ath/consensus/ubqhash"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/params"
 )
 
 // alethGenesisSpec represents the genesis specification format used by the

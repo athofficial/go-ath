@@ -27,12 +27,12 @@ import (
 
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/dashboard"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/params"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/kek-mex/go-ath/dashboard"
+	"github.com/kek-mex/go-ath/eth"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/params"
+	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
 	"github.com/naoina/toml"
 )
 
@@ -74,7 +74,7 @@ type ethstatsConfig struct {
 	URL string `toml:",omitempty"`
 }
 
-type gubiqConfig struct {
+type gathConfig struct {
 	Eth       eth.Config
 	Shh       whisper.Config
 	Node      node.Config
@@ -82,7 +82,7 @@ type gubiqConfig struct {
 	Dashboard dashboard.Config
 }
 
-func loadConfig(file string, cfg *gubiqConfig) error {
+func loadConfig(file string, cfg *gathConfig) error {
 	f, err := os.Open(file)
 	if err != nil {
 		return err
@@ -103,13 +103,13 @@ func defaultNodeConfig() node.Config {
 	cfg.Version = params.VersionWithCommit(gitCommit)
 	cfg.HTTPModules = append(cfg.HTTPModules, "eth", "shh")
 	cfg.WSModules = append(cfg.WSModules, "eth", "shh")
-	cfg.IPCPath = "gubiq.ipc"
+	cfg.IPCPath = "gath.ipc"
 	return cfg
 }
 
-func makeConfigNode(ctx *cli.Context) (*node.Node, gubiqConfig) {
+func makeConfigNode(ctx *cli.Context) (*node.Node, gathConfig) {
 	// Load defaults.
-	cfg := gubiqConfig{
+	cfg := gathConfig{
 		Eth:       eth.DefaultConfig,
 		Shh:       whisper.DefaultConfig,
 		Node:      defaultNodeConfig(),

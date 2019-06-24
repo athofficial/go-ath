@@ -22,8 +22,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/swarm/storage"
 )
 
 //matches hex swarm hashes

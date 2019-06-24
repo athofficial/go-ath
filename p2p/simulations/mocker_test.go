@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/kek-mex/go-ath/p2p/enode"
 )
 
 func TestMocker(t *testing.T) {

@@ -24,10 +24,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/metrics"
-	ch "github.com/ubiq/go-ubiq/swarm/chunk"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/spancontext"
+	"github.com/kek-mex/go-ath/metrics"
+	ch "github.com/kek-mex/go-ath/swarm/chunk"
+	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/kek-mex/go-ath/swarm/spancontext"
 	opentracing "github.com/opentracing/opentracing-go"
 	olog "github.com/opentracing/opentracing-go/log"
 )

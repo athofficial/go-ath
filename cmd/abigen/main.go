@@ -24,8 +24,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common/compiler"
+	"github.com/kek-mex/go-ath/accounts/abi/bind"
+	"github.com/kek-mex/go-ath/common/compiler"
 )
 
 var (

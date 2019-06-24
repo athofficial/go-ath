@@ -22,7 +22,7 @@ import (
 	"testing"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/ubiq/go-ubiq/internal/cmdtest"
+	"github.com/kek-mex/go-ath/internal/cmdtest"
 )
 
 func init() {

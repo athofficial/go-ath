@@ -19,7 +19,7 @@ package vm
 import (
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/params"
 )
 
 func makeStackFunc(pop, push int) stackValidationFunc {

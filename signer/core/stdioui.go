@@ -21,9 +21,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/kek-mex/go-ath/internal/ethapi"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/rpc"
 )
 
 type StdIOUI struct {

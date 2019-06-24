@@ -23,11 +23,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/common/prque"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/kek-mex/go-ath/common/mclock"
+	"github.com/kek-mex/go-ath/common/prque"
+	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/rlp"
 )
 
 // freeClientPool implements a client database that limits the connection time

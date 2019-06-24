@@ -41,23 +41,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/ethclient"
-	"github.com/ubiq/go-ubiq/ethstats"
-	"github.com/ubiq/go-ubiq/les"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/kek-mex/go-ath/accounts"
+	"github.com/kek-mex/go-ath/accounts/keystore"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/core"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/eth"
+	"github.com/kek-mex/go-ath/eth/downloader"
+	"github.com/kek-mex/go-ath/ethclient"
+	"github.com/kek-mex/go-ath/ethstats"
+	"github.com/kek-mex/go-ath/les"
+	"github.com/kek-mex/go-ath/log"
+	"github.com/kek-mex/go-ath/node"
+	"github.com/kek-mex/go-ath/p2p"
+	"github.com/kek-mex/go-ath/p2p/discv5"
+	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/kek-mex/go-ath/p2p/nat"
+	"github.com/kek-mex/go-ath/params"
 	"golang.org/x/net/websocket"
 )
 
@@ -449,7 +449,7 @@ func (f *faucet) apiHandler(conn *websocket.Conn) {
 		case *noauthFlag:
 			username, avatar, address, err = authNoAuth(msg.URL)
 		default:
-			err = errors.New("Something funky happened, please open an issue at https://github.com/ubiq/go-ubiq/issues")
+			err = errors.New("Something funky happened, please open an issue at https://github.com/kek-mex/go-ath/issues")
 		}
 		if err != nil {
 			if err = sendError(conn, err); err != nil {

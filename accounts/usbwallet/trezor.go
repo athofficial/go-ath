@@ -27,12 +27,12 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/usbwallet/internal/trezor"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/kek-mex/go-ath/accounts"
+	"github.com/kek-mex/go-ath/accounts/usbwallet/internal/trezor"
+	"github.com/kek-mex/go-ath/common"
+	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/kek-mex/go-ath/core/types"
+	"github.com/kek-mex/go-ath/log"
 	"github.com/golang/protobuf/proto"
 )
 
