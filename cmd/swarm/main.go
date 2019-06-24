@@ -18,186 +18,142 @@ package main
 
 import (
 	"crypto/ecdsa"
+	"encoding/hex"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"os/signal"
 	"runtime"
+	"sort"
 	"strconv"
 	"strings"
 	"syscall"
 
-	"github.com/kek-mex/go-atheios/accounts"
-	"github.com/kek-mex/go-atheios/accounts/keystore"
-	"github.com/kek-mex/go-atheios/cmd/utils"
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/console"
-	"github.com/kek-mex/go-atheios/crypto"
-	"github.com/kek-mex/go-atheios/ethclient"
-	"github.com/kek-mex/go-atheios/internal/debug"
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
-	"github.com/kek-mex/go-atheios/node"
-	"github.com/kek-mex/go-atheios/p2p"
-	"github.com/kek-mex/go-atheios/p2p/discover"
-	"github.com/kek-mex/go-atheios/swarm"
-	bzzapi "github.com/kek-mex/go-atheios/swarm/api"
-	"gopkg.in/urfave/cli.v1"
+	"github.com/ubiq/go-ubiq/accounts"
+	"github.com/ubiq/go-ubiq/accounts/keystore"
+	"github.com/ubiq/go-ubiq/cmd/utils"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/console"
+	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/ubiq/go-ubiq/internal/debug"
+	"github.com/ubiq/go-ubiq/log"
+	"github.com/ubiq/go-ubiq/node"
+	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/ubiq/go-ubiq/swarm"
+	bzzapi "github.com/ubiq/go-ubiq/swarm/api"
+	swarmmetrics "github.com/ubiq/go-ubiq/swarm/metrics"
+	"github.com/ubiq/go-ubiq/swarm/storage/mock"
+	mockrpc "github.com/ubiq/go-ubiq/swarm/storage/mock/rpc"
+	"github.com/ubiq/go-ubiq/swarm/tracing"
+	sv "github.com/ubiq/go-ubiq/swarm/version"
+
+	cli "gopkg.in/urfave/cli.v1"
 )
 
-const (
-	clientIdentifier = "swarm"
-	versionString    = "0.2"
-)
+const clientIdentifier = "swarm"
+const helpTemplate = `NAME:
+{{.HelpName}} - {{.Usage}}
 
+USAGE:
+{{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}{{if .Category}}
+
+CATEGORY:
+{{.Category}}{{end}}{{if .Description}}
+
+DESCRIPTION:
+{{.Description}}{{end}}{{if .VisibleFlags}}
+
+OPTIONS:
+{{range .VisibleFlags}}{{.}}
+{{end}}{{end}}
+`
+
+// Git SHA1 commit hash of the release (set via linker flags)
+// this variable will be assigned if corresponding parameter is passed with install, but not with test
+// e.g.: go install -ldflags "-X main.gitCommit=ed1312d01b19e04ef578946226e5d8069d5dfd5a" ./cmd/swarm
+var gitCommit string
+
+//declare a few constant error messages, useful for later error check comparisons in test
 var (
-	gitCommit        string // Git SHA1 commit hash of the release (set via linker flags)
-	app              = utils.NewApp(gitCommit, "atheios Swarm")
-	testbetBootNodes = []string{}
+	SWARM_ERR_NO_BZZACCOUNT   = "bzzaccount option is required but not set; check your config file, command line or environment variables"
+	SWARM_ERR_SWAP_SET_NO_API = "SWAP is enabled but --swap-api is not set"
 )
 
-var (
-	ChequebookAddrFlag = cli.StringFlag{
-		Name:  "chequebook",
-		Usage: "chequebook contract address",
-	}
-	SwarmAccountFlag = cli.StringFlag{
-		Name:  "bzzaccount",
-		Usage: "Swarm account key file",
-	}
-	SwarmPortFlag = cli.StringFlag{
-		Name:  "bzzport",
-		Usage: "Swarm local http api port",
-	}
-	SwarmNetworkIdFlag = cli.IntFlag{
-		Name:  "bzznetworkid",
-		Usage: "Network identifier (integer, default 3=swarm testnet)",
-	}
-	SwarmConfigPathFlag = cli.StringFlag{
-		Name:  "bzzconfig",
-		Usage: "Swarm config file path (datadir/bzz)",
-	}
-	SwarmSwapEnabledFlag = cli.BoolFlag{
-		Name:  "swap",
-		Usage: "Swarm SWAP enabled (default false)",
-	}
-	SwarmSyncEnabledFlag = cli.BoolTFlag{
-		Name:  "sync",
-		Usage: "Swarm Syncing enabled (default true)",
-	}
-	EthAPIFlag = cli.StringFlag{
-		Name:  "ethapi",
-		Usage: "URL of the Ethereum API provider",
-		Value: node.DefaultIPCEndpoint("gath"),
-	}
-	SwarmApiFlag = cli.StringFlag{
-		Name:  "bzzapi",
-		Usage: "Swarm HTTP endpoint",
-		Value: "http://127.0.0.1:8500",
-	}
-	SwarmRecursiveUploadFlag = cli.BoolFlag{
-		Name:  "recursive",
-		Usage: "Upload directories recursively",
-	}
-	SwarmWantManifestFlag = cli.BoolTFlag{
-		Name:  "manifest",
-		Usage: "Automatic manifest upload",
-	}
-	SwarmUploadDefaultPath = cli.StringFlag{
-		Name:  "defaultpath",
-		Usage: "path to file served for empty url path (none)",
-	}
-	CorsStringFlag = cli.StringFlag{
-		Name:  "corsdomain",
-		Usage: "Domain on which to send Access-Control-Allow-Origin header (multiple domains can be supplied separated by a ',')",
-	}
-)
+// this help command gets added to any subcommand that does not define it explicitly
+var defaultSubcommandHelp = cli.Command{
+	Action:             func(ctx *cli.Context) { cli.ShowCommandHelpAndExit(ctx, "", 1) },
+	CustomHelpTemplate: helpTemplate,
+	Name:               "help",
+	Usage:              "shows this help",
+	Hidden:             true,
+}
 
+var defaultNodeConfig = node.DefaultConfig
+
+// This init function sets defaults so cmd/swarm can run alongside gubiq.
 func init() {
-	// Override flag defaults so bzzd can run alongside gath.
+	sv.GitCommit = gitCommit
+	defaultNodeConfig.Name = clientIdentifier
+	defaultNodeConfig.Version = sv.VersionWithCommit(gitCommit)
+	defaultNodeConfig.P2P.ListenAddr = ":30399"
+	defaultNodeConfig.IPCPath = "bzzd.ipc"
+	// Set flag defaults for --help display.
 	utils.ListenPortFlag.Value = 30399
-	utils.IPCPathFlag.Value = utils.DirectoryString{Value: "bzzd.ipc"}
-	utils.IPCApiFlag.Value = "admin, bzz, chequebook, debug, rpc, web3"
+}
 
-	// Set up the cli app.
+var app = utils.NewApp("", "Ubiq Swarm")
+
+// This init function creates the cli.App.
+func init() {
 	app.Action = bzzd
-	app.HideVersion = true // we have a command to print the version
-	app.Copyright = "Copyright 2013-2016 The go-ethereum Authors"
+	app.Version = sv.ArchiveVersion(gitCommit)
+	app.Copyright = "Copyright 2013-2016 The go-ubiq Authors"
 	app.Commands = []cli.Command{
 		{
-			Action:    version,
-			Name:      "version",
-			Usage:     "Print version numbers",
-			ArgsUsage: " ",
-			Description: `
-The output of this command is supposed to be machine-readable.
-`,
+			Action:             version,
+			CustomHelpTemplate: helpTemplate,
+			Name:               "version",
+			Usage:              "Print version numbers",
+			Description:        "The output of this command is supposed to be machine-readable",
 		},
 		{
-			Action:    upload,
-			Name:      "up",
-			Usage:     "upload a file or directory to swarm using the HTTP API",
-			ArgsUsage: " <file>",
-			Description: `
-"upload a file or directory to swarm using the HTTP API and prints the root hash",
-`,
+			Action:             keys,
+			CustomHelpTemplate: helpTemplate,
+			Name:               "print-keys",
+			Flags:              []cli.Flag{SwarmCompressedFlag},
+			Usage:              "Print public key information",
+			Description:        "The output of this command is supposed to be machine-readable",
 		},
-		{
-			Action:    hash,
-			Name:      "hash",
-			Usage:     "print the swarm hash of a file or directory",
-			ArgsUsage: " <file>",
-			Description: `
-Prints the swarm hash of file or directory.
-`,
-		},
-		{
-			Name:      "manifest",
-			Usage:     "update a MANIFEST",
-			ArgsUsage: "manifest COMMAND",
-			Description: `
-Updates a MANIFEST by adding/removing/updating the hash of a path.
-`,
-			Subcommands: []cli.Command{
-				{
-					Action:    add,
-					Name:      "add",
-					Usage:     "add a new path to the manifest",
-					ArgsUsage: "<MANIFEST> <path> <hash> [<content-type>]",
-					Description: `
-Adds a new path to the manifest
-`,
-				},
-				{
-					Action:    update,
-					Name:      "update",
-					Usage:     "update the hash for an already existing path in the manifest",
-					ArgsUsage: "<MANIFEST> <path> <newhash> [<newcontent-type>]",
-					Description: `
-Update the hash for an already existing path in the manifest
-`,
-				},
-				{
-					Action:    remove,
-					Name:      "remove",
-					Usage:     "removes a path from the manifest",
-					ArgsUsage: "<MANIFEST> <path>",
-					Description: `
-Removes a path from the manifest
-`,
-				},
-			},
-		},
-		{
-			Action:    cleandb,
-			Name:      "cleandb",
-			Usage:     "Cleans database of corrupted entries",
-			ArgsUsage: " ",
-			Description: `
-Cleans database of corrupted entries.
-`,
-		},
+		// See upload.go
+		upCommand,
+		// See access.go
+		accessCommand,
+		// See feeds.go
+		feedCommand,
+		// See list.go
+		listCommand,
+		// See hash.go
+		hashCommand,
+		// See download.go
+		downloadCommand,
+		// See manifest.go
+		manifestCommand,
+		// See fs.go
+		fsCommand,
+		// See db.go
+		dbCommand,
+		// See config.go
+		DumpConfigCommand,
+		// hashesCommand
+		hashesCommand,
 	}
+
+	// append a hidden help subcommand to all commands that have subcommands
+	// if a help command was already defined above, that one will take precedence.
+	addDefaultHelpSubcommands(app.Commands)
+
+	sort.Sort(cli.CommandsByName(app.Commands))
 
 	app.Flags = []cli.Flag{
 		utils.IdentityFlag,
@@ -205,7 +161,6 @@ Cleans database of corrupted entries.
 		utils.BootnodesFlag,
 		utils.KeyStoreDirFlag,
 		utils.ListenPortFlag,
-		utils.NoDiscoverFlag,
 		utils.DiscoveryV5Flag,
 		utils.NetrestrictFlag,
 		utils.NodeKeyFileFlag,
@@ -213,28 +168,58 @@ Cleans database of corrupted entries.
 		utils.MaxPeersFlag,
 		utils.NATFlag,
 		utils.IPCDisabledFlag,
-		utils.IPCApiFlag,
 		utils.IPCPathFlag,
+		utils.PasswordFileFlag,
 		// bzzd-specific flags
 		CorsStringFlag,
-		EthAPIFlag,
-		SwarmConfigPathFlag,
+		EnsAPIFlag,
+		SwarmTomlConfigPathFlag,
 		SwarmSwapEnabledFlag,
-		SwarmSyncEnabledFlag,
+		SwarmSwapAPIFlag,
+		SwarmSyncDisabledFlag,
+		SwarmSyncUpdateDelay,
+		SwarmMaxStreamPeerServersFlag,
+		SwarmLightNodeEnabled,
+		SwarmDeliverySkipCheckFlag,
+		SwarmListenAddrFlag,
 		SwarmPortFlag,
 		SwarmAccountFlag,
 		SwarmNetworkIdFlag,
 		ChequebookAddrFlag,
 		// upload flags
 		SwarmApiFlag,
-		SwarmRecursiveUploadFlag,
+		SwarmRecursiveFlag,
 		SwarmWantManifestFlag,
 		SwarmUploadDefaultPath,
+		SwarmUpFromStdinFlag,
+		SwarmUploadMimeType,
+		// bootnode mode
+		SwarmBootnodeModeFlag,
+		// storage flags
+		SwarmStorePath,
+		SwarmStoreCapacity,
+		SwarmStoreCacheCapacity,
+		SwarmGlobalStoreAPIFlag,
 	}
+	rpcFlags := []cli.Flag{
+		utils.WSEnabledFlag,
+		utils.WSListenAddrFlag,
+		utils.WSPortFlag,
+		utils.WSApiFlag,
+		utils.WSAllowedOriginsFlag,
+	}
+	app.Flags = append(app.Flags, rpcFlags...)
 	app.Flags = append(app.Flags, debug.Flags...)
+	app.Flags = append(app.Flags, swarmmetrics.Flags...)
+	app.Flags = append(app.Flags, tracing.Flags...)
 	app.Before = func(ctx *cli.Context) error {
 		runtime.GOMAXPROCS(runtime.NumCPU())
-		return debug.Setup(ctx)
+		if err := debug.Setup(ctx, ""); err != nil {
+			return err
+		}
+		swarmmetrics.Setup(ctx)
+		tracing.Setup(ctx)
+		return nil
 	}
 	app.After = func(ctx *cli.Context) error {
 		debug.Exit()
@@ -249,105 +234,157 @@ func main() {
 	}
 }
 
+func keys(ctx *cli.Context) error {
+	privateKey := getPrivKey(ctx)
+	pubkey := crypto.FromECDSAPub(&privateKey.PublicKey)
+	pubkeyhex := hex.EncodeToString(pubkey)
+	pubCompressed := hex.EncodeToString(crypto.CompressPubkey(&privateKey.PublicKey))
+	bzzkey := crypto.Keccak256Hash(pubkey).Hex()
+
+	if !ctx.Bool(SwarmCompressedFlag.Name) {
+		fmt.Println(fmt.Sprintf("bzzkey=%s", bzzkey[2:]))
+		fmt.Println(fmt.Sprintf("publicKey=%s", pubkeyhex))
+	}
+	fmt.Println(fmt.Sprintf("publicKeyCompressed=%s", pubCompressed))
+
+	return nil
+}
+
 func version(ctx *cli.Context) error {
 	fmt.Println(strings.Title(clientIdentifier))
-	fmt.Println("Version:", versionString)
+	fmt.Println("Version:", sv.VersionWithMeta)
 	if gitCommit != "" {
 		fmt.Println("Git Commit:", gitCommit)
 	}
-	fmt.Println("Network Id:", ctx.GlobalInt(utils.NetworkIdFlag.Name))
 	fmt.Println("Go Version:", runtime.Version())
 	fmt.Println("OS:", runtime.GOOS)
-	fmt.Printf("GOPATH=%s\n", os.Getenv("GOPATH"))
-	fmt.Printf("GOROOT=%s\n", runtime.GOROOT())
 	return nil
 }
 
 func bzzd(ctx *cli.Context) error {
-	stack := utils.MakeNode(ctx, clientIdentifier, gitCommit)
-	registerBzzService(ctx, stack)
+	//build a valid bzzapi.Config from all available sources:
+	//default config, file config, command line and env vars
+
+	bzzconfig, err := buildConfig(ctx)
+	if err != nil {
+		utils.Fatalf("unable to configure swarm: %v", err)
+	}
+
+	cfg := defaultNodeConfig
+
+	//pss operates on ws
+	cfg.WSModules = append(cfg.WSModules, "pss")
+
+	//gubiq only supports --datadir via command line
+	//in order to be consistent within swarm, if we pass --datadir via environment variable
+	//or via config file, we get the same directory for gubiq and swarm
+	if _, err := os.Stat(bzzconfig.Path); err == nil {
+		cfg.DataDir = bzzconfig.Path
+	}
+
+	//optionally set the bootnodes before configuring the node
+	setSwarmBootstrapNodes(ctx, &cfg)
+	//setup the ethereum node
+	utils.SetNodeConfig(ctx, &cfg)
+
+	//always disable discovery from p2p package - swarm discovery is done with the `hive` protocol
+	cfg.P2P.NoDiscovery = true
+
+	stack, err := node.New(&cfg)
+	if err != nil {
+		utils.Fatalf("can't create node: %v", err)
+	}
+
+	//a few steps need to be done after the config phase is completed,
+	//due to overriding behavior
+	initSwarmNode(bzzconfig, stack, ctx)
+	//register BZZ as node.Service in the ethereum node
+	registerBzzService(bzzconfig, stack)
+	//start the node
 	utils.StartNode(stack)
+
 	go func() {
 		sigc := make(chan os.Signal, 1)
 		signal.Notify(sigc, syscall.SIGTERM)
 		defer signal.Stop(sigc)
 		<-sigc
-		glog.V(logger.Info).Infoln("Got sigterm, shutting down...")
+		log.Info("Got sigterm, shutting swarm down...")
 		stack.Stop()
 	}()
-	networkId := ctx.GlobalUint64(SwarmNetworkIdFlag.Name)
-	// Add bootnodes as initial peers.
-	if ctx.GlobalIsSet(utils.BootnodesFlag.Name) {
-		bootnodes := strings.Split(ctx.GlobalString(utils.BootnodesFlag.Name), ",")
-		injectBootnodes(stack.Server(), bootnodes)
-	} else {
-		if networkId == 3 {
-			injectBootnodes(stack.Server(), testbetBootNodes)
+
+	// add swarm bootnodes, because swarm doesn't use p2p package's discovery discv5
+	go func() {
+		s := stack.Server()
+
+		for _, n := range cfg.P2P.BootstrapNodes {
+			s.AddPeer(n)
 		}
-	}
+	}()
 
 	stack.Wait()
 	return nil
 }
 
-func registerBzzService(ctx *cli.Context, stack *node.Node) {
-
-	prvkey := getAccount(ctx, stack)
-
-	chbookaddr := common.HexToAddress(ctx.GlobalString(ChequebookAddrFlag.Name))
-	bzzdir := ctx.GlobalString(SwarmConfigPathFlag.Name)
-	if bzzdir == "" {
-		bzzdir = stack.InstanceDir()
-	}
-
-	bzzconfig, err := bzzapi.NewConfig(bzzdir, chbookaddr, prvkey, ctx.GlobalUint64(SwarmNetworkIdFlag.Name))
-	if err != nil {
-		utils.Fatalf("unable to configure swarm: %v", err)
-	}
-	bzzport := ctx.GlobalString(SwarmPortFlag.Name)
-	if len(bzzport) > 0 {
-		bzzconfig.Port = bzzport
-	}
-	swapEnabled := ctx.GlobalBool(SwarmSwapEnabledFlag.Name)
-	syncEnabled := ctx.GlobalBoolT(SwarmSyncEnabledFlag.Name)
-
-	ethapi := ctx.GlobalString(EthAPIFlag.Name)
-	cors := ctx.GlobalString(CorsStringFlag.Name)
-
-	boot := func(ctx *node.ServiceContext) (node.Service, error) {
-		var client *ethclient.Client
-		if len(ethapi) > 0 {
-			client, err = ethclient.Dial(ethapi)
+func registerBzzService(bzzconfig *bzzapi.Config, stack *node.Node) {
+	//define the swarm service boot function
+	boot := func(_ *node.ServiceContext) (node.Service, error) {
+		var nodeStore *mock.NodeStore
+		if bzzconfig.GlobalStoreAPI != "" {
+			// connect to global store
+			client, err := rpc.Dial(bzzconfig.GlobalStoreAPI)
 			if err != nil {
-				utils.Fatalf("Can't connect: %v", err)
+				return nil, fmt.Errorf("global store: %v", err)
 			}
+			globalStore := mockrpc.NewGlobalStore(client)
+			// create a node store for this swarm key on global store
+			nodeStore = globalStore.NewNodeStore(common.HexToAddress(bzzconfig.BzzKey))
 		}
-		return swarm.NewSwarm(ctx, client, bzzconfig, swapEnabled, syncEnabled, cors)
+		return swarm.NewSwarm(bzzconfig, nodeStore)
 	}
+	//register within the ethereum node
 	if err := stack.Register(boot); err != nil {
 		utils.Fatalf("Failed to register the Swarm service: %v", err)
 	}
 }
 
-func getAccount(ctx *cli.Context, stack *node.Node) *ecdsa.PrivateKey {
-	keyid := ctx.GlobalString(SwarmAccountFlag.Name)
-
-	if keyid == "" {
-		utils.Fatalf("Option %q is required", SwarmAccountFlag.Name)
+func getAccount(bzzaccount string, ctx *cli.Context, stack *node.Node) *ecdsa.PrivateKey {
+	//an account is mandatory
+	if bzzaccount == "" {
+		utils.Fatalf(SWARM_ERR_NO_BZZACCOUNT)
 	}
 	// Try to load the arg as a hex key file.
-	if key, err := crypto.LoadECDSA(keyid); err == nil {
-		glog.V(logger.Info).Infof("swarm account key loaded: %#x", crypto.PubkeyToAddress(key.PublicKey))
+	if key, err := crypto.LoadECDSA(bzzaccount); err == nil {
+		log.Info("Swarm account key loaded", "address", crypto.PubkeyToAddress(key.PublicKey))
 		return key
 	}
 	// Otherwise try getting it from the keystore.
 	am := stack.AccountManager()
 	ks := am.Backends(keystore.KeyStoreType)[0].(*keystore.KeyStore)
 
-	return decryptStoreAccount(ks, keyid)
+	return decryptStoreAccount(ks, bzzaccount, utils.MakePasswordList(ctx))
 }
 
-func decryptStoreAccount(ks *keystore.KeyStore, account string) *ecdsa.PrivateKey {
+// getPrivKey returns the private key of the specified bzzaccount
+// Used only by client commands, such as `feed`
+func getPrivKey(ctx *cli.Context) *ecdsa.PrivateKey {
+	// booting up the swarm node just as we do in bzzd action
+	bzzconfig, err := buildConfig(ctx)
+	if err != nil {
+		utils.Fatalf("unable to configure swarm: %v", err)
+	}
+	cfg := defaultNodeConfig
+	if _, err := os.Stat(bzzconfig.Path); err == nil {
+		cfg.DataDir = bzzconfig.Path
+	}
+	utils.SetNodeConfig(ctx, &cfg)
+	stack, err := node.New(&cfg)
+	if err != nil {
+		utils.Fatalf("can't create node: %v", err)
+	}
+	return getAccount(bzzconfig.BzzAccount, ctx, stack)
+}
+
+func decryptStoreAccount(ks *keystore.KeyStore, account string, passwords []string) *ecdsa.PrivateKey {
 	var a accounts.Account
 	var err error
 	if common.IsHexAddress(account) {
@@ -362,15 +399,15 @@ func decryptStoreAccount(ks *keystore.KeyStore, account string) *ecdsa.PrivateKe
 		utils.Fatalf("Can't find swarm account key %s", account)
 	}
 	if err != nil {
-		utils.Fatalf("Can't find swarm account key: %v", err)
+		utils.Fatalf("Can't find swarm account key: %v - Is the provided bzzaccount(%s) from the right datadir/Path?", err, account)
 	}
 	keyjson, err := ioutil.ReadFile(a.URL.Path)
 	if err != nil {
 		utils.Fatalf("Can't load swarm account key: %v", err)
 	}
-	for i := 1; i <= 3; i++ {
-		passphrase := promptPassphrase(fmt.Sprintf("Unlocking swarm account %s [%d/3]", a.Address.Hex(), i))
-		key, err := keystore.DecryptKey(keyjson, passphrase)
+	for i := 0; i < 3; i++ {
+		password := getPassPhrase(fmt.Sprintf("Unlocking swarm account %s [%d/3]", a.Address.Hex(), i+1), i, passwords)
+		key, err := keystore.DecryptKey(keyjson, password)
 		if err == nil {
 			return key.PrivateKey
 		}
@@ -379,7 +416,18 @@ func decryptStoreAccount(ks *keystore.KeyStore, account string) *ecdsa.PrivateKe
 	return nil
 }
 
-func promptPassphrase(prompt string) string {
+// getPassPhrase retrieves the password associated with bzz account, either by fetching
+// from a list of pre-loaded passwords, or by requesting it interactively from user.
+func getPassPhrase(prompt string, i int, passwords []string) string {
+	// non-interactive
+	if len(passwords) > 0 {
+		if i < len(passwords) {
+			return passwords[i]
+		}
+		return passwords[len(passwords)-1]
+	}
+
+	// fallback to interactive mode
 	if prompt != "" {
 		fmt.Println(prompt)
 	}
@@ -390,13 +438,32 @@ func promptPassphrase(prompt string) string {
 	return password
 }
 
-func injectBootnodes(srv *p2p.Server, nodes []string) {
-	for _, url := range nodes {
-		n, err := discover.ParseNode(url)
-		if err != nil {
-			glog.Errorf("invalid bootnode %q", err)
-			continue
+// addDefaultHelpSubcommand scans through defined CLI commands and adds
+// a basic help subcommand to each
+// if a help command is already defined, it will take precedence over the default.
+func addDefaultHelpSubcommands(commands []cli.Command) {
+	for i := range commands {
+		cmd := &commands[i]
+		if cmd.Subcommands != nil {
+			cmd.Subcommands = append(cmd.Subcommands, defaultSubcommandHelp)
+			addDefaultHelpSubcommands(cmd.Subcommands)
 		}
-		srv.AddPeer(n)
 	}
+}
+
+func setSwarmBootstrapNodes(ctx *cli.Context, cfg *node.Config) {
+	if ctx.GlobalIsSet(utils.BootnodesFlag.Name) || ctx.GlobalIsSet(utils.BootnodesV4Flag.Name) {
+		return
+	}
+
+	cfg.P2P.BootstrapNodes = []*enode.Node{}
+
+	for _, url := range SwarmBootnodes {
+		node, err := enode.ParseV4(url)
+		if err != nil {
+			log.Error("Bootstrap URL invalid", "enode", url, "err", err)
+		}
+		cfg.P2P.BootstrapNodes = append(cfg.P2P.BootstrapNodes, node)
+	}
+
 }

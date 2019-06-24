@@ -18,30 +18,42 @@ package debug
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	_ "net/http/pprof"
+	"os"
 	"runtime"
 
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/ubiq/go-ubiq/log"
+	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/ubiq/go-ubiq/metrics/exp"
+	"github.com/fjl/memsize/memsizeui"
+	colorable "github.com/mattn/go-colorable"
+	"github.com/mattn/go-isatty"
 	"gopkg.in/urfave/cli.v1"
 )
 
+var Memsize memsizeui.Handler
+
 var (
-	verbosityFlag = cli.GenericFlag{
+	verbosityFlag = cli.IntFlag{
 		Name:  "verbosity",
-		Usage: "Logging verbosity: 0=silent, 1=error, 2=warn, 3=info, 4=core, 5=debug, 6=detail",
-		Value: glog.GetVerbosity(),
+		Usage: "Logging verbosity: 0=silent, 1=error, 2=warn, 3=info, 4=debug, 5=detail",
+		Value: 3,
 	}
-	vmoduleFlag = cli.GenericFlag{
+	vmoduleFlag = cli.StringFlag{
 		Name:  "vmodule",
-		Usage: "Per-module verbosity: comma-separated list of <pattern>=<level> (e.g. eth/*=6,p2p=5)",
-		Value: glog.GetVModule(),
+		Usage: "Per-module verbosity: comma-separated list of <pattern>=<level> (e.g. eth/*=5,p2p=4)",
+		Value: "",
 	}
-	backtraceAtFlag = cli.GenericFlag{
+	backtraceAtFlag = cli.StringFlag{
 		Name:  "backtrace",
 		Usage: "Request a stack trace at a specific logging statement (e.g. \"block.go:271\")",
-		Value: glog.GetTraceLocation(),
+		Value: "",
+	}
+	debugFlag = cli.BoolFlag{
+		Name:  "debug",
+		Usage: "Prepends log messages with call-site location (file and line number)",
 	}
 	pprofFlag = cli.BoolFlag{
 		Name:  "pprof",
@@ -78,17 +90,46 @@ var (
 
 // Flags holds all command-line flags required for debugging.
 var Flags = []cli.Flag{
-	verbosityFlag, vmoduleFlag, backtraceAtFlag,
+	verbosityFlag, vmoduleFlag, backtraceAtFlag, debugFlag,
 	pprofFlag, pprofAddrFlag, pprofPortFlag,
 	memprofilerateFlag, blockprofilerateFlag, cpuprofileFlag, traceFlag,
 }
 
+var (
+	ostream log.Handler
+	glogger *log.GlogHandler
+)
+
+func init() {
+	usecolor := (isatty.IsTerminal(os.Stderr.Fd()) || isatty.IsCygwinTerminal(os.Stderr.Fd())) && os.Getenv("TERM") != "dumb"
+	output := io.Writer(os.Stderr)
+	if usecolor {
+		output = colorable.NewColorableStderr()
+	}
+	ostream = log.StreamHandler(output, log.TerminalFormat(usecolor))
+	glogger = log.NewGlogHandler(ostream)
+}
+
 // Setup initializes profiling and logging based on the CLI flags.
 // It should be called as early as possible in the program.
-func Setup(ctx *cli.Context) error {
+func Setup(ctx *cli.Context, logdir string) error {
 	// logging
-	glog.CopyStandardLogTo("INFO")
-	glog.SetToStderr(true)
+	log.PrintOrigins(ctx.GlobalBool(debugFlag.Name))
+	if logdir != "" {
+		rfh, err := log.RotatingFileHandler(
+			logdir,
+			262144,
+			log.JSONFormatOrderedEx(false, true),
+		)
+		if err != nil {
+			return err
+		}
+		glogger.SetHandler(log.MultiHandler(ostream, rfh))
+	}
+	glogger.Verbosity(log.Lvl(ctx.GlobalInt(verbosityFlag.Name)))
+	glogger.Vmodule(ctx.GlobalString(vmoduleFlag.Name))
+	glogger.BacktraceAt(ctx.GlobalString(backtraceAtFlag.Name))
+	log.Root().SetHandler(glogger)
 
 	// profiling, tracing
 	runtime.MemProfileRate = ctx.GlobalInt(memprofilerateFlag.Name)
@@ -107,12 +148,22 @@ func Setup(ctx *cli.Context) error {
 	// pprof server
 	if ctx.GlobalBool(pprofFlag.Name) {
 		address := fmt.Sprintf("%s:%d", ctx.GlobalString(pprofAddrFlag.Name), ctx.GlobalInt(pprofPortFlag.Name))
-		go func() {
-			glog.V(logger.Info).Infof("starting pprof server at http://%s/debug/pprof", address)
-			glog.Errorln(http.ListenAndServe(address, nil))
-		}()
+		StartPProf(address)
 	}
 	return nil
+}
+
+func StartPProf(address string) {
+	// Hook go-metrics into expvar on any /debug/metrics request, load all vars
+	// from the registry into expvar, and execute regular expvar handler.
+	exp.Exp(metrics.DefaultRegistry)
+	http.Handle("/memsize/", http.StripPrefix("/memsize", &Memsize))
+	log.Info("Starting pprof server", "addr", fmt.Sprintf("http://%s/debug/pprof", address))
+	go func() {
+		if err := http.ListenAndServe(address, nil); err != nil {
+			log.Error("Failure in running pprof server", "err", err)
+		}
+	}()
 }
 
 // Exit stops all running profiles, flushing their output to the

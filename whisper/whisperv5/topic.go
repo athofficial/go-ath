@@ -19,13 +19,11 @@
 package whisperv5
 
 import (
-	"fmt"
-	"strings"
-
-	"github.com/kek-mex/go-atheios/common"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/common/hexutil"
 )
 
-// Topic represents a cryptographically secure, probabilistic partial
+// TopicType represents a cryptographically secure, probabilistic partial
 // classifications of a message, determined as the first (left) 4 bytes of the
 // SHA3 hash of some arbitrary data given by the original author of the message.
 type TopicType [TopicLength]byte
@@ -42,28 +40,16 @@ func BytesToTopic(b []byte) (t TopicType) {
 }
 
 // String converts a topic byte array to a string representation.
-func (topic *TopicType) String() string {
-	return string(common.ToHex(topic[:]))
+func (t *TopicType) String() string {
+	return common.ToHex(t[:])
 }
 
-// UnmarshalJSON parses a hex representation to a topic.
-func (t *TopicType) UnmarshalJSON(input []byte) error {
-	length := len(input)
-	if length >= 2 && input[0] == '"' && input[length-1] == '"' {
-		input = input[1 : length-1]
-	}
-	// strip "0x" for length check
-	if len(input) > 1 && strings.ToLower(string(input[:2])) == "0x" {
-		input = input[2:]
-	}
-	// validate the length of the input
-	if len(input) != TopicLength*2 {
-		return fmt.Errorf("unmarshalJSON failed: topic must be exactly %d bytes", TopicLength)
-	}
-	b := common.FromHex(string(input))
-	if b == nil {
-		return fmt.Errorf("unmarshalJSON failed: wrong topic format")
-	}
-	*t = BytesToTopic(b)
-	return nil
+// MarshalText returns the hex representation of t.
+func (t TopicType) MarshalText() ([]byte, error) {
+	return hexutil.Bytes(t[:]).MarshalText()
+}
+
+// UnmarshalText parses a hex representation to a topic.
+func (t *TopicType) UnmarshalText(input []byte) error {
+	return hexutil.UnmarshalFixedText("Topic", input, t[:])
 }

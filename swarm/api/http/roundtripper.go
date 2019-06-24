@@ -20,24 +20,23 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/ubiq/go-ubiq/swarm/log"
 )
 
 /*
 http roundtripper to register for bzz url scheme
-see https://github.com/kek-mex/go-atheios/issues/2040
+see https://github.com/ubiq/go-ubiq/issues/2040
 Usage:
 
 import (
- "github.com/kek-mex/go-atheios/common/httpclient"
- "github.com/kek-mex/go-atheios/swarm/api/http"
+ "github.com/ubiq/go-ubiq/common/httpclient"
+ "github.com/ubiq/go-ubiq/swarm/api/http"
 )
 client := httpclient.New()
 // for (private) swarm proxy running locally
 client.RegisterScheme("bzz", &http.RoundTripper{Port: port})
-client.RegisterScheme("bzzi", &http.RoundTripper{Port: port})
-client.RegisterScheme("bzzr", &http.RoundTripper{Port: port})
+client.RegisterScheme("bzz-immutable", &http.RoundTripper{Port: port})
+client.RegisterScheme("bzz-raw", &http.RoundTripper{Port: port})
 
 The port you give the Roundtripper is the port the swarm proxy is listening on.
 If Host is left empty, localhost is assumed.
@@ -58,7 +57,7 @@ func (self *RoundTripper) RoundTrip(req *http.Request) (resp *http.Response, err
 		host = "localhost"
 	}
 	url := fmt.Sprintf("http://%s:%s/%s:/%s/%s", host, self.Port, req.Proto, req.URL.Host, req.URL.Path)
-	glog.V(logger.Info).Infof("roundtripper: proxying request '%s' to '%s'", req.RequestURI, url)
+	log.Info(fmt.Sprintf("roundtripper: proxying request '%s' to '%s'", req.RequestURI, url))
 	reqProxy, err := http.NewRequest(req.Method, url, req.Body)
 	if err != nil {
 		return nil, err

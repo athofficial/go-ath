@@ -16,6 +16,13 @@
 
 package api
 
+import (
+	"context"
+	"path"
+
+	"github.com/ubiq/go-ubiq/swarm/storage"
+)
+
 type Response struct {
 	MimeType string
 	Status   int
@@ -25,18 +32,22 @@ type Response struct {
 }
 
 // implements a service
+//
+// DEPRECATED: Use the HTTP API instead
 type Storage struct {
-	api *Api
+	api *API
 }
 
-func NewStorage(api *Api) *Storage {
+func NewStorage(api *API) *Storage {
 	return &Storage{api}
 }
 
 // Put uploads the content to the swarm with a simple manifest speficying
 // its content type
-func (self *Storage) Put(content, contentType string) (string, error) {
-	return self.api.Put(content, contentType)
+//
+// DEPRECATED: Use the HTTP API instead
+func (s *Storage) Put(ctx context.Context, content string, contentType string, toEncrypt bool) (storage.Address, func(context.Context) error, error) {
+	return s.api.Put(ctx, content, contentType, toEncrypt)
 }
 
 // Get retrieves the content from bzzpath and reads the response in full
@@ -45,13 +56,23 @@ func (self *Storage) Put(content, contentType string) (string, error) {
 // NOTE: if error is non-nil, sResponse may still have partial content
 // the actual size of which is given in len(resp.Content), while the expected
 // size is resp.Size
-func (self *Storage) Get(bzzpath string) (*Response, error) {
-	reader, mimeType, status, err := self.api.Get(bzzpath, true)
+//
+// DEPRECATED: Use the HTTP API instead
+func (s *Storage) Get(ctx context.Context, bzzpath string) (*Response, error) {
+	uri, err := Parse(path.Join("bzz:/", bzzpath))
+	if err != nil {
+		return nil, err
+	}
+	addr, err := s.api.Resolve(ctx, uri.Addr)
+	if err != nil {
+		return nil, err
+	}
+	reader, mimeType, status, _, err := s.api.Get(ctx, nil, addr, uri.Path)
 	if err != nil {
 		return nil, err
 	}
 	quitC := make(chan bool)
-	expsize, err := reader.Size(quitC)
+	expsize, err := reader.Size(ctx, quitC)
 	if err != nil {
 		return nil, err
 	}
@@ -61,10 +82,4 @@ func (self *Storage) Get(bzzpath string) (*Response, error) {
 		err = nil
 	}
 	return &Response{mimeType, status, expsize, string(body[:size])}, err
-}
-
-// Modify(rootHash, path, contentHash, contentType) takes th e manifest trie rooted in rootHash,
-// and merge on  to it. creating an entry w conentType (mime)
-func (self *Storage) Modify(rootHash, path, contentHash, contentType string) (newRootHash string, err error) {
-	return self.api.Modify(rootHash+"/"+path, contentHash, contentType, true)
 }

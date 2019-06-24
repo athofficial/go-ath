@@ -26,10 +26,11 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"syscall"
 
-	"github.com/kek-mex/go-atheios/internal/jsre"
-	"github.com/kek-mex/go-atheios/internal/web3ext"
-	"github.com/kek-mex/go-atheios/rpc"
+	"github.com/ubiq/go-ubiq/internal/jsre"
+	"github.com/ubiq/go-ubiq/internal/web3ext"
+	"github.com/ubiq/go-ubiq/rpc"
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
 	"github.com/robertkrimen/otto"
@@ -47,7 +48,7 @@ const HistoryFile = "history"
 // DefaultPrompt is the default prompt line prefix to use for user input querying.
 const DefaultPrompt = "> "
 
-// Config is te collection of configurations to fine tune the behavior of the
+// Config is the collection of configurations to fine tune the behavior of the
 // JavaScript console.
 type Config struct {
 	DataDir  string       // Data directory to store the console history at
@@ -59,7 +60,7 @@ type Config struct {
 	Preload  []string     // Absolute paths to JavaScript files to preload
 }
 
-// Console is a JavaScript interpreted runtime environment. It is a fully fleged
+// Console is a JavaScript interpreted runtime environment. It is a fully fledged
 // JavaScript console attached to a running node via an external or in-process RPC
 // client.
 type Console struct {
@@ -72,6 +73,8 @@ type Console struct {
 	printer  io.Writer    // Output writer to serialize any display strings to
 }
 
+// New initializes a JavaScript interpreted runtime environment and sets defaults
+// with the config struct.
 func New(config Config) (*Console, error) {
 	// Handle unset config values gracefully
 	if config.Prompter == nil {
@@ -91,6 +94,9 @@ func New(config Config) (*Console, error) {
 		prompter: config.Prompter,
 		printer:  config.Printer,
 		histPath: filepath.Join(config.DataDir, HistoryFile),
+	}
+	if err := os.MkdirAll(config.DataDir, 0700); err != nil {
+		return nil, err
 	}
 	if err := console.init(config.Preload); err != nil {
 		return nil, err
@@ -160,10 +166,15 @@ func (c *Console) init(preload []string) error {
 		if err != nil {
 			return err
 		}
-		// Override the unlockAccount, newAccount and sign methods since these require user interaction.
-		// Assign these method in the Console the original web3 callbacks. These will be called by the jeth.*
-		// methods after they got the password from the user and send the original web3 request to the backend.
+		// Override the openWallet, unlockAccount, newAccount and sign methods since
+		// these require user interaction. Assign these method in the Console the
+		// original web3 callbacks. These will be called by the jeth.* methods after
+		// they got the password from the user and send the original web3 request to
+		// the backend.
 		if obj := personal.Object(); obj != nil { // make sure the personal api is enabled over the interface
+			if _, err = c.jsre.Run(`jeth.openWallet = personal.openWallet;`); err != nil {
+				return fmt.Errorf("personal.openWallet: %v", err)
+			}
 			if _, err = c.jsre.Run(`jeth.unlockAccount = personal.unlockAccount;`); err != nil {
 				return fmt.Errorf("personal.unlockAccount: %v", err)
 			}
@@ -173,6 +184,7 @@ func (c *Console) init(preload []string) error {
 			if _, err = c.jsre.Run(`jeth.sign = personal.sign;`); err != nil {
 				return fmt.Errorf("personal.sign: %v", err)
 			}
+			obj.Set("openWallet", bridge.OpenWallet)
 			obj.Set("unlockAccount", bridge.UnlockAccount)
 			obj.Set("newAccount", bridge.NewAccount)
 			obj.Set("sign", bridge.Sign)
@@ -186,6 +198,7 @@ func (c *Console) init(preload []string) error {
 	if obj := admin.Object(); obj != nil { // make sure the admin api is enabled over the interface
 		obj.Set("sleepBlocks", bridge.SleepBlocks)
 		obj.Set("sleep", bridge.Sleep)
+		obj.Set("clearHistory", c.clearHistory)
 	}
 	// Preload any JavaScript files before starting the console
 	for _, path := range preload {
@@ -210,6 +223,16 @@ func (c *Console) init(preload []string) error {
 	return nil
 }
 
+func (c *Console) clearHistory() {
+	c.history = nil
+	c.prompter.ClearHistory()
+	if err := os.Remove(c.histPath); err != nil {
+		fmt.Fprintln(c.printer, "can't delete history file:", err)
+	} else {
+		fmt.Fprintln(c.printer, "history file deleted")
+	}
+}
+
 // consoleOutput is an override for the console.log and console.error methods to
 // stream the output into the configured output stream instead of stdout.
 func (c *Console) consoleOutput(call otto.FunctionCall) otto.Value {
@@ -232,7 +255,7 @@ func (c *Console) AutoCompleteInput(line string, pos int) (string, []string, str
 	// E.g. in case of nested lines eth.getBalance(eth.coinb<tab><tab>
 	start := pos - 1
 	for ; start > 0; start-- {
-		// Skip all methods and namespaces (i.e. including te dot)
+		// Skip all methods and namespaces (i.e. including the dot)
 		if line[start] == '.' || (line[start] >= 'a' && line[start] <= 'z') || (line[start] >= 'A' && line[start] <= 'Z') {
 			continue
 		}
@@ -248,11 +271,11 @@ func (c *Console) AutoCompleteInput(line string, pos int) (string, []string, str
 	return line[:start], c.jsre.CompleteKeywords(line[start:pos]), line[pos:]
 }
 
-// Welcome show summary of current gath instance and some metadata about the
+// Welcome show summary of current Gubiq instance and some metadata about the
 // console's available modules.
 func (c *Console) Welcome() {
-	// Print some generic gath metadata
-	fmt.Fprintf(c.printer, "Welcome to the gath JavaScript console!\n\n")
+	// Print some generic Gubiq metadata
+	fmt.Fprintf(c.printer, "Welcome to the Gubiq JavaScript console!\n\n")
 	c.jsre.Run(`
 		console.log("instance: " + web3.version.node);
 		console.log("coinbase: " + eth.coinbase);
@@ -291,7 +314,7 @@ func (c *Console) Interactive() {
 		input     = ""                // Current user input
 		scheduler = make(chan string) // Channel to send the next prompt on and receive the input
 	)
-	// Start a goroutine to listen for promt requests and send back inputs
+	// Start a goroutine to listen for prompt requests and send back inputs
 	go func() {
 		for {
 			// Read the next user input
@@ -312,7 +335,7 @@ func (c *Console) Interactive() {
 	}()
 	// Monitor Ctrl-C too in case the input is empty and we need to bail
 	abort := make(chan os.Signal, 1)
-	signal.Notify(abort, os.Interrupt)
+	signal.Notify(abort, syscall.SIGINT, syscall.SIGTERM)
 
 	// Start sending prompts to the user and reading back inputs
 	for {
@@ -406,7 +429,7 @@ func (c *Console) Execute(path string) error {
 	return c.jsre.Exec(path)
 }
 
-// Stop cleans up the console and terminates the runtime envorinment.
+// Stop cleans up the console and terminates the runtime environment.
 func (c *Console) Stop(graceful bool) error {
 	if err := ioutil.WriteFile(c.histPath, []byte(strings.Join(c.history, "\n")), 0600); err != nil {
 		return err

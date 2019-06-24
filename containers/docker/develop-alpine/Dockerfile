@@ -1,14 +1,14 @@
-FROM alpine:3.5
+FROM alpine:3.7
 
 RUN \
   apk add --update go git make gcc musl-dev linux-headers ca-certificates && \
-  git clone --depth 1 https://github.com/kek-mex/go-atheios && \
-  (cd go-atheios && make gath) && \
-  cp go-atheios/build/bin/gath /gath && \
+  git clone --depth 1 https://github.com/ubiq/go-ubiq && \
+  (cd go-ubiq && make gubiq) && \
+  cp go-ubiq/build/bin/gubiq /gubiq && \
   apk del go git make gcc musl-dev linux-headers && \
-  rm -rf /go-atheios && rm -rf /var/cache/apk/*
+  rm -rf /go-ubiq && rm -rf /var/cache/apk/*
 
-EXPOSE 8696
-EXPOSE 30696
+EXPOSE 8588
+EXPOSE 30388
 
-ENTRYPOINT ["/gath"]
+ENTRYPOINT ["/gubiq"]

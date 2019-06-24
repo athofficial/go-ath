@@ -30,8 +30,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/crypto"
 )
 
 // Node represents a host on the network.
@@ -144,10 +144,10 @@ var incompleteNodeURL = regexp.MustCompile("(?i)^(?:enode://)?([0-9a-f]+)$")
 // query parameter "discport".
 //
 // In the following example, the node URL describes
-// a node with IP address 10.3.58.6, TCP listening port 30696
-// and UDP discovery port 30697.
+// a node with IP address 10.3.58.6, TCP listening port 30388
+// and UDP discovery port 30386.
 //
-//    enode://<hex node id>@10.3.58.6:30696?discport=30697
+//    enode://<hex node id>@10.3.58.6:30388?discport=30386
 func ParseNode(rawurl string) (*Node, error) {
 	if m := incompleteNodeURL.FindStringSubmatch(rawurl); m != nil {
 		id, err := HexID(m[1])
@@ -215,6 +215,20 @@ func MustParseNode(rawurl string) *Node {
 	return n
 }
 
+// MarshalText implements encoding.TextMarshaler.
+func (n *Node) MarshalText() ([]byte, error) {
+	return []byte(n.String()), nil
+}
+
+// UnmarshalText implements encoding.TextUnmarshaler.
+func (n *Node) UnmarshalText(text []byte) error {
+	dec, err := ParseNode(string(text))
+	if err == nil {
+		*n = *dec
+	}
+	return err
+}
+
 // type nodeQueue []*Node
 //
 // // pushNew adds n to the end if it is not present.
@@ -259,6 +273,11 @@ func (n NodeID) GoString() string {
 	return fmt.Sprintf("discover.HexID(\"%x\")", n[:])
 }
 
+// TerminalString returns a shortened hex string for terminal logging.
+func (n NodeID) TerminalString() string {
+	return hex.EncodeToString(n[:8])
+}
+
 // HexID converts a hex string to a NodeID.
 // The string may be prefixed with 0x.
 func HexID(in string) (NodeID, error) {
@@ -296,11 +315,11 @@ func PubkeyID(pub *ecdsa.PublicKey) NodeID {
 
 // Pubkey returns the public key represented by the node ID.
 // It returns an error if the ID is not a point on the curve.
-func (id NodeID) Pubkey() (*ecdsa.PublicKey, error) {
-	p := &ecdsa.PublicKey{Curve: S256(), X: new(big.Int), Y: new(big.Int)}
-	half := len(id) / 2
-	p.X.SetBytes(id[:half])
-	p.Y.SetBytes(id[half:])
+func (n NodeID) Pubkey() (*ecdsa.PublicKey, error) {
+	p := &ecdsa.PublicKey{Curve: crypto.S256(), X: new(big.Int), Y: new(big.Int)}
+	half := len(n) / 2
+	p.X.SetBytes(n[:half])
+	p.Y.SetBytes(n[half:])
 	if !p.Curve.IsOnCurve(p.X, p.Y) {
 		return nil, errors.New("id is invalid secp256k1 curve point")
 	}

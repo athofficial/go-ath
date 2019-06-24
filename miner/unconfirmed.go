@@ -20,17 +20,19 @@ import (
 	"container/ring"
 	"sync"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/log"
 )
 
-// headerRetriever is used by the unconfirmed block set to verify whether a previously
+// chainRetriever is used by the unconfirmed block set to verify whether a previously
 // mined block is part of the canonical chain or not.
-type headerRetriever interface {
+type chainRetriever interface {
 	// GetHeaderByNumber retrieves the canonical header associated with a block number.
 	GetHeaderByNumber(number uint64) *types.Header
+
+	// GetBlockByNumber retrieves the canonical block associated with a block number.
+	GetBlockByNumber(number uint64) *types.Block
 }
 
 // unconfirmedBlock is a small collection of metadata about a locally mined block
@@ -41,18 +43,18 @@ type unconfirmedBlock struct {
 }
 
 // unconfirmedBlocks implements a data structure to maintain locally mined blocks
-// have have not yet reached enough maturity to guarantee chain inclusion. It is
+// have not yet reached enough maturity to guarantee chain inclusion. It is
 // used by the miner to provide logs to the user when a previously mined block
-// has a high enough guarantee to not be reorged out of te canonical chain.
+// has a high enough guarantee to not be reorged out of the canonical chain.
 type unconfirmedBlocks struct {
-	chain  headerRetriever // Blockchain to verify canonical status through
-	depth  uint            // Depth after which to discard previous blocks
-	blocks *ring.Ring      // Block infos to allow canonical chain cross checks
-	lock   sync.RWMutex    // Protects the fields from concurrent access
+	chain  chainRetriever // Blockchain to verify canonical status through
+	depth  uint           // Depth after which to discard previous blocks
+	blocks *ring.Ring     // Block infos to allow canonical chain cross checks
+	lock   sync.RWMutex   // Protects the fields from concurrent access
 }
 
 // newUnconfirmedBlocks returns new data structure to track currently unconfirmed blocks.
-func newUnconfirmedBlocks(chain headerRetriever, depth uint) *unconfirmedBlocks {
+func newUnconfirmedBlocks(chain chainRetriever, depth uint) *unconfirmedBlocks {
 	return &unconfirmedBlocks{
 		chain: chain,
 		depth: depth,
@@ -80,7 +82,7 @@ func (set *unconfirmedBlocks) Insert(index uint64, hash common.Hash) {
 		set.blocks.Move(-1).Link(item)
 	}
 	// Display a log for the user to notify of a new mined block unconfirmed
-	glog.V(logger.Info).Infof("🔨  mined potential block #%d [%x…], waiting for %d blocks to confirm", index, hash.Bytes()[:4], set.depth)
+	log.Info("🔨 mined potential block", "number", index, "hash", hash)
 }
 
 // Shift drops all unconfirmed blocks from the set which exceed the unconfirmed sets depth
@@ -100,11 +102,27 @@ func (set *unconfirmedBlocks) Shift(height uint64) {
 		header := set.chain.GetHeaderByNumber(next.index)
 		switch {
 		case header == nil:
-			glog.V(logger.Warn).Infof("failed to retrieve header of mined block #%d [%x…]", next.index, next.hash.Bytes()[:4])
+			log.Warn("Failed to retrieve header of mined block", "number", next.index, "hash", next.hash)
 		case header.Hash() == next.hash:
-			glog.V(logger.Info).Infof("🔗  mined block #%d [%x…] reached canonical chain", next.index, next.hash.Bytes()[:4])
+			log.Info("🔗 block reached canonical chain", "number", next.index, "hash", next.hash)
 		default:
-			glog.V(logger.Info).Infof("⑂ mined block #%d [%x…] became a side fork", next.index, next.hash.Bytes()[:4])
+			// Block is not canonical, check whether we have an uncle or a lost block
+			included := false
+			for number := next.index; !included && number < next.index+uint64(set.depth) && number <= height; number++ {
+				if block := set.chain.GetBlockByNumber(number); block != nil {
+					for _, uncle := range block.Uncles() {
+						if uncle.Hash() == next.hash {
+							included = true
+							break
+						}
+					}
+				}
+			}
+			if included {
+				log.Info("⑂ block became an uncle", "number", next.index, "hash", next.hash)
+			} else {
+				log.Info("😱 block lost", "number", next.index, "hash", next.hash)
+			}
 		}
 		// Drop the block out of the ring
 		if set.blocks.Value == set.blocks.Next().Value {

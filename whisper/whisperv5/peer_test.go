@@ -19,20 +19,19 @@ package whisperv5
 import (
 	"bytes"
 	"crypto/ecdsa"
-	"fmt"
 	"net"
 	"sync"
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/crypto"
-	"github.com/kek-mex/go-atheios/p2p"
-	"github.com/kek-mex/go-atheios/p2p/discover"
-	"github.com/kek-mex/go-atheios/p2p/nat"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/ubiq/go-ubiq/p2p/nat"
 )
 
-var keys []string = []string{
+var keys = []string{
 	"d49dcf37238dc8a7aac57dc61b9fee68f0a97f062968978b9fafa7d1033d03a9",
 	"73fd6143c48e80ed3c56ea159fe7494a0b6b393a392227b422f4c3e8f1b54f98",
 	"119dd32adb1daa7a4c7bf77f847fb28730785aa92947edf42fdd997b54de40dc",
@@ -79,14 +78,14 @@ type TestNode struct {
 	shh     *Whisper
 	id      *ecdsa.PrivateKey
 	server  *p2p.Server
-	filerId uint32
+	filerId string
 }
 
 var result TestData
 var nodes [NumNodes]*TestNode
-var sharedKey []byte = []byte("some arbitrary data here")
+var sharedKey = []byte("some arbitrary data here")
 var sharedTopic TopicType = TopicType{0xF, 0x1, 0x2, 0}
-var expectedMessage []byte = []byte("per rectum ad astra")
+var expectedMessage = []byte("per rectum ad astra")
 
 // This test does the following:
 // 1. creates a chain of whisper nodes,
@@ -107,55 +106,48 @@ func TestSimulation(t *testing.T) {
 }
 
 func initialize(t *testing.T) {
-	//glog.SetV(6)
-	//glog.SetToStderr(true)
-
 	var err error
-	ip := net.IPv4(127, 0, 0, 1)
-	port0 := 30696
 
 	for i := 0; i < NumNodes; i++ {
 		var node TestNode
-		node.shh = NewWhisper(nil)
-		node.shh.test = true
+		node.shh = New(&DefaultConfig)
+		node.shh.SetMinimumPoW(0.00000001)
 		node.shh.Start(nil)
 		topics := make([]TopicType, 0)
 		topics = append(topics, sharedTopic)
-		f := Filter{KeySym: sharedKey, Topics: topics}
-		node.filerId = node.shh.Watch(&f)
+		f := Filter{KeySym: sharedKey}
+		f.Topics = [][]byte{topics[0][:]}
+		node.filerId, err = node.shh.Subscribe(&f)
+		if err != nil {
+			t.Fatalf("failed to install the filter: %s.", err)
+		}
 		node.id, err = crypto.HexToECDSA(keys[i])
 		if err != nil {
 			t.Fatalf("failed convert the key: %s.", keys[i])
 		}
-		port := port0 + i
-		addr := fmt.Sprintf(":%d", port) // e.g. ":30696"
 		name := common.MakeName("whisper-go", "2.0")
-		var peers []*discover.Node
-		if i > 0 {
-			peerNodeId := nodes[i-1].id
-			peerPort := uint16(port - 1)
-			peerNode := discover.PubkeyID(&peerNodeId.PublicKey)
-			peer := discover.NewNode(peerNode, ip, peerPort, peerPort)
-			peers = append(peers, peer)
-		}
-
 		node.server = &p2p.Server{
 			Config: p2p.Config{
-				PrivateKey:     node.id,
-				MaxPeers:       NumNodes/2 + 1,
-				Name:           name,
-				Protocols:      node.shh.Protocols(),
-				ListenAddr:     addr,
-				NAT:            nat.Any(),
-				BootstrapNodes: peers,
-				StaticNodes:    peers,
-				TrustedNodes:   peers,
+				PrivateKey: node.id,
+				MaxPeers:   NumNodes/2 + 1,
+				Name:       name,
+				Protocols:  node.shh.Protocols(),
+				ListenAddr: "127.0.0.1:0",
+				NAT:        nat.Any(),
 			},
 		}
 
 		err = node.server.Start()
 		if err != nil {
-			t.Fatalf("failed to start server %d.", i)
+			t.Fatalf("failed to start server %d. err: %v", i, err)
+		}
+
+		for j := 0; j < i; j++ {
+			peerNodeId := nodes[j].id
+			address, _ := net.ResolveTCPAddr("tcp", nodes[j].server.ListenAddr)
+			peerPort := uint16(address.Port)
+			peer := enode.NewV4(&peerNodeId.PublicKey, address.IP, int(peerPort), int(peerPort))
+			node.server.AddPeer(peer)
 		}
 
 		nodes[i] = &node
@@ -166,7 +158,7 @@ func stopServers() {
 	for i := 0; i < NumNodes; i++ {
 		n := nodes[i]
 		if n != nil {
-			n.shh.Unwatch(n.filerId)
+			n.shh.Unsubscribe(n.filerId)
 			n.shh.Stop()
 			n.server.Stop()
 		}
@@ -187,7 +179,7 @@ func checkPropagation(t *testing.T) {
 		for i := 0; i < NumNodes; i++ {
 			f := nodes[i].shh.GetFilter(nodes[i].filerId)
 			if f == nil {
-				t.Fatalf("failed to get filterId %d from node %d.", nodes[i].filerId, i)
+				t.Fatalf("failed to get filterId %s from node %d.", nodes[i].filerId, i)
 			}
 
 			mail := f.Retrieve()
@@ -257,22 +249,25 @@ func sendMsg(t *testing.T, expected bool, id int) {
 		return
 	}
 
-	opt := MessageParams{KeySym: sharedKey, Topic: sharedTopic, Payload: expectedMessage, PoW: 0.00000001}
+	opt := MessageParams{KeySym: sharedKey, Topic: sharedTopic, Payload: expectedMessage, PoW: 0.00000001, WorkTime: 1}
 	if !expected {
 		opt.KeySym[0]++
 		opt.Topic[0]++
 		opt.Payload = opt.Payload[1:]
 	}
 
-	msg := NewSentMessage(&opt)
+	msg, err := NewSentMessage(&opt)
+	if err != nil {
+		t.Fatalf("failed to create new message with seed %d: %s.", seed, err)
+	}
 	envelope, err := msg.Wrap(&opt)
 	if err != nil {
-		t.Fatalf("failed to seal message.")
+		t.Fatalf("failed to seal message: %s", err)
 	}
 
 	err = nodes[id].shh.Send(envelope)
 	if err != nil {
-		t.Fatalf("failed to send message.")
+		t.Fatalf("failed to send message: %s", err)
 	}
 }
 
@@ -285,7 +280,10 @@ func TestPeerBasic(t *testing.T) {
 	}
 
 	params.PoW = 0.001
-	msg := NewSentMessage(params)
+	msg, err := NewSentMessage(params)
+	if err != nil {
+		t.Fatalf("failed to create new message with seed %d: %s.", seed, err)
+	}
 	env, err := msg.Wrap(params)
 	if err != nil {
 		t.Fatalf("failed Wrap with seed %d.", seed)

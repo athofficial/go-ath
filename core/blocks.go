@@ -16,7 +16,9 @@
 
 package core
 
-import "github.com/kek-mex/go-atheios/common"
+import "github.com/ubiq/go-ubiq/common"
 
-// Set of manually tracked bad hashes (usually hard forks)
-var BadHashes = map[common.Hash]bool{}
+// BadHashes represent a set of manually tracked bad hashes (usually hard forks)
+var BadHashes = map[common.Hash]bool{
+	common.HexToHash("0x1ae014496c597f255ab617396b390761146c69dd3caa76c8cad11bc1eaefe2af"): true,
+}

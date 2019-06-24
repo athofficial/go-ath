@@ -17,19 +17,19 @@
 package light
 
 import (
+	"context"
 	"math"
 	"math/big"
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core"
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/core/vm"
-	"github.com/kek-mex/go-atheios/ethdb"
-	"github.com/kek-mex/go-atheios/event"
-	"github.com/kek-mex/go-atheios/params"
-	"golang.org/x/net/context"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/consensus/ubqhash"
+	"github.com/ubiq/go-ubiq/core"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/ubiq/go-ubiq/params"
 )
 
 type testTxRelay struct {
@@ -81,35 +81,33 @@ func TestTxPool(t *testing.T) {
 	}
 
 	var (
-		evmux   = new(event.TypeMux)
-		pow     = new(core.FakePow)
-		sdb, _  = ethdb.NewMemDatabase()
-		ldb, _  = ethdb.NewMemDatabase()
-		genesis = core.WriteGenesisBlockForTesting(sdb, core.GenesisAccount{Address: testBankAddress, Balance: testBankFunds})
+		sdb     = ethdb.NewMemDatabase()
+		ldb     = ethdb.NewMemDatabase()
+		gspec   = core.Genesis{Alloc: core.GenesisAlloc{testBankAddress: {Balance: testBankFunds}}}
+		genesis = gspec.MustCommit(sdb)
 	)
-	core.WriteGenesisBlockForTesting(ldb, core.GenesisAccount{Address: testBankAddress, Balance: testBankFunds})
+	gspec.MustCommit(ldb)
 	// Assemble the test environment
-	blockchain, _ := core.NewBlockChain(sdb, testChainConfig(), pow, evmux, vm.Config{})
-	chainConfig := &params.ChainConfig{HomesteadBlock: new(big.Int)}
-	gchain, _ := core.GenerateChain(chainConfig, genesis, sdb, poolTestBlocks, txPoolTestChainGen)
+	blockchain, _ := core.NewBlockChain(sdb, nil, params.TestChainConfig, ubqhash.NewFullFaker(), vm.Config{}, nil)
+	gchain, _ := core.GenerateChain(params.TestChainConfig, genesis, ubqhash.NewFaker(), sdb, poolTestBlocks, txPoolTestChainGen)
 	if _, err := blockchain.InsertChain(gchain); err != nil {
 		panic(err)
 	}
 
-	odr := &testOdr{sdb: sdb, ldb: ldb}
+	odr := &testOdr{sdb: sdb, ldb: ldb, indexerConfig: TestClientIndexerConfig}
 	relay := &testTxRelay{
 		send:    make(chan int, 1),
 		discard: make(chan int, 1),
 		mined:   make(chan int, 1),
 	}
-	lightchain, _ := NewLightChain(odr, testChainConfig(), pow, evmux)
-	lightchain.SetValidator(bproc{})
+	lightchain, _ := NewLightChain(odr, params.TestChainConfig, ubqhash.NewFullFaker())
 	txPermanent = 50
-	pool := NewTxPool(testChainConfig(), evmux, lightchain, relay)
+	pool := NewTxPool(params.TestChainConfig, lightchain, relay)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	defer cancel()
 
 	for ii, block := range gchain {
 		i := ii + 1
-		ctx, _ := context.WithTimeout(context.Background(), 200*time.Millisecond)
 		s := sentTx(i - 1)
 		e := sentTx(i)
 		for i := s; i < e; i++ {

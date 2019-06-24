@@ -19,53 +19,46 @@ package miner
 
 import (
 	"fmt"
-	"math/big"
 	"sync/atomic"
+	"time"
 
-	"github.com/kek-mex/go-atheios/accounts"
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core"
-	"github.com/kek-mex/go-atheios/core/state"
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/eth/downloader"
-	"github.com/kek-mex/go-atheios/ethdb"
-	"github.com/kek-mex/go-atheios/event"
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
-	"github.com/kek-mex/go-atheios/params"
-	"github.com/kek-mex/go-atheios/pow"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/consensus"
+	"github.com/ubiq/go-ubiq/core"
+	"github.com/ubiq/go-ubiq/core/state"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/eth/downloader"
+	"github.com/ubiq/go-ubiq/event"
+	"github.com/ubiq/go-ubiq/log"
+	"github.com/ubiq/go-ubiq/params"
 )
 
 // Backend wraps all methods required for mining.
 type Backend interface {
-	AccountManager() *accounts.Manager
 	BlockChain() *core.BlockChain
 	TxPool() *core.TxPool
-	ChainDb() ethdb.Database
 }
 
 // Miner creates blocks and searches for proof-of-work values.
 type Miner struct {
-	mux *event.TypeMux
-
-	worker *worker
-
-	threads  int
+	mux      *event.TypeMux
+	worker   *worker
 	coinbase common.Address
-	mining   int32
 	eth      Backend
-	pow      pow.PoW
+	engine   consensus.Engine
+	exitCh   chan struct{}
 
 	canStart    int32 // can start indicates whether we can start the mining operation
 	shouldStart int32 // should start indicates whether we should start after sync
 }
 
-func New(eth Backend, config *params.ChainConfig, mux *event.TypeMux, pow pow.PoW) *Miner {
+func New(eth Backend, config *params.ChainConfig, mux *event.TypeMux, engine consensus.Engine, recommit time.Duration, gasFloor, gasCeil uint64, isLocalBlock func(block *types.Block) bool) *Miner {
 	miner := &Miner{
 		eth:      eth,
 		mux:      mux,
-		pow:      pow,
-		worker:   newWorker(config, common.Address{}, eth, mux),
+		engine:   engine,
+		exitCh:   make(chan struct{}),
+		worker:   newWorker(config, engine, eth, mux, recommit, gasFloor, gasCeil, isLocalBlock),
 		canStart: 1,
 	}
 	go miner.update()
@@ -79,103 +72,82 @@ func New(eth Backend, config *params.ChainConfig, mux *event.TypeMux, pow pow.Po
 // and halt your mining operation for as long as the DOS continues.
 func (self *Miner) update() {
 	events := self.mux.Subscribe(downloader.StartEvent{}, downloader.DoneEvent{}, downloader.FailedEvent{})
-out:
-	for ev := range events.Chan() {
-		switch ev.Data.(type) {
-		case downloader.StartEvent:
-			atomic.StoreInt32(&self.canStart, 0)
-			if self.Mining() {
-				self.Stop()
-				atomic.StoreInt32(&self.shouldStart, 1)
-				glog.V(logger.Info).Infoln("Mining operation aborted due to sync operation")
-			}
-		case downloader.DoneEvent, downloader.FailedEvent:
-			shouldStart := atomic.LoadInt32(&self.shouldStart) == 1
+	defer events.Unsubscribe()
 
-			atomic.StoreInt32(&self.canStart, 1)
-			atomic.StoreInt32(&self.shouldStart, 0)
-			if shouldStart {
-				self.Start(self.coinbase, self.threads)
+	for {
+		select {
+		case ev := <-events.Chan():
+			if ev == nil {
+				return
 			}
-			// unsubscribe. we're only interested in this event once
-			events.Unsubscribe()
-			// stop immediately and ignore all further pending events
-			break out
+			switch ev.Data.(type) {
+			case downloader.StartEvent:
+				atomic.StoreInt32(&self.canStart, 0)
+				if self.Mining() {
+					self.Stop()
+					atomic.StoreInt32(&self.shouldStart, 1)
+					log.Info("Mining aborted due to sync")
+				}
+			case downloader.DoneEvent, downloader.FailedEvent:
+				shouldStart := atomic.LoadInt32(&self.shouldStart) == 1
+
+				atomic.StoreInt32(&self.canStart, 1)
+				atomic.StoreInt32(&self.shouldStart, 0)
+				if shouldStart {
+					self.Start(self.coinbase)
+				}
+				// stop immediately and ignore all further pending events
+				return
+			}
+		case <-self.exitCh:
+			return
 		}
 	}
 }
 
-func (m *Miner) GasPrice() *big.Int {
-	return new(big.Int).Set(m.worker.gasPrice)
-}
-
-func (m *Miner) SetGasPrice(price *big.Int) {
-	// FIXME block tests set a nil gas price. Quick dirty fix
-	if price == nil {
-		return
-	}
-	m.worker.setGasPrice(price)
-}
-
-func (self *Miner) Start(coinbase common.Address, threads int) {
+func (self *Miner) Start(coinbase common.Address) {
 	atomic.StoreInt32(&self.shouldStart, 1)
-	self.worker.setEtherbase(coinbase)
-	self.coinbase = coinbase
-	self.threads = threads
+	self.SetEtherbase(coinbase)
 
 	if atomic.LoadInt32(&self.canStart) == 0 {
-		glog.V(logger.Info).Infoln("Can not start mining operation due to network sync (starts when finished)")
+		log.Info("Network syncing, will start miner afterwards")
 		return
 	}
-	atomic.StoreInt32(&self.mining, 1)
-
-	for i := 0; i < threads; i++ {
-		self.worker.register(NewCpuAgent(i, self.pow))
-	}
-
-	glog.V(logger.Info).Infof("Starting mining operation (CPU=%d TOT=%d)\n", threads, len(self.worker.agents))
 	self.worker.start()
-	self.worker.commitNewWork()
 }
 
 func (self *Miner) Stop() {
 	self.worker.stop()
-	atomic.StoreInt32(&self.mining, 0)
 	atomic.StoreInt32(&self.shouldStart, 0)
 }
 
-func (self *Miner) Register(agent Agent) {
-	if self.Mining() {
-		agent.Start()
-	}
-	self.worker.register(agent)
-}
-
-func (self *Miner) Unregister(agent Agent) {
-	self.worker.unregister(agent)
+func (self *Miner) Close() {
+	self.worker.close()
+	close(self.exitCh)
 }
 
 func (self *Miner) Mining() bool {
-	return atomic.LoadInt32(&self.mining) > 0
+	return self.worker.isRunning()
 }
 
-func (self *Miner) HashRate() (tot int64) {
-	tot += self.pow.GetHashrate()
-	// do we care this might race? is it worth we're rewriting some
-	// aspects of the worker/locking up agents so we can get an accurate
-	// hashrate?
-	for agent := range self.worker.agents {
-		tot += agent.GetHashRate()
+func (self *Miner) HashRate() uint64 {
+	if pow, ok := self.engine.(consensus.PoW); ok {
+		return uint64(pow.Hashrate())
 	}
-	return
+	return 0
 }
 
 func (self *Miner) SetExtra(extra []byte) error {
-	if uint64(len(extra)) > params.MaximumExtraDataSize.Uint64() {
+	if uint64(len(extra)) > params.MaximumExtraDataSize {
 		return fmt.Errorf("Extra exceeds max length. %d > %v", len(extra), params.MaximumExtraDataSize)
 	}
 	self.worker.setExtra(extra)
 	return nil
+}
+
+// SetRecommitInterval sets the interval for sealing work resubmitting.
+func (self *Miner) SetRecommitInterval(interval time.Duration) {
+	self.worker.setRecommitInterval(interval)
 }
 
 // Pending returns the currently pending block and associated state.

@@ -21,9 +21,11 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/rlp"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/core"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/event"
+	"github.com/ubiq/go-ubiq/rlp"
 )
 
 // Constants to match up protocol versions and messages
@@ -32,19 +34,16 @@ const (
 	eth63 = 63
 )
 
-// Official short name of the protocol used during capability negotiation.
+// ProtocolName is the official short name of the protocol used during capability negotiation.
 var ProtocolName = "eth"
 
-// Supported versions of the eth protocol (first is primary).
+// ProtocolVersions are the supported versions of the eth protocol (first is primary).
 var ProtocolVersions = []uint{eth63, eth62}
 
-// Number of implemented message corresponding to different protocol versions.
+// ProtocolLengths are the number of implemented message corresponding to different protocol versions.
 var ProtocolLengths = []uint64{17, 8}
 
-const (
-	NetworkId          = 11235813
-	ProtocolMaxMsgSize = 10 * 1024 * 1024 // Maximum cap on the size of a protocol message
-)
+const ProtocolMaxMsgSize = 10 * 1024 * 1024 // Maximum cap on the size of a protocol message
 
 // eth protocol message codes
 const (
@@ -97,18 +96,22 @@ var errorToString = map[int]string{
 }
 
 type txPool interface {
-	// AddBatch should add the given transactions to the pool.
-	AddBatch([]*types.Transaction) error
+	// AddRemotes should add the given transactions to the pool.
+	AddRemotes([]*types.Transaction) []error
 
 	// Pending should return pending transactions.
 	// The slice should be modifiable by the caller.
 	Pending() (map[common.Address]types.Transactions, error)
+
+	// SubscribeNewTxsEvent should return an event subscription of
+	// NewTxsEvent and send events to the given channel.
+	SubscribeNewTxsEvent(chan<- core.NewTxsEvent) event.Subscription
 }
 
 // statusData is the network packet for the status message.
 type statusData struct {
 	ProtocolVersion uint32
-	NetworkId       uint32
+	NetworkId       uint64
 	TD              *big.Int
 	CurrentBlock    common.Hash
 	GenesisBlock    common.Hash

@@ -16,14 +16,13 @@
 
 // Contains all the wrappers from the go-ethereum root package.
 
-package gath
+package gubiq
 
 import (
 	"errors"
-	"math/big"
 
-	ethereum "github.com/kek-mex/go-atheios"
-	"github.com/kek-mex/go-atheios/common"
+	ethereum "github.com/ubiq/go-ubiq"
+	"github.com/ubiq/go-ubiq/common"
 )
 
 // Subscription represents an event subscription where events are
@@ -49,7 +48,7 @@ func NewCallMsg() *CallMsg {
 }
 
 func (msg *CallMsg) GetFrom() *Address    { return &Address{msg.msg.From} }
-func (msg *CallMsg) GetGas() int64        { return msg.msg.Gas.Int64() }
+func (msg *CallMsg) GetGas() int64        { return int64(msg.msg.Gas) }
 func (msg *CallMsg) GetGasPrice() *BigInt { return &BigInt{msg.msg.GasPrice} }
 func (msg *CallMsg) GetValue() *BigInt    { return &BigInt{msg.msg.Value} }
 func (msg *CallMsg) GetData() []byte      { return msg.msg.Data }
@@ -61,19 +60,20 @@ func (msg *CallMsg) GetTo() *Address {
 }
 
 func (msg *CallMsg) SetFrom(address *Address)  { msg.msg.From = address.address }
-func (msg *CallMsg) SetGas(gas int64)          { msg.msg.Gas = big.NewInt(gas) }
+func (msg *CallMsg) SetGas(gas int64)          { msg.msg.Gas = uint64(gas) }
 func (msg *CallMsg) SetGasPrice(price *BigInt) { msg.msg.GasPrice = price.bigint }
 func (msg *CallMsg) SetValue(value *BigInt)    { msg.msg.Value = value.bigint }
-func (msg *CallMsg) SetData(data []byte)       { msg.msg.Data = data }
+func (msg *CallMsg) SetData(data []byte)       { msg.msg.Data = common.CopyBytes(data) }
 func (msg *CallMsg) SetTo(address *Address) {
 	if address == nil {
 		msg.msg.To = nil
+		return
 	}
 	msg.msg.To = &address.address
 }
 
 // SyncProgress gives progress indications when the node is synchronising with
-// the Ethereum network.
+// the Ubiq network.
 type SyncProgress struct {
 	progress ethereum.SyncProgress
 }
@@ -86,6 +86,18 @@ func (p *SyncProgress) GetKnownStates() int64   { return int64(p.progress.KnownS
 
 // Topics is a set of topic lists to filter events with.
 type Topics struct{ topics [][]common.Hash }
+
+// NewTopics creates a slice of uninitialized Topics.
+func NewTopics(size int) *Topics {
+	return &Topics{
+		topics: make([][]common.Hash, size),
+	}
+}
+
+// NewTopicsEmpty creates an empty slice of Topics values.
+func NewTopicsEmpty() *Topics {
+	return NewTopics(0)
+}
 
 // Size returns the number of topic lists inside the set
 func (t *Topics) Size() int {
@@ -109,12 +121,17 @@ func (t *Topics) Set(index int, topics *Hashes) error {
 	return nil
 }
 
-// FilterQuery contains options for contact log filtering.
+// Append adds a new topic list to the end of the slice.
+func (t *Topics) Append(topics *Hashes) {
+	t.topics = append(t.topics, topics.hashes)
+}
+
+// FilterQuery contains options for contract log filtering.
 type FilterQuery struct {
 	query ethereum.FilterQuery
 }
 
-// NewFilterQuery creates an empty filter query for contact log filtering.
+// NewFilterQuery creates an empty filter query for contract log filtering.
 func NewFilterQuery() *FilterQuery {
 	return new(FilterQuery)
 }
@@ -123,3 +140,8 @@ func (fq *FilterQuery) GetFromBlock() *BigInt    { return &BigInt{fq.query.FromB
 func (fq *FilterQuery) GetToBlock() *BigInt      { return &BigInt{fq.query.ToBlock} }
 func (fq *FilterQuery) GetAddresses() *Addresses { return &Addresses{fq.query.Addresses} }
 func (fq *FilterQuery) GetTopics() *Topics       { return &Topics{fq.query.Topics} }
+
+func (fq *FilterQuery) SetFromBlock(fromBlock *BigInt)    { fq.query.FromBlock = fromBlock.bigint }
+func (fq *FilterQuery) SetToBlock(toBlock *BigInt)        { fq.query.ToBlock = toBlock.bigint }
+func (fq *FilterQuery) SetAddresses(addresses *Addresses) { fq.query.Addresses = addresses.addresses }
+func (fq *FilterQuery) SetTopics(topics *Topics)          { fq.query.Topics = topics.topics }

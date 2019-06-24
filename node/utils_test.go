@@ -22,8 +22,8 @@ package node
 import (
 	"reflect"
 
-	"github.com/kek-mex/go-atheios/p2p"
-	"github.com/kek-mex/go-atheios/rpc"
+	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/ubiq/go-ubiq/rpc"
 )
 
 // NoopService is a trivial implementation of the Service interface.
@@ -41,12 +41,10 @@ func NewNoopService(*ServiceContext) (Service, error) { return new(NoopService),
 type NoopServiceA struct{ NoopService }
 type NoopServiceB struct{ NoopService }
 type NoopServiceC struct{ NoopService }
-type NoopServiceD struct{ NoopService }
 
 func NewNoopServiceA(*ServiceContext) (Service, error) { return new(NoopServiceA), nil }
 func NewNoopServiceB(*ServiceContext) (Service, error) { return new(NoopServiceB), nil }
 func NewNoopServiceC(*ServiceContext) (Service, error) { return new(NoopServiceC), nil }
-func NewNoopServiceD(*ServiceContext) (Service, error) { return new(NoopServiceD), nil }
 
 // InstrumentedService is an implementation of Service for which all interface
 // methods can be instrumented both return value as well as event hook wise.
@@ -123,12 +121,12 @@ func InstrumentedServiceMakerC(base ServiceConstructor) ServiceConstructor {
 	return InstrumentingWrapperMaker(base, reflect.TypeOf(InstrumentedServiceC{}))
 }
 
-// OneMethodApi is a single-method API handler to be returned by test services.
-type OneMethodApi struct {
+// OneMethodAPI is a single-method API handler to be returned by test services.
+type OneMethodAPI struct {
 	fun func()
 }
 
-func (api *OneMethodApi) TheOneMethod() {
+func (api *OneMethodAPI) TheOneMethod() {
 	if api.fun != nil {
 		api.fun()
 	}

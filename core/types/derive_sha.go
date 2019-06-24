@@ -19,9 +19,9 @@ package types
 import (
 	"bytes"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/rlp"
-	"github.com/kek-mex/go-atheios/trie"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/ubiq/go-ubiq/trie"
 )
 
 type DerivableList interface {

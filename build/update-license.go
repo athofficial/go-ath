@@ -1,3 +1,19 @@
+// Copyright 2018 The go-ethereum Authors
+// This file is part of the go-ethereum library.
+//
+// The go-ethereum library is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// The go-ethereum library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+
 // +build none
 
 /*
@@ -45,15 +61,19 @@ var (
 	// paths with any of these prefixes will be skipped
 	skipPrefixes = []string{
 		// boring stuff
-		"vendor/", "tests/files/", "build/",
+		"vendor/", "tests/testdata/", "build/",
 		// don't relicense vendored sources
-		"crypto/sha3/", "crypto/ecies/", "logger/glog/",
+		"cmd/internal/browser",
+		"consensus/ubqhash/xor.go",
+		"crypto/bn256/",
+		"crypto/ecies/",
 		"crypto/secp256k1/curve.go",
+		"crypto/sha3/",
+		"internal/jsre/deps",
+		"log/",
+		"common/bitutil/bitutil",
 		// don't license generated files
-		"contracts/chequebook/contract/",
-		"contracts/ens/contract/",
-		"contracts/release/contract.go",
-		"p2p/discv5/nodeevent_string.go",
+		"contracts/chequebook/contract/code.go",
 	}
 
 	// paths with this prefix are licensed as GPL. all other files are LGPL.
@@ -64,13 +84,13 @@ var (
 	licenseCommentRE = regexp.MustCompile(`^//\s*(Copyright|This file is part of).*?\n(?://.*?\n)*\n*`)
 
 	// this text appears at the start of AUTHORS
-	authorsFileHeader = "# This is the official list of go-atheios authors for copyright purposes.\n\n"
+	authorsFileHeader = "# This is the official list of go-ubiq authors for copyright purposes.\n\n"
 )
 
 // this template generates the license comment.
 // its input is an info structure.
 var licenseT = template.Must(template.New("").Parse(`
-// Copyright {{.Year}} The go-atheios Authors
+// Copyright {{.Year}} The go-ubiq Authors
 // This file is part of {{.Whole false}}.
 //
 // {{.Whole true}} is free software: you can redistribute it and/or modify
@@ -109,12 +129,12 @@ func (i info) ShortLicense() string {
 
 func (i info) Whole(startOfSentence bool) string {
 	if i.gpl() {
-		return "go-atheios"
+		return "go-ubiq"
 	}
 	if startOfSentence {
-		return "The go-atheios library"
+		return "The go-ubiq library"
 	}
-	return "the go-atheios library"
+	return "the go-ubiq library"
 }
 
 func (i info) gpl() bool {
@@ -284,6 +304,9 @@ func getInfo(files <-chan string, out chan<- *info, wg *sync.WaitGroup) {
 		if !stat.Mode().IsRegular() {
 			continue
 		}
+		if isGenerated(file) {
+			continue
+		}
 		info, err := fileInfo(file)
 		if err != nil {
 			fmt.Printf("ERROR %s: %v\n", file, err)
@@ -292,6 +315,23 @@ func getInfo(files <-chan string, out chan<- *info, wg *sync.WaitGroup) {
 		out <- info
 	}
 	wg.Done()
+}
+
+func isGenerated(file string) bool {
+	fd, err := os.Open(file)
+	if err != nil {
+		return false
+	}
+	defer fd.Close()
+	buf := make([]byte, 2048)
+	n, _ := fd.Read(buf)
+	buf = buf[:n]
+	for _, l := range bytes.Split(buf, []byte("\n")) {
+		if bytes.HasPrefix(l, []byte("// Code generated")) {
+			return true
+		}
+	}
+	return false
 }
 
 // fileInfo finds the lowest year in which the given file was committed.

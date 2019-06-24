@@ -30,8 +30,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-atheios/accounts/keystore"
-	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/ubiq/go-ubiq/accounts/keystore"
+	"github.com/ubiq/go-ubiq/core/types"
 )
 
 // Tests that the account management snippets work correctly.

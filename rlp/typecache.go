@@ -37,11 +37,12 @@ type typeinfo struct {
 type tags struct {
 	// rlp:"nil" controls whether empty input results in a nil pointer.
 	nilOK bool
-
 	// rlp:"tail" controls whether this field swallows additional list
 	// elements. It can only be set for the last field, which must be
 	// of slice type.
 	tail bool
+	// rlp:"-" ignores fields.
+	ignored bool
 }
 
 type typekey struct {
@@ -75,7 +76,7 @@ func cachedTypeInfo1(typ reflect.Type, tags tags) (*typeinfo, error) {
 		// another goroutine got the write lock first
 		return info, nil
 	}
-	// put a dummmy value into the cache before generating.
+	// put a dummy value into the cache before generating.
 	// if the generator tries to lookup itself, it will get
 	// the dummy value and won't call itself recursively.
 	typeCache[key] = new(typeinfo)
@@ -101,6 +102,9 @@ func structFields(typ reflect.Type) (fields []field, err error) {
 			if err != nil {
 				return nil, err
 			}
+			if tags.ignored {
+				continue
+			}
 			info, err := cachedTypeInfo1(f.Type, tags)
 			if err != nil {
 				return nil, err
@@ -117,6 +121,8 @@ func parseStructTag(typ reflect.Type, fi int) (tags, error) {
 	for _, t := range strings.Split(f.Tag.Get("rlp"), ",") {
 		switch t = strings.TrimSpace(t); t {
 		case "":
+		case "-":
+			ts.ignored = true
 		case "nil":
 			ts.nilOK = true
 		case "tail":

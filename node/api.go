@@ -17,15 +17,17 @@
 package node
 
 import (
+	"context"
 	"fmt"
 	"strings"
 	"time"
 
-	"github.com/rcrowley/go-metrics"
-	"github.com/kek-mex/go-atheios/common/hexutil"
-	"github.com/kek-mex/go-atheios/crypto"
-	"github.com/kek-mex/go-atheios/p2p"
-	"github.com/kek-mex/go-atheios/p2p/discover"
+	"github.com/ubiq/go-ubiq/common/hexutil"
+	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/ubiq/go-ubiq/rpc"
 )
 
 // PrivateAdminAPI is the collection of administrative API methods exposed only
@@ -49,7 +51,7 @@ func (api *PrivateAdminAPI) AddPeer(url string) (bool, error) {
 		return false, ErrNodeStopped
 	}
 	// Try to add the url as a static peer and return
-	node, err := discover.ParseNode(url)
+	node, err := enode.ParseV4(url)
 	if err != nil {
 		return false, fmt.Errorf("invalid enode: %v", err)
 	}
@@ -57,7 +59,7 @@ func (api *PrivateAdminAPI) AddPeer(url string) (bool, error) {
 	return true, nil
 }
 
-// RemovePeer disconnects from a a remote node if the connection exists
+// RemovePeer disconnects from a remote node if the connection exists
 func (api *PrivateAdminAPI) RemovePeer(url string) (bool, error) {
 	// Make sure the server is running, fail otherwise
 	server := api.node.Server()
@@ -65,7 +67,7 @@ func (api *PrivateAdminAPI) RemovePeer(url string) (bool, error) {
 		return false, ErrNodeStopped
 	}
 	// Try to remove the url as a static peer and return
-	node, err := discover.ParseNode(url)
+	node, err := enode.ParseV4(url)
 	if err != nil {
 		return false, fmt.Errorf("invalid enode: %v", err)
 	}
@@ -73,8 +75,77 @@ func (api *PrivateAdminAPI) RemovePeer(url string) (bool, error) {
 	return true, nil
 }
 
+// AddTrustedPeer allows a remote node to always connect, even if slots are full
+func (api *PrivateAdminAPI) AddTrustedPeer(url string) (bool, error) {
+	// Make sure the server is running, fail otherwise
+	server := api.node.Server()
+	if server == nil {
+		return false, ErrNodeStopped
+	}
+	node, err := enode.ParseV4(url)
+	if err != nil {
+		return false, fmt.Errorf("invalid enode: %v", err)
+	}
+	server.AddTrustedPeer(node)
+	return true, nil
+}
+
+// RemoveTrustedPeer removes a remote node from the trusted peer set, but it
+// does not disconnect it automatically.
+func (api *PrivateAdminAPI) RemoveTrustedPeer(url string) (bool, error) {
+	// Make sure the server is running, fail otherwise
+	server := api.node.Server()
+	if server == nil {
+		return false, ErrNodeStopped
+	}
+	node, err := enode.ParseV4(url)
+	if err != nil {
+		return false, fmt.Errorf("invalid enode: %v", err)
+	}
+	server.RemoveTrustedPeer(node)
+	return true, nil
+}
+
+// PeerEvents creates an RPC subscription which receives peer events from the
+// node's p2p.Server
+func (api *PrivateAdminAPI) PeerEvents(ctx context.Context) (*rpc.Subscription, error) {
+	// Make sure the server is running, fail otherwise
+	server := api.node.Server()
+	if server == nil {
+		return nil, ErrNodeStopped
+	}
+
+	// Create the subscription
+	notifier, supported := rpc.NotifierFromContext(ctx)
+	if !supported {
+		return nil, rpc.ErrNotificationsUnsupported
+	}
+	rpcSub := notifier.CreateSubscription()
+
+	go func() {
+		events := make(chan *p2p.PeerEvent)
+		sub := server.SubscribeEvents(events)
+		defer sub.Unsubscribe()
+
+		for {
+			select {
+			case event := <-events:
+				notifier.Notify(rpcSub.ID, event)
+			case <-sub.Err():
+				return
+			case <-rpcSub.Err():
+				return
+			case <-notifier.Closed():
+				return
+			}
+		}
+	}()
+
+	return rpcSub, nil
+}
+
 // StartRPC starts the HTTP RPC API server.
-func (api *PrivateAdminAPI) StartRPC(host *string, port *int, cors *string, apis *string) (bool, error) {
+func (api *PrivateAdminAPI) StartRPC(host *string, port *int, cors *string, apis *string, vhosts *string) (bool, error) {
 	api.node.lock.Lock()
 	defer api.node.lock.Unlock()
 
@@ -92,8 +163,21 @@ func (api *PrivateAdminAPI) StartRPC(host *string, port *int, cors *string, apis
 	if port == nil {
 		port = &api.node.config.HTTPPort
 	}
-	if cors == nil {
-		cors = &api.node.config.HTTPCors
+
+	allowedOrigins := api.node.config.HTTPCors
+	if cors != nil {
+		allowedOrigins = nil
+		for _, origin := range strings.Split(*cors, ",") {
+			allowedOrigins = append(allowedOrigins, strings.TrimSpace(origin))
+		}
+	}
+
+	allowedVHosts := api.node.config.HTTPVirtualHosts
+	if vhosts != nil {
+		allowedVHosts = nil
+		for _, vhost := range strings.Split(*host, ",") {
+			allowedVHosts = append(allowedVHosts, strings.TrimSpace(vhost))
+		}
 	}
 
 	modules := api.node.httpWhitelist
@@ -104,7 +188,7 @@ func (api *PrivateAdminAPI) StartRPC(host *string, port *int, cors *string, apis
 		}
 	}
 
-	if err := api.node.startHTTP(fmt.Sprintf("%s:%d", *host, *port), api.node.rpcAPIs, modules, *cors); err != nil {
+	if err := api.node.startHTTP(fmt.Sprintf("%s:%d", *host, *port), api.node.rpcAPIs, modules, allowedOrigins, allowedVHosts, api.node.config.HTTPTimeouts); err != nil {
 		return false, err
 	}
 	return true, nil
@@ -141,8 +225,13 @@ func (api *PrivateAdminAPI) StartWS(host *string, port *int, allowedOrigins *str
 	if port == nil {
 		port = &api.node.config.WSPort
 	}
-	if allowedOrigins == nil {
-		allowedOrigins = &api.node.config.WSOrigins
+
+	origins := api.node.config.WSOrigins
+	if allowedOrigins != nil {
+		origins = nil
+		for _, origin := range strings.Split(*allowedOrigins, ",") {
+			origins = append(origins, strings.TrimSpace(origin))
+		}
 	}
 
 	modules := api.node.config.WSModules
@@ -153,13 +242,13 @@ func (api *PrivateAdminAPI) StartWS(host *string, port *int, allowedOrigins *str
 		}
 	}
 
-	if err := api.node.startWS(fmt.Sprintf("%s:%d", *host, *port), api.node.rpcAPIs, modules, *allowedOrigins); err != nil {
+	if err := api.node.startWS(fmt.Sprintf("%s:%d", *host, *port), api.node.rpcAPIs, modules, origins, api.node.config.WSExposeAll); err != nil {
 		return false, err
 	}
 	return true, nil
 }
 
-// StopRPC terminates an already running websocket RPC API endpoint.
+// StopWS terminates an already running websocket RPC API endpoint.
 func (api *PrivateAdminAPI) StopWS() (bool, error) {
 	api.node.lock.Lock()
 	defer api.node.lock.Unlock()
@@ -250,6 +339,11 @@ func (api *PublicDebugAPI) Metrics(raw bool) (map[string]interface{}, error) {
 		// Fill the counter with the metric details, formatting if requested
 		if raw {
 			switch metric := metric.(type) {
+			case metrics.Counter:
+				root[name] = map[string]interface{}{
+					"Overall": float64(metric.Count()),
+				}
+
 			case metrics.Meter:
 				root[name] = map[string]interface{}{
 					"AvgRate01Min": metric.Rate1(),
@@ -275,11 +369,31 @@ func (api *PublicDebugAPI) Metrics(raw bool) (map[string]interface{}, error) {
 					},
 				}
 
+			case metrics.ResettingTimer:
+				t := metric.Snapshot()
+				ps := t.Percentiles([]float64{5, 20, 50, 80, 95})
+				root[name] = map[string]interface{}{
+					"Measurements": len(t.Values()),
+					"Mean":         t.Mean(),
+					"Percentiles": map[string]interface{}{
+						"5":  ps[0],
+						"20": ps[1],
+						"50": ps[2],
+						"80": ps[3],
+						"95": ps[4],
+					},
+				}
+
 			default:
 				root[name] = "Unknown metric type"
 			}
 		} else {
 			switch metric := metric.(type) {
+			case metrics.Counter:
+				root[name] = map[string]interface{}{
+					"Overall": float64(metric.Count()),
+				}
+
 			case metrics.Meter:
 				root[name] = map[string]interface{}{
 					"Avg01Min": format(metric.Rate1()*60, metric.Rate1()),
@@ -302,6 +416,21 @@ func (api *PublicDebugAPI) Metrics(raw bool) (map[string]interface{}, error) {
 						"50": time.Duration(metric.Percentile(0.5)).String(),
 						"80": time.Duration(metric.Percentile(0.8)).String(),
 						"95": time.Duration(metric.Percentile(0.95)).String(),
+					},
+				}
+
+			case metrics.ResettingTimer:
+				t := metric.Snapshot()
+				ps := t.Percentiles([]float64{5, 20, 50, 80, 95})
+				root[name] = map[string]interface{}{
+					"Measurements": len(t.Values()),
+					"Mean":         time.Duration(t.Mean()).String(),
+					"Percentiles": map[string]interface{}{
+						"5":  time.Duration(ps[0]).String(),
+						"20": time.Duration(ps[1]).String(),
+						"50": time.Duration(ps[2]).String(),
+						"80": time.Duration(ps[3]).String(),
+						"95": time.Duration(ps[4]).String(),
 					},
 				}
 

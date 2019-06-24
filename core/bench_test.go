@@ -23,13 +23,15 @@ import (
 	"os"
 	"testing"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/core/vm"
-	"github.com/kek-mex/go-atheios/crypto"
-	"github.com/kek-mex/go-atheios/ethdb"
-	"github.com/kek-mex/go-atheios/event"
-	"github.com/kek-mex/go-atheios/params"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/ubiq/go-ubiq/consensus/ubqhash"
+	"github.com/ubiq/go-ubiq/core/rawdb"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/ubiq/go-ubiq/params"
 )
 
 func BenchmarkInsertChain_empty_memdb(b *testing.B) {
@@ -73,7 +75,7 @@ var (
 	// This is the content of the genesis block used by the benchmarks.
 	benchRootKey, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 	benchRootAddr   = crypto.PubkeyToAddress(benchRootKey.PublicKey)
-	benchRootFunds  = common.BigPow(2, 100)
+	benchRootFunds  = math.BigPow(2, 100)
 )
 
 // genValueTx returns a block generator that includes a single
@@ -83,7 +85,7 @@ func genValueTx(nbytes int) func(int, *BlockGen) {
 	return func(i int, gen *BlockGen) {
 		toaddr := common.Address{}
 		data := make([]byte, nbytes)
-		gas := IntrinsicGas(data, false, false)
+		gas, _ := IntrinsicGas(data, false, false)
 		tx, _ := types.SignTx(types.NewTransaction(gen.TxNonce(benchRootAddr), toaddr, big.NewInt(1), gas, nil, data), types.HomesteadSigner{}, benchRootKey)
 		gen.AddTx(tx)
 	}
@@ -109,10 +111,11 @@ func init() {
 func genTxRing(naccounts int) func(int, *BlockGen) {
 	from := 0
 	return func(i int, gen *BlockGen) {
-		gas := CalcGasLimit(gen.PrevBlock(i - 1))
+		block := gen.PrevBlock(i - 1)
+		gas := CalcGasLimit(block, block.GasLimit(), block.GasLimit())
 		for {
-			gas.Sub(gas, params.TxGas)
-			if gas.Cmp(params.TxGas) < 0 {
+			gas -= params.TxGas
+			if gas < params.TxGas {
 				break
 			}
 			to := (from + 1) % naccounts
@@ -147,7 +150,7 @@ func benchInsertChain(b *testing.B, disk bool, gen func(int, *BlockGen)) {
 	// Create the database in memory or in a temporary directory.
 	var db ethdb.Database
 	if !disk {
-		db, _ = ethdb.NewMemDatabase()
+		db = ethdb.NewMemDatabase()
 	} else {
 		dir, err := ioutil.TempDir("", "eth-core-bench")
 		if err != nil {
@@ -163,13 +166,16 @@ func benchInsertChain(b *testing.B, disk bool, gen func(int, *BlockGen)) {
 
 	// Generate a chain of b.N blocks using the supplied block
 	// generator function.
-	genesis := WriteGenesisBlockForTesting(db, GenesisAccount{benchRootAddr, benchRootFunds})
-	chain, _ := GenerateChain(params.TestChainConfig, genesis, db, b.N, gen)
+	gspec := Genesis{
+		Config: params.TestChainConfig,
+		Alloc:  GenesisAlloc{benchRootAddr: {Balance: benchRootFunds}},
+	}
+	genesis := gspec.MustCommit(db)
+	chain, _ := GenerateChain(gspec.Config, genesis, ubqhash.NewFaker(), db, b.N, gen)
 
 	// Time the insertion of the new chain.
 	// State and blocks are stored in the same DB.
-	evmux := new(event.TypeMux)
-	chainman, _ := NewBlockChain(db, &params.ChainConfig{HomesteadBlock: new(big.Int)}, FakePow{}, evmux, vm.Config{})
+	chainman, _ := NewBlockChain(db, nil, gspec.Config, ubqhash.NewFaker(), vm.Config{}, nil)
 	defer chainman.Stop()
 	b.ReportAllocs()
 	b.ResetTimer()
@@ -230,13 +236,15 @@ func makeChainForBench(db ethdb.Database, full bool, count uint64) {
 			ReceiptHash: types.EmptyRootHash,
 		}
 		hash = header.Hash()
-		WriteHeader(db, header)
-		WriteCanonicalHash(db, hash, n)
-		WriteTd(db, hash, n, big.NewInt(int64(n+1)))
+
+		rawdb.WriteHeader(db, header)
+		rawdb.WriteCanonicalHash(db, hash, n)
+		rawdb.WriteTd(db, hash, n, big.NewInt(int64(n+1)))
+
 		if full || n == 0 {
 			block := types.NewBlockWithHeader(header)
-			WriteBody(db, hash, n, block.Body())
-			WriteBlockReceipts(db, hash, n, nil)
+			rawdb.WriteBody(db, hash, n, block.Body())
+			rawdb.WriteReceipts(db, hash, n, nil)
 		}
 	}
 }
@@ -279,7 +287,7 @@ func benchReadChain(b *testing.B, full bool, count uint64) {
 		if err != nil {
 			b.Fatalf("error opening database at %v: %v", dir, err)
 		}
-		chain, err := NewBlockChain(db, testChainConfig(), FakePow{}, new(event.TypeMux), vm.Config{})
+		chain, err := NewBlockChain(db, nil, params.TestChainConfig, ubqhash.NewFaker(), vm.Config{}, nil)
 		if err != nil {
 			b.Fatalf("error creating chain: %v", err)
 		}
@@ -288,11 +296,11 @@ func benchReadChain(b *testing.B, full bool, count uint64) {
 			header := chain.GetHeaderByNumber(n)
 			if full {
 				hash := header.Hash()
-				GetBody(db, hash, n)
-				GetBlockReceipts(db, hash, n)
+				rawdb.ReadBody(db, hash, n)
+				rawdb.ReadReceipts(db, hash, n)
 			}
 		}
-
+		chain.Stop()
 		db.Close()
 	}
 }
