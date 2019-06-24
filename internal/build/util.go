@@ -25,7 +25,9 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"text/template"
 )
@@ -52,28 +54,10 @@ func MustRunCommand(cmd string, args ...string) {
 // GOPATH returns the value that the GOPATH environment
 // variable should be set to.
 func GOPATH() string {
-	path := filepath.SplitList(os.Getenv("GOPATH"))
-	if len(path) == 0 {
+	if os.Getenv("GOPATH") == "" {
 		log.Fatal("GOPATH is not set")
 	}
-	// Ensure that our internal vendor folder is on GOPATH
-	vendor, _ := filepath.Abs(filepath.Join("build", "_vendor"))
-	for _, dir := range path {
-		if dir == vendor {
-			return strings.Join(path, string(filepath.ListSeparator))
-		}
-	}
-	newpath := append(path[:1], append([]string{vendor}, path[1:]...)...)
-	return strings.Join(newpath, string(filepath.ListSeparator))
-}
-
-// VERSION returns the content of the VERSION file.
-func VERSION() string {
-	version, err := ioutil.ReadFile("VERSION")
-	if err != nil {
-		log.Fatal(err)
-	}
-	return string(bytes.TrimSpace(version))
+	return os.Getenv("GOPATH")
 }
 
 var warnedAboutGit bool
@@ -94,6 +78,15 @@ func RunGit(args ...string) string {
 		log.Fatal(strings.Join(cmd.Args, " "), ": ", err, "\n", stderr.String())
 	}
 	return strings.TrimSpace(stdout.String())
+}
+
+// readGitFile returns content of file in .git directory.
+func readGitFile(file string) string {
+	content, err := ioutil.ReadFile(path.Join(".git", file))
+	if err != nil {
+		return ""
+	}
+	return strings.TrimSpace(string(content))
 }
 
 // Render renders the given template file into outputFile.
@@ -144,4 +137,74 @@ func CopyFile(dst, src string, mode os.FileMode) {
 	if _, err := io.Copy(destFile, srcFile); err != nil {
 		log.Fatal(err)
 	}
+}
+
+// GoTool returns the command that runs a go tool. This uses go from GOROOT instead of PATH
+// so that go commands executed by build use the same version of Go as the 'host' that runs
+// build code. e.g.
+//
+//     /usr/lib/go-1.11/bin/go run build/ci.go ...
+//
+// runs using go 1.11 and invokes go 1.11 tools from the same GOROOT. This is also important
+// because runtime.Version checks on the host should match the tools that are run.
+func GoTool(tool string, args ...string) *exec.Cmd {
+	args = append([]string{tool}, args...)
+	return exec.Command(filepath.Join(runtime.GOROOT(), "bin", "go"), args...)
+}
+
+// ExpandPackagesNoVendor expands a cmd/go import path pattern, skipping
+// vendored packages.
+func ExpandPackagesNoVendor(patterns []string) []string {
+	expand := false
+	for _, pkg := range patterns {
+		if strings.Contains(pkg, "...") {
+			expand = true
+		}
+	}
+	if expand {
+		cmd := GoTool("list", patterns...)
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			log.Fatalf("package listing failed: %v\n%s", err, string(out))
+		}
+		var packages []string
+		for _, line := range strings.Split(string(out), "\n") {
+			if !strings.Contains(line, "/vendor/") {
+				packages = append(packages, strings.TrimSpace(line))
+			}
+		}
+		return packages
+	}
+	return patterns
+}
+
+// UploadSFTP uploads files to a remote host using the sftp command line tool.
+// The destination host may be specified either as [user@]host[: or as a URI in
+// the form sftp://[user@]host[:port].
+func UploadSFTP(identityFile, host, dir string, files []string) error {
+	sftp := exec.Command("sftp")
+	sftp.Stdout = nil
+	sftp.Stderr = os.Stderr
+	if identityFile != "" {
+		sftp.Args = append(sftp.Args, "-i", identityFile)
+	}
+	sftp.Args = append(sftp.Args, host)
+	fmt.Println(">>>", strings.Join(sftp.Args, " "))
+	if *DryRunFlag {
+		return nil
+	}
+
+	stdin, err := sftp.StdinPipe()
+	if err != nil {
+		return fmt.Errorf("can't create stdin pipe for sftp: %v", err)
+	}
+	if err := sftp.Start(); err != nil {
+		return err
+	}
+	in := io.MultiWriter(stdin, os.Stdout)
+	for _, f := range files {
+		fmt.Fprintln(in, "put", f, path.Join(dir, filepath.Base(f)))
+	}
+	stdin.Close()
+	return sftp.Wait()
 }

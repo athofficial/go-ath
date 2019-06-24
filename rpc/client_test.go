@@ -17,6 +17,7 @@
 package rpc
 
 import (
+	"context"
 	"fmt"
 	"math/rand"
 	"net"
@@ -30,9 +31,7 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
-	"golang.org/x/net/context"
+	"github.com/ubiq/go-ubiq/log"
 )
 
 func TestClientRequest(t *testing.T) {
@@ -147,10 +146,6 @@ func testClientCancel(transport string, t *testing.T) {
 	// You probably want to run with -parallel 1 or comment out
 	// the call to t.Parallel if you enable the logging.
 	t.Parallel()
-	// glog.SetV(6)
-	// glog.SetToStderr(true)
-	// defer glog.SetToStderr(false)
-	// glog.Infoln("testing ", transport)
 
 	// The actual test starts here.
 	var (
@@ -181,7 +176,7 @@ func testClientCancel(transport string, t *testing.T) {
 			// The key thing here is that no call will ever complete successfully.
 			err := client.CallContext(ctx, nil, "service_sleep", 2*maxContextCancelTimeout)
 			if err != nil {
-				glog.V(logger.Debug).Infoln("got expected error:", err)
+				log.Debug(fmt.Sprint("got expected error:", err))
 			} else {
 				t.Errorf("no error for call with %v wait time", timeout)
 			}
@@ -256,6 +251,38 @@ func TestClientSubscribe(t *testing.T) {
 	}
 }
 
+func TestClientSubscribeCustomNamespace(t *testing.T) {
+	namespace := "custom"
+	server := newTestServer(namespace, new(NotificationTestService))
+	defer server.Stop()
+	client := DialInProc(server)
+	defer client.Close()
+
+	nc := make(chan int)
+	count := 10
+	sub, err := client.Subscribe(context.Background(), namespace, nc, "someSubscription", count, 0)
+	if err != nil {
+		t.Fatal("can't subscribe:", err)
+	}
+	for i := 0; i < count; i++ {
+		if val := <-nc; val != i {
+			t.Fatalf("value mismatch: got %d, want %d", val, i)
+		}
+	}
+
+	sub.Unsubscribe()
+	select {
+	case v := <-nc:
+		t.Fatal("received value after unsubscribe:", v)
+	case err := <-sub.Err():
+		if err != nil {
+			t.Fatalf("Err returned a non-nil error after explicit unsubscribe: %q", err)
+		}
+	case <-time.After(1 * time.Second):
+		t.Fatalf("subscription not closed within 1s after unsubscribe")
+	}
+}
+
 // In this test, the connection drops while EthSubscribe is
 // waiting for a response.
 func TestClientSubscribeClose(t *testing.T) {
@@ -293,6 +320,30 @@ func TestClientSubscribeClose(t *testing.T) {
 		}
 	case <-time.After(1 * time.Second):
 		t.Fatalf("EthSubscribe did not return within 1s after Close")
+	}
+}
+
+// This test reproduces https://github.com/ubiq/go-ubiq/issues/17837 where the
+// client hangs during shutdown when Unsubscribe races with Client.Close.
+func TestClientCloseUnsubscribeRace(t *testing.T) {
+	service := &NotificationTestService{}
+	server := newTestServer("eth", service)
+	defer server.Stop()
+
+	for i := 0; i < 20; i++ {
+		client := DialInProc(server)
+		nc := make(chan int)
+		sub, err := client.EthSubscribe(context.Background(), nc, "someSubscription", 3, 1)
+		if err != nil {
+			t.Fatal(err)
+		}
+		go client.Close()
+		go sub.Unsubscribe()
+		select {
+		case <-sub.Err():
+		case <-time.After(5 * time.Second):
+			t.Fatal("subscription not closed within timeout")
+		}
 	}
 }
 
@@ -399,7 +450,7 @@ func TestClientReconnect(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		go http.Serve(l, srv.WebsocketHandler("*"))
+		go http.Serve(l, srv.WebsocketHandler([]string{"*"}))
 		return srv, l
 	}
 
@@ -471,7 +522,7 @@ func httpTestClient(srv *Server, transport string, fl *flakeyListener) (*Client,
 	var hs *httptest.Server
 	switch transport {
 	case "ws":
-		hs = httptest.NewUnstartedServer(srv.WebsocketHandler("*"))
+		hs = httptest.NewUnstartedServer(srv.WebsocketHandler([]string{"*"}))
 	case "http":
 		hs = httptest.NewUnstartedServer(srv)
 	default:
@@ -493,7 +544,7 @@ func httpTestClient(srv *Server, transport string, fl *flakeyListener) (*Client,
 
 func ipcTestClient(srv *Server, fl *flakeyListener) (*Client, net.Listener) {
 	// Listen on a random endpoint.
-	endpoint := fmt.Sprintf("go-atheios-test-ipc-%d-%d", os.Getpid(), rand.Int63())
+	endpoint := fmt.Sprintf("go-ubiq-test-ipc-%d-%d", os.Getpid(), rand.Int63())
 	if runtime.GOOS == "windows" {
 		endpoint = `\\.\pipe\` + endpoint
 	} else {
@@ -532,7 +583,7 @@ func (l *flakeyListener) Accept() (net.Conn, error) {
 	if err == nil {
 		timeout := time.Duration(rand.Int63n(int64(l.maxKillTimeout)))
 		time.AfterFunc(timeout, func() {
-			glog.V(logger.Debug).Infof("killing conn %v after %v", c.LocalAddr(), timeout)
+			log.Debug(fmt.Sprintf("killing conn %v after %v", c.LocalAddr(), timeout))
 			c.Close()
 		})
 	}

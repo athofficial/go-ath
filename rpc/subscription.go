@@ -17,10 +17,9 @@
 package rpc
 
 import (
+	"context"
 	"errors"
 	"sync"
-
-	"golang.org/x/net/context"
 )
 
 var (
@@ -36,8 +35,9 @@ type ID string
 // a Subscription is created by a notifier and tight to that notifier. The client can use
 // this subscription to wait for an unsubscribe request for the client, see Err().
 type Subscription struct {
-	ID  ID
-	err chan error // closed on unsubscribe
+	ID        ID
+	namespace string
+	err       chan error // closed on unsubscribe
 }
 
 // Err returns a channel that is closed when the client send an unsubscribe request.
@@ -52,10 +52,10 @@ type notifierKey struct{}
 // Server callbacks use the notifier to send notifications.
 type Notifier struct {
 	codec    ServerCodec
-	subMu    sync.RWMutex // guards active and inactive maps
-	stopped  bool
+	subMu    sync.Mutex
 	active   map[ID]*Subscription
 	inactive map[ID]*Subscription
+	buffer   map[ID][]interface{} // unsent notifications of inactive subscriptions
 }
 
 // newNotifier creates a new notifier that can be used to send subscription
@@ -65,6 +65,7 @@ func newNotifier(codec ServerCodec) *Notifier {
 		codec:    codec,
 		active:   make(map[ID]*Subscription),
 		inactive: make(map[ID]*Subscription),
+		buffer:   make(map[ID][]interface{}),
 	}
 }
 
@@ -79,7 +80,7 @@ func NotifierFromContext(ctx context.Context) (*Notifier, bool) {
 // are dropped until the subscription is marked as active. This is done
 // by the RPC server after the subscription ID is send to the client.
 func (n *Notifier) CreateSubscription() *Subscription {
-	s := &Subscription{NewID(), make(chan error)}
+	s := &Subscription{ID: NewID(), err: make(chan error)}
 	n.subMu.Lock()
 	n.inactive[s.ID] = s
 	n.subMu.Unlock()
@@ -89,18 +90,24 @@ func (n *Notifier) CreateSubscription() *Subscription {
 // Notify sends a notification to the client with the given data as payload.
 // If an error occurs the RPC connection is closed and the error is returned.
 func (n *Notifier) Notify(id ID, data interface{}) error {
-	n.subMu.RLock()
-	defer n.subMu.RUnlock()
+	n.subMu.Lock()
+	defer n.subMu.Unlock()
 
-	_, active := n.active[id]
-	if active {
-		notification := n.codec.CreateNotification(string(id), data)
-		if err := n.codec.Write(notification); err != nil {
-			n.codec.Close()
-			return err
-		}
+	if sub, active := n.active[id]; active {
+		n.send(sub, data)
+	} else {
+		n.buffer[id] = append(n.buffer[id], data)
 	}
 	return nil
+}
+
+func (n *Notifier) send(sub *Subscription, data interface{}) error {
+	notification := n.codec.CreateNotification(string(sub.ID), sub.namespace, data)
+	err := n.codec.Write(notification)
+	if err != nil {
+		n.codec.Close()
+	}
+	return err
 }
 
 // Closed returns a channel that is closed when the RPC connection is closed.
@@ -125,11 +132,18 @@ func (n *Notifier) unsubscribe(id ID) error {
 // notifications are dropped. This method is called by the RPC server after
 // the subscription ID was sent to client. This prevents notifications being
 // send to the client before the subscription ID is send to the client.
-func (n *Notifier) activate(id ID) {
+func (n *Notifier) activate(id ID, namespace string) {
 	n.subMu.Lock()
 	defer n.subMu.Unlock()
+
 	if sub, found := n.inactive[id]; found {
+		sub.namespace = namespace
 		n.active[id] = sub
 		delete(n.inactive, id)
+		// Send buffered notifications.
+		for _, data := range n.buffer[id] {
+			n.send(sub, data)
+		}
+		delete(n.buffer, id)
 	}
 }

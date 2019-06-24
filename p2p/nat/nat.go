@@ -25,8 +25,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/ubiq/go-ubiq/log"
 	"github.com/jackpal/go-nat-pmp"
 )
 
@@ -99,16 +98,17 @@ const (
 // Map adds a port mapping on m and keeps it alive until c is closed.
 // This function is typically invoked in its own goroutine.
 func Map(m Interface, c chan struct{}, protocol string, extport, intport int, name string) {
+	log := log.New("proto", protocol, "extport", extport, "intport", intport, "interface", m)
 	refresh := time.NewTimer(mapUpdateInterval)
 	defer func() {
 		refresh.Stop()
-		glog.V(logger.Debug).Infof("deleting port mapping: %s %d -> %d (%s) using %s\n", protocol, extport, intport, name, m)
+		log.Debug("Deleting port mapping")
 		m.DeleteMapping(protocol, extport, intport)
 	}()
 	if err := m.AddMapping(protocol, extport, intport, name, mapTimeout); err != nil {
-		glog.V(logger.Debug).Infof("network port %s:%d could not be mapped: %v\n", protocol, intport, err)
+		log.Debug("Couldn't add port mapping", "err", err)
 	} else {
-		glog.V(logger.Info).Infof("mapped network port %s:%d -> %d (%s) using %s\n", protocol, extport, intport, name, m)
+		log.Info("Mapped network port")
 	}
 	for {
 		select {
@@ -117,9 +117,9 @@ func Map(m Interface, c chan struct{}, protocol string, extport, intport int, na
 				return
 			}
 		case <-refresh.C:
-			glog.V(logger.Detail).Infof("refresh port mapping %s:%d -> %d (%s) using %s\n", protocol, extport, intport, name, m)
+			log.Trace("Refreshing port mapping")
 			if err := m.AddMapping(protocol, extport, intport, name, mapTimeout); err != nil {
-				glog.V(logger.Debug).Infof("network port %s:%d could not be mapped: %v\n", protocol, intport, err)
+				log.Debug("Couldn't add port mapping", "err", err)
 			}
 			refresh.Reset(mapUpdateInterval)
 		}
@@ -129,21 +129,15 @@ func Map(m Interface, c chan struct{}, protocol string, extport, intport int, na
 // ExtIP assumes that the local machine is reachable on the given
 // external IP address, and that any required ports were mapped manually.
 // Mapping operations will not return an error but won't actually do anything.
-func ExtIP(ip net.IP) Interface {
-	if ip == nil {
-		panic("IP must not be nil")
-	}
-	return extIP(ip)
-}
+type ExtIP net.IP
 
-type extIP net.IP
-
-func (n extIP) ExternalIP() (net.IP, error) { return net.IP(n), nil }
-func (n extIP) String() string              { return fmt.Sprintf("ExtIP(%v)", net.IP(n)) }
+func (n ExtIP) ExternalIP() (net.IP, error) { return net.IP(n), nil }
+func (n ExtIP) String() string              { return fmt.Sprintf("ExtIP(%v)", net.IP(n)) }
 
 // These do nothing.
-func (extIP) AddMapping(string, int, int, string, time.Duration) error { return nil }
-func (extIP) DeleteMapping(string, int, int) error                     { return nil }
+
+func (ExtIP) AddMapping(string, int, int, string, time.Duration) error { return nil }
+func (ExtIP) DeleteMapping(string, int, int) error                     { return nil }
 
 // Any returns a port mapper that tries to discover any supported
 // mechanism on the local network.

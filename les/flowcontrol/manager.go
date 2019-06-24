@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-atheios/common/mclock"
+	"github.com/ubiq/go-ubiq/common/mclock"
 )
 
 const rcConst = 1000000

@@ -1,4 +1,4 @@
-// Copyright 2014 The go-ethereum Authors
+// Copyright 2016 The go-ethereum Authors
 // This file is part of the go-ethereum library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
@@ -19,14 +19,13 @@ package vm
 import (
 	"math/big"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core/types"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/core/types"
 )
 
 // StateDB is an EVM database for full state querying.
 type StateDB interface {
-	GetAccount(common.Address) Account
-	CreateAccount(common.Address) Account
+	CreateAccount(common.Address)
 
 	SubBalance(common.Address, *big.Int)
 	AddBalance(common.Address, *big.Int)
@@ -40,9 +39,11 @@ type StateDB interface {
 	SetCode(common.Address, []byte)
 	GetCodeSize(common.Address) int
 
-	AddRefund(*big.Int)
-	GetRefund() *big.Int
+	AddRefund(uint64)
+	SubRefund(uint64)
+	GetRefund() uint64
 
+	GetCommittedState(common.Address, common.Hash) common.Hash
 	GetState(common.Address, common.Hash) common.Hash
 	SetState(common.Address, common.Hash, common.Hash)
 
@@ -61,23 +62,11 @@ type StateDB interface {
 
 	AddLog(*types.Log)
 	AddPreimage(common.Hash, []byte)
+
+	ForEachStorage(common.Address, func(common.Hash, common.Hash) bool)
 }
 
-// Account represents a contract or basic ethereum account.
-type Account interface {
-	SubBalance(amount *big.Int)
-	AddBalance(amount *big.Int)
-	SetBalance(*big.Int)
-	SetNonce(uint64)
-	Balance() *big.Int
-	Address() common.Address
-	ReturnGas(*big.Int)
-	SetCode(common.Hash, []byte)
-	ForEachStorage(cb func(key, value common.Hash) bool)
-	Value() *big.Int
-}
-
-// CallContext provides a basic interface for the EVM calling conventions. The EVM EVM
+// CallContext provides a basic interface for the EVM calling conventions. The EVM
 // depends on this context being implemented for doing subcalls and initialising new EVM contracts.
 type CallContext interface {
 	// Call another contract

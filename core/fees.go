@@ -19,7 +19,7 @@ package core
 import (
 	"math/big"
 
-	"github.com/kek-mex/go-atheios/common"
+	"github.com/ubiq/go-ubiq/common"
 )
 
 var BlockReward *big.Int = new(big.Int).Mul(big.NewInt(12), big.NewInt(1e+18))

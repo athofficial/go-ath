@@ -20,321 +20,868 @@ A simple http server interface to Swarm
 package http
 
 import (
+	"bufio"
 	"bytes"
+	"encoding/json"
+	"fmt"
 	"io"
+	"io/ioutil"
+	"mime"
+	"mime/multipart"
 	"net/http"
-	"regexp"
+	"os"
+	"path"
+	"strconv"
 	"strings"
-	"sync"
 	"time"
 
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/ubiq/go-ubiq/swarm/api"
+	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/ubiq/go-ubiq/swarm/storage/feed"
 	"github.com/rs/cors"
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
-	"github.com/kek-mex/go-atheios/swarm/api"
-	"github.com/kek-mex/go-atheios/swarm/storage"
-)
-
-const (
-	rawType = "application/octet-stream"
 )
 
 var (
-	// accepted protocols: bzz (traditional), bzzi (immutable) and bzzr (raw)
-	bzzPrefix       = regexp.MustCompile("^/+bzz[ir]?:/+")
-	trailingSlashes = regexp.MustCompile("/+$")
-	rootDocumentUri = regexp.MustCompile("^/+bzz[i]?:/+[^/]+$")
-	// forever         = func() time.Time { return time.Unix(0, 0) }
-	forever = time.Now
+	postRawCount    = metrics.NewRegisteredCounter("api.http.post.raw.count", nil)
+	postRawFail     = metrics.NewRegisteredCounter("api.http.post.raw.fail", nil)
+	postFilesCount  = metrics.NewRegisteredCounter("api.http.post.files.count", nil)
+	postFilesFail   = metrics.NewRegisteredCounter("api.http.post.files.fail", nil)
+	deleteCount     = metrics.NewRegisteredCounter("api.http.delete.count", nil)
+	deleteFail      = metrics.NewRegisteredCounter("api.http.delete.fail", nil)
+	getCount        = metrics.NewRegisteredCounter("api.http.get.count", nil)
+	getFail         = metrics.NewRegisteredCounter("api.http.get.fail", nil)
+	getFileCount    = metrics.NewRegisteredCounter("api.http.get.file.count", nil)
+	getFileNotFound = metrics.NewRegisteredCounter("api.http.get.file.notfound", nil)
+	getFileFail     = metrics.NewRegisteredCounter("api.http.get.file.fail", nil)
+	getListCount    = metrics.NewRegisteredCounter("api.http.get.list.count", nil)
+	getListFail     = metrics.NewRegisteredCounter("api.http.get.list.fail", nil)
 )
 
-type sequentialReader struct {
-	reader io.Reader
-	pos    int64
-	ahead  map[int64](chan bool)
-	lock   sync.Mutex
+type methodHandler map[string]http.Handler
+
+func (m methodHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
+	v, ok := m[r.Method]
+	if ok {
+		v.ServeHTTP(rw, r)
+		return
+	}
+	rw.WriteHeader(http.StatusMethodNotAllowed)
 }
 
-// Server is the basic configuration needs for the HTTP server and also
-// includes CORS settings.
-type Server struct {
-	Addr       string
-	CorsString string
+func NewServer(api *api.API, corsString string) *Server {
+	var allowedOrigins []string
+	for _, domain := range strings.Split(corsString, ",") {
+		allowedOrigins = append(allowedOrigins, strings.TrimSpace(domain))
+	}
+	c := cors.New(cors.Options{
+		AllowedOrigins: allowedOrigins,
+		AllowedMethods: []string{http.MethodPost, http.MethodGet, http.MethodDelete, http.MethodPatch, http.MethodPut},
+		MaxAge:         600,
+		AllowedHeaders: []string{"*"},
+	})
+
+	server := &Server{api: api}
+
+	defaultMiddlewares := []Adapter{
+		RecoverPanic,
+		SetRequestID,
+		SetRequestHost,
+		InitLoggingResponseWriter,
+		ParseURI,
+		InstrumentOpenTracing,
+	}
+
+	mux := http.NewServeMux()
+	mux.Handle("/bzz:/", methodHandler{
+		"GET": Adapt(
+			http.HandlerFunc(server.HandleBzzGet),
+			defaultMiddlewares...,
+		),
+		"POST": Adapt(
+			http.HandlerFunc(server.HandlePostFiles),
+			defaultMiddlewares...,
+		),
+		"DELETE": Adapt(
+			http.HandlerFunc(server.HandleDelete),
+			defaultMiddlewares...,
+		),
+	})
+	mux.Handle("/bzz-raw:/", methodHandler{
+		"GET": Adapt(
+			http.HandlerFunc(server.HandleGet),
+			defaultMiddlewares...,
+		),
+		"POST": Adapt(
+			http.HandlerFunc(server.HandlePostRaw),
+			defaultMiddlewares...,
+		),
+	})
+	mux.Handle("/bzz-immutable:/", methodHandler{
+		"GET": Adapt(
+			http.HandlerFunc(server.HandleBzzGet),
+			defaultMiddlewares...,
+		),
+	})
+	mux.Handle("/bzz-hash:/", methodHandler{
+		"GET": Adapt(
+			http.HandlerFunc(server.HandleGet),
+			defaultMiddlewares...,
+		),
+	})
+	mux.Handle("/bzz-list:/", methodHandler{
+		"GET": Adapt(
+			http.HandlerFunc(server.HandleGetList),
+			defaultMiddlewares...,
+		),
+	})
+	mux.Handle("/bzz-feed:/", methodHandler{
+		"GET": Adapt(
+			http.HandlerFunc(server.HandleGetFeed),
+			defaultMiddlewares...,
+		),
+		"POST": Adapt(
+			http.HandlerFunc(server.HandlePostFeed),
+			defaultMiddlewares...,
+		),
+	})
+
+	mux.Handle("/", methodHandler{
+		"GET": Adapt(
+			http.HandlerFunc(server.HandleRootPaths),
+			SetRequestID,
+			InitLoggingResponseWriter,
+		),
+	})
+	server.Handler = c.Handler(mux)
+
+	return server
+}
+
+func (s *Server) ListenAndServe(addr string) error {
+	s.listenAddr = addr
+	return http.ListenAndServe(addr, s)
 }
 
 // browser API for registering bzz url scheme handlers:
 // https://developer.mozilla.org/en/docs/Web-based_protocol_handlers
 // electron (chromium) api for registering bzz url scheme handlers:
 // https://github.com/atom/electron/blob/master/docs/api/protocol.md
-
-// starts up http server
-func StartHttpServer(api *api.Api, server *Server) {
-	serveMux := http.NewServeMux()
-	serveMux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		handler(w, r, api)
-	})
-	var allowedOrigins []string
-	for _, domain := range strings.Split(server.CorsString, ",") {
-		allowedOrigins = append(allowedOrigins, strings.TrimSpace(domain))
-	}
-	c := cors.New(cors.Options{
-		AllowedOrigins: allowedOrigins,
-		AllowedMethods: []string{"POST", "GET", "DELETE", "PATCH", "PUT"},
-		MaxAge:         600,
-	})
-	hdlr := c.Handler(serveMux)
-
-	go http.ListenAndServe(server.Addr, hdlr)
-	glog.V(logger.Info).Infof("Swarm HTTP proxy started on localhost:%s", server.Addr)
+type Server struct {
+	http.Handler
+	api        *api.API
+	listenAddr string
 }
 
-func handler(w http.ResponseWriter, r *http.Request, a *api.Api) {
-	requestURL := r.URL
-	// This is wrong
-	//	if requestURL.Host == "" {
-	//		var err error
-	//		requestURL, err = url.Parse(r.Referer() + requestURL.String())
-	//		if err != nil {
-	//			http.Error(w, err.Error(), http.StatusBadRequest)
-	//			return
-	//		}
-	//	}
-	glog.V(logger.Debug).Infof("HTTP %s request URL: '%s', Host: '%s', Path: '%s', Referer: '%s', Accept: '%s'", r.Method, r.RequestURI, requestURL.Host, requestURL.Path, r.Referer(), r.Header.Get("Accept"))
-	uri := requestURL.Path
-	var raw, nameresolver bool
-	var proto string
-
-	// HTTP-based URL protocol handler
-	glog.V(logger.Debug).Infof("BZZ request URI: '%s'", uri)
-
-	path := bzzPrefix.ReplaceAllStringFunc(uri, func(p string) string {
-		proto = p
-		return ""
-	})
-
-	// protocol identification (ugly)
-	if proto == "" {
-		if glog.V(logger.Error) {
-			glog.Errorf(
-				"[BZZ] Swarm: Protocol error in request `%s`.",
-				uri,
-			)
-			http.Error(w, "Invalid request URL: need access protocol (bzz:/, bzzr:/, bzzi:/) as first element in path.", http.StatusBadRequest)
+func (s *Server) HandleBzzGet(w http.ResponseWriter, r *http.Request) {
+	log.Debug("handleBzzGet", "ruid", GetRUID(r.Context()), "uri", r.RequestURI)
+	if r.Header.Get("Accept") == "application/x-tar" {
+		uri := GetURI(r.Context())
+		_, credentials, _ := r.BasicAuth()
+		reader, err := s.api.GetDirectoryTar(r.Context(), s.api.Decryptor(r.Context(), credentials), uri)
+		if err != nil {
+			if isDecryptError(err) {
+				w.Header().Set("WWW-Authenticate", fmt.Sprintf("Basic realm=%q", uri.Address().String()))
+				respondError(w, r, err.Error(), http.StatusUnauthorized)
+				return
+			}
+			respondError(w, r, fmt.Sprintf("Had an error building the tarball: %v", err), http.StatusInternalServerError)
 			return
 		}
-	}
-	if len(proto) > 4 {
-		raw = proto[1:5] == "bzzr"
-		nameresolver = proto[1:5] != "bzzi"
+		defer reader.Close()
+
+		w.Header().Set("Content-Type", "application/x-tar")
+
+		fileName := uri.Addr
+		if found := path.Base(uri.Path); found != "" && found != "." && found != "/" {
+			fileName = found
+		}
+		w.Header().Set("Content-Disposition", fmt.Sprintf("inline; filename=\"%s.tar\"", fileName))
+
+		w.WriteHeader(http.StatusOK)
+		io.Copy(w, reader)
+		return
 	}
 
-	glog.V(logger.Debug).Infof(
-		"[BZZ] Swarm: %s request over protocol %s '%s' received.",
-		r.Method, proto, path,
-	)
+	s.HandleGetFile(w, r)
+}
+
+func (s *Server) HandleRootPaths(w http.ResponseWriter, r *http.Request) {
+	switch r.RequestURI {
+	case "/":
+		respondTemplate(w, r, "landing-page", "Swarm: Please request a valid ENS or swarm hash with the appropriate bzz scheme", 200)
+		return
+	case "/robots.txt":
+		w.Header().Set("Last-Modified", time.Now().Format(http.TimeFormat))
+		fmt.Fprintf(w, "User-agent: *\nDisallow: /")
+	case "/favicon.ico":
+		w.WriteHeader(http.StatusOK)
+		w.Write(faviconBytes)
+	default:
+		respondError(w, r, "Not Found", http.StatusNotFound)
+	}
+}
+
+// HandlePostRaw handles a POST request to a raw bzz-raw:/ URI, stores the request
+// body in swarm and returns the resulting storage address as a text/plain response
+func (s *Server) HandlePostRaw(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	log.Debug("handle.post.raw", "ruid", ruid)
+
+	postRawCount.Inc(1)
+
+	toEncrypt := false
+	uri := GetURI(r.Context())
+	if uri.Addr == "encrypt" {
+		toEncrypt = true
+	}
+
+	if uri.Path != "" {
+		postRawFail.Inc(1)
+		respondError(w, r, "raw POST request cannot contain a path", http.StatusBadRequest)
+		return
+	}
+
+	if uri.Addr != "" && uri.Addr != "encrypt" {
+		postRawFail.Inc(1)
+		respondError(w, r, "raw POST request addr can only be empty or \"encrypt\"", http.StatusBadRequest)
+		return
+	}
+
+	if r.Header.Get("Content-Length") == "" {
+		postRawFail.Inc(1)
+		respondError(w, r, "missing Content-Length header in request", http.StatusBadRequest)
+		return
+	}
+
+	addr, _, err := s.api.Store(r.Context(), r.Body, r.ContentLength, toEncrypt)
+	if err != nil {
+		postRawFail.Inc(1)
+		respondError(w, r, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	log.Debug("stored content", "ruid", ruid, "key", addr)
+
+	w.Header().Set("Content-Type", "text/plain")
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, addr)
+}
+
+// HandlePostFiles handles a POST request to
+// bzz:/<hash>/<path> which contains either a single file or multiple files
+// (either a tar archive or multipart form), adds those files either to an
+// existing manifest or to a new manifest under <path> and returns the
+// resulting manifest hash as a text/plain response
+func (s *Server) HandlePostFiles(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	log.Debug("handle.post.files", "ruid", ruid)
+	postFilesCount.Inc(1)
+
+	contentType, params, err := mime.ParseMediaType(r.Header.Get("Content-Type"))
+	if err != nil {
+		postFilesFail.Inc(1)
+		respondError(w, r, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	toEncrypt := false
+	uri := GetURI(r.Context())
+	if uri.Addr == "encrypt" {
+		toEncrypt = true
+	}
+
+	var addr storage.Address
+	if uri.Addr != "" && uri.Addr != "encrypt" {
+		addr, err = s.api.Resolve(r.Context(), uri.Addr)
+		if err != nil {
+			postFilesFail.Inc(1)
+			respondError(w, r, fmt.Sprintf("cannot resolve %s: %s", uri.Addr, err), http.StatusInternalServerError)
+			return
+		}
+		log.Debug("resolved key", "ruid", ruid, "key", addr)
+	} else {
+		addr, err = s.api.NewManifest(r.Context(), toEncrypt)
+		if err != nil {
+			postFilesFail.Inc(1)
+			respondError(w, r, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Debug("new manifest", "ruid", ruid, "key", addr)
+	}
+
+	newAddr, err := s.api.UpdateManifest(r.Context(), addr, func(mw *api.ManifestWriter) error {
+		switch contentType {
+		case "application/x-tar":
+			_, err := s.handleTarUpload(r, mw)
+			if err != nil {
+				respondError(w, r, fmt.Sprintf("error uploading tarball: %v", err), http.StatusInternalServerError)
+				return err
+			}
+			return nil
+		case "multipart/form-data":
+			return s.handleMultipartUpload(r, params["boundary"], mw)
+
+		default:
+			return s.handleDirectUpload(r, mw)
+		}
+	})
+	if err != nil {
+		postFilesFail.Inc(1)
+		respondError(w, r, fmt.Sprintf("cannot create manifest: %s", err), http.StatusInternalServerError)
+		return
+	}
+
+	log.Debug("stored content", "ruid", ruid, "key", newAddr)
+
+	w.Header().Set("Content-Type", "text/plain")
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, newAddr)
+}
+
+func (s *Server) handleTarUpload(r *http.Request, mw *api.ManifestWriter) (storage.Address, error) {
+	log.Debug("handle.tar.upload", "ruid", GetRUID(r.Context()))
+
+	defaultPath := r.URL.Query().Get("defaultpath")
+
+	key, err := s.api.UploadTar(r.Context(), r.Body, GetURI(r.Context()).Path, defaultPath, mw)
+	if err != nil {
+		return nil, err
+	}
+	return key, nil
+}
+
+func (s *Server) handleMultipartUpload(r *http.Request, boundary string, mw *api.ManifestWriter) error {
+	ruid := GetRUID(r.Context())
+	log.Debug("handle.multipart.upload", "ruid", ruid)
+	mr := multipart.NewReader(r.Body, boundary)
+	for {
+		part, err := mr.NextPart()
+		if err == io.EOF {
+			return nil
+		} else if err != nil {
+			return fmt.Errorf("error reading multipart form: %s", err)
+		}
+
+		var size int64
+		var reader io.Reader
+		if contentLength := part.Header.Get("Content-Length"); contentLength != "" {
+			size, err = strconv.ParseInt(contentLength, 10, 64)
+			if err != nil {
+				return fmt.Errorf("error parsing multipart content length: %s", err)
+			}
+			reader = part
+		} else {
+			// copy the part to a tmp file to get its size
+			tmp, err := ioutil.TempFile("", "swarm-multipart")
+			if err != nil {
+				return err
+			}
+			defer os.Remove(tmp.Name())
+			defer tmp.Close()
+			size, err = io.Copy(tmp, part)
+			if err != nil {
+				return fmt.Errorf("error copying multipart content: %s", err)
+			}
+			if _, err := tmp.Seek(0, io.SeekStart); err != nil {
+				return fmt.Errorf("error copying multipart content: %s", err)
+			}
+			reader = tmp
+		}
+
+		// add the entry under the path from the request
+		name := part.FileName()
+		if name == "" {
+			name = part.FormName()
+		}
+		uri := GetURI(r.Context())
+		path := path.Join(uri.Path, name)
+		entry := &api.ManifestEntry{
+			Path:        path,
+			ContentType: part.Header.Get("Content-Type"),
+			Size:        size,
+		}
+		log.Debug("adding path to new manifest", "ruid", ruid, "bytes", entry.Size, "path", entry.Path)
+		contentKey, err := mw.AddEntry(r.Context(), reader, entry)
+		if err != nil {
+			return fmt.Errorf("error adding manifest entry from multipart form: %s", err)
+		}
+		log.Debug("stored content", "ruid", ruid, "key", contentKey)
+	}
+}
+
+func (s *Server) handleDirectUpload(r *http.Request, mw *api.ManifestWriter) error {
+	ruid := GetRUID(r.Context())
+	log.Debug("handle.direct.upload", "ruid", ruid)
+	key, err := mw.AddEntry(r.Context(), r.Body, &api.ManifestEntry{
+		Path:        GetURI(r.Context()).Path,
+		ContentType: r.Header.Get("Content-Type"),
+		Mode:        0644,
+		Size:        r.ContentLength,
+	})
+	if err != nil {
+		return err
+	}
+	log.Debug("stored content", "ruid", ruid, "key", key)
+	return nil
+}
+
+// HandleDelete handles a DELETE request to bzz:/<manifest>/<path>, removes
+// <path> from <manifest> and returns the resulting manifest hash as a
+// text/plain response
+func (s *Server) HandleDelete(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	uri := GetURI(r.Context())
+	log.Debug("handle.delete", "ruid", ruid)
+	deleteCount.Inc(1)
+	newKey, err := s.api.Delete(r.Context(), uri.Addr, uri.Path)
+	if err != nil {
+		deleteFail.Inc(1)
+		respondError(w, r, fmt.Sprintf("could not delete from manifest: %v", err), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/plain")
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, newKey)
+}
+
+// Handles feed manifest creation and feed updates
+// The POST request admits a JSON structure as defined in the feeds package: `feed.updateRequestJSON`
+// The requests can be to a) create a feed manifest, b) update a feed or c) both a+b: create a feed manifest and publish a first update
+func (s *Server) HandlePostFeed(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	uri := GetURI(r.Context())
+	log.Debug("handle.post.feed", "ruid", ruid)
+	var err error
+
+	// Creation and update must send feed.updateRequestJSON JSON structure
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		respondError(w, r, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fd, err := s.api.ResolveFeed(r.Context(), uri, r.URL.Query())
+	if err != nil { // couldn't parse query string or retrieve manifest
+		getFail.Inc(1)
+		httpStatus := http.StatusBadRequest
+		if err == api.ErrCannotLoadFeedManifest || err == api.ErrCannotResolveFeedURI {
+			httpStatus = http.StatusNotFound
+		}
+		respondError(w, r, fmt.Sprintf("cannot retrieve feed from manifest: %s", err), httpStatus)
+		return
+	}
+
+	var updateRequest feed.Request
+	updateRequest.Feed = *fd
+	query := r.URL.Query()
+
+	if err := updateRequest.FromValues(query, body); err != nil { // decodes request from query parameters
+		respondError(w, r, err.Error(), http.StatusBadRequest)
+		return
+	}
 
 	switch {
-	case r.Method == "POST" || r.Method == "PUT":
-		if r.Header.Get("content-length") == "" {
-			http.Error(w, "Missing Content-Length header in request.", http.StatusBadRequest)
+	case updateRequest.IsUpdate():
+		// Verify that the signature is intact and that the signer is authorized
+		// to update this feed
+		// Check this early, to avoid creating a feed and then not being able to set its first update.
+		if err = updateRequest.Verify(); err != nil {
+			respondError(w, r, err.Error(), http.StatusForbidden)
 			return
 		}
-		key, err := a.Store(io.LimitReader(r.Body, r.ContentLength), r.ContentLength, nil)
-		if err == nil {
-			glog.V(logger.Debug).Infof("Content for %v stored", key.Log())
-		} else {
-			http.Error(w, err.Error(), http.StatusBadRequest)
+		_, err = s.api.FeedsUpdate(r.Context(), &updateRequest)
+		if err != nil {
+			respondError(w, r, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		if r.Method == "POST" {
-			if raw {
-				w.Header().Set("Content-Type", "text/plain")
-				http.ServeContent(w, r, "", time.Now(), bytes.NewReader([]byte(common.Bytes2Hex(key))))
-			} else {
-				http.Error(w, "No POST to "+uri+" allowed.", http.StatusBadRequest)
-				return
-			}
-		} else {
-			// PUT
-			if raw {
-				http.Error(w, "No PUT to /raw allowed.", http.StatusBadRequest)
-				return
-			} else {
-				path = api.RegularSlashes(path)
-				mime := r.Header.Get("Content-Type")
-				// TODO proper root hash separation
-				glog.V(logger.Debug).Infof("Modify '%s' to store %v as '%s'.", path, key.Log(), mime)
-				newKey, err := a.Modify(path, common.Bytes2Hex(key), mime, nameresolver)
-				if err == nil {
-					glog.V(logger.Debug).Infof("Swarm replaced manifest by '%s'", newKey)
-					w.Header().Set("Content-Type", "text/plain")
-					http.ServeContent(w, r, "", time.Now(), bytes.NewReader([]byte(newKey)))
-				} else {
-					http.Error(w, "PUT to "+path+"failed.", http.StatusBadRequest)
-					return
-				}
-			}
-		}
-	case r.Method == "DELETE":
-		if raw {
-			http.Error(w, "No DELETE to /raw allowed.", http.StatusBadRequest)
-			return
-		} else {
-			path = api.RegularSlashes(path)
-			glog.V(logger.Debug).Infof("Delete '%s'.", path)
-			newKey, err := a.Modify(path, "", "", nameresolver)
-			if err == nil {
-				glog.V(logger.Debug).Infof("Swarm replaced manifest by '%s'", newKey)
-				w.Header().Set("Content-Type", "text/plain")
-				http.ServeContent(w, r, "", time.Now(), bytes.NewReader([]byte(newKey)))
-			} else {
-				http.Error(w, "DELETE to "+path+"failed.", http.StatusBadRequest)
-				return
-			}
-		}
-	case r.Method == "GET" || r.Method == "HEAD":
-		path = trailingSlashes.ReplaceAllString(path, "")
-		if path == "" {
-			http.Error(w, "Empty path not allowed", http.StatusBadRequest)
+		fallthrough
+	case query.Get("manifest") == "1":
+		// we create a manifest so we can retrieve feed updates with bzz:// later
+		// this manifest has a special "feed type" manifest, and saves the
+		// feed identification used to retrieve feed updates later
+		m, err := s.api.NewFeedManifest(r.Context(), &updateRequest.Feed)
+		if err != nil {
+			respondError(w, r, fmt.Sprintf("failed to create feed manifest: %v", err), http.StatusInternalServerError)
 			return
 		}
-		if raw {
-			var reader storage.LazySectionReader
-			parsedurl, _ := api.Parse(path)
-
-			if parsedurl == path {
-				key, err := a.Resolve(parsedurl, nameresolver)
-				if err != nil {
-					glog.V(logger.Error).Infof("%v", err)
-					http.Error(w, err.Error(), http.StatusBadRequest)
-					return
-				}
-				reader = a.Retrieve(key)
-			} else {
-				var status int
-				readertmp, _, status, err := a.Get(path, nameresolver)
-				if err != nil {
-					http.Error(w, err.Error(), status)
-					return
-				}
-				reader = readertmp
-			}
-
-			// retrieving content
-
-			quitC := make(chan bool)
-			size, err := reader.Size(quitC)
-			if err != nil {
-				glog.V(logger.Debug).Infof("Could not determine size: %v", err.Error())
-				//An error on call to Size means we don't have the root chunk
-				http.Error(w, err.Error(), http.StatusNotFound)
-				return
-			}
-			glog.V(logger.Debug).Infof("Reading %d bytes.", size)
-
-			// setting mime type
-			qv := requestURL.Query()
-			mimeType := qv.Get("content_type")
-			if mimeType == "" {
-				mimeType = rawType
-			}
-
-			w.Header().Set("Content-Type", mimeType)
-			http.ServeContent(w, r, uri, forever(), reader)
-			glog.V(logger.Debug).Infof("Serve raw content '%s' (%d bytes) as '%s'", uri, size, mimeType)
-
-			// retrieve path via manifest
-		} else {
-			glog.V(logger.Debug).Infof("Structured GET request '%s' received.", uri)
-			// add trailing slash, if missing
-			if rootDocumentUri.MatchString(uri) {
-				http.Redirect(w, r, path+"/", http.StatusFound)
-				return
-			}
-			reader, mimeType, status, err := a.Get(path, nameresolver)
-			if err != nil {
-				if _, ok := err.(api.ErrResolve); ok {
-					glog.V(logger.Debug).Infof("%v", err)
-					status = http.StatusBadRequest
-				} else {
-					glog.V(logger.Debug).Infof("error retrieving '%s': %v", uri, err)
-					status = http.StatusNotFound
-				}
-				http.Error(w, err.Error(), status)
-				return
-			}
-			// set mime type and status headers
-			w.Header().Set("Content-Type", mimeType)
-			if status > 0 {
-				w.WriteHeader(status)
-			} else {
-				status = 200
-			}
-			quitC := make(chan bool)
-			size, err := reader.Size(quitC)
-			if err != nil {
-				glog.V(logger.Debug).Infof("Could not determine size: %v", err.Error())
-				//An error on call to Size means we don't have the root chunk
-				http.Error(w, err.Error(), http.StatusNotFound)
-				return
-			}
-			glog.V(logger.Debug).Infof("Served '%s' (%d bytes) as '%s' (status code: %v)", uri, size, mimeType, status)
-
-			http.ServeContent(w, r, path, forever(), reader)
-
+		// the key to the manifest will be passed back to the client
+		// the client can access the feed  directly through its Feed member
+		// the manifest key can be set as content in the resolver of the ENS name
+		outdata, err := json.Marshal(m)
+		if err != nil {
+			respondError(w, r, fmt.Sprintf("failed to create json response: %s", err), http.StatusInternalServerError)
+			return
 		}
+		fmt.Fprint(w, string(outdata))
+
+		w.Header().Add("Content-type", "application/json")
 	default:
-		http.Error(w, "Method "+r.Method+" is not supported.", http.StatusMethodNotAllowed)
+		respondError(w, r, "Missing signature in feed update request", http.StatusBadRequest)
 	}
 }
 
-func (self *sequentialReader) ReadAt(target []byte, off int64) (n int, err error) {
-	self.lock.Lock()
-	// assert self.pos <= off
-	if self.pos > off {
-		glog.V(logger.Error).Infof("non-sequential read attempted from sequentialReader; %d > %d",
-			self.pos, off)
-		panic("Non-sequential read attempt")
+// HandleGetFeed retrieves Swarm feeds updates:
+// bzz-feed://<manifest address or ENS name> - get latest feed update, given a manifest address
+// - or -
+// specify user + topic (optional), subtopic name (optional) directly, without manifest:
+// bzz-feed://?user=0x...&topic=0x...&name=subtopic name
+// topic defaults to 0x000... if not specified.
+// name defaults to empty string if not specified.
+// thus, empty name and topic refers to the user's default feed.
+//
+// Optional parameters:
+// time=xx - get the latest update before time (in epoch seconds)
+// hint.time=xx - hint the lookup algorithm looking for updates at around that time
+// hint.level=xx - hint the lookup algorithm looking for updates at around this frequency level
+// meta=1 - get feed metadata and status information instead of performing a feed query
+// NOTE: meta=1 will be deprecated in the near future
+func (s *Server) HandleGetFeed(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	uri := GetURI(r.Context())
+	log.Debug("handle.get.feed", "ruid", ruid)
+	var err error
+
+	fd, err := s.api.ResolveFeed(r.Context(), uri, r.URL.Query())
+	if err != nil { // couldn't parse query string or retrieve manifest
+		getFail.Inc(1)
+		httpStatus := http.StatusBadRequest
+		if err == api.ErrCannotLoadFeedManifest || err == api.ErrCannotResolveFeedURI {
+			httpStatus = http.StatusNotFound
+		}
+		respondError(w, r, fmt.Sprintf("cannot retrieve feed information from manifest: %s", err), httpStatus)
+		return
 	}
-	if self.pos != off {
-		glog.V(logger.Debug).Infof("deferred read in POST at position %d, offset %d.",
-			self.pos, off)
-		wait := make(chan bool)
-		self.ahead[off] = wait
-		self.lock.Unlock()
-		if <-wait {
-			// failed read behind
-			n = 0
-			err = io.ErrUnexpectedEOF
+
+	// determine if the query specifies period and version or it is a metadata query
+	if r.URL.Query().Get("meta") == "1" {
+		unsignedUpdateRequest, err := s.api.FeedsNewRequest(r.Context(), fd)
+		if err != nil {
+			getFail.Inc(1)
+			respondError(w, r, fmt.Sprintf("cannot retrieve feed metadata for feed=%s: %s", fd.Hex(), err), http.StatusNotFound)
 			return
 		}
-		self.lock.Lock()
-	}
-	localPos := 0
-	for localPos < len(target) {
-		n, err = self.reader.Read(target[localPos:])
-		localPos += n
-		glog.V(logger.Debug).Infof("Read %d bytes into buffer size %d from POST, error %v.",
-			n, len(target), err)
+		rawResponse, err := unsignedUpdateRequest.MarshalJSON()
 		if err != nil {
-			glog.V(logger.Debug).Infof("POST stream's reading terminated with %v.", err)
-			for i := range self.ahead {
-				self.ahead[i] <- true
-				delete(self.ahead, i)
-			}
-			self.lock.Unlock()
-			return localPos, err
+			respondError(w, r, fmt.Sprintf("cannot encode unsigned feed update request: %v", err), http.StatusInternalServerError)
+			return
 		}
-		self.pos += int64(n)
+		w.Header().Add("Content-type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, string(rawResponse))
+		return
 	}
-	wait := self.ahead[self.pos]
-	if wait != nil {
-		glog.V(logger.Debug).Infof("deferred read in POST at position %d triggered.",
-			self.pos)
-		delete(self.ahead, self.pos)
-		close(wait)
+
+	lookupParams := &feed.Query{Feed: *fd}
+	if err = lookupParams.FromValues(r.URL.Query()); err != nil { // parse period, version
+		respondError(w, r, fmt.Sprintf("invalid feed update request:%s", err), http.StatusBadRequest)
+		return
 	}
-	self.lock.Unlock()
-	return localPos, err
+
+	data, err := s.api.FeedsLookup(r.Context(), lookupParams)
+
+	// any error from the switch statement will end up here
+	if err != nil {
+		code, err2 := s.translateFeedError(w, r, "feed lookup fail", err)
+		respondError(w, r, err2.Error(), code)
+		return
+	}
+
+	// All ok, serve the retrieved update
+	log.Debug("Found update", "feed", fd.Hex(), "ruid", ruid)
+	w.Header().Set("Content-Type", api.MimeOctetStream)
+	http.ServeContent(w, r, "", time.Now(), bytes.NewReader(data))
+}
+
+func (s *Server) translateFeedError(w http.ResponseWriter, r *http.Request, supErr string, err error) (int, error) {
+	code := 0
+	defaultErr := fmt.Errorf("%s: %v", supErr, err)
+	rsrcErr, ok := err.(*feed.Error)
+	if !ok && rsrcErr != nil {
+		code = rsrcErr.Code()
+	}
+	switch code {
+	case storage.ErrInvalidValue:
+		return http.StatusBadRequest, defaultErr
+	case storage.ErrNotFound, storage.ErrNotSynced, storage.ErrNothingToReturn, storage.ErrInit:
+		return http.StatusNotFound, defaultErr
+	case storage.ErrUnauthorized, storage.ErrInvalidSignature:
+		return http.StatusUnauthorized, defaultErr
+	case storage.ErrDataOverflow:
+		return http.StatusRequestEntityTooLarge, defaultErr
+	}
+
+	return http.StatusInternalServerError, defaultErr
+}
+
+// HandleGet handles a GET request to
+// - bzz-raw://<key> and responds with the raw content stored at the
+//   given storage key
+// - bzz-hash://<key> and responds with the hash of the content stored
+//   at the given storage key as a text/plain response
+func (s *Server) HandleGet(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	uri := GetURI(r.Context())
+	log.Debug("handle.get", "ruid", ruid, "uri", uri)
+	getCount.Inc(1)
+	_, pass, _ := r.BasicAuth()
+
+	addr, err := s.api.ResolveURI(r.Context(), uri, pass)
+	if err != nil {
+		getFail.Inc(1)
+		respondError(w, r, fmt.Sprintf("cannot resolve %s: %s", uri.Addr, err), http.StatusNotFound)
+		return
+	}
+	w.Header().Set("Cache-Control", "max-age=2147483648, immutable") // url was of type bzz://<hex key>/path, so we are sure it is immutable.
+
+	log.Debug("handle.get: resolved", "ruid", ruid, "key", addr)
+
+	// if path is set, interpret <key> as a manifest and return the
+	// raw entry at the given path
+
+	etag := common.Bytes2Hex(addr)
+	noneMatchEtag := r.Header.Get("If-None-Match")
+	w.Header().Set("ETag", fmt.Sprintf("%q", etag)) // set etag to manifest key or raw entry key.
+	if noneMatchEtag != "" {
+		if bytes.Equal(storage.Address(common.Hex2Bytes(noneMatchEtag)), addr) {
+			w.WriteHeader(http.StatusNotModified)
+			return
+		}
+	}
+
+	// check the root chunk exists by retrieving the file's size
+	reader, isEncrypted := s.api.Retrieve(r.Context(), addr)
+	if _, err := reader.Size(r.Context(), nil); err != nil {
+		getFail.Inc(1)
+		respondError(w, r, fmt.Sprintf("root chunk not found %s: %s", addr, err), http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("X-Decrypted", fmt.Sprintf("%v", isEncrypted))
+
+	switch {
+	case uri.Raw():
+		// allow the request to overwrite the content type using a query
+		// parameter
+		if typ := r.URL.Query().Get("content_type"); typ != "" {
+			w.Header().Set("Content-Type", typ)
+		}
+		http.ServeContent(w, r, "", time.Now(), reader)
+	case uri.Hash():
+		w.Header().Set("Content-Type", "text/plain")
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, addr)
+	}
+}
+
+// HandleGetList handles a GET request to bzz-list:/<manifest>/<path> and returns
+// a list of all files contained in <manifest> under <path> grouped into
+// common prefixes using "/" as a delimiter
+func (s *Server) HandleGetList(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	uri := GetURI(r.Context())
+	_, credentials, _ := r.BasicAuth()
+	log.Debug("handle.get.list", "ruid", ruid, "uri", uri)
+	getListCount.Inc(1)
+
+	// ensure the root path has a trailing slash so that relative URLs work
+	if uri.Path == "" && !strings.HasSuffix(r.URL.Path, "/") {
+		http.Redirect(w, r, r.URL.Path+"/", http.StatusMovedPermanently)
+		return
+	}
+
+	addr, err := s.api.Resolve(r.Context(), uri.Addr)
+	if err != nil {
+		getListFail.Inc(1)
+		respondError(w, r, fmt.Sprintf("cannot resolve %s: %s", uri.Addr, err), http.StatusNotFound)
+		return
+	}
+	log.Debug("handle.get.list: resolved", "ruid", ruid, "key", addr)
+
+	list, err := s.api.GetManifestList(r.Context(), s.api.Decryptor(r.Context(), credentials), addr, uri.Path)
+	if err != nil {
+		getListFail.Inc(1)
+		if isDecryptError(err) {
+			w.Header().Set("WWW-Authenticate", fmt.Sprintf("Basic realm=%q", addr.String()))
+			respondError(w, r, err.Error(), http.StatusUnauthorized)
+			return
+		}
+		respondError(w, r, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// if the client wants HTML (e.g. a browser) then render the list as a
+	// HTML index with relative URLs
+	if strings.Contains(r.Header.Get("Accept"), "text/html") {
+		w.Header().Set("Content-Type", "text/html")
+		err := TemplatesMap["bzz-list"].Execute(w, &htmlListData{
+			URI: &api.URI{
+				Scheme: "bzz",
+				Addr:   uri.Addr,
+				Path:   uri.Path,
+			},
+			List: &list,
+		})
+		if err != nil {
+			getListFail.Inc(1)
+			log.Error(fmt.Sprintf("error rendering list HTML: %s", err))
+		}
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(&list)
+}
+
+// HandleGetFile handles a GET request to bzz://<manifest>/<path> and responds
+// with the content of the file at <path> from the given <manifest>
+func (s *Server) HandleGetFile(w http.ResponseWriter, r *http.Request) {
+	ruid := GetRUID(r.Context())
+	uri := GetURI(r.Context())
+	_, credentials, _ := r.BasicAuth()
+	log.Debug("handle.get.file", "ruid", ruid, "uri", r.RequestURI)
+	getFileCount.Inc(1)
+
+	// ensure the root path has a trailing slash so that relative URLs work
+	if uri.Path == "" && !strings.HasSuffix(r.URL.Path, "/") {
+		http.Redirect(w, r, r.URL.Path+"/", http.StatusMovedPermanently)
+		return
+	}
+	var err error
+	manifestAddr := uri.Address()
+
+	if manifestAddr == nil {
+		manifestAddr, err = s.api.Resolve(r.Context(), uri.Addr)
+		if err != nil {
+			getFileFail.Inc(1)
+			respondError(w, r, fmt.Sprintf("cannot resolve %s: %s", uri.Addr, err), http.StatusNotFound)
+			return
+		}
+	} else {
+		w.Header().Set("Cache-Control", "max-age=2147483648, immutable") // url was of type bzz://<hex key>/path, so we are sure it is immutable.
+	}
+
+	log.Debug("handle.get.file: resolved", "ruid", ruid, "key", manifestAddr)
+
+	reader, contentType, status, contentKey, err := s.api.Get(r.Context(), s.api.Decryptor(r.Context(), credentials), manifestAddr, uri.Path)
+
+	etag := common.Bytes2Hex(contentKey)
+	noneMatchEtag := r.Header.Get("If-None-Match")
+	w.Header().Set("ETag", fmt.Sprintf("%q", etag)) // set etag to actual content key.
+	if noneMatchEtag != "" {
+		if bytes.Equal(storage.Address(common.Hex2Bytes(noneMatchEtag)), contentKey) {
+			w.WriteHeader(http.StatusNotModified)
+			return
+		}
+	}
+
+	if err != nil {
+		if isDecryptError(err) {
+			w.Header().Set("WWW-Authenticate", fmt.Sprintf("Basic realm=%q", manifestAddr))
+			respondError(w, r, err.Error(), http.StatusUnauthorized)
+			return
+		}
+
+		switch status {
+		case http.StatusNotFound:
+			getFileNotFound.Inc(1)
+			respondError(w, r, err.Error(), http.StatusNotFound)
+		default:
+			getFileFail.Inc(1)
+			respondError(w, r, err.Error(), http.StatusInternalServerError)
+		}
+		return
+	}
+
+	//the request results in ambiguous files
+	//e.g. /read with readme.md and readinglist.txt available in manifest
+	if status == http.StatusMultipleChoices {
+		list, err := s.api.GetManifestList(r.Context(), s.api.Decryptor(r.Context(), credentials), manifestAddr, uri.Path)
+		if err != nil {
+			getFileFail.Inc(1)
+			if isDecryptError(err) {
+				w.Header().Set("WWW-Authenticate", fmt.Sprintf("Basic realm=%q", manifestAddr))
+				respondError(w, r, err.Error(), http.StatusUnauthorized)
+				return
+			}
+			respondError(w, r, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		log.Debug(fmt.Sprintf("Multiple choices! --> %v", list), "ruid", ruid)
+		//show a nice page links to available entries
+		ShowMultipleChoices(w, r, list)
+		return
+	}
+
+	// check the root chunk exists by retrieving the file's size
+	if _, err := reader.Size(r.Context(), nil); err != nil {
+		getFileNotFound.Inc(1)
+		respondError(w, r, fmt.Sprintf("file not found %s: %s", uri, err), http.StatusNotFound)
+		return
+	}
+
+	if contentType != "" {
+		w.Header().Set("Content-Type", contentType)
+	}
+
+	fileName := uri.Addr
+	if found := path.Base(uri.Path); found != "" && found != "." && found != "/" {
+		fileName = found
+	}
+	w.Header().Set("Content-Disposition", fmt.Sprintf("inline; filename=\"%s\"", fileName))
+
+	http.ServeContent(w, r, fileName, time.Now(), newBufferedReadSeeker(reader, getFileBufferSize))
+}
+
+// The size of buffer used for bufio.Reader on LazyChunkReader passed to
+// http.ServeContent in HandleGetFile.
+// Warning: This value influences the number of chunk requests and chunker join goroutines
+// per file request.
+// Recommended value is 4 times the io.Copy default buffer value which is 32kB.
+const getFileBufferSize = 4 * 32 * 1024
+
+// bufferedReadSeeker wraps bufio.Reader to expose Seek method
+// from the provied io.ReadSeeker in newBufferedReadSeeker.
+type bufferedReadSeeker struct {
+	r io.Reader
+	s io.Seeker
+}
+
+// newBufferedReadSeeker creates a new instance of bufferedReadSeeker,
+// out of io.ReadSeeker. Argument `size` is the size of the read buffer.
+func newBufferedReadSeeker(readSeeker io.ReadSeeker, size int) bufferedReadSeeker {
+	return bufferedReadSeeker{
+		r: bufio.NewReaderSize(readSeeker, size),
+		s: readSeeker,
+	}
+}
+
+func (b bufferedReadSeeker) Read(p []byte) (n int, err error) {
+	return b.r.Read(p)
+}
+
+func (b bufferedReadSeeker) Seek(offset int64, whence int) (int64, error) {
+	return b.s.Seek(offset, whence)
+}
+
+type loggingResponseWriter struct {
+	http.ResponseWriter
+	statusCode int
+}
+
+func newLoggingResponseWriter(w http.ResponseWriter) *loggingResponseWriter {
+	return &loggingResponseWriter{w, http.StatusOK}
+}
+
+func (lrw *loggingResponseWriter) WriteHeader(code int) {
+	lrw.statusCode = code
+	lrw.ResponseWriter.WriteHeader(code)
+}
+
+func isDecryptError(err error) bool {
+	return strings.Contains(err.Error(), api.ErrDecrypt.Error())
 }

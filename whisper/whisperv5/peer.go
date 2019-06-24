@@ -20,22 +20,21 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/logger"
-	"github.com/kek-mex/go-atheios/logger/glog"
-	"github.com/kek-mex/go-atheios/p2p"
-	"github.com/kek-mex/go-atheios/rlp"
-	set "gopkg.in/fatih/set.v0"
+	mapset "github.com/deckarep/golang-set"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/log"
+	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/ubiq/go-ubiq/rlp"
 )
 
-// peer represents a whisper protocol peer connection.
+// Peer represents a whisper protocol peer connection.
 type Peer struct {
 	host    *Whisper
 	peer    *p2p.Peer
 	ws      p2p.MsgReadWriter
 	trusted bool
 
-	known *set.Set // Messages already known by the peer to avoid wasting bandwidth
+	known mapset.Set // Messages already known by the peer to avoid wasting bandwidth
 
 	quit chan struct{}
 }
@@ -47,58 +46,58 @@ func newPeer(host *Whisper, remote *p2p.Peer, rw p2p.MsgReadWriter) *Peer {
 		peer:    remote,
 		ws:      rw,
 		trusted: false,
-		known:   set.New(),
+		known:   mapset.NewSet(),
 		quit:    make(chan struct{}),
 	}
 }
 
 // start initiates the peer updater, periodically broadcasting the whisper packets
 // into the network.
-func (p *Peer) start() {
-	go p.update()
-	glog.V(logger.Debug).Infof("%v: whisper started", p.peer)
+func (peer *Peer) start() {
+	go peer.update()
+	log.Trace("start", "peer", peer.ID())
 }
 
 // stop terminates the peer updater, stopping message forwarding to it.
-func (p *Peer) stop() {
-	close(p.quit)
-	glog.V(logger.Debug).Infof("%v: whisper stopped", p.peer)
+func (peer *Peer) stop() {
+	close(peer.quit)
+	log.Trace("stop", "peer", peer.ID())
 }
 
 // handshake sends the protocol initiation status message to the remote peer and
 // verifies the remote status too.
-func (p *Peer) handshake() error {
+func (peer *Peer) handshake() error {
 	// Send the handshake status message asynchronously
 	errc := make(chan error, 1)
 	go func() {
-		errc <- p2p.Send(p.ws, statusCode, ProtocolVersion)
+		errc <- p2p.Send(peer.ws, statusCode, ProtocolVersion)
 	}()
 	// Fetch the remote status packet and verify protocol match
-	packet, err := p.ws.ReadMsg()
+	packet, err := peer.ws.ReadMsg()
 	if err != nil {
 		return err
 	}
 	if packet.Code != statusCode {
-		return fmt.Errorf("peer sent %x before status packet", packet.Code)
+		return fmt.Errorf("peer [%x] sent packet %x before status packet", peer.ID(), packet.Code)
 	}
 	s := rlp.NewStream(packet.Payload, uint64(packet.Size))
 	peerVersion, err := s.Uint()
 	if err != nil {
-		return fmt.Errorf("bad status message: %v", err)
+		return fmt.Errorf("peer [%x] sent bad status message: %v", peer.ID(), err)
 	}
 	if peerVersion != ProtocolVersion {
-		return fmt.Errorf("protocol version mismatch %d != %d", peerVersion, ProtocolVersion)
+		return fmt.Errorf("peer [%x]: protocol version mismatch %d != %d", peer.ID(), peerVersion, ProtocolVersion)
 	}
 	// Wait until out own status is consumed too
 	if err := <-errc; err != nil {
-		return fmt.Errorf("failed to send status packet: %v", err)
+		return fmt.Errorf("peer [%x] failed to send status packet: %v", peer.ID(), err)
 	}
 	return nil
 }
 
 // update executes periodic operations on the peer, including message transmission
 // and expiration.
-func (p *Peer) update() {
+func (peer *Peer) update() {
 	// Start the tickers for the updates
 	expire := time.NewTicker(expirationCycle)
 	transmit := time.NewTicker(transmissionCycle)
@@ -107,15 +106,15 @@ func (p *Peer) update() {
 	for {
 		select {
 		case <-expire.C:
-			p.expire()
+			peer.expire()
 
 		case <-transmit.C:
-			if err := p.broadcast(); err != nil {
-				glog.V(logger.Info).Infof("%v: broadcast failed: %v", p.peer, err)
+			if err := peer.broadcast(); err != nil {
+				log.Trace("broadcast failed", "reason", err, "peer", peer.ID())
 				return
 			}
 
-		case <-p.quit:
+		case <-peer.quit:
 			return
 		}
 	}
@@ -128,26 +127,20 @@ func (peer *Peer) mark(envelope *Envelope) {
 
 // marked checks if an envelope is already known to the remote peer.
 func (peer *Peer) marked(envelope *Envelope) bool {
-	return peer.known.Has(envelope.Hash())
+	return peer.known.Contains(envelope.Hash())
 }
 
 // expire iterates over all the known envelopes in the host and removes all
 // expired (unknown) ones from the known list.
 func (peer *Peer) expire() {
-	// Assemble the list of available envelopes
-	available := set.NewNonTS()
-	for _, envelope := range peer.host.Envelopes() {
-		available.Add(envelope.Hash())
-	}
-	// Cross reference availability with known status
 	unmark := make(map[common.Hash]struct{})
 	peer.known.Each(func(v interface{}) bool {
-		if !available.Has(v.(common.Hash)) {
+		if !peer.host.isEnvelopeCached(v.(common.Hash)) {
 			unmark[v.(common.Hash)] = struct{}{}
 		}
 		return true
 	})
-	// Dump all known but unavailable
+	// Dump all known but no longer cached
 	for hash := range unmark {
 		peer.known.Remove(hash)
 	}
@@ -155,28 +148,27 @@ func (peer *Peer) expire() {
 
 // broadcast iterates over the collection of envelopes and transmits yet unknown
 // ones over the network.
-func (p *Peer) broadcast() error {
-	// Fetch the envelopes and collect the unknown ones
-	envelopes := p.host.Envelopes()
-	transmit := make([]*Envelope, 0, len(envelopes))
+func (peer *Peer) broadcast() error {
+	var cnt int
+	envelopes := peer.host.Envelopes()
 	for _, envelope := range envelopes {
-		if !p.marked(envelope) {
-			transmit = append(transmit, envelope)
-			p.mark(envelope)
+		if !peer.marked(envelope) {
+			err := p2p.Send(peer.ws, messagesCode, envelope)
+			if err != nil {
+				return err
+			} else {
+				peer.mark(envelope)
+				cnt++
+			}
 		}
 	}
-	if len(transmit) == 0 {
-		return nil
+	if cnt > 0 {
+		log.Trace("broadcast", "num. messages", cnt)
 	}
-	// Transmit the unknown batch (potentially empty)
-	if err := p2p.Send(p.ws, messagesCode, transmit); err != nil {
-		return err
-	}
-	glog.V(logger.Detail).Infoln(p.peer, "broadcasted", len(transmit), "message(s)")
 	return nil
 }
 
-func (p *Peer) ID() []byte {
-	id := p.peer.ID()
+func (peer *Peer) ID() []byte {
+	id := peer.peer.ID()
 	return id[:]
 }

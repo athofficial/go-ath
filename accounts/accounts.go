@@ -20,10 +20,10 @@ package accounts
 import (
 	"math/big"
 
-	ethereum "github.com/kek-mex/go-atheios"
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/event"
+	ethereum "github.com/ubiq/go-ubiq"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/event"
 )
 
 // Account represents an Ethereum account located at a specific location defined
@@ -42,8 +42,9 @@ type Wallet interface {
 	URL() URL
 
 	// Status returns a textual status to aid the user in the current state of the
-	// wallet.
-	Status() string
+	// wallet. It also returns an error indicating any failure the wallet might have
+	// encountered.
+	Status() (string, error)
 
 	// Open initializes access to a wallet instance. It is not meant to unlock or
 	// decrypt account keys, rather simply to establish a connection to hardware
@@ -105,7 +106,7 @@ type Wallet interface {
 	// or optionally with the aid of any location metadata from the embedded URL field.
 	//
 	// If the wallet requires additional authentication to sign the request (e.g.
-	// a password to decrypt the account, or a PIN code o verify the transaction),
+	// a password to decrypt the account, or a PIN code to verify the transaction),
 	// an AuthNeededError instance will be returned, containing infos for the user
 	// about which fields or actions are needed. The user may retry by providing
 	// the needed details via SignTxWithPassphrase, or by other means (e.g. unlock
@@ -147,9 +148,26 @@ type Backend interface {
 	Subscribe(sink chan<- WalletEvent) event.Subscription
 }
 
+// WalletEventType represents the different event types that can be fired by
+// the wallet subscription subsystem.
+type WalletEventType int
+
+const (
+	// WalletArrived is fired when a new wallet is detected either via USB or via
+	// a filesystem event in the keystore.
+	WalletArrived WalletEventType = iota
+
+	// WalletOpened is fired when a wallet is successfully opened with the purpose
+	// of starting any background processes such as automatic key derivation.
+	WalletOpened
+
+	// WalletDropped
+	WalletDropped
+)
+
 // WalletEvent is an event fired by an account backend when a wallet arrival or
 // departure is detected.
 type WalletEvent struct {
-	Wallet Wallet // Wallet instance arrived or departed
-	Arrive bool   // Whether the wallet was added or removed
+	Wallet Wallet          // Wallet instance arrived or departed
+	Kind   WalletEventType // Event type that happened in the system
 }

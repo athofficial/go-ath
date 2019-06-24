@@ -21,12 +21,10 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"io"
 	"math/big"
-	"os"
 	"strings"
 
-	"github.com/kek-mex/go-atheios/rlp"
+	"github.com/ubiq/go-ubiq/rlp"
 )
 
 // RLPTest is the JSON structure of a single RLP test.
@@ -44,36 +42,22 @@ type RLPTest struct {
 	Out string
 }
 
-// RunRLPTest runs the tests in the given file, skipping tests by name.
-func RunRLPTest(file string, skip []string) error {
-	f, err := os.Open(file)
-	if err != nil {
-		return err
+// FromHex returns the bytes represented by the hexadecimal string s.
+// s may be prefixed with "0x".
+// This is copy-pasted from bytes.go, which does not return the error
+func FromHex(s string) ([]byte, error) {
+	if len(s) > 1 && (s[0:2] == "0x" || s[0:2] == "0X") {
+		s = s[2:]
 	}
-	defer f.Close()
-	return RunRLPTestWithReader(f, skip)
-}
-
-// RunRLPTest runs the tests encoded in r, skipping tests by name.
-func RunRLPTestWithReader(r io.Reader, skip []string) error {
-	var tests map[string]*RLPTest
-	if err := readJson(r, &tests); err != nil {
-		return err
+	if len(s)%2 == 1 {
+		s = "0" + s
 	}
-	for _, s := range skip {
-		delete(tests, s)
-	}
-	for name, test := range tests {
-		if err := test.Run(); err != nil {
-			return fmt.Errorf("test %q failed: %v", name, err)
-		}
-	}
-	return nil
+	return hex.DecodeString(s)
 }
 
 // Run executes the test.
 func (t *RLPTest) Run() error {
-	outb, err := hex.DecodeString(t.Out)
+	outb, err := FromHex(t.Out)
 	if err != nil {
 		return fmt.Errorf("invalid hex in Out")
 	}

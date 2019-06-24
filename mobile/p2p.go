@@ -11,17 +11,17 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
 //
-// You should have received pi copy of the GNU Lesser General Public License
+// You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
 // Contains wrappers for the p2p package.
 
-package gath
+package gubiq
 
 import (
 	"errors"
 
-	"github.com/kek-mex/go-atheios/p2p"
+	"github.com/ubiq/go-ubiq/p2p"
 )
 
 // NodeInfo represents pi short summary of the information known about the host.

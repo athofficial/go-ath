@@ -24,7 +24,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/ubiq/go-ubiq/p2p"
 )
 
 // Tests that datadirs can be successfully created, be them manually configured
@@ -72,15 +73,15 @@ func TestIPCPathResolution(t *testing.T) {
 	}{
 		{"", "", false, ""},
 		{"data", "", false, ""},
-		{"", "gath.ipc", false, filepath.Join(os.TempDir(), "gath.ipc")},
-		{"data", "gath.ipc", false, "data/gath.ipc"},
-		{"data", "./gath.ipc", false, "./gath.ipc"},
-		{"data", "/gath.ipc", false, "/gath.ipc"},
+		{"", "gubiq.ipc", false, filepath.Join(os.TempDir(), "gubiq.ipc")},
+		{"data", "gubiq.ipc", false, "data/gubiq.ipc"},
+		{"data", "./gubiq.ipc", false, "./gubiq.ipc"},
+		{"data", "/gubiq.ipc", false, "/gubiq.ipc"},
 		{"", "", true, ``},
 		{"data", "", true, ``},
-		{"", "gath.ipc", true, `\\.\pipe\gath.ipc`},
-		{"data", "gath.ipc", true, `\\.\pipe\gath.ipc`},
-		{"data", `\\.\pipe\gath.ipc`, true, `\\.\pipe\gath.ipc`},
+		{"", "gubiq.ipc", true, `\\.\pipe\gubiq.ipc`},
+		{"data", "gubiq.ipc", true, `\\.\pipe\gubiq.ipc`},
+		{"data", `\\.\pipe\gubiq.ipc`, true, `\\.\pipe\gubiq.ipc`},
 	}
 	for i, test := range tests {
 		// Only run when platform/test match
@@ -109,7 +110,7 @@ func TestNodeKeyPersistency(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to generate one-shot node key: %v", err)
 	}
-	config := &Config{Name: "unit-test", DataDir: dir, PrivateKey: key}
+	config := &Config{Name: "unit-test", DataDir: dir, P2P: p2p.Config{PrivateKey: key}}
 	config.NodeKey()
 	if _, err := os.Stat(filepath.Join(keyfile)); err == nil {
 		t.Fatalf("one-shot node key persisted to data directory")

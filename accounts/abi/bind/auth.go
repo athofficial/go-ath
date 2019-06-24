@@ -22,10 +22,10 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/kek-mex/go-atheios/accounts/keystore"
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/ubiq/go-ubiq/accounts/keystore"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/crypto"
 )
 
 // NewTransactor is a utility method to easily create a transaction signer from

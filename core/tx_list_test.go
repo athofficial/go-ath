@@ -17,12 +17,11 @@
 package core
 
 import (
-	"math/big"
 	"math/rand"
 	"testing"
 
-	"github.com/kek-mex/go-atheios/core/types"
-	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/ubiq/go-ubiq/crypto"
 )
 
 // Tests that transactions can be added to strict lists and list contents and
@@ -33,12 +32,12 @@ func TestStrictTxListAdd(t *testing.T) {
 
 	txs := make(types.Transactions, 1024)
 	for i := 0; i < len(txs); i++ {
-		txs[i] = transaction(uint64(i), new(big.Int), key)
+		txs[i] = transaction(uint64(i), 0, key)
 	}
 	// Insert the transactions in a random order
 	list := newTxList(true)
 	for _, v := range rand.Perm(len(txs)) {
-		list.Add(txs[v])
+		list.Add(txs[v], DefaultTxPoolConfig.PriceBump)
 	}
 	// Verify internal state
 	if len(list.txs.items) != len(txs) {
