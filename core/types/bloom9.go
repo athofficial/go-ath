@@ -20,19 +20,24 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/common/hexutil"
-	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/ubiq/go-ubiq/common/hexutil"
+	"github.com/ubiq/go-ubiq/crypto"
 )
 
 type bytesBacked interface {
 	Bytes() []byte
 }
 
-const bloomLength = 256
+const (
+	// BloomByteLength represents the number of bytes used in a header log bloom.
+	BloomByteLength = 256
 
-// Bloom represents a 256 bit bloom filter.
-type Bloom [bloomLength]byte
+	// BloomBitLength represents the number of bits used in a header log bloom.
+	BloomBitLength = 8 * BloomByteLength
+)
+
+// Bloom represents a 2048 bit bloom filter.
+type Bloom [BloomByteLength]byte
 
 // BytesToBloom converts a byte slice to a bloom filter.
 // It panics if b is not of suitable size.
@@ -48,7 +53,7 @@ func (b *Bloom) SetBytes(d []byte) {
 	if len(b) < len(d) {
 		panic(fmt.Sprintf("bloom bytes too big %d %d", len(b), len(d)))
 	}
-	copy(b[bloomLength-len(d):], d)
+	copy(b[BloomByteLength-len(d):], d)
 }
 
 // Add adds d to the filter. Future calls of Test(d) will return true.
@@ -60,7 +65,7 @@ func (b *Bloom) Add(d *big.Int) {
 
 // Big converts b to a big integer.
 func (b Bloom) Big() *big.Int {
-	return common.Bytes2Big(b[:])
+	return new(big.Int).SetBytes(b[:])
 }
 
 func (b Bloom) Bytes() []byte {
@@ -72,17 +77,18 @@ func (b Bloom) Test(test *big.Int) bool {
 }
 
 func (b Bloom) TestBytes(test []byte) bool {
-	return b.Test(common.BytesToBig(test))
+	return b.Test(new(big.Int).SetBytes(test))
+
 }
 
-// MarshalJSON encodes b as a hex string with 0x prefix.
-func (b Bloom) MarshalJSON() ([]byte, error) {
-	return hexutil.Bytes(b[:]).MarshalJSON()
+// MarshalText encodes b as a hex string with 0x prefix.
+func (b Bloom) MarshalText() ([]byte, error) {
+	return hexutil.Bytes(b[:]).MarshalText()
 }
 
-// UnmarshalJSON b as a hex string with 0x prefix.
-func (b *Bloom) UnmarshalJSON(input []byte) error {
-	return hexutil.UnmarshalJSON("Bloom", input, b[:])
+// UnmarshalText b as a hex string with 0x prefix.
+func (b *Bloom) UnmarshalText(input []byte) error {
+	return hexutil.UnmarshalFixedText("Bloom", input, b[:])
 }
 
 func CreateBloom(receipts Receipts) Bloom {
@@ -107,7 +113,7 @@ func LogsBloom(logs []*Log) *big.Int {
 }
 
 func bloom9(b []byte) *big.Int {
-	b = crypto.Keccak256(b[:])
+	b = crypto.Keccak256(b)
 
 	r := new(big.Int)
 
@@ -124,7 +130,7 @@ var Bloom9 = bloom9
 
 func BloomLookup(bin Bloom, topic bytesBacked) bool {
 	bloom := bin.Big()
-	cmp := bloom9(topic.Bytes()[:])
+	cmp := bloom9(topic.Bytes())
 
 	return bloom.And(bloom, cmp).Cmp(cmp) == 0
 }

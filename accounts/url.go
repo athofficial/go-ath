@@ -60,9 +60,34 @@ func (u URL) String() string {
 	return u.Path
 }
 
+// TerminalString implements the log.TerminalStringer interface.
+func (u URL) TerminalString() string {
+	url := u.String()
+	if len(url) > 32 {
+		return url[:31] + "…"
+	}
+	return url
+}
+
 // MarshalJSON implements the json.Marshaller interface.
 func (u URL) MarshalJSON() ([]byte, error) {
 	return json.Marshal(u.String())
+}
+
+// UnmarshalJSON parses url.
+func (u *URL) UnmarshalJSON(input []byte) error {
+	var textURL string
+	err := json.Unmarshal(input, &textURL)
+	if err != nil {
+		return err
+	}
+	url, err := parseURL(textURL)
+	if err != nil {
+		return err
+	}
+	u.Scheme = url.Scheme
+	u.Path = url.Path
+	return nil
 }
 
 // Cmp compares x and y and returns:

@@ -256,16 +256,31 @@ func TestStreamList(t *testing.T) {
 }
 
 func TestStreamRaw(t *testing.T) {
-	s := NewStream(bytes.NewReader(unhex("C58401010101")), 0)
-	s.List()
-
-	want := unhex("8401010101")
-	raw, err := s.Raw()
-	if err != nil {
-		t.Fatal(err)
+	tests := []struct {
+		input  string
+		output string
+	}{
+		{
+			"C58401010101",
+			"8401010101",
+		},
+		{
+			"F842B84001010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101",
+			"B84001010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101",
+		},
 	}
-	if !bytes.Equal(want, raw) {
-		t.Errorf("raw mismatch: got %x, want %x", raw, want)
+	for i, tt := range tests {
+		s := NewStream(bytes.NewReader(unhex(tt.input)), 0)
+		s.List()
+
+		want := unhex(tt.output)
+		raw, err := s.Raw()
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !bytes.Equal(want, raw) {
+			t.Errorf("test %d: raw mismatch: got %x, want %x", i, raw, want)
+		}
 	}
 }
 
@@ -338,6 +353,12 @@ var (
 		big.NewInt(0xFFFF),
 	)
 )
+
+type hasIgnoredField struct {
+	A uint
+	B uint `rlp:"-"`
+	C uint
+}
 
 var decodeTests = []decodeTest{
 	// booleans
@@ -490,6 +511,13 @@ var decodeTests = []decodeTest{
 		value: tailRaw{A: 1, Tail: []RawValue{}},
 	},
 
+	// struct tag "-"
+	{
+		input: "C20102",
+		ptr:   new(hasIgnoredField),
+		value: hasIgnoredField{A: 1, C: 2},
+	},
+
 	// RawValue
 	{input: "01", ptr: new(RawValue), value: RawValue(unhex("01"))},
 	{input: "82FFFF", ptr: new(RawValue), value: RawValue(unhex("82FFFF"))},
@@ -503,7 +531,7 @@ var decodeTests = []decodeTest{
 	{input: "817F", ptr: new(*uint), error: "rlp: non-canonical size information for uint"},
 	{input: "8180", ptr: new(*uint), value: uintp(0x80)},
 	{input: "C109", ptr: new(*[]uint), value: &[]uint{9}},
-	{input: "C58403030303", ptr: new(*[][]byte), value: &[][]byte{{3, 3, 3, 3}}},
+	{input: "C58403038803", ptr: new(*[][]byte), value: &[][]byte{{3, 3, 3, 3}}},
 
 	// check that input position is advanced also for empty values.
 	{input: "C3808005", ptr: new([]*uint), value: []*uint{uintp(0), uintp(0), uintp(5)}},
@@ -523,7 +551,7 @@ var decodeTests = []decodeTest{
 
 	// fuzzer crashes
 	{
-		input: "c330f9c030f93030ce3030303030303030bd303030303030",
+		input: "c330f9c030f93030ce3038803038803030bd303880303880",
 		ptr:   new(interface{}),
 		error: "rlp: element is larger than containing list",
 	},

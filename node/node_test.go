@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-atheios/crypto"
-	"github.com/kek-mex/go-atheios/p2p"
-	"github.com/kek-mex/go-atheios/rpc"
+	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/ubiq/go-ubiq/rpc"
 )
 
 var (
@@ -35,8 +35,8 @@ var (
 
 func testNodeConfig() *Config {
 	return &Config{
-		PrivateKey: testNodeKey,
-		Name:       "test node",
+		Name: "test node",
+		P2P:  p2p.Config{PrivateKey: testNodeKey},
 	}
 }
 
@@ -454,9 +454,9 @@ func TestProtocolGather(t *testing.T) {
 		Count int
 		Maker InstrumentingWrapper
 	}{
-		"Zero Protocols":  {0, InstrumentedServiceMakerA},
-		"Single Protocol": {1, InstrumentedServiceMakerB},
-		"Many Protocols":  {25, InstrumentedServiceMakerC},
+		"zero": {0, InstrumentedServiceMakerA},
+		"one":  {1, InstrumentedServiceMakerB},
+		"many": {10, InstrumentedServiceMakerC},
 	}
 	for id, config := range services {
 		protocols := make([]p2p.Protocol, config.Count)
@@ -480,7 +480,7 @@ func TestProtocolGather(t *testing.T) {
 	defer stack.Stop()
 
 	protocols := stack.Server().Protocols
-	if len(protocols) != 26 {
+	if len(protocols) != 11 {
 		t.Fatalf("mismatching number of protocols launched: have %d, want %d", len(protocols), 26)
 	}
 	for id, config := range services {
@@ -507,8 +507,8 @@ func TestAPIGather(t *testing.T) {
 	}
 	// Register a batch of services with some configured APIs
 	calls := make(chan string, 1)
-	makeAPI := func(result string) *OneMethodApi {
-		return &OneMethodApi{fun: func() { calls <- result }}
+	makeAPI := func(result string) *OneMethodAPI {
+		return &OneMethodAPI{fun: func() { calls <- result }}
 	}
 	services := map[string]struct {
 		APIs  []rpc.API

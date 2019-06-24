@@ -21,15 +21,34 @@ import (
 	"os/user"
 	"path/filepath"
 	"runtime"
+
+	"github.com/ubiq/go-ubiq/p2p"
+	"github.com/ubiq/go-ubiq/p2p/nat"
+	"github.com/ubiq/go-ubiq/rpc"
 )
 
 const (
-	DefaultIPCSocket = "gath.ipc"  // Default (relative) name of the IPC RPC socket
 	DefaultHTTPHost  = "localhost" // Default host interface for the HTTP RPC server
-	DefaultHTTPPort  = 8696        // Default TCP port for the HTTP RPC server
+	DefaultHTTPPort  = 8588        // Default TCP port for the HTTP RPC server
 	DefaultWSHost    = "localhost" // Default host interface for the websocket RPC server
-	DefaultWSPort    = 8697        // Default TCP port for the websocket RPC server
+	DefaultWSPort    = 8589        // Default TCP port for the websocket RPC server
 )
+
+// DefaultConfig contains reasonable default settings.
+var DefaultConfig = Config{
+	DataDir:          DefaultDataDir(),
+	HTTPPort:         DefaultHTTPPort,
+	HTTPModules:      []string{"net", "web3"},
+	HTTPVirtualHosts: []string{"localhost"},
+	HTTPTimeouts:     rpc.DefaultHTTPTimeouts,
+	WSPort:           DefaultWSPort,
+	WSModules:        []string{"net", "web3"},
+	P2P: p2p.Config{
+		ListenAddr: ":30388",
+		MaxPeers:   25,
+		NAT:        nat.Any(),
+	},
+}
 
 // DefaultDataDir is the default data directory to use for the databases and other
 // persistence requirements.

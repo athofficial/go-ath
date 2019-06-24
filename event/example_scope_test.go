@@ -1,4 +1,4 @@
-// Copyright 2017 The go-ethereum Authors
+// Copyright 2016 The go-ethereum Authors
 // This file is part of the go-ethereum library.
 //
 // The go-ethereum library is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kek-mex/go-atheios/event"
+	"github.com/ubiq/go-ubiq/event"
 )
 
 // This example demonstrates how SubscriptionScope can be used to control the lifetime of

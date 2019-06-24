@@ -25,23 +25,22 @@ import (
 	"io/ioutil"
 	"math/big"
 
-	"github.com/kek-mex/go-atheios/accounts/abi/bind"
-	"github.com/kek-mex/go-atheios/accounts/abi/bind/backends"
-	"github.com/kek-mex/go-atheios/contracts/chequebook/contract"
-	"github.com/kek-mex/go-atheios/core"
-	"github.com/kek-mex/go-atheios/crypto"
+	"github.com/ubiq/go-ubiq/accounts/abi/bind"
+	"github.com/ubiq/go-ubiq/accounts/abi/bind/backends"
+	"github.com/ubiq/go-ubiq/contracts/chequebook/contract"
+	"github.com/ubiq/go-ubiq/core"
+	"github.com/ubiq/go-ubiq/crypto"
 )
 
 var (
-	testKey, _  = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
-	testAccount = core.GenesisAccount{
-		Address: crypto.PubkeyToAddress(testKey.PublicKey),
-		Balance: big.NewInt(500000000000),
+	testKey, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
+	testAlloc  = core.GenesisAlloc{
+		crypto.PubkeyToAddress(testKey.PublicKey): {Balance: big.NewInt(500000000000)},
 	}
 )
 
 func main() {
-	backend := backends.NewSimulatedBackend(testAccount)
+	backend := backends.NewSimulatedBackend(testAlloc, uint64(100000000))
 	auth := bind.NewKeyedTransactor(testKey)
 
 	// Deploy the contract, get the code.

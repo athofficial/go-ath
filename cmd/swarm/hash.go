@@ -18,32 +18,41 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"log"
 	"os"
 
-	"github.com/kek-mex/go-atheios/swarm/storage"
+	"github.com/ubiq/go-ubiq/cmd/utils"
+	"github.com/ubiq/go-ubiq/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
+
+var hashCommand = cli.Command{
+	Action:             hash,
+	CustomHelpTemplate: helpTemplate,
+	Name:               "hash",
+	Usage:              "print the swarm hash of a file or directory",
+	ArgsUsage:          "<file>",
+	Description:        "Prints the swarm hash of file or directory",
+}
 
 func hash(ctx *cli.Context) {
 	args := ctx.Args()
 	if len(args) < 1 {
-		log.Fatal("Usage: swarm hash <file name>")
+		utils.Fatalf("Usage: swarm hash <file name>")
 	}
 	f, err := os.Open(args[0])
 	if err != nil {
-		fmt.Println("Error opening file " + args[1])
-		os.Exit(1)
+		utils.Fatalf("Error opening file " + args[1])
 	}
 	defer f.Close()
 
 	stat, _ := f.Stat()
-	chunker := storage.NewTreeChunker(storage.NewChunkerParams())
-	key, err := chunker.Split(f, stat.Size(), nil, nil, nil)
+	fileStore := storage.NewFileStore(&storage.FakeChunkStore{}, storage.NewFileStoreParams())
+	addr, _, err := fileStore.Store(context.TODO(), f, stat.Size(), false)
 	if err != nil {
-		log.Fatalf("%v\n", err)
+		utils.Fatalf("%v\n", err)
 	} else {
-		fmt.Printf("%v\n", key)
+		fmt.Printf("%v\n", addr)
 	}
 }

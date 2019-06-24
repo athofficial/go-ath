@@ -36,7 +36,7 @@ func TestCountValues(t *testing.T) {
 		{"C0", 1, nil},
 		{"01 02 03", 3, nil},
 		{"01 C406070809 02", 3, nil},
-		{"820101 820202 8403030303 04", 4, nil},
+		{"820101 820202 8403038803 04", 4, nil},
 
 		// size errors
 		{"8142", 0, ErrCanonSize},
@@ -96,6 +96,7 @@ func TestSplit(t *testing.T) {
 		{input: "F90055", err: ErrCanonSize, rest: "F90055"},
 		{input: "FA0002FFFF", err: ErrCanonSize, rest: "FA0002FFFF"},
 
+		{input: "81", err: ErrValueTooLarge, rest: "81"},
 		{input: "8501010101", err: ErrValueTooLarge, rest: "8501010101"},
 		{input: "C60607080902", err: ErrValueTooLarge, rest: "C60607080902"},
 

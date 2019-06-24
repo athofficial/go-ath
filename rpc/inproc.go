@@ -17,12 +17,11 @@
 package rpc
 
 import (
+	"context"
 	"net"
-
-	"golang.org/x/net/context"
 )
 
-// NewInProcClient attaches an in-process connection to the given RPC server.
+// DialInProc attaches an in-process connection to the given RPC server.
 func DialInProc(handler *Server) *Client {
 	initctx := context.Background()
 	c, _ := newClient(initctx, func(context.Context) (net.Conn, error) {

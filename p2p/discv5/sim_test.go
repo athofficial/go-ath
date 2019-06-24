@@ -28,7 +28,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-atheios/common"
+	"github.com/ubiq/go-ubiq/common"
 )
 
 // In this test, nodes try to randomly resolve each other.
@@ -65,10 +65,6 @@ func TestSimTopics(t *testing.T) {
 	if runWithPlaygroundTime(t) {
 		return
 	}
-
-	// glog.SetV(6)
-	// glog.SetToStderr(true)
-
 	sim := newSimulation()
 	bootnode := sim.launchNode(false)
 
@@ -158,10 +154,6 @@ func TestSimTopicHierarchy(t *testing.T) {
 	if runWithPlaygroundTime(t) {
 		return
 	}
-
-	// glog.SetV(6)
-	// glog.SetToStderr(true)
-
 	sim := newSimulation()
 	bootnode := sim.launchNode(false)
 
@@ -287,10 +279,10 @@ func (s *simulation) launchNode(log bool) *Network {
 	s.nodectr++
 	binary.BigEndian.PutUint32(ip, num)
 	ip[0] = 10
-	addr := &net.UDPAddr{IP: ip, Port: 30696}
+	addr := &net.UDPAddr{IP: ip, Port: 30388}
 
 	transport := &simTransport{joinTime: time.Now(), sender: id, senderAddr: addr, sim: s, priv: key}
-	net, err := newNetwork(transport, key.PublicKey, nil, "<no database>", nil)
+	net, err := newNetwork(transport, key.PublicKey, "<no database>", nil)
 	if err != nil {
 		panic("cannot launch new node: " + err.Error())
 	}
@@ -357,8 +349,8 @@ func (st *simTransport) sendPing(remote *Node, remoteAddr *net.UDPAddr, topics [
 		ev:         pingPacket,
 		data: &ping{
 			Version:    4,
-			From:       rpcEndpoint{IP: st.senderAddr.IP, UDP: uint16(st.senderAddr.Port), TCP: 30696},
-			To:         rpcEndpoint{IP: remoteAddr.IP, UDP: uint16(remoteAddr.Port), TCP: 30696},
+			From:       rpcEndpoint{IP: st.senderAddr.IP, UDP: uint16(st.senderAddr.Port), TCP: 30388},
+			To:         rpcEndpoint{IP: remoteAddr.IP, UDP: uint16(remoteAddr.Port), TCP: 30388},
 			Expiration: uint64(time.Now().Unix() + int64(expiration)),
 			Topics:     topics,
 		},
@@ -375,7 +367,7 @@ func (st *simTransport) sendPong(remote *Node, pingHash []byte) {
 		hash:       st.nextHash(),
 		ev:         pongPacket,
 		data: &pong{
-			To:         rpcEndpoint{IP: raddr.IP, UDP: uint16(raddr.Port), TCP: 30696},
+			To:         rpcEndpoint{IP: raddr.IP, UDP: uint16(raddr.Port), TCP: 30388},
 			ReplyTok:   pingHash,
 			Expiration: uint64(time.Now().Unix() + int64(expiration)),
 		},

@@ -21,8 +21,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-atheios/common"
-	"github.com/kek-mex/go-atheios/common/mclock"
+	"github.com/ubiq/go-ubiq/common"
+	"github.com/ubiq/go-ubiq/common/mclock"
 )
 
 func TestTopicRadius(t *testing.T) {
