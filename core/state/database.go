@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/trie"
 	lru "github.com/hashicorp/golang-lru"
 )
 

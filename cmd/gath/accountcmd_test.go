@@ -173,7 +173,7 @@ Fatal: Failed to unlock account f466859ead1932d743d622cb74fc058882e8648a (could 
 `)
 }
 
-// https://github.com/kek-mex/go-ath/issues/1785
+// https://github.com/athofficial/go-ath/issues/1785
 func TestUnlockFlagMultiIndex(t *testing.T) {
 	datadir := tmpDatadirWithKeystore(t)
 	gath := rungath(t,

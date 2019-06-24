@@ -21,7 +21,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/common/hexutil"
 )
 
 // Tests that data bitset encoding and decoding works and is bijective.

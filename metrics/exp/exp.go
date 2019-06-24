@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/kek-mex/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 type exp struct {

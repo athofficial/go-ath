@@ -42,7 +42,7 @@ import (
 	"fmt"
 	"hash"
 
-	ethcrypto "github.com/kek-mex/go-ath/crypto"
+	ethcrypto "github.com/athofficial/go-ath/crypto"
 )
 
 var (

@@ -30,9 +30,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
-	swarmapi "github.com/kek-mex/go-ath/swarm/api/client"
-	"github.com/kek-mex/go-ath/swarm/testutil"
+	"github.com/athofficial/go-ath/log"
+	swarmapi "github.com/athofficial/go-ath/swarm/api/client"
+	"github.com/athofficial/go-ath/swarm/testutil"
 	"github.com/mattn/go-colorable"
 )
 

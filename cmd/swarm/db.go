@@ -22,10 +22,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 

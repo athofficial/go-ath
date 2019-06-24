@@ -21,7 +21,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/kek-mex/go-ath/eth/tracers/internal/tracers"
+	"github.com/athofficial/go-ath/eth/tracers/internal/tracers"
 )
 
 // all contains all the built in JavaScript tracers by name.

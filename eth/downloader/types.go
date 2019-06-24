@@ -19,7 +19,7 @@ package downloader
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // peerDropFn is a callback type for dropping a peer detected as malicious.

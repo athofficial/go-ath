@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/kek-mex/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 // a regexp for extracting the unit from time.Duration.String

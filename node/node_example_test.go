@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // SampleService is a trivial network service that can be attached to a node for

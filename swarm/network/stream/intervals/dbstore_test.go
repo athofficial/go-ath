@@ -21,7 +21,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/state"
+	"github.com/athofficial/go-ath/swarm/state"
 )
 
 // TestDBStore tests basic functionality of DBStore.

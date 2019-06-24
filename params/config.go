@@ -21,7 +21,7 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // Genesis hashes to enforce below configs on.

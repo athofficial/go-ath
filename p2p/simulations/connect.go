@@ -20,7 +20,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/enode"
 )
 
 var (

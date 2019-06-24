@@ -19,10 +19,10 @@ package metrics
 import (
 	"time"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	gethmetrics "github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/metrics/influxdb"
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/cmd/utils"
+	gethmetrics "github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics/influxdb"
+	"github.com/athofficial/go-ath/swarm/log"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

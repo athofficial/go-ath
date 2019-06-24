@@ -19,7 +19,7 @@ package vm
 import (
 	"testing"
 
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 func TestJumpDestAnalysis(t *testing.T) {

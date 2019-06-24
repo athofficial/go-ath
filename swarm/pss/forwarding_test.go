@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/protocols"
-	"github.com/kek-mex/go-ath/swarm/network"
-	"github.com/kek-mex/go-ath/swarm/pot"
-	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	"github.com/athofficial/go-ath/swarm/network"
+	"github.com/athofficial/go-ath/swarm/pot"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 type testCase struct {

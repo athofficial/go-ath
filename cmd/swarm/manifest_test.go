@@ -24,9 +24,9 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/api"
-	swarm "github.com/kek-mex/go-ath/swarm/api/client"
-	swarmhttp "github.com/kek-mex/go-ath/swarm/api/http"
+	"github.com/athofficial/go-ath/swarm/api"
+	swarm "github.com/athofficial/go-ath/swarm/api/client"
+	swarmhttp "github.com/athofficial/go-ath/swarm/api/http"
 )
 
 // TestManifestChange tests manifest add, update and remove

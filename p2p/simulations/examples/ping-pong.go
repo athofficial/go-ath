@@ -25,13 +25,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/simulations"
-	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/simulations"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 var adapterType = flag.String("adapter", "sim", `node adapter to use (one of "sim", "exec" or "docker")`)

@@ -21,8 +21,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 var indices = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "[17]"}

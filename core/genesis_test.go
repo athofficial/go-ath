@@ -22,12 +22,12 @@ import (
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/consensus/ubqhash"
-	"github.com/kek-mex/go-ath/core/rawdb"
-	"github.com/kek-mex/go-ath/core/vm"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/params"
 )
 
 func TestDefaultGenesisBlock(t *testing.T) {

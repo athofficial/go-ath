@@ -5,10 +5,10 @@ import (
 	"math/big"
 	"testing"
 
-	ethereum "github.com/kek-mex/go-ath"
-	"github.com/kek-mex/go-ath/accounts/abi"
-	"github.com/kek-mex/go-ath/accounts/abi/bind"
-	"github.com/kek-mex/go-ath/common"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common"
 )
 
 type mockCaller struct {

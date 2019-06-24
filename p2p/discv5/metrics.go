@@ -1,6 +1,6 @@
 package discv5
 
-import "github.com/kek-mex/go-ath/metrics"
+import "github.com/athofficial/go-ath/metrics"
 
 var (
 	ingressTrafficMeter = metrics.NewRegisteredMeter("discv5/InboundTraffic", nil)

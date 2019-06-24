@@ -21,9 +21,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/kek-mex/go-ath/internal/ethapi"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/internal/ethapi"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 type StdIOUI struct {

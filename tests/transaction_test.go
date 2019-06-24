@@ -20,7 +20,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/params"
 )
 
 func TestTransaction(t *testing.T) {

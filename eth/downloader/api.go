@@ -20,9 +20,9 @@ import (
 	"context"
 	"sync"
 
-	ethereum "github.com/kek-mex/go-ath"
-	"github.com/kek-mex/go-ath/event"
-	"github.com/kek-mex/go-ath/rpc"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // PublicDownloaderAPI provides an API which gives information about the current synchronisation status.

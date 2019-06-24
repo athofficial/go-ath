@@ -22,7 +22,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/kek-mex/go-ath/core/asm"
+	"github.com/athofficial/go-ath/core/asm"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

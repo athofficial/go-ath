@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // deployExplorer creates a new block explorer based on some user input.

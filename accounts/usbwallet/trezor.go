@@ -27,12 +27,12 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/accounts/usbwallet/internal/trezor"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/accounts/usbwallet/internal/trezor"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/log"
 	"github.com/golang/protobuf/proto"
 )
 

@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/params"
 )
 
 const (

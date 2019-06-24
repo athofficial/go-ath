@@ -16,7 +16,7 @@
 
 package feed
 
-import "github.com/kek-mex/go-ath/common/hexutil"
+import "github.com/athofficial/go-ath/common/hexutil"
 
 type binarySerializer interface {
 	binaryPut(serializedData []byte) error

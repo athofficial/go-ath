@@ -26,7 +26,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 var (

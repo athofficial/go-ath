@@ -22,7 +22,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 func TestHexOrDecimal256(t *testing.T) {

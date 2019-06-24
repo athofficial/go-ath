@@ -19,7 +19,7 @@ package network
 import (
 	"testing"
 
-	p2ptest "github.com/kek-mex/go-ath/p2p/testing"
+	p2ptest "github.com/athofficial/go-ath/p2p/testing"
 )
 
 /***

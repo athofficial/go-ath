@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 //TestReporter tests that the metrics being collected for p2p accounting

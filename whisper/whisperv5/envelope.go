@@ -26,11 +26,11 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/math"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/crypto/ecies"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/crypto/ecies"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // Envelope represents a clear-text data packet to transmit through the Whisper

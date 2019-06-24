@@ -19,7 +19,7 @@ package trie
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // MissingNodeError is returned by the trie functions (TryGet, TryUpdate, TryDelete)

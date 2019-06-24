@@ -23,10 +23,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/rlp"
-	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/rlp"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 // A Nonce is a 64-bit hash which proves (combined with the mix-hash) that

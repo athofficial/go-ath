@@ -17,7 +17,7 @@
 package shed
 
 import (
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/rlp"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

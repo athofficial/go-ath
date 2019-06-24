@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // Hash represents the 32 byte Keccak256 hash of arbitrary data.

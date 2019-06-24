@@ -20,7 +20,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/params"
 )
 
 type (

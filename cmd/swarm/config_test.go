@@ -27,10 +27,10 @@ import (
 	"time"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/rpc"
-	"github.com/kek-mex/go-ath/swarm"
-	"github.com/kek-mex/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm"
+	"github.com/athofficial/go-ath/swarm/api"
 )
 
 func TestConfigDump(t *testing.T) {

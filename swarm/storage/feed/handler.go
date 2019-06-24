@@ -24,10 +24,10 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
+	"github.com/athofficial/go-ath/swarm/storage/feed/lookup"
 
-	"github.com/kek-mex/go-ath/swarm/log"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 type Handler struct {

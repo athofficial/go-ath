@@ -22,8 +22,8 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	swarm "github.com/kek-mex/go-ath/swarm/api/client"
+	"github.com/athofficial/go-ath/cmd/utils"
+	swarm "github.com/athofficial/go-ath/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

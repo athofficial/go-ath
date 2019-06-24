@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/kek-mex/go-ath/accounts/keystore"
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/crypto"
 	"gopkg.in/urfave/cli.v1"
 )
 

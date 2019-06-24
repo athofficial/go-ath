@@ -26,13 +26,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/event"
-	"github.com/kek-mex/go-ath/internal/debug"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/internal/debug"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
 	"github.com/prometheus/prometheus/util/flock"
 )
 

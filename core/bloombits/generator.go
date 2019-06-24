@@ -19,7 +19,7 @@ package bloombits
 import (
 	"errors"
 
-	"github.com/kek-mex/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 var (

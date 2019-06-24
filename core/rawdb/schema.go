@@ -20,8 +20,8 @@ package rawdb
 import (
 	"encoding/binary"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/metrics"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 // The fields below define the low level database schema prefixing.

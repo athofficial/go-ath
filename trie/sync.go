@@ -20,9 +20,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/prque"
-	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/prque"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 // ErrNotRequested is returned by the trie sync when it's requested to process a

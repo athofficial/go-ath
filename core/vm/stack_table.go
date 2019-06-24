@@ -19,7 +19,7 @@ package vm
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/params"
 )
 
 func makeStackFunc(pop, push int) stackValidationFunc {

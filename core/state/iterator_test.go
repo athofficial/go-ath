@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 // Tests that the node iterator indeed walks over the entire database contents.

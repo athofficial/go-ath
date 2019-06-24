@@ -17,9 +17,9 @@
 package core
 
 import (
-	"github.com/kek-mex/go-ath/core/state"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/core/vm"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/vm"
 )
 
 // Validator is an interface which defines the standard for block validation. It

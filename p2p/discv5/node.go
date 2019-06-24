@@ -30,8 +30,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 // Node represents a host on the network.

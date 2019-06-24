@@ -21,12 +21,12 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/rlp"
-	"github.com/kek-mex/go-ath/swarm/storage"
-	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/swarm/storage"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 const (

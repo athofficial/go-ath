@@ -34,8 +34,8 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 type allocItem struct{ Addr, Balance *big.Int }

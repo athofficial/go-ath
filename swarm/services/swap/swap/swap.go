@@ -22,7 +22,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 // SwAP Swarm Accounting Protocol with

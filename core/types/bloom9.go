@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 type bytesBacked interface {

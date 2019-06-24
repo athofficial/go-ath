@@ -28,9 +28,9 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/kek-mex/go-ath/internal/jsre"
-	"github.com/kek-mex/go-ath/internal/web3ext"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/internal/jsre"
+	"github.com/athofficial/go-ath/internal/web3ext"
+	"github.com/athofficial/go-ath/rpc"
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
 	"github.com/robertkrimen/otto"

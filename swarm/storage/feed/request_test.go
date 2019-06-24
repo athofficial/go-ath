@@ -24,9 +24,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/swarm/storage"
-	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/feed/lookup"
 )
 
 func areEqualJSON(s1, s2 string) (bool, error) {

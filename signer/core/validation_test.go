@@ -21,8 +21,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
 )
 
 func hexAddr(a string) common.Address { return common.BytesToAddress(common.FromHex(a)) }

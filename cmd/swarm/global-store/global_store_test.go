@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/rpc"
-	mockRPC "github.com/kek-mex/go-ath/swarm/storage/mock/rpc"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rpc"
+	mockRPC "github.com/athofficial/go-ath/swarm/storage/mock/rpc"
 )
 
 // TestHTTP_InMemory tests in-memory global store that exposes

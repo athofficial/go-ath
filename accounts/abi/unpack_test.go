@@ -26,7 +26,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 	"github.com/stretchr/testify/require"
 )
 

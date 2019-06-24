@@ -19,7 +19,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // ensureVirtualHost checks whether a reverse-proxy is running on the specified

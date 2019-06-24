@@ -17,9 +17,9 @@
 package localstore
 
 import (
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/swarm/shed"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/shed"
+	"github.com/athofficial/go-ath/swarm/storage"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

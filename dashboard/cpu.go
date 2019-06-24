@@ -21,7 +21,7 @@ package dashboard
 import (
 	"syscall"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // getProcessCPUTime retrieves the process' CPU time since program startup.

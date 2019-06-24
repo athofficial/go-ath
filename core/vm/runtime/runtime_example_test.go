@@ -19,8 +19,8 @@ package runtime_test
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/vm/runtime"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/vm/runtime"
 )
 
 func ExampleExecute() {

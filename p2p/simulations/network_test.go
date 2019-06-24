@@ -26,10 +26,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
 )
 
 // Tests that a created snapshot with a minimal service only contains the expected connections

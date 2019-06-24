@@ -24,12 +24,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/rlp"
 
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
-	p2ptest "github.com/kek-mex/go-ath/p2p/testing"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
+	p2ptest "github.com/athofficial/go-ath/p2p/testing"
 )
 
 // handshake message type

@@ -26,10 +26,10 @@ package rpc
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/rpc"
-	"github.com/kek-mex/go-ath/swarm/log"
-	"github.com/kek-mex/go-ath/swarm/storage/mock"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
 )
 
 // GlobalStore is rpc.Client that connects to a centralized mock store.

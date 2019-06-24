@@ -20,7 +20,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/kek-mex/go-ath/core/asm"
+	"github.com/athofficial/go-ath/core/asm"
 )
 
 func Compile(fn string, src []byte, debug bool) (string, error) {

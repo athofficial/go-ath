@@ -28,11 +28,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/swarm/sctx"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/sctx"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 func init() {

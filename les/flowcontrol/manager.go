@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/common/mclock"
 )
 
 const rcConst = 1000000

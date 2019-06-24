@@ -19,7 +19,7 @@ package event_test
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/event"
+	"github.com/athofficial/go-ath/event"
 )
 
 func ExampleNewSubscription() {

@@ -21,10 +21,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/trie"
 )
 
 // testAccount is the data associated with an account used by the state tests.

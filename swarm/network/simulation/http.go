@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/p2p/simulations"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/simulations"
 )
 
 // Package defaults.

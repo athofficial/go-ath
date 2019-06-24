@@ -22,7 +22,7 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 

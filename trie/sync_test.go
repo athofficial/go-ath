@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 // makeTestTrie create a sample test trie to test node-wise reconstruction.

@@ -25,7 +25,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // ethstatsDockerfile is the Dockerfile required to build an ethstats backend

@@ -22,13 +22,13 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/core/vm"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/params"
 )
 
 // testerAccountPool is a pool to maintain currently active tester accounts,
@@ -363,7 +363,7 @@ func TestClique(t *testing.T) {
 			failure: errRecentlySigned,
 		}, {
 			// Recent signatures should not reset on checkpoint blocks imported in a new
-			// batch (https://github.com/kek-mex/go-ath/issues/17593). Whilst this
+			// batch (https://github.com/athofficial/go-ath/issues/17593). Whilst this
 			// seems overly specific and weird, it was a Rinkeby consensus split.
 			epoch:   3,
 			signers: []string{"A", "B", "C"},

@@ -21,13 +21,13 @@ import (
 	"os"
 	"sort"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	gethmetrics "github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/metrics/influxdb"
-	swarmmetrics "github.com/kek-mex/go-ath/swarm/metrics"
-	"github.com/kek-mex/go-ath/swarm/tracing"
+	"github.com/athofficial/go-ath/cmd/utils"
+	gethmetrics "github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics/influxdb"
+	swarmmetrics "github.com/athofficial/go-ath/swarm/metrics"
+	"github.com/athofficial/go-ath/swarm/tracing"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

@@ -21,8 +21,8 @@ package gath
 import (
 	"errors"
 
-	ethereum "github.com/kek-mex/go-ath"
-	"github.com/kek-mex/go-ath/common"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/common"
 )
 
 // Subscription represents an event subscription where events are

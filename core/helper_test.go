@@ -19,9 +19,9 @@ package core
 import (
 	"container/list"
 
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/event"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/event"
 )
 
 // Implement our EthTest Manager

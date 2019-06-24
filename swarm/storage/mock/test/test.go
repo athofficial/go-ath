@@ -25,9 +25,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/swarm/storage"
-	"github.com/kek-mex/go-ath/swarm/storage/mock"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
 )
 
 // MockStore creates NodeStore instances from provided GlobalStorer,

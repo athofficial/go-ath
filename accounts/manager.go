@@ -21,7 +21,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/kek-mex/go-ath/event"
+	"github.com/athofficial/go-ath/event"
 )
 
 // Manager is an overarching account manager that can communicate with various

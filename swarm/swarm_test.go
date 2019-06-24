@@ -28,10 +28,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/rpc"
-	"github.com/kek-mex/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/api"
 )
 
 // TestNewSwarm validates Swarm fields in repsect to the provided configuration.

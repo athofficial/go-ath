@@ -25,14 +25,14 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/storage"
-	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/feed/lookup"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/swarm/api"
-	swarmhttp "github.com/kek-mex/go-ath/swarm/api/http"
-	"github.com/kek-mex/go-ath/swarm/storage/feed"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/swarm/api"
+	swarmhttp "github.com/athofficial/go-ath/swarm/api/http"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
 )
 
 func serverFunc(api *api.API) swarmhttp.TestServer {

@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
-	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 const powRequirement = 0.00001

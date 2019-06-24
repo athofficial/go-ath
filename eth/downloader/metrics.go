@@ -19,7 +19,7 @@
 package downloader
 
 import (
-	"github.com/kek-mex/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 var (

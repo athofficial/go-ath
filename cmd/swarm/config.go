@@ -29,13 +29,13 @@ import (
 
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/node"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
 	"github.com/naoina/toml"
 
-	bzzapi "github.com/kek-mex/go-ath/swarm/api"
+	bzzapi "github.com/athofficial/go-ath/swarm/api"
 )
 
 var (
@@ -97,7 +97,7 @@ var tomlSettings = toml.Config{
 	MissingField: func(rt reflect.Type, field string) error {
 		link := ""
 		if unicode.IsUpper(rune(rt.Name()[0])) && rt.PkgPath() != "main" {
-			link = fmt.Sprintf(", check github.com/kek-mex/go-ath/swarm/api/config.go for available fields")
+			link = fmt.Sprintf(", check github.com/athofficial/go-ath/swarm/api/config.go for available fields")
 		}
 		return fmt.Errorf("field '%s' is not defined in %s%s", field, rt.String(), link)
 	},

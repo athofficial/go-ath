@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 // Method represents a callable given a `Name` and whether the method is a constant.

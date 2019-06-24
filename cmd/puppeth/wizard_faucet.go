@@ -20,8 +20,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/kek-mex/go-ath/accounts/keystore"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/log"
 )
 
 // deployFaucet queries the user for various input on deploying a faucet, after

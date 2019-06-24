@@ -19,8 +19,8 @@ package les
 import (
 	"time"
 
-	"github.com/kek-mex/go-ath/common/bitutil"
-	"github.com/kek-mex/go-ath/light"
+	"github.com/athofficial/go-ath/common/bitutil"
+	"github.com/athofficial/go-ath/light"
 )
 
 const (

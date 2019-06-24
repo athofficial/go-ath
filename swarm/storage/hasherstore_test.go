@@ -21,9 +21,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/storage/encryption"
+	"github.com/athofficial/go-ath/swarm/storage/encryption"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 func TestHasherStore(t *testing.T) {

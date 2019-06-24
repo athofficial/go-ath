@@ -21,7 +21,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // Entry is implemented by known node record entry types.

@@ -20,9 +20,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/kek-mex/go-ath/core/rawdb"
-	"github.com/kek-mex/go-ath/eth/downloader"
-	"github.com/kek-mex/go-ath/light"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/light"
 )
 
 // syncer is responsible for periodically synchronising with the network, both

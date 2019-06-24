@@ -26,8 +26,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
 )
 
 // faucetDockerfile is the Dockerfile required to build a faucet container to

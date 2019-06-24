@@ -17,8 +17,8 @@
 package core
 
 import (
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/types"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // NewTxsEvent is posted when a batch of transactions enter the transaction pool.

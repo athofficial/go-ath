@@ -21,11 +21,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/consensus/ubqhash"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/core/vm"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/params"
 )
 
 // Tests that simple header verification works, for both good and bad blocks.

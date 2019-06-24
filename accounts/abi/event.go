@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 // Event is an event potentially triggered by the EVM's LOG mechanism. The Event

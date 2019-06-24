@@ -25,9 +25,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/swarm/bmt"
-	ch "github.com/kek-mex/go-ath/swarm/chunk"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/bmt"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
 	"golang.org/x/crypto/sha3"
 )
 

@@ -29,8 +29,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/log"
 )
 
 type testFile struct {

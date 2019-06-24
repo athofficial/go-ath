@@ -26,8 +26,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm"
-	"github.com/kek-mex/go-ath/swarm/testutil"
+	"github.com/athofficial/go-ath/swarm"
+	"github.com/athofficial/go-ath/swarm/testutil"
 )
 
 // TestCLISwarmExportImport perform the following test:

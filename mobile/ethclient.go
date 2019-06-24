@@ -21,8 +21,8 @@ package gath
 import (
 	"math/big"
 
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/ethclient"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/ethclient"
 )
 
 // EthereumClient provides access to the Ethereum APIs.

@@ -26,22 +26,22 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/accounts/keystore"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/common/math"
-	"github.com/kek-mex/go-ath/consensus/ubqhash"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/core/rawdb"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/core/vm"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/params"
-	"github.com/kek-mex/go-ath/rlp"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/params"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/rpc"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/util"
 )
@@ -429,7 +429,7 @@ func signHash(data []byte) []byte {
 //
 // The key used to calculate the signature is decrypted with the given password.
 //
-// https://github.com/kek-mex/go-ath/wiki/Management-APIs#personal_sign
+// https://github.com/athofficial/go-ath/wiki/Management-APIs#personal_sign
 func (s *PrivateAccountAPI) Sign(ctx context.Context, data hexutil.Bytes, addr common.Address, passwd string) (hexutil.Bytes, error) {
 	// Look up the wallet containing the requested signer
 	account := accounts.Account{Address: addr}
@@ -457,7 +457,7 @@ func (s *PrivateAccountAPI) Sign(ctx context.Context, data hexutil.Bytes, addr c
 // Note, the signature must conform to the secp256k1 curve R, S and V values, where
 // the V value must be 27 or 28 for legacy reasons.
 //
-// https://github.com/kek-mex/go-ath/wiki/Management-APIs#personal_ecRecover
+// https://github.com/athofficial/go-ath/wiki/Management-APIs#personal_ecRecover
 func (s *PrivateAccountAPI) EcRecover(ctx context.Context, data, sig hexutil.Bytes) (common.Address, error) {
 	if len(sig) != 65 {
 		return common.Address{}, fmt.Errorf("signature must be 65 bytes long")

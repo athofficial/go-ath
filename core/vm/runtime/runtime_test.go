@@ -21,12 +21,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kek-mex/go-ath/accounts/abi"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/state"
-	"github.com/kek-mex/go-ath/core/vm"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/params"
 )
 
 func TestDefaults(t *testing.T) {

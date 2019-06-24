@@ -23,9 +23,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/p2p/enr"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p/enr"
+	"github.com/athofficial/go-ath/rlp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

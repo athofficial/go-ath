@@ -33,11 +33,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/event"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/event"
 )
 
 var (

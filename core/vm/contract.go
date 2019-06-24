@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // ContractRef is a reference to the contract's backing object

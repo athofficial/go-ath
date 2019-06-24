@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/log"
 )
 
 // WaitMined waits for tx to be mined on the blockchain.

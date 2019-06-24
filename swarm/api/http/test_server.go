@@ -23,9 +23,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/api"
-	"github.com/kek-mex/go-ath/swarm/storage"
-	"github.com/kek-mex/go-ath/swarm/storage/feed"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
 )
 
 type TestServer interface {

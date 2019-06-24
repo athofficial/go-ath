@@ -21,7 +21,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/kek-mex/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // Tests that batched bloom bits are correctly rotated from the input bloom

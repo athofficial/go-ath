@@ -26,8 +26,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/common/mclock"
-	"github.com/kek-mex/go-ath/light"
+	"github.com/athofficial/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/light"
 )
 
 var (

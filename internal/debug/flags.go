@@ -24,9 +24,9 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/metrics/exp"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics/exp"
 	"github.com/fjl/memsize/memsizeui"
 	colorable "github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"

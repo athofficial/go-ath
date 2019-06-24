@@ -19,11 +19,11 @@ package node
 import (
 	"reflect"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/event"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // ServiceContext is a collection of service independent options inherited from

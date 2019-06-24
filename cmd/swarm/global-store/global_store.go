@@ -21,11 +21,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/rpc"
-	"github.com/kek-mex/go-ath/swarm/storage/mock"
-	"github.com/kek-mex/go-ath/swarm/storage/mock/db"
-	"github.com/kek-mex/go-ath/swarm/storage/mock/mem"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
+	"github.com/athofficial/go-ath/swarm/storage/mock/db"
+	"github.com/athofficial/go-ath/swarm/storage/mock/mem"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

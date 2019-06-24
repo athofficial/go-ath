@@ -21,7 +21,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 const (

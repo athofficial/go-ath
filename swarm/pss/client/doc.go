@@ -28,11 +28,11 @@
 //  	"context"
 //  	"fmt"
 //  	"os"
-//  	pss "github.com/kek-mex/go-ath/swarm/pss/client"
-//  	"github.com/kek-mex/go-ath/p2p/protocols"
-//  	"github.com/kek-mex/go-ath/p2p"
-//  	"github.com/kek-mex/go-ath/swarm/pot"
-//  	"github.com/kek-mex/go-ath/swarm/log"
+//  	pss "github.com/athofficial/go-ath/swarm/pss/client"
+//  	"github.com/athofficial/go-ath/p2p/protocols"
+//  	"github.com/athofficial/go-ath/p2p"
+//  	"github.com/athofficial/go-ath/swarm/pot"
+//  	"github.com/athofficial/go-ath/swarm/log"
 //  )
 //
 //  type FooMsg struct {

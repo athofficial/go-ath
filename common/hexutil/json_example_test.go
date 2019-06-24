@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/common/hexutil"
 )
 
 type MyType [5]byte

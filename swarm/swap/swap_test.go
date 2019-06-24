@@ -25,11 +25,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/protocols"
-	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
-	"github.com/kek-mex/go-ath/swarm/state"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
+	"github.com/athofficial/go-ath/swarm/state"
 	colorable "github.com/mattn/go-colorable"
 )
 

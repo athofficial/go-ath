@@ -19,8 +19,8 @@
 package gath
 
 import (
-	"github.com/kek-mex/go-ath/whisper/shhclient"
-	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
+	"github.com/athofficial/go-ath/whisper/shhclient"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 // WhisperClient provides access to the Ethereum APIs.

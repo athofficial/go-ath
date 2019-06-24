@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/swarm/log"
-	bv "github.com/kek-mex/go-ath/swarm/network/bitvector"
-	"github.com/kek-mex/go-ath/swarm/spancontext"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/log"
+	bv "github.com/athofficial/go-ath/swarm/network/bitvector"
+	"github.com/athofficial/go-ath/swarm/spancontext"
+	"github.com/athofficial/go-ath/swarm/storage"
 	"github.com/opentracing/opentracing-go"
 )
 

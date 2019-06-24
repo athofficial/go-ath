@@ -24,8 +24,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kek-mex/go-ath/accounts/abi/bind"
-	"github.com/kek-mex/go-ath/common/compiler"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common/compiler"
 )
 
 var (

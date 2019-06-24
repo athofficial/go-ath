@@ -21,9 +21,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common/bitutil"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/common/bitutil"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 // TopicLength establishes the max length of a topic string

@@ -37,11 +37,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/swarm/api"
-	"github.com/kek-mex/go-ath/swarm/spancontext"
-	"github.com/kek-mex/go-ath/swarm/storage/feed"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/spancontext"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
 	"github.com/pborman/uuid"
 )
 

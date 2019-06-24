@@ -22,7 +22,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // A BigInt represents a signed multi-precision integer.

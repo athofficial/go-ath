@@ -20,14 +20,14 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/consensus"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus"
 
-	"github.com/kek-mex/go-ath/core/state"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/core/vm"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/params"
 )
 
 // BlockGen creates blocks for testing.

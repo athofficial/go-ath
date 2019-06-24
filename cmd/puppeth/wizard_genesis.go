@@ -29,10 +29,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/params"
 )
 
 // makeGenesis creates a new genesis struct based on some user input.

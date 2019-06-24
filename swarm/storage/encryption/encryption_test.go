@@ -20,9 +20,9 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/swarm/testutil"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/swarm/testutil"
 	"golang.org/x/crypto/sha3"
 )
 

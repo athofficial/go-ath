@@ -24,10 +24,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/swarm/log"
-	"github.com/kek-mex/go-ath/swarm/pot"
-	sv "github.com/kek-mex/go-ath/swarm/version"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/pot"
+	sv "github.com/athofficial/go-ath/swarm/version"
 )
 
 /*

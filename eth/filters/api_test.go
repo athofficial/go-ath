@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 func TestUnmarshalJSONNewFilterArgs(t *testing.T) {

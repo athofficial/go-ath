@@ -21,7 +21,7 @@ package gath
 import (
 	"errors"
 
-	"github.com/kek-mex/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p"
 )
 
 // NodeInfo represents pi short summary of the information known about the host.

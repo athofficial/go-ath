@@ -19,7 +19,7 @@ package protocols
 import (
 	"time"
 
-	"github.com/kek-mex/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 // define some metrics

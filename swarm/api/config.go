@@ -23,16 +23,16 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/contracts/ens"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/swarm/log"
-	"github.com/kek-mex/go-ath/swarm/network"
-	"github.com/kek-mex/go-ath/swarm/pss"
-	"github.com/kek-mex/go-ath/swarm/services/swap"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/contracts/ens"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/network"
+	"github.com/athofficial/go-ath/swarm/pss"
+	"github.com/athofficial/go-ath/swarm/services/swap"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 const (

@@ -25,7 +25,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/internal/build"
+	"github.com/athofficial/go-ath/internal/build"
 )
 
 // androidTestClass is a Java class to do some lightweight tests against the Android
@@ -207,7 +207,7 @@ func TestAndroid(t *testing.T) {
 		}
 	}
 	// Generate the mobile bindings for gath and add the tester class
-	gobind := exec.Command("gomobile", "bind", "-javapkg", "org.ubiq", "github.com/kek-mex/go-ath/mobile")
+	gobind := exec.Command("gomobile", "bind", "-javapkg", "org.ubiq", "github.com/athofficial/go-ath/mobile")
 	if output, err := gobind.CombinedOutput(); err != nil {
 		t.Logf("%s", output)
 		t.Fatalf("failed to run gomobile bind: %v", err)

@@ -17,10 +17,10 @@
 package clique
 
 import (
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/consensus"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // API is a user facing RPC API to allow controlling the signer and voting

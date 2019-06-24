@@ -23,10 +23,10 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/kek-mex/go-ath/core/state"
-	"github.com/kek-mex/go-ath/core/vm"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/tests"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/tests"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

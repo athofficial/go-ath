@@ -20,7 +20,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/api"
 )
 
 const (

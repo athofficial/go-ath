@@ -31,12 +31,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/crypto/ecies"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/swarm/api"
-	swarmapi "github.com/kek-mex/go-ath/swarm/api/client"
-	"github.com/kek-mex/go-ath/swarm/testutil"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/crypto/ecies"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/api"
+	swarmapi "github.com/athofficial/go-ath/swarm/api/client"
+	"github.com/athofficial/go-ath/swarm/testutil"
 	"golang.org/x/crypto/sha3"
 )
 

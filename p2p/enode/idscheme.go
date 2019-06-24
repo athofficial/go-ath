@@ -21,10 +21,10 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/kek-mex/go-ath/common/math"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/p2p/enr"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p/enr"
+	"github.com/athofficial/go-ath/rlp"
 	"golang.org/x/crypto/sha3"
 )
 

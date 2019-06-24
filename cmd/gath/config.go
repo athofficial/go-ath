@@ -27,12 +27,12 @@ import (
 
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/dashboard"
-	"github.com/kek-mex/go-ath/eth"
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/params"
-	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/dashboard"
+	"github.com/athofficial/go-ath/eth"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/params"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 	"github.com/naoina/toml"
 )
 

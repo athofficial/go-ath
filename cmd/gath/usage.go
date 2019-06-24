@@ -24,8 +24,8 @@ import (
 
 	"strings"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/internal/debug"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/internal/debug"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

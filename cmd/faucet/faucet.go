@@ -41,23 +41,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/accounts/keystore"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/eth"
-	"github.com/kek-mex/go-ath/eth/downloader"
-	"github.com/kek-mex/go-ath/ethclient"
-	"github.com/kek-mex/go-ath/ethstats"
-	"github.com/kek-mex/go-ath/les"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/discv5"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/nat"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/eth"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/ethclient"
+	"github.com/athofficial/go-ath/ethstats"
+	"github.com/athofficial/go-ath/les"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/discv5"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/params"
 	"golang.org/x/net/websocket"
 )
 
@@ -449,7 +449,7 @@ func (f *faucet) apiHandler(conn *websocket.Conn) {
 		case *noauthFlag:
 			username, avatar, address, err = authNoAuth(msg.URL)
 		default:
-			err = errors.New("Something funky happened, please open an issue at https://github.com/kek-mex/go-ath/issues")
+			err = errors.New("Something funky happened, please open an issue at https://github.com/athofficial/go-ath/issues")
 		}
 		if err != nil {
 			if err = sendError(conn, err); err != nil {

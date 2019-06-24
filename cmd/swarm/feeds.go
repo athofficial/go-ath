@@ -21,13 +21,13 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/crypto"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	swarm "github.com/kek-mex/go-ath/swarm/api/client"
-	"github.com/kek-mex/go-ath/swarm/storage/feed"
+	"github.com/athofficial/go-ath/cmd/utils"
+	swarm "github.com/athofficial/go-ath/swarm/api/client"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
 	"gopkg.in/urfave/cli.v1"
 )
 

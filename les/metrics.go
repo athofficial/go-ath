@@ -17,8 +17,8 @@
 package les
 
 import (
-	"github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/p2p"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/p2p"
 )
 
 var (

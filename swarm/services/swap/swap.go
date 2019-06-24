@@ -27,14 +27,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/accounts/abi/bind"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/contracts/chequebook"
-	"github.com/kek-mex/go-ath/contracts/chequebook/contract"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/swarm/log"
-	"github.com/kek-mex/go-ath/swarm/services/swap/swap"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/contracts/chequebook"
+	"github.com/athofficial/go-ath/contracts/chequebook/contract"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/services/swap/swap"
 )
 
 // SwAP       Swarm Accounting Protocol with

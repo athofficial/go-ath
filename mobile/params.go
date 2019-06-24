@@ -21,9 +21,9 @@ package gath
 import (
 	"encoding/json"
 
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/p2p/discv5"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/p2p/discv5"
+	"github.com/athofficial/go-ath/params"
 )
 
 // MainnetGenesis returns the JSON spec to use for the main Ubiq network. It

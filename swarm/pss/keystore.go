@@ -22,11 +22,11 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/swarm/log"
-	whisper "github.com/kek-mex/go-ath/whisper/whisperv6"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/log"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 type KeyStore struct {

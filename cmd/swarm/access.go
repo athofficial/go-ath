@@ -23,9 +23,9 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/swarm/api"
-	"github.com/kek-mex/go-ath/swarm/api/client"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

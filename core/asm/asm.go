@@ -21,7 +21,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/kek-mex/go-ath/core/vm"
+	"github.com/athofficial/go-ath/core/vm"
 )
 
 // Iterator for disassembled EVM instructions

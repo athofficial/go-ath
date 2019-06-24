@@ -23,9 +23,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/netutil"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/netutil"
 )
 
 const (

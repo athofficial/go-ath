@@ -23,10 +23,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/swarm/shed"
-	"github.com/kek-mex/go-ath/swarm/storage"
-	"github.com/kek-mex/go-ath/swarm/storage/mock"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/shed"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
 )
 
 var (

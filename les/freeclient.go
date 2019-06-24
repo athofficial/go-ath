@@ -23,11 +23,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/common/mclock"
-	"github.com/kek-mex/go-ath/common/prque"
-	"github.com/kek-mex/go-ath/ethdb"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/common/prque"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // freeClientPool implements a client database that limits the connection time

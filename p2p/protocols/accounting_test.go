@@ -19,9 +19,9 @@ package protocols
 import (
 	"testing"
 
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 //dummy Balance implementation

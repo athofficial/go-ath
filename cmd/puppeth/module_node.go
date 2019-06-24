@@ -26,8 +26,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
 )
 
 // nodeDockerfile is the Dockerfile required to run an Ethereum node.

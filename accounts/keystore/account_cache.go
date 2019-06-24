@@ -28,9 +28,9 @@ import (
 	"time"
 
 	mapset "github.com/deckarep/golang-set"
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
 )
 
 // Minimum amount of time between cache reloads. This limit applies if the platform does

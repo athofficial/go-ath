@@ -24,10 +24,10 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/console"
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/console"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -43,7 +43,7 @@ var (
 		Description: `
 The gath console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/kek-mex/go-ath/wiki/JavaScript-Console.`,
+See https://github.com/athofficial/go-ath/wiki/JavaScript-Console.`,
 	}
 
 	attachCommand = cli.Command{
@@ -56,7 +56,7 @@ See https://github.com/kek-mex/go-ath/wiki/JavaScript-Console.`,
 		Description: `
 The gath console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/kek-mex/go-ath/wiki/JavaScript-Console.
+See https://github.com/athofficial/go-ath/wiki/JavaScript-Console.
 This command allows to open a console on a running gath node.`,
 	}
 
@@ -69,7 +69,7 @@ This command allows to open a console on a running gath node.`,
 		Category:  "CONSOLE COMMANDS",
 		Description: `
 The JavaScript VM exposes a node admin interface as well as the Ðapp
-JavaScript API. See https://github.com/kek-mex/go-ath/wiki/JavaScript-Console`,
+JavaScript API. See https://github.com/athofficial/go-ath/wiki/JavaScript-Console`,
 	}
 )
 

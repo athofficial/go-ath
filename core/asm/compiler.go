@@ -22,8 +22,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kek-mex/go-ath/common/math"
-	"github.com/kek-mex/go-ath/core/vm"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/core/vm"
 )
 
 // Compiler contains information about the parsed source

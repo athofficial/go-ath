@@ -40,7 +40,7 @@ import (
 	"io"
 	"sort"
 
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 const SizeLimit = 300 // maximum encoded size of a node record in bytes

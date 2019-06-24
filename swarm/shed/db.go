@@ -29,8 +29,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/log"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
 	"github.com/syndtr/goleveldb/leveldb/opt"

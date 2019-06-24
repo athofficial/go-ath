@@ -19,8 +19,8 @@ package main
 import (
 	"os"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/log"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

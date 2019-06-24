@@ -3,7 +3,7 @@ package feed
 import (
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/storage/feed/lookup"
+	"github.com/athofficial/go-ath/swarm/storage/feed/lookup"
 )
 
 func getTestID() *ID {

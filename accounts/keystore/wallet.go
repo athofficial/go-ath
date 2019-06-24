@@ -19,9 +19,9 @@ package keystore
 import (
 	"math/big"
 
-	ethereum "github.com/kek-mex/go-ath"
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/core/types"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // keystoreWallet implements the accounts.Wallet interface for the original

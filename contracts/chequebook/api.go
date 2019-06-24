@@ -20,7 +20,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 const Version = "1.0"

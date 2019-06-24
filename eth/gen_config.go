@@ -6,12 +6,12 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/consensus/ubqhash"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/eth/downloader"
-	"github.com/kek-mex/go-ath/eth/gasprice"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/eth/gasprice"
 )
 
 var _ = (*configMarshaling)(nil)

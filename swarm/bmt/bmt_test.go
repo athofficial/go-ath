@@ -26,7 +26,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/swarm/testutil"
+	"github.com/athofficial/go-ath/swarm/testutil"
 	"golang.org/x/crypto/sha3"
 )
 

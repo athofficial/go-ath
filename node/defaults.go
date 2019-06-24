@@ -22,9 +22,9 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/nat"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 const (

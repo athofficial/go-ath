@@ -19,7 +19,7 @@ package ethapi
 import (
 	"sync"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 type AddrLocker struct {

@@ -20,7 +20,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 func newTestMemStore() *MemStore {

@@ -19,7 +19,7 @@
 package ethdb_test
 
 import (
-	"github.com/kek-mex/go-ath/ethdb"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 var _ ethdb.Database = &ethdb.LDBDatabase{}

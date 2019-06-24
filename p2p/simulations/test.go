@@ -3,10 +3,10 @@ package simulations
 import (
 	"testing"
 
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/enr"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/enr"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // NoopService is the service that does not do anything

@@ -22,13 +22,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/internal/ethapi"
-	"github.com/kek-mex/go-ath/signer/core"
-	"github.com/kek-mex/go-ath/signer/storage"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/internal/ethapi"
+	"github.com/athofficial/go-ath/signer/core"
+	"github.com/athofficial/go-ath/signer/storage"
 )
 
 const JS = `

@@ -19,8 +19,8 @@
 package whisperv6
 
 import (
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
 )
 
 // TopicType represents a cryptographically secure, probabilistic partial

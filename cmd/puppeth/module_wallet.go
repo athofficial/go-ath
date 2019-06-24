@@ -25,7 +25,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // walletDockerfile is the Dockerfile required to run a web wallet.

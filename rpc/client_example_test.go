@@ -22,7 +22,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // In this example, our client wishes to track the latest 'block number'

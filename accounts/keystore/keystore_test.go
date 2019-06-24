@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/event"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/event"
 )
 
 var testSigData = make([]byte, 32)

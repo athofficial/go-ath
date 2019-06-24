@@ -23,10 +23,10 @@ import (
 	"net"
 	"time"
 
-	"github.com/kek-mex/go-ath/common/math"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/crypto/secp256k1"
-	"github.com/kek-mex/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/crypto/secp256k1"
+	"github.com/athofficial/go-ath/p2p/enode"
 )
 
 // node represents a host on the network.

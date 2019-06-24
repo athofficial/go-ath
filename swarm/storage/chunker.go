@@ -24,10 +24,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/metrics"
-	ch "github.com/kek-mex/go-ath/swarm/chunk"
-	"github.com/kek-mex/go-ath/swarm/log"
-	"github.com/kek-mex/go-ath/swarm/spancontext"
+	"github.com/athofficial/go-ath/metrics"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/spancontext"
 	opentracing "github.com/opentracing/opentracing-go"
 	olog "github.com/opentracing/opentracing-go/log"
 )

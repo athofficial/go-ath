@@ -23,9 +23,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/swarm/shed"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/shed"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 // SubscribePull returns a channel that provides chunk addresses and stored times from pull syncing index.

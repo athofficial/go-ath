@@ -22,9 +22,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/swarm/api"
-	swarm "github.com/kek-mex/go-ath/swarm/api/client"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/swarm/api"
+	swarm "github.com/athofficial/go-ath/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

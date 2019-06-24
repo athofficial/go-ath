@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // deployEthstats queries the user for various input on deploying an ethstats

@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/kek-mex/go-ath/event"
+	"github.com/athofficial/go-ath/event"
 )
 
 // This example demonstrates how SubscriptionScope can be used to control the lifetime of

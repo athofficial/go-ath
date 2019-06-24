@@ -20,17 +20,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 /*
 http roundtripper to register for bzz url scheme
-see https://github.com/kek-mex/go-ath/issues/2040
+see https://github.com/athofficial/go-ath/issues/2040
 Usage:
 
 import (
- "github.com/kek-mex/go-ath/common/httpclient"
- "github.com/kek-mex/go-ath/swarm/api/http"
+ "github.com/athofficial/go-ath/common/httpclient"
+ "github.com/athofficial/go-ath/swarm/api/http"
 )
 client := httpclient.New()
 // for (private) swarm proxy running locally

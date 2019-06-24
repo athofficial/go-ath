@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/params"
 )
 
 // Gas costs

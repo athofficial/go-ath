@@ -21,11 +21,11 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/event"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // Constants to match up protocol versions and messages

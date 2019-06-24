@@ -23,12 +23,12 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/rlp"
-	"github.com/kek-mex/go-ath/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/trie"
 )
 
 type revision struct {
@@ -507,7 +507,7 @@ func (self *StateDB) Copy() *StateDB {
 	}
 	// Copy the dirty states, logs, and preimages
 	for addr := range self.journal.dirties {
-		// As documented [here](https://github.com/kek-mex/go-ath/pull/16485#issuecomment-380438527),
+		// As documented [here](https://github.com/athofficial/go-ath/pull/16485#issuecomment-380438527),
 		// and in the Finalise-method, there is a case where an object is in the journal but not
 		// in the stateObjects: OOG after touch on ripeMD prior to Byzantium. Thus, we need to check for
 		// nil

@@ -23,10 +23,10 @@ import (
 	"time"
 
 	mapset "github.com/deckarep/golang-set"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // Peer represents a whisper protocol peer connection.

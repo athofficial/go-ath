@@ -24,7 +24,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 func TestPack(t *testing.T) {

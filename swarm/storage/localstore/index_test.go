@@ -21,7 +21,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 // TestDB_pullIndex validates the ordering of keys in pull index.

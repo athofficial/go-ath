@@ -22,8 +22,8 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/kek-mex/go-ath/accounts/abi"
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/common"
 
 	"bytes"
 	"os"

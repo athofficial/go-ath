@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 	"golang.org/x/crypto/pbkdf2"
 )
 

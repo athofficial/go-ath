@@ -22,9 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/accounts"
-	"github.com/kek-mex/go-ath/event"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/log"
 	"github.com/karalabe/hid"
 )
 

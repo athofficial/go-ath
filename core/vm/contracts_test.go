@@ -21,7 +21,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // precompiledTest defines the input/output pairs for precompiled contract tests.

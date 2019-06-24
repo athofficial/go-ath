@@ -7,8 +7,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/math"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/math"
 )
 
 var _ = (*stEnvMarshaling)(nil)

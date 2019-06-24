@@ -26,8 +26,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/kek-mex/go-ath/common/bitutil"
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/common/bitutil"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 // bloomIndexes represents the bit indexes inside the bloom filter that belong

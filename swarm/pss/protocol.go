@@ -24,10 +24,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/p2p/protocols"
-	"github.com/kek-mex/go-ath/rlp"
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 const (

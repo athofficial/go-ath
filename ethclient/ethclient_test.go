@@ -22,8 +22,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/kek-mex/go-ath"
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/common"
 )
 
 // Verify that Client implements the ethereum interfaces.

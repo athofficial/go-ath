@@ -27,10 +27,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/crypto/ecies"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/crypto/ecies"
+	"github.com/athofficial/go-ath/log"
 )
 
 // MessageParams specifies the exact way a message should be wrapped into an Envelope.

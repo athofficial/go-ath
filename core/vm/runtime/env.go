@@ -17,9 +17,9 @@
 package runtime
 
 import (
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/core/vm"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/vm"
 )
 
 func NewEnv(cfg *Config) *vm.EVM {

@@ -25,9 +25,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/rpc"
 	"github.com/gizak/termui"
 	"gopkg.in/urfave/cli.v1"
 )

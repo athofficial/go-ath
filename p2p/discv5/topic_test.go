@@ -21,8 +21,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/mclock"
 )
 
 func TestTopicRadius(t *testing.T) {

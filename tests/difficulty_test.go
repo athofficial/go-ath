@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/params"
 )
 
 var (

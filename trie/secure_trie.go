@@ -19,8 +19,8 @@ package trie
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
 )
 
 // SecureTrie wraps a trie with key hashing. In a secure trie, all

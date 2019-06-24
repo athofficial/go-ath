@@ -22,7 +22,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 func init() {

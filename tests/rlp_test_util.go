@@ -24,7 +24,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // RLPTest is the JSON structure of a single RLP test.

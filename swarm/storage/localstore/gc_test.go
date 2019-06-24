@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 // TestDB_collectGarbageWorker tests garbage collection runs

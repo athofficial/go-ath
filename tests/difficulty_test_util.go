@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/common/math"
-	"github.com/kek-mex/go-ath/consensus/ubqhash"
-	//"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	//"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/params"
 )
 
 //go:generate gencodec -type DifficultyTest -field-override difficultyTestMarshaling -out gen_difficultytest.go

@@ -28,7 +28,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // In this test, nodes try to randomly resolve each other.

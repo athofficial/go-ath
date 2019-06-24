@@ -24,8 +24,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/kek-mex/go-ath/crypto"
-	"github.com/kek-mex/go-ath/p2p"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p"
 )
 
 // Tests that datadirs can be successfully created, be them manually configured

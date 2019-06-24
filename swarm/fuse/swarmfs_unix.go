@@ -30,9 +30,9 @@ import (
 
 	"bazil.org/fuse"
 	"bazil.org/fuse/fs"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/swarm/api"
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 var (

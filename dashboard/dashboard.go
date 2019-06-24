@@ -35,11 +35,11 @@ import (
 	"io"
 
 	"github.com/elastic/gosigar"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/metrics"
-	"github.com/kek-mex/go-ath/p2p"
-	"github.com/kek-mex/go-ath/params"
-	"github.com/kek-mex/go-ath/rpc"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/params"
+	"github.com/athofficial/go-ath/rpc"
 	"github.com/mohae/deepcopy"
 	"golang.org/x/net/websocket"
 )

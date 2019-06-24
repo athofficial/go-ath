@@ -19,10 +19,10 @@ package rawdb
 import (
 	"encoding/json"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/log"
-	"github.com/kek-mex/go-ath/params"
-	"github.com/kek-mex/go-ath/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/params"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // ReadDatabaseVersion retrieves the version number of the database.

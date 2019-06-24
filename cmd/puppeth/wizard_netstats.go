@@ -23,8 +23,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/log"
 	"github.com/olekukonko/tablewriter"
 )
 

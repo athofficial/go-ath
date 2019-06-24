@@ -19,10 +19,10 @@ package core
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-ath/consensus"
-	"github.com/kek-mex/go-ath/core/state"
-	"github.com/kek-mex/go-ath/core/types"
-	"github.com/kek-mex/go-ath/params"
+	"github.com/athofficial/go-ath/consensus"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/params"
 )
 
 // BlockValidator is responsible for validating block headers, uncles and

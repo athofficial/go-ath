@@ -19,9 +19,9 @@ package simulations
 import (
 	"testing"
 
-	"github.com/kek-mex/go-ath/node"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	"github.com/kek-mex/go-ath/p2p/simulations/adapters"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
 )
 
 func newTestNetwork(t *testing.T, nodeCount int) (*Network, []enode.ID) {

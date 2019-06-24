@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 // asymmetrical key exchange between two directly connected peers

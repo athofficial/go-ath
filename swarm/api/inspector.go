@@ -19,8 +19,8 @@ package api
 import (
 	"context"
 
-	"github.com/kek-mex/go-ath/swarm/network"
-	"github.com/kek-mex/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/network"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 type Inspector struct {

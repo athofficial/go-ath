@@ -27,9 +27,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/p2p/enode"
-	ch "github.com/kek-mex/go-ath/swarm/chunk"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/p2p/enode"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
 )
 
 var sourcePeerID = enode.HexID("99d8594b52298567d2ca3f4c441a5ba0140ee9245e26460d01102a52773c73b9")

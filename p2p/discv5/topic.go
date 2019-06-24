@@ -23,8 +23,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/kek-mex/go-ath/common/mclock"
-	"github.com/kek-mex/go-ath/log"
+	"github.com/athofficial/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/log"
 )
 
 const (

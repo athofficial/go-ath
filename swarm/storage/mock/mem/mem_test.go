@@ -19,7 +19,7 @@ package mem
 import (
 	"testing"
 
-	"github.com/kek-mex/go-ath/swarm/storage/mock/test"
+	"github.com/athofficial/go-ath/swarm/storage/mock/test"
 )
 
 // TestGlobalStore is running test for a GlobalStore

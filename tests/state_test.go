@@ -24,8 +24,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/kek-mex/go-ath/cmd/utils"
-	"github.com/kek-mex/go-ath/core/vm"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/core/vm"
 )
 
 func TestState(t *testing.T) {

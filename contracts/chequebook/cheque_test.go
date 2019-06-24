@@ -24,12 +24,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kek-mex/go-ath/accounts/abi/bind"
-	"github.com/kek-mex/go-ath/accounts/abi/bind/backends"
-	"github.com/kek-mex/go-ath/common"
-	"github.com/kek-mex/go-ath/contracts/chequebook/contract"
-	"github.com/kek-mex/go-ath/core"
-	"github.com/kek-mex/go-ath/crypto"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/accounts/abi/bind/backends"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/contracts/chequebook/contract"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 var (
