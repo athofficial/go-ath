@@ -367,7 +367,7 @@ func TestConfigCmdLineOverridesFile(t *testing.T) {
 	//change some values in order to test if they have been loaded
 	defaultConf.SyncEnabled = true
 	defaultConf.NetworkID = 54
-	defaultConf.Port = "8588"
+	defaultConf.Port = "8696"
 	defaultConf.DbCapacity = 9000000
 	defaultConf.HiveParams.KeepAliveInterval = 6000000000
 	defaultConf.Swap.Params.Strategy.AutoCashInterval = 600 * time.Second
