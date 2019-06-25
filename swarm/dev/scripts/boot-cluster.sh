@@ -39,7 +39,7 @@ BOOTNODE_URL="enode://${BOOTNODE_PUBKEY}@${BOOTNODE_IP}:${BOOTNODE_PORT}"
 
 # static gath configuration
 gath_IP="192.168.33.3"
-gath_RPC_PORT="8588"
+gath_RPC_PORT="8696"
 gath_RPC_URL="http://${gath_IP}:${gath_RPC_PORT}"
 
 usage() {

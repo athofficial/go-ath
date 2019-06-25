@@ -11,7 +11,7 @@ Binary archives are published at [releases](https://github.com/athofficial/go-at
 
 ## Building the source
 
-For prerequisites and detailed build instructions please read the [Ubiq's Installation Instructions](https://github.com/athofficial/go-ath/wiki/Building-Ubiq) on their wiki. 
+For prerequisites and detailed build instructions please read the [Ubiq's Installation Instructions](https://github.com/athofficial/go-ath/wiki/Building-Ubiq) on their wiki.
 
 *Note*: Keep in mind that Ubiq aims to be 100% compatible with Ethereum, so mostly all the documentation you can find on Ethereum wiki, will apply for sure to Ubiq.
 
@@ -40,7 +40,7 @@ The go-ubiq project comes with several wrappers/executables found in the `cmd` d
 
 ## Running gath
 
-Going through all the possible command line flags is out of scope here (please consult 
+Going through all the possible command line flags is out of scope here (please consult
 [Ubiq CLI Wiki page](https://github.com/athofficial/go-ath/wiki/Command-Line-Options)), but we've
 enumerated a few common parameter combos to get you up to speed quickly on how you can run your
 own gath instance.
@@ -90,7 +90,7 @@ Specifying the `--testnet` flag however will reconfigure your gath instance a bi
    `gath attach <datadir>/testnet/gath.ipc`. Windows users are not affected by this.
  * Instead of connecting the main Ubiq network, the client will connect to the test network,
    which uses different P2P bootnodes, different network IDs and genesis states.
-   
+
 *Note: Although there are some internal protective measures to prevent transactions from crossing
 over between the main network and test network, you should make sure to always use separate accounts
 for play-money and real-money. Unless you manually move accounts, gath will by default correctly
@@ -142,12 +142,12 @@ HTTP based JSON-RPC API options:
 
   * `--rpc` Enable the HTTP-RPC server
   * `--rpcaddr` HTTP-RPC server listening interface (default: "localhost")
-  * `--rpcport` HTTP-RPC server listening port (default: 8588)
+  * `--rpcport` HTTP-RPC server listening port (default: 8696)
   * `--rpcapi` API's offered over the HTTP-RPC interface (default: "eth,net,web3")
   * `--rpccorsdomain` Comma separated list of domains from which to accept cross origin requests (browser enforced)
   * `--ws` Enable the WS-RPC server
   * `--wsaddr` WS-RPC server listening interface (default: "localhost")
-  * `--wsport` WS-RPC server listening port (default: 8589)
+  * `--wsport` WS-RPC server listening port (default: 8697)
   * `--wsapi` API's offered over the WS-RPC interface (default: "eth,net,web3")
   * `--wsorigins` Origins from which to accept websockets requests
   * `--ipcdisable` Disable the IPC-RPC server
