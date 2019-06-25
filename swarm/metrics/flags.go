@@ -20,7 +20,7 @@ import (
 	"time"
 
 	"github.com/athofficial/go-ath/cmd/utils"
-	gethmetrics "github.com/athofficial/go-ath/metrics"
+	gathmetrics "github.com/athofficial/go-ath/metrics"
 	"github.com/athofficial/go-ath/metrics/influxdb"
 	"github.com/athofficial/go-ath/swarm/log"
 	cli "gopkg.in/urfave/cli.v1"
@@ -79,7 +79,7 @@ var Flags = []cli.Flag{
 }
 
 func Setup(ctx *cli.Context) {
-	if gethmetrics.Enabled {
+	if gathmetrics.Enabled {
 		log.Info("Enabling swarm metrics collection")
 		var (
 			endpoint               = ctx.GlobalString(MetricsInfluxDBEndpointFlag.Name)
@@ -91,18 +91,18 @@ func Setup(ctx *cli.Context) {
 		)
 
 		// Start system runtime metrics collection
-		go gethmetrics.CollectProcessMetrics(2 * time.Second)
+		go gathmetrics.CollectProcessMetrics(2 * time.Second)
 
 		tagsMap := utils.SplitTagsFlag(ctx.GlobalString(MetricsInfluxDBTagsFlag.Name))
 
 		if enableExport {
 			log.Info("Enabling swarm metrics export to InfluxDB")
-			go influxdb.InfluxDBWithTags(gethmetrics.DefaultRegistry, 10*time.Second, endpoint, database, username, password, "swarm.", tagsMap)
+			go influxdb.InfluxDBWithTags(gathmetrics.DefaultRegistry, 10*time.Second, endpoint, database, username, password, "swarm.", tagsMap)
 		}
 
 		if enableAccountingExport {
 			log.Info("Exporting swarm accounting metrics to InfluxDB")
-			go influxdb.InfluxDBWithTags(gethmetrics.AccountingRegistry, 10*time.Second, endpoint, database, username, password, "accounting.", tagsMap)
+			go influxdb.InfluxDBWithTags(gathmetrics.AccountingRegistry, 10*time.Second, endpoint, database, username, password, "accounting.", tagsMap)
 		}
 	}
 }

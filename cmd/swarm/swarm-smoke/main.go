@@ -22,7 +22,7 @@ import (
 	"sort"
 
 	"github.com/athofficial/go-ath/cmd/utils"
-	gethmetrics "github.com/athofficial/go-ath/metrics"
+	gathmetrics "github.com/athofficial/go-ath/metrics"
 	"github.com/athofficial/go-ath/metrics/influxdb"
 	swarmmetrics "github.com/athofficial/go-ath/swarm/metrics"
 	"github.com/athofficial/go-ath/swarm/tracing"
@@ -170,7 +170,7 @@ func main() {
 }
 
 func emitMetrics(ctx *cli.Context) error {
-	if gethmetrics.Enabled {
+	if gathmetrics.Enabled {
 		var (
 			endpoint = ctx.GlobalString(swarmmetrics.MetricsInfluxDBEndpointFlag.Name)
 			database = ctx.GlobalString(swarmmetrics.MetricsInfluxDBDatabaseFlag.Name)
@@ -183,7 +183,7 @@ func emitMetrics(ctx *cli.Context) error {
 		tagsMap["version"] = gitCommit
 		tagsMap["filesize"] = fmt.Sprintf("%v", filesize)
 
-		return influxdb.InfluxDBWithTagsOnce(gethmetrics.DefaultRegistry, endpoint, database, username, password, "swarm-smoke.", tagsMap)
+		return influxdb.InfluxDBWithTagsOnce(gathmetrics.DefaultRegistry, endpoint, database, username, password, "swarm-smoke.", tagsMap)
 	}
 
 	return nil

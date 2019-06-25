@@ -248,27 +248,12 @@ func (w *wizard) manageGenesis() {
 		out, _ := json.MarshalIndent(w.conf.Genesis, "", "  ")
 
 		// Export the native genesis spec used by puppeth and gath
-		gethJson := filepath.Join(folder, fmt.Sprintf("%s.json", w.network))
-		if err := ioutil.WriteFile((gethJson), out, 0644); err != nil {
+		gathJson := filepath.Join(folder, fmt.Sprintf("%s.json", w.network))
+		if err := ioutil.WriteFile((gathJson), out, 0644); err != nil {
 			log.Error("Failed to save genesis file", "err", err)
 			return
 		}
-		log.Info("Saved native genesis chain spec", "path", gethJson)
-
-		// Export the genesis spec used by Aleth (formerly C++ Ethereum)
-		if spec, err := newAlethGenesisSpec(w.network, w.conf.Genesis); err != nil {
-			log.Error("Failed to create Aleth chain spec", "err", err)
-		} else {
-			saveGenesis(folder, w.network, "aleth", spec)
-		}
-		// Export the genesis spec used by Parity
-		if spec, err := newParityChainSpec(w.network, w.conf.Genesis, []string{}); err != nil {
-			log.Error("Failed to create Parity chain spec", "err", err)
-		} else {
-			saveGenesis(folder, w.network, "parity", spec)
-		}
-		// Export the genesis spec used by Harmony (formerly EthereumJ
-		saveGenesis(folder, w.network, "harmony", w.conf.Genesis)
+		log.Info("Saved native genesis chain spec", "path", gathJson)
 
 	case "3":
 		// Make sure we don't have any services running

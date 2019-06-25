@@ -49,14 +49,9 @@ type difficultyTestMarshaling struct {
 
 func (test *DifficultyTest) Run(config *params.ChainConfig) error {
 	parentNumber := big.NewInt(int64(test.CurrentBlockNumber - 1))
-	/*parent := &types.Header{
-		Difficulty: test.ParentDifficulty,
-		Time:       test.ParentTimestamp,
-		Number:     parentNumber,
-		UncleHash:  test.UncleHash,
-	}*/
 
-	actual := ubqhash.CalcDifficulty(config, test.CurrentTimestamp, parent)
+
+	actual := ubqhash.CalcDifficultyLegacy(test.CurrentTimestamp, test.ParentTimestamp, parentNumber, test.ParentDifficulty)
 	exp := test.CurrentDifficulty
 
 	if actual.Cmp(exp) != 0 {
