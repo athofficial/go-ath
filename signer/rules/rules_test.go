@@ -22,13 +22,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/signer/core"
-	"github.com/ubiq/go-ubiq/signer/storage"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/internal/ethapi"
+	"github.com/athofficial/go-ath/signer/core"
+	"github.com/athofficial/go-ath/signer/storage"
 )
 
 const JS = `

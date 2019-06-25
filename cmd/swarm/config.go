@@ -29,13 +29,13 @@ import (
 
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
 	"github.com/naoina/toml"
 
-	bzzapi "github.com/ubiq/go-ubiq/swarm/api"
+	bzzapi "github.com/athofficial/go-ath/swarm/api"
 )
 
 var (
@@ -97,7 +97,7 @@ var tomlSettings = toml.Config{
 	MissingField: func(rt reflect.Type, field string) error {
 		link := ""
 		if unicode.IsUpper(rune(rt.Name()[0])) && rt.PkgPath() != "main" {
-			link = fmt.Sprintf(", check github.com/ubiq/go-ubiq/swarm/api/config.go for available fields")
+			link = fmt.Sprintf(", check github.com/athofficial/go-ath/swarm/api/config.go for available fields")
 		}
 		return fmt.Errorf("field '%s' is not defined in %s%s", field, rt.String(), link)
 	},
@@ -127,7 +127,7 @@ func initSwarmNode(config *bzzapi.Config, stack *node.Node, ctx *cli.Context) {
 	//at this point, all vars should be set in the Config
 	//get the account for the provided swarm account
 	prvkey := getAccount(config.BzzAccount, ctx, stack)
-	//set the resolved config path (gubiq --datadir)
+	//set the resolved config path (gath --datadir)
 	config.Path = expandPath(stack.InstanceDir())
 	//finally, initialize the configuration
 	config.Init(prvkey)

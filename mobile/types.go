@@ -16,17 +16,17 @@
 
 // Contains all the wrappers from the core/types package.
 
-package gubiq
+package gath
 
 import (
 	"encoding/json"
 	"errors"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/rlp"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/rlp"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 // A Nonce is a 64-bit hash which proves (combined with the mix-hash) that

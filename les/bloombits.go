@@ -19,8 +19,8 @@ package les
 import (
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/bitutil"
-	"github.com/ubiq/go-ubiq/light"
+	"github.com/athofficial/go-ath/common/bitutil"
+	"github.com/athofficial/go-ath/light"
 )
 
 const (

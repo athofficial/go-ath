@@ -21,9 +21,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
 )
 
 // Tests that fast sync gets disabled as soon as a real block is successfully

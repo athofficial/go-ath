@@ -26,9 +26,9 @@ import (
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 func init() {
@@ -56,7 +56,7 @@ var (
 // 		pipe:       newpipe(),
 // 		localkey:   newkey(),
 // 		remotekey:  newkey(),
-// 		remoteaddr: &net.UDPAddr{IP: net.IP{1, 2, 3, 4}, Port: 30388},
+// 		remoteaddr: &net.UDPAddr{IP: net.IP{1, 2, 3, 4}, Port: 30696},
 // 	}
 // 	test.table, test.udp, _ = newUDP(test.localkey, test.pipe, nil, "")
 // 	return test

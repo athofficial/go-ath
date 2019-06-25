@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common/hexutil"
+	"github.com/athofficial/go-ath/common/hexutil"
 )
 
 // KV mocks a key value store

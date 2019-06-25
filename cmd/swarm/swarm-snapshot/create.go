@@ -29,12 +29,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/simulations"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	"github.com/ubiq/go-ubiq/swarm/network"
-	"github.com/ubiq/go-ubiq/swarm/network/simulation"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p/simulations"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
+	"github.com/athofficial/go-ath/swarm/network"
+	"github.com/athofficial/go-ath/swarm/network/simulation"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

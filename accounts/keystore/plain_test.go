@@ -27,12 +27,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 func tmpKeyStoreIface(t *testing.T, encrypted bool) (dir string, ks keyStore) {
-	d, err := ioutil.TempDir("", "gubiq-keystore-test")
+	d, err := ioutil.TempDir("", "gath-keystore-test")
 	if err != nil {
 		t.Fatal(err)
 	}

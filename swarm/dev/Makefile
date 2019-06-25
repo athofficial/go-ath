@@ -3,12 +3,12 @@
 default: build
 
 build:
-	go build -o bin/swarm    github.com/ubiq/go-ubiq/cmd/swarm
-	go build -o bin/gubiq     github.com/ubiq/go-ubiq/cmd/gubiq
-	go build -o bin/bootnode github.com/ubiq/go-ubiq/cmd/bootnode
+	go build -o bin/swarm    github.com/athofficial/go-ath/cmd/swarm
+	go build -o bin/gath     github.com/athofficial/go-ath/cmd/gath
+	go build -o bin/bootnode github.com/athofficial/go-ath/cmd/bootnode
 
 cluster: build
 	scripts/boot-cluster.sh
 
 test:
-	go test -v github.com/ubiq/go-ubiq/swarm/...
+	go test -v github.com/athofficial/go-ath/swarm/...

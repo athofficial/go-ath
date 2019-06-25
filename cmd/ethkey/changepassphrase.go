@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/cmd/utils"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 

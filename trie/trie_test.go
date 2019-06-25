@@ -30,10 +30,10 @@ import (
 	"testing/quick"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 func init() {

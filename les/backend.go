@@ -22,27 +22,27 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/bloombits"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/eth/filters"
-	"github.com/ubiq/go-ubiq/eth/gasprice"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/light"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/params"
-	rpc "github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/consensus"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/bloombits"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/eth"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/eth/filters"
+	"github.com/athofficial/go-ath/eth/gasprice"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/internal/ethapi"
+	"github.com/athofficial/go-ath/light"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/discv5"
+	"github.com/athofficial/go-ath/params"
+	rpc "github.com/athofficial/go-ath/rpc"
 )
 
 type LightEthereum struct {
@@ -229,7 +229,7 @@ func (s *LightEthereum) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Service, starting all internal goroutines needed by the
-// Ubiq protocol implementation.
+// ATH protocol implementation.
 func (s *LightEthereum) Start(srvr *p2p.Server) error {
 	log.Warn("Light client mode is an experimental feature")
 	s.startBloomHandlers(params.BloomBitsBlocksClient)
@@ -242,7 +242,7 @@ func (s *LightEthereum) Start(srvr *p2p.Server) error {
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Ubiq protocol.
+// ATH protocol.
 func (s *LightEthereum) Stop() error {
 	s.odr.Stop()
 	s.bloomIndexer.Close()

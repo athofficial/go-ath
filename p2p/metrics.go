@@ -25,11 +25,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/enode"
 
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 const (

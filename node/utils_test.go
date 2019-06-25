@@ -22,8 +22,8 @@ package node
 import (
 	"reflect"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // NoopService is a trivial implementation of the Service interface.

@@ -24,12 +24,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // List of errors

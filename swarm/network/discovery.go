@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/swarm/pot"
+	"github.com/athofficial/go-ath/swarm/pot"
 )
 
 // discovery bzz extension for requesting and relaying node address records

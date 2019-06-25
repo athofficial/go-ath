@@ -27,10 +27,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/crypto/ecies"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/crypto/ecies"
+	"github.com/athofficial/go-ath/log"
 )
 
 // MessageParams specifies the exact way a message should be wrapped into an Envelope.

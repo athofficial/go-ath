@@ -20,7 +20,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 const (

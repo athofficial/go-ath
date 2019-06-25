@@ -6,12 +6,12 @@ RUN apk add --update git gcc g++ linux-headers
 RUN mkdir -p $GOPATH/src/github.com/ethereum && \
     cd $GOPATH/src/github.com/ethereum && \
     git clone https://github.com/ethersphere/go-ethereum && \
-    cd $GOPATH/src/github.com/ubiq/go-ubiq && \
+    cd $GOPATH/src/github.com/athofficial/go-ath && \
     git checkout ${VERSION} && \
     go install -ldflags "-X main.gitCommit=${VERSION}" ./cmd/swarm && \
     go install -ldflags "-X main.gitCommit=${VERSION}" ./cmd/swarm/swarm-smoke && \
     go install -ldflags "-X main.gitCommit=${VERSION}" ./cmd/swarm/global-store && \
-    go install -ldflags "-X main.gitCommit=${VERSION}" ./cmd/gubiq
+    go install -ldflags "-X main.gitCommit=${VERSION}" ./cmd/gath
 
 
 FROM alpine:3.8 as swarm-smoke
@@ -27,6 +27,6 @@ ENTRYPOINT ["/global-store"]
 
 FROM alpine:3.8 as swarm
 WORKDIR /
-COPY --from=builder /go/bin/swarm /go/bin/gubiq /
+COPY --from=builder /go/bin/swarm /go/bin/gath /
 ADD run.sh /run.sh
 ENTRYPOINT ["/run.sh"]

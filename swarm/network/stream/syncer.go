@@ -21,9 +21,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 const (

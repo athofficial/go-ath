@@ -24,9 +24,9 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/metrics/exp"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics/exp"
 	"github.com/fjl/memsize/memsizeui"
 	colorable "github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"

@@ -19,7 +19,7 @@ package errs
 import (
 	"fmt"
 
-	"github.com/kek-mex/go-atheios/logger/glog"
+	"github.com/athofficial/go-ath/logger/glog"
 )
 
 /*

@@ -23,9 +23,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts/usbwallet"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/accounts/usbwallet"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rpc"
 	"github.com/robertkrimen/otto"
 )
 

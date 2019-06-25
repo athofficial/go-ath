@@ -26,9 +26,9 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 const maxParallelFiles = 5

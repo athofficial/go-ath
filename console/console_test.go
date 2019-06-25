@@ -26,12 +26,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/internal/jsre"
-	"github.com/ubiq/go-ubiq/node"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/eth"
+	"github.com/athofficial/go-ath/internal/jsre"
+	"github.com/athofficial/go-ath/node"
 )
 
 const (
@@ -106,7 +106,7 @@ func newTester(t *testing.T, confOverride func(*eth.Config)) *tester {
 		confOverride(ethConf)
 	}
 	if err = stack.Register(func(ctx *node.ServiceContext) (node.Service, error) { return eth.New(ctx, ethConf) }); err != nil {
-		t.Fatalf("failed to register Ubiq protocol: %v", err)
+		t.Fatalf("failed to register ATH protocol: %v", err)
 	}
 	// Start the node and assemble the JavaScript console around it
 	if err = stack.Start(); err != nil {

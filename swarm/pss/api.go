@@ -21,11 +21,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 // Wrapper for receiving pss messages when using the pss API

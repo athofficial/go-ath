@@ -22,9 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/log"
 	"github.com/karalabe/hid"
 )
 

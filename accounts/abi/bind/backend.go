@@ -21,9 +21,9 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 var (
@@ -47,7 +47,7 @@ type ContractCaller interface {
 	// CodeAt returns the code of the given account. This is needed to differentiate
 	// between contract internal errors and the local chain being out of sync.
 	CodeAt(ctx context.Context, contract common.Address, blockNumber *big.Int) ([]byte, error)
-	// ContractCall executes an Ubiq contract call with the specified data as the
+	// ContractCall executes an ATH contract call with the specified data as the
 	// input.
 	CallContract(ctx context.Context, call ethereum.CallMsg, blockNumber *big.Int) ([]byte, error)
 }
@@ -58,7 +58,7 @@ type ContractCaller interface {
 type PendingContractCaller interface {
 	// PendingCodeAt returns the code of the given account in the pending state.
 	PendingCodeAt(ctx context.Context, contract common.Address) ([]byte, error)
-	// PendingCallContract executes an Ubiq contract call against the pending state.
+	// PendingCallContract executes an ATH contract call against the pending state.
 	PendingCallContract(ctx context.Context, call ethereum.CallMsg) ([]byte, error)
 }
 

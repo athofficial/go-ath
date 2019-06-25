@@ -20,11 +20,11 @@ package consensus
 import (
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/params"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // ChainReader defines a small collection of methods needed to access the local

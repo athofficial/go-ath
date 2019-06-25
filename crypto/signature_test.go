@@ -22,9 +22,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/common/math"
 )
 
 var (

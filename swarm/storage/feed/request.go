@@ -21,10 +21,10 @@ import (
 	"encoding/json"
 	"hash"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed/lookup"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/feed/lookup"
 )
 
 // Request represents a request to sign or signed feed update message

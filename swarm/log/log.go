@@ -1,8 +1,8 @@
 package log
 
 import (
-	l "github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
+	l "github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 const (

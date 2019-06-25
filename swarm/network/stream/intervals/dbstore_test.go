@@ -21,7 +21,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/state"
+	"github.com/athofficial/go-ath/swarm/state"
 )
 
 // TestDBStore tests basic functionality of DBStore.

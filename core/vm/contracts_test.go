@@ -21,7 +21,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // precompiledTest defines the input/output pairs for precompiled contract tests.

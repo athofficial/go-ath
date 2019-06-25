@@ -23,12 +23,12 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/trie"
 )
 
 type revision struct {
@@ -51,7 +51,7 @@ func (n *proofList) Put(key []byte, value []byte) error {
 	return nil
 }
 
-// StateDBs within the ubiq protocol are used to store anything
+// StateDBs within the ATH protocol are used to store anything
 // within the merkle trie. StateDBs take care of caching and storing
 // nested states. It's the general query interface to retrieve:
 // * Contracts
@@ -507,7 +507,7 @@ func (self *StateDB) Copy() *StateDB {
 	}
 	// Copy the dirty states, logs, and preimages
 	for addr := range self.journal.dirties {
-		// As documented [here](https://github.com/ubiq/go-ubiq/pull/16485#issuecomment-380438527),
+		// As documented [here](https://github.com/athofficial/go-ath/pull/16485#issuecomment-380438527),
 		// and in the Finalise-method, there is a case where an object is in the journal but not
 		// in the stateObjects: OOG after touch on ripeMD prior to Byzantium. Thus, we need to check for
 		// nil

@@ -28,10 +28,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	ch "github.com/ubiq/go-ubiq/swarm/chunk"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock/mem"
+	"github.com/athofficial/go-ath/common"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/storage/mock/mem"
 	ldberrors "github.com/syndtr/goleveldb/leveldb/errors"
 )
 

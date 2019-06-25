@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // deployExplorer creates a new block explorer based on some user input.
@@ -50,7 +50,7 @@ func (w *wizard) deployExplorer() {
 	infos, err := checkExplorer(client, w.network)
 	if err != nil {
 		infos = &explorerInfos{
-			nodePort: 30388, webPort: 80, webHost: client.server,
+			nodePort: 30696, webPort: 80, webHost: client.server,
 		}
 	}
 	existed := err == nil

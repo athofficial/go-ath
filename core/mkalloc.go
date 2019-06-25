@@ -34,8 +34,8 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 type allocItem struct{ Addr, Balance *big.Int }

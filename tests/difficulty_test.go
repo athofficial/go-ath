@@ -20,19 +20,19 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/params"
 )
 
 var (
 	mainnetChainConfig = params.ChainConfig{
-		ChainID:        big.NewInt(1),
-		HomesteadBlock: big.NewInt(1150000),
-		EIP150Block:    big.NewInt(2463000),
-		EIP150Hash:     common.HexToHash("0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0"),
-		EIP155Block:    big.NewInt(2675000),
-		EIP158Block:    big.NewInt(2675000),
-		ByzantiumBlock: big.NewInt(4370000),
+		ChainID:        big.NewInt(1620),
+		HomesteadBlock: big.NewInt(0),
+		EIP150Block:    big.NewInt(0),
+		EIP150Hash:     common.HexToHash("0xb17a6645854471de4eff53b904a0d3eec3ef21c906afc6f1bc7dadbfc03b9448"),
+		EIP155Block:    big.NewInt(10),
+		EIP158Block:    big.NewInt(10),
+		ByzantiumBlock:      big.NewInt(math.MaxInt64),
 	}
 )
 

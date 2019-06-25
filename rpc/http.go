@@ -31,7 +31,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/log"
 	"github.com/rs/cors"
 )
 

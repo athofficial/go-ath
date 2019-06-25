@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/ubiq/go-ubiq/cmd/evm/internal/compiler"
+	"github.com/athofficial/go-ath/cmd/evm/internal/compiler"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

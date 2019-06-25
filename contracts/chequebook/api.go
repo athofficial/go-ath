@@ -20,7 +20,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 const Version = "1.0"

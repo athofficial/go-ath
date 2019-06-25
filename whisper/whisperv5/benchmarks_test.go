@@ -19,7 +19,7 @@ package whisperv5
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 func BenchmarkDeriveKeyMaterial(b *testing.B) {

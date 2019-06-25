@@ -23,9 +23,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/crypto"
 	"github.com/pborman/uuid"
 	"gopkg.in/urfave/cli.v1"
 )

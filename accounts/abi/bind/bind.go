@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package bind generates Ubiq contract Go bindings.
+// Package bind generates ATH contract Go bindings.
 //
 // Detailed usage document and tutorial available on the go-ethereum Wiki page:
-// https://github.com/ubiq/go-ubiq/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
+// https://github.com/athofficial/go-ath/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
 package bind
 
 import (
@@ -29,7 +29,7 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/ubiq/go-ubiq/accounts/abi"
+	"github.com/athofficial/go-ath/accounts/abi"
 )
 
 // Lang is a target programming language selector to generate bindings for.

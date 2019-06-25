@@ -17,10 +17,10 @@
 package clique
 
 import (
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // API is a user facing RPC API to allow controlling the signer and voting

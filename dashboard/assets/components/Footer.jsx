@@ -160,12 +160,12 @@ class Footer extends Component<Props> {
 				</Grid>
 				<Grid item >
 					<Typography type='caption' color='inherit'>
-						<span style={commonStyles.light}>Gubiq</span> {general.version}
+						<span style={commonStyles.light}>gath</span> {general.version}
 					</Typography>
 					{general.commit && (
 						<Typography type='caption' color='inherit'>
 							<span style={commonStyles.light}>{'Commit '}</span>
-							<a href={`https://github.com/ubiq/go-ubiq/commit/${general.commit}`} target='_blank' style={{color: 'inherit', textDecoration: 'none'}} >
+							<a href={`https://github.com/athofficial/go-ath/commit/${general.commit}`} target='_blank' style={{color: 'inherit', textDecoration: 'none'}} >
 								{general.commit.substring(0, 8)}
 							</a>
 						</Typography>

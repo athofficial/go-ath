@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/math"
 )
 
 var _ = (*difficultyTestMarshaling)(nil)

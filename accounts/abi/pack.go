@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"reflect"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/math"
 )
 
 // packBytesSlice packs the given bytes as [L, V] as the canonical representation

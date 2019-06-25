@@ -19,10 +19,10 @@ package les
 import (
 	"context"
 
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/light"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/light"
+	"github.com/athofficial/go-ath/log"
 )
 
 // LesOdr implements light.OdrBackend

@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	p2ptest "github.com/ubiq/go-ubiq/p2p/testing"
-	"github.com/ubiq/go-ubiq/swarm/state"
+	p2ptest "github.com/athofficial/go-ath/p2p/testing"
+	"github.com/athofficial/go-ath/swarm/state"
 )
 
 func newHiveTester(t *testing.T, params *HiveParams, n int, store state.Store) (*bzzTester, *Hive) {

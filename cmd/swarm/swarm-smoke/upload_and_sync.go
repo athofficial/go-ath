@@ -26,12 +26,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/testutil"
 	"github.com/pborman/uuid"
 
 	cli "gopkg.in/urfave/cli.v1"

@@ -33,11 +33,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/event"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/event"
 )
 
 var (
@@ -472,7 +472,7 @@ func (ks *KeyStore) Update(a accounts.Account, passphrase, newPassphrase string)
 	return ks.storage.StoreKey(a.URL.Path, key, newPassphrase)
 }
 
-// ImportPreSaleKey decrypts the given Ubiq presale wallet and stores
+// ImportPreSaleKey decrypts the given ATH presale wallet and stores
 // a key file in the key directory. The key file is encrypted with the same passphrase.
 func (ks *KeyStore) ImportPreSaleKey(keyJSON []byte, passphrase string) (accounts.Account, error) {
 	a, _, err := importPreSaleKey(ks.storage, keyJSON, passphrase)

@@ -27,10 +27,10 @@ import (
 	"time"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm"
-	"github.com/ubiq/go-ubiq/swarm/api"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm"
+	"github.com/athofficial/go-ath/swarm/api"
 )
 
 func TestConfigDump(t *testing.T) {
@@ -367,7 +367,7 @@ func TestConfigCmdLineOverridesFile(t *testing.T) {
 	//change some values in order to test if they have been loaded
 	defaultConf.SyncEnabled = true
 	defaultConf.NetworkID = 54
-	defaultConf.Port = "8588"
+	defaultConf.Port = "8696"
 	defaultConf.DbCapacity = 9000000
 	defaultConf.HiveParams.KeepAliveInterval = 6000000000
 	defaultConf.Swap.Params.Strategy.AutoCashInterval = 600 * time.Second
@@ -473,7 +473,7 @@ func TestConfigValidate(t *testing.T) {
 	}{
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"/data/testnet/gubiq.ipc",
+				"/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -488,7 +488,7 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"test:/data/testnet/gubiq.ipc",
+				"test:/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -498,7 +498,7 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gubiq.ipc",
+				"314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -513,7 +513,7 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"test:314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gubiq.ipc",
+				"test:314159265dD8dbb310642f98f50C066173C1259b@/data/testnet/gath.ipc",
 			}},
 		},
 		{
@@ -546,9 +546,9 @@ func TestConfigValidate(t *testing.T) {
 		},
 		{
 			cfg: &api.Config{EnsAPIs: []string{
-				"@/data/testnet/gubiq.ipc",
+				"@/data/testnet/gath.ipc",
 			}},
-			err: "invalid format [tld:][contract-addr@]url for ENS API endpoint configuration \"@/data/testnet/gubiq.ipc\": missing contract address",
+			err: "invalid format [tld:][contract-addr@]url for ENS API endpoint configuration \"@/data/testnet/gath.ipc\": missing contract address",
 		},
 	} {
 		err := validateConfig(c.cfg)

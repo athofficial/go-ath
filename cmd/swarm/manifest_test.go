@@ -24,9 +24,9 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/api"
-	swarm "github.com/ubiq/go-ubiq/swarm/api/client"
-	swarmhttp "github.com/ubiq/go-ubiq/swarm/api/http"
+	"github.com/athofficial/go-ath/swarm/api"
+	swarm "github.com/athofficial/go-ath/swarm/api/client"
+	swarmhttp "github.com/athofficial/go-ath/swarm/api/http"
 )
 
 // TestManifestChange tests manifest add, update and remove

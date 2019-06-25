@@ -19,7 +19,7 @@ package rpc
 import (
 	"net"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // StartHTTPEndpoint starts the HTTP RPC endpoint, configured with cors/vhosts/modules

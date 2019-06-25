@@ -28,17 +28,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/internal/ethapi"
+	"github.com/athofficial/go-ath/params"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/trie"
 )
 
 // PublicEthereumAPI provides an API to access Ethereum full node-related
@@ -47,7 +47,7 @@ type PublicEthereumAPI struct {
 	e *Ethereum
 }
 
-// NewPublicEthereumAPI creates a new Ubiq protocol API for full nodes.
+// NewPublicEthereumAPI creates a new ATH protocol API for full nodes.
 func NewPublicEthereumAPI(e *Ethereum) *PublicEthereumAPI {
 	return &PublicEthereumAPI{e}
 }

@@ -19,11 +19,11 @@ package node
 import (
 	"reflect"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // ServiceContext is a collection of service independent options inherited from

@@ -41,32 +41,32 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/ethclient"
-	"github.com/ubiq/go-ubiq/ethstats"
-	"github.com/ubiq/go-ubiq/les"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/eth"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/ethclient"
+	"github.com/athofficial/go-ath/ethstats"
+	"github.com/athofficial/go-ath/les"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/discv5"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/params"
 	"golang.org/x/net/websocket"
 )
 
 var (
 	genesisFlag = flag.String("genesis", "", "Genesis json file to seed the chain with")
 	apiPortFlag = flag.Int("apiport", 8080, "Listener port for the HTTP API connection")
-	ethPortFlag = flag.Int("ethport", 30388, "Listener port for the devp2p connection")
+	ethPortFlag = flag.Int("ethport", 30696, "Listener port for the devp2p connection")
 	bootFlag    = flag.String("bootnodes", "", "Comma separated bootnode enode URLs to seed with")
-	netFlag     = flag.Uint64("network", 0, "Network ID to use for the Ubiq protocol")
+	netFlag     = flag.Uint64("network", 11235813, "Network ID to use for the ATH protocol")
 	statsFlag   = flag.String("ethstats", "", "Ethstats network monitoring auth string")
 
 	netnameFlag = flag.String("faucet.name", "", "Network name to assign to the faucet")
@@ -193,8 +193,8 @@ type request struct {
 // faucet represents a crypto faucet backed by an Ethereum light client.
 type faucet struct {
 	config *params.ChainConfig // Chain configurations for signing
-	stack  *node.Node          // Ubiq protocol stack
-	client *ethclient.Client   // Client connection to the Ubiq chain
+	stack  *node.Node          // ATH protocol stack
+	client *ethclient.Client   // Client connection to the ATH chain
 	index  []byte              // Index page to serve up on the web
 
 	keystore *keystore.KeyStore // Keystore containing the single signer
@@ -215,7 +215,7 @@ type faucet struct {
 func newFaucet(genesis *core.Genesis, port int, enodes []*discv5.Node, network uint64, stats string, ks *keystore.KeyStore, index []byte) (*faucet, error) {
 	// Assemble the raw devp2p protocol stack
 	stack, err := node.New(&node.Config{
-		Name:    "gubiq",
+		Name:    "gath",
 		Version: params.VersionWithMeta,
 		DataDir: filepath.Join(os.Getenv("HOME"), ".faucet"),
 		P2P: p2p.Config{
@@ -280,7 +280,7 @@ func newFaucet(genesis *core.Genesis, port int, enodes []*discv5.Node, network u
 	}, nil
 }
 
-// close terminates the Ubiq connection and tears down the faucet.
+// close terminates the ATH connection and tears down the faucet.
 func (f *faucet) close() error {
 	return f.stack.Stop()
 }
@@ -449,7 +449,7 @@ func (f *faucet) apiHandler(conn *websocket.Conn) {
 		case *noauthFlag:
 			username, avatar, address, err = authNoAuth(msg.URL)
 		default:
-			err = errors.New("Something funky happened, please open an issue at https://github.com/ubiq/go-ubiq/issues")
+			err = errors.New("Something funky happened, please open an issue at https://github.com/athofficial/go-ath/issues")
 		}
 		if err != nil {
 			if err = sendError(conn, err); err != nil {

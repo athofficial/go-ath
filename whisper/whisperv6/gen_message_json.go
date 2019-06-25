@@ -5,7 +5,7 @@ package whisperv6
 import (
 	"encoding/json"
 
-	"github.com/ubiq/go-ubiq/common/hexutil"
+	"github.com/athofficial/go-ath/common/hexutil"
 )
 
 var _ = (*messageOverride)(nil)

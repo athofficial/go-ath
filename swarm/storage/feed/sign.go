@@ -19,8 +19,8 @@ package feed
 import (
 	"crypto/ecdsa"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 const signatureLength = 65

@@ -23,8 +23,8 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
 	"github.com/mattn/go-colorable"
 )
 

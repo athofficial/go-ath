@@ -20,7 +20,7 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/ubiq/go-ubiq/swarm/storage/encryption"
+	"github.com/athofficial/go-ath/swarm/storage/encryption"
 	"golang.org/x/crypto/sha3"
 )
 

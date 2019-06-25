@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 // deployEthstats queries the user for various input on deploying an ethstats

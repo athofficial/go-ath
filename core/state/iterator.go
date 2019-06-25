@@ -20,9 +20,9 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/trie"
 )
 
 // NodeIterator is an iterator to traverse the entire state trie post-order,

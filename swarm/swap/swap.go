@@ -22,10 +22,10 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/state"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/state"
 )
 
 // SwAP Swarm Accounting Protocol

@@ -25,11 +25,11 @@ import (
 	"sync"
 	"time"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/log"
 	"github.com/karalabe/hid"
 )
 

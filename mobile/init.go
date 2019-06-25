@@ -16,13 +16,13 @@
 
 // Contains initialization code for the mbile library.
 
-package gubiq
+package gath
 
 import (
 	"os"
 	"runtime"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/log"
 )
 
 func init() {

@@ -23,7 +23,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/storage/mock/test"
+	"github.com/athofficial/go-ath/swarm/storage/mock/test"
 )
 
 // TestDBStore is running a test.MockStore tests

@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
 )
 
 // deployNode creates a new node configuration based on some user input.
@@ -48,9 +48,9 @@ func (w *wizard) deployNode(boot bool) {
 	infos, err := checkNode(client, w.network, boot)
 	if err != nil {
 		if boot {
-			infos = &nodeInfos{port: 30388, peersTotal: 512, peersLight: 256}
+			infos = &nodeInfos{port: 30696, peersTotal: 512, peersLight: 256}
 		} else {
-			infos = &nodeInfos{port: 30388, peersTotal: 50, peersLight: 0, gasTarget: 7.5, gasLimit: 10, gasPrice: 1}
+			infos = &nodeInfos{port: 30696, peersTotal: 50, peersLight: 0, gasTarget: 7.5, gasLimit: 10, gasPrice: 1}
 		}
 	}
 	existed := err == nil

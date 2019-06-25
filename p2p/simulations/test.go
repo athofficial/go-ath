@@ -3,10 +3,10 @@ package simulations
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/enr"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/enr"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // NoopService is the service that does not do anything

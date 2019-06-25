@@ -24,7 +24,7 @@ import (
 	"sync"
 
 	mapset "github.com/deckarep/golang-set"
-	"github.com/ubiq/go-ubiq/common/hexutil"
+	"github.com/athofficial/go-ath/common/hexutil"
 )
 
 // API describes the set of methods offered over the RPC interface

@@ -24,8 +24,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/swarm/log"
 	lru "github.com/hashicorp/golang-lru"
 )
 

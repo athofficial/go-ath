@@ -17,16 +17,16 @@
 // Contains all the wrappers from the accounts package to support client side key
 // management on mobile platforms.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 const (

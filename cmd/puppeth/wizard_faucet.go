@@ -20,8 +20,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/log"
 )
 
 // deployFaucet queries the user for various input on deploying a faucet, after
@@ -38,7 +38,7 @@ func (w *wizard) deployFaucet() {
 	infos, err := checkFaucet(client, w.network)
 	if err != nil {
 		infos = &faucetInfos{
-			node:    &nodeInfos{port: 30388, peersTotal: 25},
+			node:    &nodeInfos{port: 30696, peersTotal: 25},
 			port:    80,
 			host:    client.server,
 			amount:  1,

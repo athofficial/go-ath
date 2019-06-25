@@ -16,7 +16,7 @@
 
 package feed
 
-import "github.com/ubiq/go-ubiq/common/hexutil"
+import "github.com/athofficial/go-ath/common/hexutil"
 
 type binarySerializer interface {
 	binaryPut(serializedData []byte) error

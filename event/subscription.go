@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/mclock"
+	"github.com/athofficial/go-ath/common/mclock"
 )
 
 // Subscription represents a stream of events. The carrier of the events is typically a

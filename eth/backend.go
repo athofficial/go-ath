@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package eth implements the Ubiq protocol.
+// Package eth implements the ATH protocol.
 package eth
 
 import (
@@ -25,30 +25,30 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/consensus/clique"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/bloombits"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/core/vm"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/eth/filters"
-	"github.com/ubiq/go-ubiq/eth/gasprice"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/internal/ethapi"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/miner"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/consensus"
+	"github.com/athofficial/go-ath/consensus/clique"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/bloombits"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/eth/filters"
+	"github.com/athofficial/go-ath/eth/gasprice"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/internal/ethapi"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/miner"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/params"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 type LesServer interface {
@@ -139,12 +139,12 @@ func New(ctx *node.ServiceContext, config *Config) (*Ethereum, error) {
 		bloomIndexer:   NewBloomIndexer(chainDb, params.BloomBitsBlocks, params.BloomConfirms),
 	}
 
-	log.Info("Initialising Ubiq protocol", "versions", ProtocolVersions, "network", config.NetworkId)
+	log.Info("Initialising ATH protocol", "versions", ProtocolVersions, "network", config.NetworkId)
 
 	if !config.SkipBcVersionCheck {
 		bcVersion := rawdb.ReadDatabaseVersion(chainDb)
 		if bcVersion != nil && *bcVersion > core.BlockChainVersion {
-			return nil, fmt.Errorf("database version is v%d, Gubiq %s only supports v%d", *bcVersion, params.VersionWithMeta, core.BlockChainVersion)
+			return nil, fmt.Errorf("database version is v%d, gath %s only supports v%d", *bcVersion, params.VersionWithMeta, core.BlockChainVersion)
 		} else if bcVersion != nil && *bcVersion < core.BlockChainVersion {
 			log.Warn("Upgrade blockchain database version", "from", *bcVersion, "to", core.BlockChainVersion)
 		}
@@ -197,7 +197,7 @@ func makeExtraData(extra []byte) []byte {
 		// create default extradata
 		extra, _ = rlp.EncodeToBytes([]interface{}{
 			uint(params.VersionMajor<<16 | params.VersionMinor<<8 | params.VersionPatch),
-			"gubiq",
+			"gath",
 			runtime.Version(),
 			runtime.GOOS,
 		})
@@ -483,7 +483,7 @@ func (s *Ethereum) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Service, starting all internal goroutines needed by the
-// Ubiq protocol implementation.
+// ATH protocol implementation.
 func (s *Ethereum) Start(srvr *p2p.Server) error {
 	// Start the bloom bits servicing goroutines
 	s.startBloomHandlers(params.BloomBitsBlocks)
@@ -508,7 +508,7 @@ func (s *Ethereum) Start(srvr *p2p.Server) error {
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Ubiq protocol.
+// ATH protocol.
 func (s *Ethereum) Stop() error {
 	s.bloomIndexer.Close()
 	s.blockchain.Stop()

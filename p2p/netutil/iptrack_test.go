@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/mclock"
+	"github.com/athofficial/go-ath/common/mclock"
 )
 
 const (

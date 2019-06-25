@@ -20,7 +20,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/swarm/api"
+	"github.com/athofficial/go-ath/swarm/api"
 )
 
 const (

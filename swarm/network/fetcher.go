@@ -21,9 +21,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 const (

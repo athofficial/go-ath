@@ -32721,13 +32721,13 @@ var _bundleJs = []byte((((((((((`!function(modules) {
                     color: "inherit"
                 }, _react2.default.createElement("span", {
                     style: _common.styles.light
-                }, "Gubiq"), " ", general.version), general.commit && _react2.default.createElement(_Typography2.default, {
+                }, "gath"), " ", general.version), general.commit && _react2.default.createElement(_Typography2.default, {
                     type: "caption",
                     color: "inherit"
                 }, _react2.default.createElement("span", {
                     style: _common.styles.light
                 }, "Commit "), _react2.default.createElement("a", {
-                    href: "https://github.com/ubiq/go-ubiq/commit/" + general.commit,
+                    href: "https://github.com/athofficial/go-ath/commit/" + general.commit,
                     target: "_blank",
                     style: {
                         color: "inherit",

@@ -21,11 +21,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock/db"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock/mem"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
+	"github.com/athofficial/go-ath/swarm/storage/mock/db"
+	"github.com/athofficial/go-ath/swarm/storage/mock/mem"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

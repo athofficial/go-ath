@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 var (

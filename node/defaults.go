@@ -22,16 +22,16 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 const (
 	DefaultHTTPHost  = "localhost" // Default host interface for the HTTP RPC server
-	DefaultHTTPPort  = 8588        // Default TCP port for the HTTP RPC server
+	DefaultHTTPPort  = 8696        // Default TCP port for the HTTP RPC server
 	DefaultWSHost    = "localhost" // Default host interface for the websocket RPC server
-	DefaultWSPort    = 8589        // Default TCP port for the websocket RPC server
+	DefaultWSPort    = 8697        // Default TCP port for the websocket RPC server
 )
 
 // DefaultConfig contains reasonable default settings.
@@ -44,7 +44,7 @@ var DefaultConfig = Config{
 	WSPort:           DefaultWSPort,
 	WSModules:        []string{"net", "web3"},
 	P2P: p2p.Config{
-		ListenAddr: ":30388",
+		ListenAddr: ":30696",
 		MaxPeers:   25,
 		NAT:        nat.Any(),
 	},

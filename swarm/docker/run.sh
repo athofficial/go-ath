@@ -5,14 +5,14 @@ set -o pipefail
 set -o nounset
 
 PASSWORD=${PASSWORD:-}
-DATADIR=${DATADIR:-/root/.ubiq/}
+DATADIR=${DATADIR:-/root/.atheios/}
 
 if [ "$PASSWORD" == "" ]; then echo "Password must be set, in order to use swarm non-interactively." && exit 1; fi
 
 echo $PASSWORD > /password
 
 KEYFILE=`find $DATADIR | grep UTC | head -n 1` || true
-if [ ! -f "$KEYFILE" ]; then echo "No keyfile found. Generating..." && /gubiq --datadir $DATADIR --password /password account new; fi
+if [ ! -f "$KEYFILE" ]; then echo "No keyfile found. Generating..." && /gath --datadir $DATADIR --password /password account new; fi
 KEYFILE=`find $DATADIR | grep UTC | head -n 1` || true
 if [ ! -f "$KEYFILE" ]; then echo "Could not find nor generate a BZZ keyfile." && exit 1; else echo "Found keyfile $KEYFILE"; fi
 

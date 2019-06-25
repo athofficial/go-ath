@@ -12,12 +12,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
+	"github.com/athofficial/go-ath/swarm/testutil"
 	"github.com/pborman/uuid"
 	cli "gopkg.in/urfave/cli.v1"
 )

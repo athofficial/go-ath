@@ -22,9 +22,9 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/console"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/console"
+	"github.com/athofficial/go-ath/crypto"
 	"gopkg.in/urfave/cli.v1"
 )
 

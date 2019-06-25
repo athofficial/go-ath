@@ -21,13 +21,13 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/params"
 )
 
 // Test chain parameters.

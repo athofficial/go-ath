@@ -20,17 +20,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 /*
 http roundtripper to register for bzz url scheme
-see https://github.com/ubiq/go-ubiq/issues/2040
+see https://github.com/athofficial/go-ath/issues/2040
 Usage:
 
 import (
- "github.com/ubiq/go-ubiq/common/httpclient"
- "github.com/ubiq/go-ubiq/swarm/api/http"
+ "github.com/athofficial/go-ath/common/httpclient"
+ "github.com/athofficial/go-ath/swarm/api/http"
 )
 client := httpclient.New()
 // for (private) swarm proxy running locally

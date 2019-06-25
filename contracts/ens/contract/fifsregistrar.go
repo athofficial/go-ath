@@ -6,10 +6,10 @@ package contract
 import (
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // FIFSRegistrarABI is the input ABI used to generate the binding from.

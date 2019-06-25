@@ -1,6 +1,6 @@
 ## Go Ubiq Dashboard
 
-The dashboard is a data visualizer integrated into gubiq, intended to collect and visualize useful information of an Ethereum node. It consists of two parts:
+The dashboard is a data visualizer integrated into gath, intended to collect and visualize useful information of an Ethereum node. It consists of two parts:
 
 * The client visualizes the collected data.
 * The server collects the data, and updates the clients.
@@ -15,14 +15,14 @@ As the dashboard depends on certain NPM packages (which are not included in the 
 $ (cd dashboard/assets && yarn install && yarn flow)
 ```
 
-Normally the dashboard assets are bundled into Gubiq via `go-bindata` to avoid external dependencies. Rebuilding Gubiq after each UI modification however is not feasible from a developer perspective. Instead, we can run `yarn dev` to watch for file system changes and refresh the browser automatically.
+Normally the dashboard assets are bundled into gath via `go-bindata` to avoid external dependencies. Rebuilding gath after each UI modification however is not feasible from a developer perspective. Instead, we can run `yarn dev` to watch for file system changes and refresh the browser automatically.
 
 ```
-$ gubiq --dashboard --vmodule=dashboard=5
+$ gath --dashboard --vmodule=dashboard=5
 $ (cd dashboard/assets && yarn dev)
 ```
 
-To bundle up the final UI into Gubiq, run `go generate`:
+To bundle up the final UI into gath, run `go generate`:
 
 ```
 $ (cd dashboard && go generate)

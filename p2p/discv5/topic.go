@@ -23,8 +23,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/log"
 )
 
 const (

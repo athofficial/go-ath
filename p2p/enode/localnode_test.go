@@ -19,8 +19,8 @@ package enode
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p/enr"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p/enr"
 )
 
 func newLocalNodeForTesting() (*LocalNode, *DB) {

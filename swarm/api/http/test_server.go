@@ -23,9 +23,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/api"
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
 )
 
 type TestServer interface {

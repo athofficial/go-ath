@@ -19,9 +19,9 @@ package protocols
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/simulations/adapters"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/simulations/adapters"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 //dummy Balance implementation

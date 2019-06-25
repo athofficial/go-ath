@@ -25,14 +25,14 @@ import (
 	"sync"
 	"time"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rpc"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // Type determines the kind of filter and is used to put the filter in to

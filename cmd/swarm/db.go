@@ -22,10 +22,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -45,12 +45,12 @@ var dbCommand = cli.Command{
 			Description: `
 Export a local chunk database as a tar archive (use - to send to stdout).
 
-    swarm db export ~/.ubiq/swarm/bzz-KEY/chunks chunks.tar
+    swarm db export ~/.atheios/swarm/bzz-KEY/chunks chunks.tar
 
 The export may be quite large, consider piping the output through the Unix
 pv(1) tool to get a progress bar:
 
-    swarm db export ~/.ubiq/swarm/bzz-KEY/chunks - | pv > chunks.tar
+    swarm db export ~/.atheios/swarm/bzz-KEY/chunks - | pv > chunks.tar
 `,
 		},
 		{
@@ -61,12 +61,12 @@ pv(1) tool to get a progress bar:
 			ArgsUsage:          "<chunkdb> <file>",
 			Description: `Import chunks from a tar archive into a local chunk database (use - to read from stdin).
 
-    swarm db import ~/.ubiq/swarm/bzz-KEY/chunks chunks.tar
+    swarm db import ~/.atheios/swarm/bzz-KEY/chunks chunks.tar
 
 The import may be quite large, consider piping the input through the Unix
 pv(1) tool to get a progress bar:
 
-    pv chunks.tar | swarm db import ~/.ubiq/swarm/bzz-KEY/chunks -`,
+    pv chunks.tar | swarm db import ~/.atheios/swarm/bzz-KEY/chunks -`,
 		},
 	},
 }

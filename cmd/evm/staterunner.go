@@ -23,10 +23,10 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/vm"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/tests"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/tests"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

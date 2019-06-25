@@ -24,10 +24,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/pot"
-	sv "github.com/ubiq/go-ubiq/swarm/version"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/pot"
+	sv "github.com/athofficial/go-ath/swarm/version"
 )
 
 /*

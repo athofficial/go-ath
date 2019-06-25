@@ -24,16 +24,16 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common/compiler"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common/compiler"
 )
 
 var (
-	abiFlag = flag.String("abi", "", "Path to the Ubiq contract ABI json to bind, - for STDIN")
-	binFlag = flag.String("bin", "", "Path to the Ubiq contract bytecode (generate deploy method)")
+	abiFlag = flag.String("abi", "", "Path to the ATH contract ABI json to bind, - for STDIN")
+	binFlag = flag.String("bin", "", "Path to the ATH contract bytecode (generate deploy method)")
 	typFlag = flag.String("type", "", "Struct name for the binding (default = package name)")
 
-	solFlag  = flag.String("sol", "", "Path to the Ubiq contract Solidity source to build and bind")
+	solFlag  = flag.String("sol", "", "Path to the ATH contract Solidity source to build and bind")
 	solcFlag = flag.String("solc", "solc", "Solidity compiler to use if source builds are requested")
 	excFlag  = flag.String("exc", "", "Comma separated types to exclude from binding")
 

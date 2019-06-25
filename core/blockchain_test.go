@@ -24,16 +24,16 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/core/vm"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/params"
 )
 
 // So we can deterministically seed different blockchains
@@ -1436,7 +1436,7 @@ func TestEIP161AccountRemoval(t *testing.T) {
 // tests that under weird reorg conditions the blockchain and its internal header-
 // chain return the same latest block/header.
 //
-// https://github.com/ubiq/go-ubiq/pull/15941
+// https://github.com/athofficial/go-ath/pull/15941
 func TestBlockchainHeaderchainReorgConsistency(t *testing.T) {
 	// Generate a canonical chain to act as the main dataset
 	engine := ubqhash.NewFaker()
@@ -1695,8 +1695,8 @@ func BenchmarkBlockChain_1x1000Executions(b *testing.B) {
 // overtake the 'canon' chain until after it's passed canon by about 200 blocks.
 //
 // Details at:
-//  - https://github.com/ubiq/go-ubiq/issues/18977
-//  - https://github.com/ubiq/go-ubiq/pull/18988
+//  - https://github.com/athofficial/go-ath/issues/18977
+//  - https://github.com/athofficial/go-ath/pull/18988
 func TestLowDiffLongChain(t *testing.T) {
 	// Generate a canonical chain to act as the main dataset
 	engine := ubqhash.NewFaker()

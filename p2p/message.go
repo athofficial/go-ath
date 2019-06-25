@@ -25,9 +25,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // Msg defines the structure of a p2p message.

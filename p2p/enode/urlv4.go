@@ -26,9 +26,9 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/ubiq/go-ubiq/common/math"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p/enr"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p/enr"
 )
 
 var incompleteNodeURL = regexp.MustCompile("(?i)^(?:enode://)?([0-9a-f]+)$")
@@ -62,10 +62,10 @@ func MustParseV4(rawurl string) *Node {
 // query parameter "discport".
 //
 // In the following example, the node URL describes
-// a node with IP address 10.3.58.6, TCP listening port 30388
-// and UDP discovery port 30301.
+// a node with IP address 10.3.58.6, TCP listening port 30696
+// and UDP discovery port 30697.
 //
-//    enode://<hex node id>@10.3.58.6:30388?discport=30301
+//    enode://<hex node id>@10.3.58.6:30696?discport=30697
 func ParseV4(rawurl string) (*Node, error) {
 	if m := incompleteNodeURL.FindStringSubmatch(rawurl); m != nil {
 		id, err := parsePubkey(m[1])

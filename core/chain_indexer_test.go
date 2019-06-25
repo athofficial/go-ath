@@ -24,10 +24,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 // Runs multiple tests with randomized parameters.

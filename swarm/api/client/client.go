@@ -37,11 +37,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	"github.com/ubiq/go-ubiq/swarm/spancontext"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/spancontext"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
 	"github.com/pborman/uuid"
 )
 

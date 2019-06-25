@@ -24,7 +24,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/athofficial/go-ath/swarm/testutil"
 	"golang.org/x/crypto/sha3"
 )
 

@@ -26,7 +26,7 @@ import (
 	"net"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/p2p/enr"
+	"github.com/athofficial/go-ath/p2p/enr"
 )
 
 // Node represents a host on the network.

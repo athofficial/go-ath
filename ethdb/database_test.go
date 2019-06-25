@@ -27,7 +27,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 func newTestLDB() (*ethdb.LDBDatabase, func()) {

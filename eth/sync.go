@@ -21,11 +21,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/enode"
 )
 
 const (

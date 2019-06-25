@@ -27,8 +27,8 @@ import (
 	"testing/quick"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 type nullTransport struct{}

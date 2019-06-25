@@ -23,10 +23,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/fuse"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/fuse"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -154,7 +154,7 @@ func getIPCEndpoint(ctx *cli.Context) string {
 	endpoint := cfg.IPCEndpoint()
 
 	if strings.HasPrefix(endpoint, "rpc:") || strings.HasPrefix(endpoint, "ipc:") {
-		// Backwards compatibility with gubiq < 1.5 which required
+		// Backwards compatibility with gath < 1.5 which required
 		// these prefixes.
 		endpoint = endpoint[4:]
 	}

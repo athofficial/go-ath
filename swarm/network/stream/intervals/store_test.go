@@ -19,7 +19,7 @@ package intervals
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/state"
+	"github.com/athofficial/go-ath/swarm/state"
 )
 
 // TestInmemoryStore tests basic functionality of InmemoryStore.

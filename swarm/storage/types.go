@@ -25,9 +25,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/bmt"
-	ch "github.com/ubiq/go-ubiq/swarm/chunk"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/bmt"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
 	"golang.org/x/crypto/sha3"
 )
 

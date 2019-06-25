@@ -27,7 +27,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/p2p/simulations"
+	"github.com/athofficial/go-ath/p2p/simulations"
 )
 
 // TestSnapshotCreate is a high level e2e test that tests for snapshot generation.

@@ -20,9 +20,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/prque"
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/prque"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 // ErrNotRequested is returned by the trie sync when it's requested to process a

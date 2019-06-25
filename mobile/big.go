@@ -16,13 +16,13 @@
 
 // Contains all the wrappers from the math/big package.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // A BigInt represents a signed multi-precision integer.

@@ -17,12 +17,12 @@
 // Contains all the wrappers from the accounts package to support client side enode
 // management on mobile platforms.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 
-	"github.com/ubiq/go-ubiq/p2p/discv5"
+	"github.com/athofficial/go-ath/p2p/discv5"
 )
 
 // Enode represents a host on the network.
@@ -49,10 +49,10 @@ type Enode struct {
 // query parameter "discport".
 //
 // In the following example, the node URL describes
-// a node with IP address 10.3.58.6, TCP listening port 30388
-// and UDP discovery port 30386.
+// a node with IP address 10.3.58.6, TCP listening port 30696
+// and UDP discovery port 30697.
 //
-//    enode://<hex node id>@10.3.58.6:30388?discport=30386
+//    enode://<hex node id>@10.3.58.6:30696?discport=30697
 func NewEnode(rawurl string) (enode *Enode, _ error) {
 	node, err := discv5.ParseNode(rawurl)
 	if err != nil {

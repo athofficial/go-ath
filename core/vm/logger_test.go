@@ -20,9 +20,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/params"
 )
 
 type dummyContractRef struct {

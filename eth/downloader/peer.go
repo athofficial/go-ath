@@ -29,9 +29,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/log"
 )
 
 const (

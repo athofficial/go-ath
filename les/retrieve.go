@@ -26,8 +26,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/light"
+	"github.com/athofficial/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/light"
 )
 
 var (

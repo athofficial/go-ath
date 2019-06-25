@@ -28,35 +28,35 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/fdlimit"
-	"github.com/ubiq/go-ubiq/consensus"
-	"github.com/ubiq/go-ubiq/consensus/clique"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/state"
-	"github.com/ubiq/go-ubiq/core/vm"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/dashboard"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/eth/gasprice"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/ethstats"
-	"github.com/ubiq/go-ubiq/les"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/metrics/influxdb"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/p2p/netutil"
-	"github.com/ubiq/go-ubiq/params"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/fdlimit"
+	"github.com/athofficial/go-ath/consensus"
+	"github.com/athofficial/go-ath/consensus/clique"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/state"
+	"github.com/athofficial/go-ath/core/vm"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/dashboard"
+	"github.com/athofficial/go-ath/eth"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/eth/gasprice"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/ethstats"
+	"github.com/athofficial/go-ath/les"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics/influxdb"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/discv5"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/p2p/netutil"
+	"github.com/athofficial/go-ath/params"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
@@ -505,7 +505,7 @@ var (
 	ListenPortFlag = cli.IntFlag{
 		Name:  "port",
 		Usage: "Network listening port",
-		Value: 30388,
+		Value: 30696,
 	}
 	BootnodesFlag = cli.StringFlag{
 		Name:  "bootnodes",
@@ -602,7 +602,7 @@ var (
 	MetricsInfluxDBDatabaseFlag = cli.StringFlag{
 		Name:  "metrics.influxdb.database",
 		Usage: "InfluxDB database name to push reported metrics to",
-		Value: "gubiq",
+		Value: "gath",
 	}
 	MetricsInfluxDBUsernameFlag = cli.StringFlag{
 		Name:  "metrics.influxdb.username",
@@ -823,7 +823,7 @@ func setIPC(ctx *cli.Context, cfg *node.Config) {
 }
 
 // makeDatabaseHandles raises out the number of allowed file handles per process
-// for Gubiq and returns half of the allowance to assign to the database.
+// for gath and returns half of the allowance to assign to the database.
 func makeDatabaseHandles() int {
 	limit, err := fdlimit.Maximum()
 	if err != nil {
@@ -851,7 +851,7 @@ func MakeAddress(ks *keystore.KeyStore, account string) (accounts.Account, error
 	log.Warn("-------------------------------------------------------------------")
 	log.Warn("Referring to accounts by order in the keystore folder is dangerous!")
 	log.Warn("This functionality is deprecated and will be removed in the future!")
-	log.Warn("Please use explicit addresses! (can search via `gubiq account list`)")
+	log.Warn("Please use explicit addresses! (can search via `gath account list`)")
 	log.Warn("-------------------------------------------------------------------")
 
 	accs := ks.Accounts()
@@ -1356,7 +1356,7 @@ func SetupMetrics(ctx *cli.Context) {
 
 			log.Info("Enabling metrics export to InfluxDB")
 
-			go influxdb.InfluxDBWithTags(metrics.DefaultRegistry, 10*time.Second, endpoint, database, username, password, "gubiq.", tagsMap)
+			go influxdb.InfluxDBWithTags(metrics.DefaultRegistry, 10*time.Second, endpoint, database, username, password, "gath.", tagsMap)
 		}
 	}
 }
@@ -1474,11 +1474,11 @@ func MakeConsolePreloads(ctx *cli.Context) []string {
 // This is a temporary function used for migrating old command/flags to the
 // new format.
 //
-// e.g. gubiq account new --keystore /tmp/mykeystore --lightkdf
+// e.g. gath account new --keystore /tmp/mykeystore --lightkdf
 //
 // is equivalent after calling this method with:
 //
-// gubiq --keystore /tmp/mykeystore --lightkdf account new
+// gath --keystore /tmp/mykeystore --lightkdf account new
 //
 // This allows the use of the existing configuration functionality.
 // When all flags are migrated this function can be removed and the existing

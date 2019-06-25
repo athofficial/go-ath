@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
+	"github.com/athofficial/go-ath/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 

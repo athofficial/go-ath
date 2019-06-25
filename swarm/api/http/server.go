@@ -35,12 +35,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/api"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage"
-	"github.com/ubiq/go-ubiq/swarm/storage/feed"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/api"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage/feed"
 	"github.com/rs/cors"
 )
 

@@ -24,10 +24,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 const (

@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/rpc"
-	mockRPC "github.com/ubiq/go-ubiq/swarm/storage/mock/rpc"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rpc"
+	mockRPC "github.com/athofficial/go-ath/swarm/storage/mock/rpc"
 )
 
 // TestHTTP_InMemory tests in-memory global store that exposes

@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	bv "github.com/ubiq/go-ubiq/swarm/network/bitvector"
-	"github.com/ubiq/go-ubiq/swarm/spancontext"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/swarm/log"
+	bv "github.com/athofficial/go-ath/swarm/network/bitvector"
+	"github.com/athofficial/go-ath/swarm/spancontext"
+	"github.com/athofficial/go-ath/swarm/storage"
 	"github.com/opentracing/opentracing-go"
 )
 

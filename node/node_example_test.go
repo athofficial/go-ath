@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // SampleService is a trivial network service that can be attached to a node for

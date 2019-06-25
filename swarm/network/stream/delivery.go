@@ -21,12 +21,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/network"
-	"github.com/ubiq/go-ubiq/swarm/spancontext"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/network"
+	"github.com/athofficial/go-ath/swarm/spancontext"
+	"github.com/athofficial/go-ath/swarm/storage"
 	opentracing "github.com/opentracing/opentracing-go"
 )
 

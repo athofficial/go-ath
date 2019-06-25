@@ -54,7 +54,7 @@ func TestBloom(t *testing.T) {
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/core/state"
+	"github.com/athofficial/go-ath/core/state"
 )
 
 func TestBloom9(t *testing.T) {

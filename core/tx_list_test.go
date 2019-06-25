@@ -20,8 +20,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 // Tests that transactions can be added to strict lists and list contents and

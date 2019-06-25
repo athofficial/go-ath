@@ -21,8 +21,8 @@ import (
 	mrand "math/rand"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 func generateMessageParams() (*MessageParams, error) {

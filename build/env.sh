@@ -10,11 +10,11 @@ fi
 # Create fake Go workspace if it doesn't exist yet.
 workspace="$PWD/build/_workspace"
 root="$PWD"
-ethdir="$workspace/src/github.com/ubiq"
-if [ ! -L "$ethdir/go-ubiq" ]; then
+ethdir="$workspace/src/github.com/athofficial"
+if [ ! -L "$ethdir/go-ath" ]; then
     mkdir -p "$ethdir"
     cd "$ethdir"
-    ln -s ../../../../../. go-ubiq
+    ln -s ../../../../../. go-ath
     cd "$root"
 fi
 
@@ -23,8 +23,8 @@ GOPATH="$workspace"
 export GOPATH
 
 # Run the command inside the workspace.
-cd "$ethdir/go-ubiq"
-PWD="$ethdir/go-ubiq"
+cd "$ethdir/go-ath"
+PWD="$ethdir/go-ath"
 
 # Launch the arguments with the configured environment.
 exec "$@"

@@ -30,8 +30,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 // Node represents a host on the network.
@@ -144,10 +144,10 @@ var incompleteNodeURL = regexp.MustCompile("(?i)^(?:enode://)?([0-9a-f]+)$")
 // query parameter "discport".
 //
 // In the following example, the node URL describes
-// a node with IP address 10.3.58.6, TCP listening port 30388
-// and UDP discovery port 30386.
+// a node with IP address 10.3.58.6, TCP listening port 30696
+// and UDP discovery port 30697.
 //
-//    enode://<hex node id>@10.3.58.6:30388?discport=30386
+//    enode://<hex node id>@10.3.58.6:30696?discport=30697
 func ParseNode(rawurl string) (*Node, error) {
 	if m := incompleteNodeURL.FindStringSubmatch(rawurl); m != nil {
 		id, err := HexID(m[1])

@@ -21,7 +21,7 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // Genesis hashes to enforce below configs on.
@@ -36,7 +36,7 @@ var (
 		ChainID:             big.NewInt(1620),
 		HomesteadBlock:      big.NewInt(0),
 		EIP150Block:         big.NewInt(0),
-		EIP150Hash:          common.HexToHash("0xd1398537f6d175efca8e0da424bf0d33832703abae0772c16c778d7fa0ae2ace"),
+		EIP150Hash:          common.HexToHash("0xb17a6645854471de4eff53b904a0d3eec3ef21c906afc6f1bc7dadbfc03b9448"),
 		EIP155Block:         big.NewInt(10),
 		EIP158Block:         big.NewInt(10),
 		ByzantiumBlock:      big.NewInt(math.MaxInt64),

@@ -24,8 +24,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/core/vm"
 )
 
 func TestState(t *testing.T) {

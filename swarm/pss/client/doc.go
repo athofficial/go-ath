@@ -28,11 +28,11 @@
 //  	"context"
 //  	"fmt"
 //  	"os"
-//  	pss "github.com/ubiq/go-ubiq/swarm/pss/client"
-//  	"github.com/ubiq/go-ubiq/p2p/protocols"
-//  	"github.com/ubiq/go-ubiq/p2p"
-//  	"github.com/ubiq/go-ubiq/swarm/pot"
-//  	"github.com/ubiq/go-ubiq/swarm/log"
+//  	pss "github.com/athofficial/go-ath/swarm/pss/client"
+//  	"github.com/athofficial/go-ath/p2p/protocols"
+//  	"github.com/athofficial/go-ath/p2p"
+//  	"github.com/athofficial/go-ath/swarm/pot"
+//  	"github.com/athofficial/go-ath/swarm/log"
 //  )
 //
 //  type FooMsg struct {

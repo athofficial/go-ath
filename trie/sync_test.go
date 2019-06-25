@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/ethdb"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/ethdb"
 )
 
 // makeTestTrie create a sample test trie to test node-wise reconstruction.

@@ -34,10 +34,10 @@ import (
 	"io/ioutil"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

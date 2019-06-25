@@ -22,12 +22,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	"github.com/ubiq/go-ubiq/swarm/pot"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	"github.com/athofficial/go-ath/swarm/pot"
 )
 
 func init() {

@@ -22,12 +22,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common/hexutil"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/rpc"
+	"github.com/athofficial/go-ath/common/hexutil"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // PrivateAdminAPI is the collection of administrative API methods exposed only

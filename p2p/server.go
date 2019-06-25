@@ -28,18 +28,18 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/discover"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/enr"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/p2p/netutil"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/discover"
+	"github.com/athofficial/go-ath/p2p/discv5"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/enr"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/p2p/netutil"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 const (
@@ -587,7 +587,7 @@ func (srv *Server) setupListening() error {
 	if !laddr.IP.IsLoopback() && srv.NAT != nil {
 		srv.loopWG.Add(1)
 		go func() {
-			nat.Map(srv.NAT, srv.quit, "tcp", laddr.Port, laddr.Port, "ubiq p2p")
+			nat.Map(srv.NAT, srv.quit, "tcp", laddr.Port, laddr.Port, "gath p2p")
 			srv.loopWG.Done()
 		}()
 	}

@@ -22,8 +22,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/common"
 )
 
 // Verify that Client implements the ethereum interfaces.

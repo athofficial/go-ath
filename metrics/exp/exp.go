@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 type exp struct {

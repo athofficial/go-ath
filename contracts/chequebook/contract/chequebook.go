@@ -7,12 +7,12 @@ import (
 	"math/big"
 	"strings"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/event"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/event"
 )
 
 // ChequebookABI is the input ABI used to generate the binding from.

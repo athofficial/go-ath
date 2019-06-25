@@ -23,14 +23,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/bitutil"
-	"github.com/ubiq/go-ubiq/core/bloombits"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/node"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/bitutil"
+	"github.com/athofficial/go-ath/core/bloombits"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/node"
 )
 
 func BenchmarkBloomBits512(b *testing.B) {
@@ -64,7 +64,7 @@ func BenchmarkBloomBits32k(b *testing.B) {
 const benchFilterCnt = 2000
 
 func benchmarkBloomBits(b *testing.B, sectionSize uint64) {
-	benchDataDir := node.DefaultDataDir() + "/gubiq/chaindata"
+	benchDataDir := node.DefaultDataDir() + "/gath/chaindata"
 	fmt.Println("Running bloombits benchmark   section size:", sectionSize)
 
 	db, err := ethdb.NewLDBDatabase(benchDataDir, 128, 1024)
@@ -174,7 +174,7 @@ func clearBloomBits(db ethdb.Database) {
 }
 
 func BenchmarkNoBloomBits(b *testing.B) {
-	benchDataDir := node.DefaultDataDir() + "/gubiq/chaindata"
+	benchDataDir := node.DefaultDataDir() + "/gath/chaindata"
 	fmt.Println("Running benchmark without bloombits")
 	db, err := ethdb.NewLDBDatabase(benchDataDir, 128, 1024)
 	if err != nil {

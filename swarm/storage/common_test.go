@@ -28,8 +28,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	ch "github.com/ubiq/go-ubiq/swarm/chunk"
+	"github.com/athofficial/go-ath/log"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
 	"github.com/mattn/go-colorable"
 )
 

@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/simulations"
-	"github.com/ubiq/go-ubiq/swarm/log"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/simulations"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 var (

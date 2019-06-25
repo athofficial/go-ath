@@ -24,12 +24,12 @@ import (
 	"net"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/p2p/netutil"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/p2p/netutil"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 const Version = 4

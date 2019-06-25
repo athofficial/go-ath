@@ -20,7 +20,7 @@ import (
 	"context"
 	"path"
 
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 type Response struct {

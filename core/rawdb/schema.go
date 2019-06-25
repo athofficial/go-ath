@@ -20,8 +20,8 @@ package rawdb
 import (
 	"encoding/binary"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 // The fields below define the low level database schema prefixing.

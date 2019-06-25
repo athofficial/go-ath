@@ -20,7 +20,7 @@ import (
 	"crypto/sha256"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/crypto"
 	"golang.org/x/crypto/pbkdf2"
 )
 

@@ -27,14 +27,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/contracts/chequebook"
-	"github.com/ubiq/go-ubiq/contracts/chequebook/contract"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/services/swap/swap"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/contracts/chequebook"
+	"github.com/athofficial/go-ath/contracts/chequebook/contract"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/services/swap/swap"
 )
 
 // SwAP       Swarm Accounting Protocol with

@@ -23,11 +23,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	p2ptest "github.com/ubiq/go-ubiq/p2p/testing"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	p2ptest "github.com/athofficial/go-ath/p2p/testing"
 )
 
 const (

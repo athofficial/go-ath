@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/p2p/enode"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/p2p/enode"
 )
 
 type TestPeer interface {

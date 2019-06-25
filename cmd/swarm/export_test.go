@@ -26,8 +26,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm"
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/athofficial/go-ath/swarm"
+	"github.com/athofficial/go-ath/swarm/testutil"
 )
 
 // TestCLISwarmExportImport perform the following test:

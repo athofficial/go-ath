@@ -19,9 +19,9 @@ package rpc
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock/mem"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock/test"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/storage/mock/mem"
+	"github.com/athofficial/go-ath/swarm/storage/mock/test"
 )
 
 // TestDBStore is running test for a GlobalStore

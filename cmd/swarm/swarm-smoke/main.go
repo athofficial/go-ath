@@ -21,13 +21,13 @@ import (
 	"os"
 	"sort"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	gethmetrics "github.com/ubiq/go-ubiq/metrics"
-	"github.com/ubiq/go-ubiq/metrics/influxdb"
-	swarmmetrics "github.com/ubiq/go-ubiq/swarm/metrics"
-	"github.com/ubiq/go-ubiq/swarm/tracing"
+	"github.com/athofficial/go-ath/cmd/utils"
+	gathmetrics "github.com/athofficial/go-ath/metrics"
+	"github.com/athofficial/go-ath/metrics/influxdb"
+	swarmmetrics "github.com/athofficial/go-ath/swarm/metrics"
+	"github.com/athofficial/go-ath/swarm/tracing"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/log"
 
 	cli "gopkg.in/urfave/cli.v1"
 )
@@ -170,7 +170,7 @@ func main() {
 }
 
 func emitMetrics(ctx *cli.Context) error {
-	if gubiqmetrics.Enabled {
+	if gathmetrics.Enabled {
 		var (
 			endpoint = ctx.GlobalString(swarmmetrics.MetricsInfluxDBEndpointFlag.Name)
 			database = ctx.GlobalString(swarmmetrics.MetricsInfluxDBDatabaseFlag.Name)
@@ -183,7 +183,7 @@ func emitMetrics(ctx *cli.Context) error {
 		tagsMap["version"] = gitCommit
 		tagsMap["filesize"] = fmt.Sprintf("%v", filesize)
 
-		return influxdb.InfluxDBWithTagsOnce(gethmetrics.DefaultRegistry, endpoint, database, username, password, "swarm-smoke.", tagsMap)
+		return influxdb.InfluxDBWithTagsOnce(gathmetrics.DefaultRegistry, endpoint, database, username, password, "swarm-smoke.", tagsMap)
 	}
 
 	return nil

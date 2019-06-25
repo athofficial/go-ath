@@ -23,15 +23,15 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/consensus/ubqhash"
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/ethdb"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/consensus/ubqhash"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/ethdb"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/params"
 )
 
 func makeReceipt(addr common.Address) *types.Receipt {
@@ -61,7 +61,7 @@ func BenchmarkFilters(b *testing.B) {
 		key1, _    = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		addr1      = crypto.PubkeyToAddress(key1.PublicKey)
 		addr2      = common.BytesToAddress([]byte("jeff"))
-		addr3      = common.BytesToAddress([]byte("ubiq"))
+		addr3      = common.BytesToAddress([]byte("ath"))
 		addr4      = common.BytesToAddress([]byte("random addresses please"))
 	)
 	defer db.Close()

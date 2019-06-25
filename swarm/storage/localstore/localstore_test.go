@@ -28,9 +28,9 @@ import (
 	"testing"
 	"time"
 
-	ch "github.com/ubiq/go-ubiq/swarm/chunk"
-	"github.com/ubiq/go-ubiq/swarm/shed"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
+	"github.com/athofficial/go-ath/swarm/shed"
+	"github.com/athofficial/go-ath/swarm/storage"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 
@@ -130,10 +130,10 @@ func TestDB_updateGCSem(t *testing.T) {
 // Measurements on MacBook Pro (Retina, 15-inch, Mid 2014) show
 // that New function executes around 1s for database with 1M chunks.
 //
-// # go test -benchmem -run=none github.com/ubiq/go-ubiq/swarm/storage/localstore -bench BenchmarkNew -v -timeout 20m
+// # go test -benchmem -run=none github.com/athofficial/go-ath/swarm/storage/localstore -bench BenchmarkNew -v -timeout 20m
 // goos: darwin
 // goarch: amd64
-// pkg: github.com/ubiq/go-ubiq/swarm/storage/localstore
+// pkg: github.com/athofficial/go-ath/swarm/storage/localstore
 // BenchmarkNew/1000-8         	     200	  11672414 ns/op	 9570960 B/op	   10008 allocs/op
 // BenchmarkNew/10000-8        	     100	  14890609 ns/op	10490118 B/op	    7759 allocs/op
 // BenchmarkNew/100000-8       	      20	  58334080 ns/op	17763157 B/op	   22978 allocs/op

@@ -19,10 +19,10 @@ package core
 import (
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/mclock"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/mclock"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/log"
 )
 
 // insertStats tracks and reports on block insertion.

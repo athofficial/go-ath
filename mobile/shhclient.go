@@ -16,11 +16,11 @@
 
 // Contains a wrapper for the Whisper client.
 
-package gubiq
+package gath
 
 import (
-	"github.com/ubiq/go-ubiq/whisper/shhclient"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/athofficial/go-ath/whisper/shhclient"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
 // WhisperClient provides access to the Ethereum APIs.

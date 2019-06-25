@@ -24,7 +24,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/swarm/testutil"
+	"github.com/athofficial/go-ath/swarm/testutil"
 )
 
 const testDataSize = 0x0001000

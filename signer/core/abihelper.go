@@ -22,8 +22,8 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/common"
 
 	"bytes"
 	"os"

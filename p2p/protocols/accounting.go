@@ -19,7 +19,7 @@ package protocols
 import (
 	"time"
 
-	"github.com/ubiq/go-ubiq/metrics"
+	"github.com/athofficial/go-ath/metrics"
 )
 
 // define some metrics

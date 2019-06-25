@@ -29,10 +29,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/log"
-	swarm "github.com/ubiq/go-ubiq/swarm/api/client"
+	"github.com/athofficial/go-ath/log"
+	swarm "github.com/athofficial/go-ath/swarm/api/client"
 
-	"github.com/ubiq/go-ubiq/cmd/utils"
+	"github.com/athofficial/go-ath/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 

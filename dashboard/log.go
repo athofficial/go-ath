@@ -26,7 +26,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/ubiq/go-ubiq/log"
+	"github.com/athofficial/go-ath/log"
 	"github.com/mohae/deepcopy"
 	"github.com/rjeczalik/notify"
 )

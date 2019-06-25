@@ -19,10 +19,10 @@ package rawdb
 import (
 	"encoding/json"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/params"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/params"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // ReadDatabaseVersion retrieves the version number of the database.

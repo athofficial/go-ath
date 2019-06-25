@@ -27,7 +27,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/common/math"
+	"github.com/athofficial/go-ath/common/math"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -48,7 +48,7 @@ func (self *DirectoryString) Set(value string) error {
 }
 
 // Custom cli.Flag type which expand the received string to an absolute path.
-// e.g. ~/.ubiq -> /home/username/.ubiq
+// e.g. ~/.atheios -> /home/username/.atheios
 type DirectoryFlag struct {
 	Name  string
 	Value DirectoryString

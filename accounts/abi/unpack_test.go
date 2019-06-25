@@ -26,7 +26,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 	"github.com/stretchr/testify/require"
 )
 

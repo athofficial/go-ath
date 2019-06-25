@@ -28,9 +28,9 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/common/math"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/rlp"
 	"golang.org/x/crypto/sha3"
 )
 

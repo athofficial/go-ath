@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 // TestDB_SubscribePush uploads some chunks before and after

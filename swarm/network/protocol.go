@@ -24,13 +24,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/protocols"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm/log"
-	"github.com/ubiq/go-ubiq/swarm/state"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/protocols"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm/log"
+	"github.com/athofficial/go-ath/swarm/state"
 )
 
 const (
@@ -379,7 +379,7 @@ func RandomAddr() *BzzAddr {
 	if err != nil {
 		panic("unable to generate key")
 	}
-	node := enode.NewV4(&key.PublicKey, net.IP{127, 0, 0, 1}, 30388, 30388)
+	node := enode.NewV4(&key.PublicKey, net.IP{127, 0, 0, 1}, 30696, 30696)
 	return NewAddr(node)
 }
 

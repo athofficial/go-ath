@@ -40,7 +40,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/crypto"
+	"github.com/athofficial/go-ath/crypto"
 )
 
 var dumpEnc bool

@@ -5,14 +5,14 @@ Maintainer: {{.Author}}
 Build-Depends: debhelper (>= 8.0.0), golang-1.10
 Standards-Version: 3.9.5
 Homepage: https://ethereum.org
-Vcs-Git: git://github.com/ubiq/go-ubiq.git
-Vcs-Browser: https://github.com/ubiq/go-ubiq
+Vcs-Git: git://github.com/athofficial/go-ath.git
+Vcs-Browser: https://github.com/athofficial/go-ath
 
 Package: {{.Name}}
 Architecture: any
 Depends: ${misc:Depends}, {{.ExeList}}
-Description: Meta-package to install gubiq, swarm, and other tools
- Meta-package to install gubiq, swarm and other tools
+Description: Meta-package to install gath, swarm, and other tools
+ Meta-package to install gath, swarm and other tools
 
 {{range .Executables}}
 Package: {{$.ExeName .}}

@@ -29,24 +29,24 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/accounts/keystore"
-	"github.com/ubiq/go-ubiq/cmd/utils"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/console"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/internal/debug"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/rpc"
-	"github.com/ubiq/go-ubiq/swarm"
-	bzzapi "github.com/ubiq/go-ubiq/swarm/api"
-	swarmmetrics "github.com/ubiq/go-ubiq/swarm/metrics"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock"
-	mockrpc "github.com/ubiq/go-ubiq/swarm/storage/mock/rpc"
-	"github.com/ubiq/go-ubiq/swarm/tracing"
-	sv "github.com/ubiq/go-ubiq/swarm/version"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/accounts/keystore"
+	"github.com/athofficial/go-ath/cmd/utils"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/console"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/internal/debug"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/rpc"
+	"github.com/athofficial/go-ath/swarm"
+	bzzapi "github.com/athofficial/go-ath/swarm/api"
+	swarmmetrics "github.com/athofficial/go-ath/swarm/metrics"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
+	mockrpc "github.com/athofficial/go-ath/swarm/storage/mock/rpc"
+	"github.com/athofficial/go-ath/swarm/tracing"
+	sv "github.com/athofficial/go-ath/swarm/version"
 
 	cli "gopkg.in/urfave/cli.v1"
 )
@@ -91,7 +91,7 @@ var defaultSubcommandHelp = cli.Command{
 
 var defaultNodeConfig = node.DefaultConfig
 
-// This init function sets defaults so cmd/swarm can run alongside gubiq.
+// This init function sets defaults so cmd/swarm can run alongside gath.
 func init() {
 	sv.GitCommit = gitCommit
 	defaultNodeConfig.Name = clientIdentifier
@@ -275,9 +275,9 @@ func bzzd(ctx *cli.Context) error {
 	//pss operates on ws
 	cfg.WSModules = append(cfg.WSModules, "pss")
 
-	//gubiq only supports --datadir via command line
+	//gath only supports --datadir via command line
 	//in order to be consistent within swarm, if we pass --datadir via environment variable
-	//or via config file, we get the same directory for gubiq and swarm
+	//or via config file, we get the same directory for gath and swarm
 	if _, err := os.Stat(bzzconfig.Path); err == nil {
 		cfg.DataDir = bzzconfig.Path
 	}

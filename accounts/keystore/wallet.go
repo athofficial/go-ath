@@ -19,9 +19,9 @@ package keystore
 import (
 	"math/big"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/accounts"
-	"github.com/ubiq/go-ubiq/core/types"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/accounts"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // keystoreWallet implements the accounts.Wallet interface for the original

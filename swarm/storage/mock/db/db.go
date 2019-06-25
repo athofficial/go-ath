@@ -27,8 +27,8 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/util"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/swarm/storage/mock"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/swarm/storage/mock"
 )
 
 // GlobalStore contains the LevelDB database that is storing

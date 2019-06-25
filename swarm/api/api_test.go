@@ -28,11 +28,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/sctx"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/sctx"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 func init() {

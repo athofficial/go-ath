@@ -27,9 +27,9 @@ Swarm is a distributed storage platform and content distribution service, a nati
 
 Building Swarm requires Go (version 1.10 or later).
 
-    go get -d github.com/ubiq/go-ubiq
+    go get -d github.com/athofficial/go-ath
 
-    go install github.com/ubiq/go-ubiq/cmd/swarm
+    go install github.com/athofficial/go-ath/cmd/swarm
 
 ## Running Swarm
 
@@ -37,7 +37,7 @@ Going through all the possible command line flags is out of scope here, but we'v
 
 To run Swarm you need an Ethereum account. You can create a new account by running the following command:
 
-    gubiq account new
+    gath account new
 
 You will be prompted for a password:
 
@@ -66,15 +66,15 @@ Confirm that it is up and running by pointing your browser to http://localhost:8
 
 ### Ethereum Name Service resolution
 
-The Ethereum Name Service is the Ethereum equivalent of DNS in the classic web. In order to use ENS to resolve names to Swarm content hashes (e.g. `bzz://theswarm.eth`), `swarm` has to connect to a `gubiq` instance, which is synced with the Ethereum mainnet. This is done using the `--ens-api` flag.
+The Ethereum Name Service is the Ethereum equivalent of DNS in the classic web. In order to use ENS to resolve names to Swarm content hashes (e.g. `bzz://theswarm.eth`), `swarm` has to connect to a `gath` instance, which is synced with the Ethereum mainnet. This is done using the `--ens-api` flag.
 
     swarm --bzzaccount <your-account-here> \
-          --ens-api '$HOME/.ubiq/gubiq.ipc'
+          --ens-api '$HOME/.ubiq/gath.ipc'
 
     # in our example
 
     swarm --bzzaccount 2f1cd699b0bf461dcfbf0098ad8f5587b038f0f1 \
-          --ens-api '$HOME/.ubiq/gubiq.ipc'
+          --ens-api '$HOME/.ubiq/gath.ipc'
 
 For more information on usage, features or command line flags, please consult the Documentation.
 
@@ -90,12 +90,12 @@ Swarm documentation can be found at [https://swarm-guide.readthedocs.io](https:/
 
 We assume that you have Go v1.10 installed, and `GOPATH` is set.
 
-You must have your working copy under `$GOPATH/src/github.com/ubiq/go-ubiq`.
+You must have your working copy under `$GOPATH/src/github.com/athofficial/go-ath`.
 
 Most likely you will be working from your fork of `go-ethereum`, let's say from `github.com/nirname/go-ethereum`. Clone or move your fork into the right place:
 
 ```
-git clone git@github.com:nirname/go-ethereum.git $GOPATH/src/github.com/ubiq/go-ubiq
+git clone git@github.com:nirname/go-ethereum.git $GOPATH/src/github.com/athofficial/go-ath
 ```
 
 
@@ -181,7 +181,7 @@ Once you have `stateth` installed, and you have Docker running locally, you have
 
 1. Run `stateth` and keep it running in the background
 ```
-stateth --rm --grafana-dashboards-folder $GOPATH/src/github.com/ubiq/go-ubiq/swarm/grafana_dashboards --influxdb-database metrics
+stateth --rm --grafana-dashboards-folder $GOPATH/src/github.com/athofficial/go-ath/swarm/grafana_dashboards --influxdb-database metrics
 ```
 
 2. Run `swarm` with at least the following params:
@@ -228,7 +228,7 @@ Please make sure your contributions adhere to our coding guidelines:
  * Code must adhere to the official Go [formatting](https://golang.org/doc/effective_go.html#formatting) guidelines (i.e. uses [gofmt](https://golang.org/cmd/gofmt/)).
  * Code must be documented adhering to the official Go [commentary](https://golang.org/doc/effective_go.html#commentary) guidelines.
  * Pull requests need to be based on and opened against the `master` branch.
- * [Code review guidelines](https://github.com/ubiq/go-ubiq/wiki/Code-Review-Guidelines).
+ * [Code review guidelines](https://github.com/athofficial/go-ath/wiki/Code-Review-Guidelines).
  * Commit messages should be prefixed with the package(s) they modify.
    * E.g. "swarm/fuse: ignore default manifest entry"
 

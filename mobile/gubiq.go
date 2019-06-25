@@ -17,28 +17,28 @@
 // Contains all the wrappers from the node package to support client side node
 // management on mobile platforms.
 
-package gubiq
+package gath
 
 import (
 	"encoding/json"
 	"fmt"
 	"path/filepath"
 
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/eth"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/ethclient"
-	"github.com/ubiq/go-ubiq/ethstats"
-	"github.com/ubiq/go-ubiq/internal/debug"
-	"github.com/ubiq/go-ubiq/les"
-	"github.com/ubiq/go-ubiq/node"
-	"github.com/ubiq/go-ubiq/p2p"
-	"github.com/ubiq/go-ubiq/p2p/nat"
-	"github.com/ubiq/go-ubiq/params"
-	whisper "github.com/ubiq/go-ubiq/whisper/whisperv6"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/eth"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/ethclient"
+	"github.com/athofficial/go-ath/ethstats"
+	"github.com/athofficial/go-ath/internal/debug"
+	"github.com/athofficial/go-ath/les"
+	"github.com/athofficial/go-ath/node"
+	"github.com/athofficial/go-ath/p2p"
+	"github.com/athofficial/go-ath/p2p/nat"
+	"github.com/athofficial/go-ath/params"
+	whisper "github.com/athofficial/go-ath/whisper/whisperv6"
 )
 
-// NodeConfig represents the collection of configuration values to fine tune the Gubiq
+// NodeConfig represents the collection of configuration values to fine tune the gath
 // node embedded into a mobile process. The available values are a subset of the
 // entire API provided by go-ethereum to reduce the maintenance surface and dev
 // complexity.
@@ -50,10 +50,10 @@ type NodeConfig struct {
 	// set to zero, then only the configured static and trusted peers can connect.
 	MaxPeers int
 
-	// EthereumEnabled specifies whether the node should run the Ubiq protocol.
+	// EthereumEnabled specifies whether the node should run the ATH protocol.
 	EthereumEnabled bool
 
-	// EthereumNetworkID is the network identifier used by the Ubiq protocol to
+	// EthereumNetworkID is the network identifier used by the ATH protocol to
 	// decide if remote peers should be accepted or not.
 	EthereumNetworkID int64 // uint64 in truth, but Java can't handle that...
 
@@ -84,7 +84,7 @@ var defaultNodeConfig = &NodeConfig{
 	BootstrapNodes:        FoundationBootnodes(),
 	MaxPeers:              25,
 	EthereumEnabled:       true,
-	EthereumNetworkID:     88,
+	EthereumNetworkID:     11235813,
 	EthereumDatabaseCache: 16,
 }
 
@@ -94,12 +94,12 @@ func NewNodeConfig() *NodeConfig {
 	return &config
 }
 
-// Node represents a Gubiq Ethereum node instance.
+// Node represents a gath Ethereum node instance.
 type Node struct {
 	node *node.Node
 }
 
-// NewNode creates and configures a new Gubiq node.
+// NewNode creates and configures a new gath node.
 func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 	// If no or partial configurations were specified, use defaults
 	if config == nil {
@@ -153,7 +153,7 @@ func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 			}
 		}
 	}
-	// Register the Ubiq protocol if requested
+	// Register the ATH protocol if requested
 	if config.EthereumEnabled {
 		ethConf := eth.DefaultConfig
 		ethConf.Genesis = genesis
@@ -163,7 +163,7 @@ func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 		if err := rawStack.Register(func(ctx *node.ServiceContext) (node.Service, error) {
 			return les.New(ctx, &ethConf)
 		}); err != nil {
-			return nil, fmt.Errorf("ubiq init: %v", err)
+			return nil, fmt.Errorf("ath init: %v", err)
 		}
 		// If netstats reporting is requested, do it
 		if config.EthereumNetStats != "" {

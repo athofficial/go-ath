@@ -22,7 +22,7 @@ import (
 	"html/template"
 	"path"
 
-	"github.com/ubiq/go-ubiq/swarm/api"
+	"github.com/athofficial/go-ath/swarm/api"
 )
 
 type htmlListData struct {

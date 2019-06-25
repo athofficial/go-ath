@@ -1,5 +1,5 @@
 language: go
-go_import_path: github.com/kek-mex/go-atheios
+go_import_path: github.com/athofficial/go-ath
 sudo: false
 matrix:
   include:

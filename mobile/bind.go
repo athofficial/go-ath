@@ -16,16 +16,16 @@
 
 // Contains all the wrappers from the bind package.
 
-package gubiq
+package gath
 
 import (
 	"math/big"
 	"strings"
 
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/accounts/abi/bind"
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/accounts/abi/bind"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // Signer is an interaface defining the callback when a contract requires a

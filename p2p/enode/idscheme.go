@@ -21,10 +21,10 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ubiq/go-ubiq/common/math"
-	"github.com/ubiq/go-ubiq/crypto"
-	"github.com/ubiq/go-ubiq/p2p/enr"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/crypto"
+	"github.com/athofficial/go-ath/p2p/enr"
+	"github.com/athofficial/go-ath/rlp"
 	"golang.org/x/crypto/sha3"
 )
 

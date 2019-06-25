@@ -25,8 +25,8 @@ import (
 	"sync"
 	"time"
 
-	ch "github.com/ubiq/go-ubiq/swarm/chunk"
-	"github.com/ubiq/go-ubiq/swarm/log"
+	ch "github.com/athofficial/go-ath/swarm/chunk"
+	"github.com/athofficial/go-ath/swarm/log"
 )
 
 /*

@@ -16,13 +16,13 @@
 
 // Contains perverted wrappers to allow crossing over empty interfaces.
 
-package gubiq
+package gath
 
 import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 // Interface represents a wrapped version of Go's interface{}, with the capacity

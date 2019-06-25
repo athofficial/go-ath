@@ -20,9 +20,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/ubiq/go-ubiq/core/rawdb"
-	"github.com/ubiq/go-ubiq/eth/downloader"
-	"github.com/ubiq/go-ubiq/light"
+	"github.com/athofficial/go-ath/core/rawdb"
+	"github.com/athofficial/go-ath/eth/downloader"
+	"github.com/athofficial/go-ath/light"
 )
 
 // syncer is responsible for periodically synchronising with the network, both

@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 	"golang.org/x/crypto/pbkdf2"
 )
 

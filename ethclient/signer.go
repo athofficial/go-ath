@@ -20,8 +20,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
 )
 
 // senderFromServer is a types.Signer that remembers the sender address returned by the RPC

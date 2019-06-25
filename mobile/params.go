@@ -16,14 +16,14 @@
 
 // Contains all the wrappers from the params package.
 
-package gubiq
+package gath
 
 import (
 	"encoding/json"
 
-	"github.com/ubiq/go-ubiq/core"
-	"github.com/ubiq/go-ubiq/p2p/discv5"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/core"
+	"github.com/athofficial/go-ath/p2p/discv5"
+	"github.com/athofficial/go-ath/params"
 )
 
 // MainnetGenesis returns the JSON spec to use for the main Ubiq network. It

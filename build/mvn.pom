@@ -4,14 +4,14 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.ubiq</groupId>
-  <artifactId>gubiq</artifactId>
+  <groupId>org.ATH</groupId>
+  <artifactId>gath</artifactId>
   <version>{{.Version}}</version>
   <packaging>aar</packaging>
 
-  <name>Android Ubiq Client</name>
-  <description>Android port of the go-ubiq libraries and node</description>
-  <url>https://github.com/ubiq/go-ubiq</url>
+  <name>Android ATH Client</name>
+  <description>Android port of the go-ath libraries and node</description>
+  <url>https://github.com/athofficial/go-ath</url>
   <inceptionYear>2015</inceptionYear>
 
   <licenses>
@@ -48,10 +48,10 @@
 
   <issueManagement>
     <system>GitHub Issues</system>
-    <url>https://github.com/ubiq/go-ubiq/issues/</url>
+    <url>https://github.com/athofficial/go-ath/issues/</url>
   </issueManagement>
 
   <scm>
-    <url>https://github.com/ubiq/go-ubiq</url>
+    <url>https://github.com/athofficial/go-ath</url>
   </scm>
 </project>

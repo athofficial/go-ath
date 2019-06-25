@@ -17,10 +17,10 @@
 package rawdb
 
 import (
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/rlp"
 )
 
 // ReadTxLookupEntry retrieves the positional metadata associated with a transaction

@@ -17,7 +17,7 @@
 package shed
 
 import (
-	"github.com/ubiq/go-ubiq/rlp"
+	"github.com/athofficial/go-ath/rlp"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

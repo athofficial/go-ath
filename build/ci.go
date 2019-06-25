@@ -58,25 +58,25 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ubiq/go-ubiq/internal/build"
-	"github.com/ubiq/go-ubiq/params"
-	sv "github.com/ubiq/go-ubiq/swarm/version"
+	"github.com/athofficial/go-ath/internal/build"
+	"github.com/athofficial/go-ath/params"
+	sv "github.com/athofficial/go-ath/swarm/version"
 )
 
 var (
-	// Files that end up in the gubiq*.zip archive.
-	gubiqArchiveFiles = []string{
+	// Files that end up in the gath*.zip archive.
+	gathArchiveFiles = []string{
 		"COPYING",
-		executablePath("gubiq"),
+		executablePath("gath"),
 	}
 
-	// Files that end up in the gubiq-alltools*.zip archive.
+	// Files that end up in the gath-alltools*.zip archive.
 	allToolsArchiveFiles = []string{
 		"COPYING",
 		executablePath("abigen"),
 		executablePath("bootnode"),
 		executablePath("evm"),
-		executablePath("gubiq"),
+		executablePath("gath"),
 		executablePath("puppeth"),
 		executablePath("rlpdump"),
 		executablePath("wnode"),
@@ -92,7 +92,7 @@ var (
 	debExecutables = []debExecutable{
 		{
 			BinaryName:  "abigen",
-			Description: "Source code generator to convert Ubiq contract definitions into easy to use, compile-time type-safe Go packages.",
+			Description: "Source code generator to convert ATH contract definitions into easy to use, compile-time type-safe Go packages.",
 		},
 		{
 			BinaryName:  "bootnode",
@@ -103,12 +103,12 @@ var (
 			Description: "Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
 		},
 		{
-			BinaryName:  "gubiq",
-			Description: "Ubiq CLI client.",
+			BinaryName:  "gath",
+			Description: "ATH CLI client.",
 		},
 		{
 			BinaryName:  "puppeth",
-			Description: "Ubiq private network manager.",
+			Description: "ATH private network manager.",
 		},
 		{
 			BinaryName:  "rlpdump",
@@ -384,7 +384,7 @@ func doArchive(cmdline []string) {
 		arch   = flag.String("arch", runtime.GOARCH, "Architecture cross packaging")
 		atype  = flag.String("type", "zip", "Type of archive to write (zip|tar)")
 		signer = flag.String("signer", "", `Environment variable holding the signing key (e.g. LINUX_SIGNING_KEY)`)
-		upload = flag.String("upload", "", `Destination to upload the archives (usually "gubiqstore/builds")`)
+		upload = flag.String("upload", "", `Destination to upload the archives (usually "gathstore/builds")`)
 		ext    string
 	)
 	flag.CommandLine.Parse(cmdline)
@@ -400,15 +400,15 @@ func doArchive(cmdline []string) {
 	var (
 		env = build.Env()
 
-		basegubiq = archiveBasename(*arch, params.ArchiveVersion(env.Commit))
-		gubiq     = "gubiq-" + basegubiq + ext
-		alltools = "gubiq-alltools-" + basegubiq + ext
+		basegath = archiveBasename(*arch, params.ArchiveVersion(env.Commit))
+		gath     = "gath-" + basegath + ext
+		alltools = "gath-alltools-" + basegath + ext
 
 		baseswarm = archiveBasename(*arch, sv.ArchiveVersion(env.Commit))
 		swarm     = "swarm-" + baseswarm + ext
 	)
 	maybeSkipArchive(env)
-	if err := build.WriteArchive(gubiq, gubiqArchiveFiles); err != nil {
+	if err := build.WriteArchive(gath, gathArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
 	if err := build.WriteArchive(alltools, allToolsArchiveFiles); err != nil {
@@ -417,7 +417,7 @@ func doArchive(cmdline []string) {
 	if err := build.WriteArchive(swarm, swarmArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
-	for _, archive := range []string{gubiq, alltools, swarm} {
+	for _, archive := range []string{gath, alltools, swarm} {
 		if err := archiveUpload(archive, *upload, *signer); err != nil {
 			log.Fatal(err)
 		}
@@ -486,7 +486,7 @@ func doDebianSource(cmdline []string) {
 	var (
 		signer  = flag.String("signer", "", `Signing key name, also used as package author`)
 		upload  = flag.String("upload", "", `Where to upload the source package (usually "ethereum/ethereum")`)
-		sshUser = flag.String("sftp-user", "", `Username for SFTP upload (usually "gubiq-ci")`)
+		sshUser = flag.String("sftp-user", "", `Username for SFTP upload (usually "gath-ci")`)
 		workdir = flag.String("workdir", "", `Output directory for packages (uses temp dir if unset)`)
 		now     = time.Now()
 	)
@@ -564,7 +564,7 @@ func makeWorkdir(wdflag string) string {
 	if wdflag != "" {
 		err = os.MkdirAll(wdflag, 0744)
 	} else {
-		wdflag, err = ioutil.TempDir("", "gubiq-build-")
+		wdflag, err = ioutil.TempDir("", "gath-build-")
 	}
 	if err != nil {
 		log.Fatal(err)
@@ -681,7 +681,7 @@ func (meta debMetadata) ExeConflicts(exe debExecutable) string {
 		// be preferred and the conflicting files should be handled via
 		// alternates. We might do this eventually but using a conflict is
 		// easier now.
-		return "ubiq, " + exe.Package()
+		return "ATH, " + exe.Package()
 	}
 	return ""
 }
@@ -720,7 +720,7 @@ func doWindowsInstaller(cmdline []string) {
 	var (
 		arch    = flag.String("arch", runtime.GOARCH, "Architecture for cross build packaging")
 		signer  = flag.String("signer", "", `Environment variable holding the signing key (e.g. WINDOWS_SIGNING_KEY)`)
-		upload  = flag.String("upload", "", `Destination to upload the archives (usually "gubiqstore/builds")`)
+		upload  = flag.String("upload", "", `Destination to upload the archives (usually "gathstore/builds")`)
 		workdir = flag.String("workdir", "", `Output directory for packages (uses temp dir if unset)`)
 	)
 	flag.CommandLine.Parse(cmdline)
@@ -732,28 +732,28 @@ func doWindowsInstaller(cmdline []string) {
 	var (
 		devTools  []string
 		allTools  []string
-		gubiqTool string
+		gathTool string
 	)
 	for _, file := range allToolsArchiveFiles {
 		if file == "COPYING" { // license, copied later
 			continue
 		}
 		allTools = append(allTools, filepath.Base(file))
-		if filepath.Base(file) == "gubiq.exe" {
-			gubiqTool = file
+		if filepath.Base(file) == "gath.exe" {
+			gathTool = file
 		} else {
 			devTools = append(devTools, file)
 		}
 	}
 
 	// Render NSIS scripts: Installer NSIS contains two installer sections,
-	// first section contains the gubiq binary, second section holds the dev tools.
+	// first section contains the gath binary, second section holds the dev tools.
 	templateData := map[string]interface{}{
 		"License":  "COPYING",
-		"Gubiq":    gubiqTool,
+		"gath":    gathTool,
 		"DevTools": devTools,
 	}
-	build.Render("build/nsis.gubiq.nsi", filepath.Join(*workdir, "gubiq.nsi"), 0644, nil)
+	build.Render("build/nsis.gath.nsi", filepath.Join(*workdir, "gath.nsi"), 0644, nil)
 	build.Render("build/nsis.install.nsh", filepath.Join(*workdir, "install.nsh"), 0644, templateData)
 	build.Render("build/nsis.uninstall.nsh", filepath.Join(*workdir, "uninstall.nsh"), 0644, allTools)
 	build.Render("build/nsis.pathupdate.nsh", filepath.Join(*workdir, "PathUpdate.nsh"), 0644, nil)
@@ -768,14 +768,14 @@ func doWindowsInstaller(cmdline []string) {
 	if env.Commit != "" {
 		version[2] += "-" + env.Commit[:8]
 	}
-	installer, _ := filepath.Abs("gubiq-" + archiveBasename(*arch, params.ArchiveVersion(env.Commit)) + ".exe")
+	installer, _ := filepath.Abs("gath-" + archiveBasename(*arch, params.ArchiveVersion(env.Commit)) + ".exe")
 	build.MustRunCommand("makensis.exe",
 		"/DOUTPUTFILE="+installer,
 		"/DMAJORVERSION="+version[0],
 		"/DMINORVERSION="+version[1],
 		"/DBUILDVERSION="+version[2],
 		"/DARCH="+*arch,
-		filepath.Join(*workdir, "gubiq.nsi"),
+		filepath.Join(*workdir, "gath.nsi"),
 	)
 
 	// Sign and publish installer.
@@ -791,7 +791,7 @@ func doAndroidArchive(cmdline []string) {
 		local  = flag.Bool("local", false, `Flag whether we're only doing a local build (skip Maven artifacts)`)
 		signer = flag.String("signer", "", `Environment variable holding the signing key (e.g. ANDROID_SIGNING_KEY)`)
 		deploy = flag.String("deploy", "", `Destination to deploy the archive (usually "https://oss.sonatype.org")`)
-		upload = flag.String("upload", "", `Destination to upload the archive (usually "gubiqstore/builds")`)
+		upload = flag.String("upload", "", `Destination to upload the archive (usually "gathstore/builds")`)
 	)
 	flag.CommandLine.Parse(cmdline)
 	env := build.Env()
@@ -806,11 +806,11 @@ func doAndroidArchive(cmdline []string) {
 	// Build the Android archive and Maven resources
 	build.MustRun(goTool("get", "golang.org/x/mobile/cmd/gomobile", "golang.org/x/mobile/cmd/gobind"))
 	build.MustRun(gomobileTool("init", "--ndk", os.Getenv("ANDROID_NDK")))
-	build.MustRun(gomobileTool("bind", "-ldflags", "-s -w", "--target", "android", "--javapkg", "org.ubiq", "-v", "github.com/ubiq/go-ubiq/mobile"))
+	build.MustRun(gomobileTool("bind", "-ldflags", "-s -w", "--target", "android", "--javapkg", "org.ATH", "-v", "github.com/athofficial/go-ath/mobile"))
 
 	if *local {
 		// If we're building locally, copy bundle to build dir and skip Maven
-		os.Rename("gubiq.aar", filepath.Join(GOBIN, "gubiq.aar"))
+		os.Rename("gath.aar", filepath.Join(GOBIN, "gath.aar"))
 		return
 	}
 	meta := newMavenMetadata(env)
@@ -820,8 +820,8 @@ func doAndroidArchive(cmdline []string) {
 	maybeSkipArchive(env)
 
 	// Sign and upload the archive to Azure
-	archive := "gubiq-" + archiveBasename("android", params.ArchiveVersion(env.Commit)) + ".aar"
-	os.Rename("gubiq.aar", archive)
+	archive := "gath-" + archiveBasename("android", params.ArchiveVersion(env.Commit)) + ".aar"
+	os.Rename("gath.aar", archive)
 
 	if err := archiveUpload(archive, *upload, *signer); err != nil {
 		log.Fatal(err)
@@ -906,7 +906,7 @@ func newMavenMetadata(env build.Environment) mavenMetadata {
 	}
 	return mavenMetadata{
 		Version:      version,
-		Package:      "gubiq-" + version,
+		Package:      "gath-" + version,
 		Develop:      isUnstableBuild(env),
 		Contributors: contribs,
 	}
@@ -919,7 +919,7 @@ func doXCodeFramework(cmdline []string) {
 		local  = flag.Bool("local", false, `Flag whether we're only doing a local build (skip Maven artifacts)`)
 		signer = flag.String("signer", "", `Environment variable holding the signing key (e.g. IOS_SIGNING_KEY)`)
 		deploy = flag.String("deploy", "", `Destination to deploy the archive (usually "trunk")`)
-		upload = flag.String("upload", "", `Destination to upload the archives (usually "gubiqstore/builds")`)
+		upload = flag.String("upload", "", `Destination to upload the archives (usually "gathstore/builds")`)
 	)
 	flag.CommandLine.Parse(cmdline)
 	env := build.Env()
@@ -927,7 +927,7 @@ func doXCodeFramework(cmdline []string) {
 	// Build the iOS XCode framework
 	build.MustRun(goTool("get", "golang.org/x/mobile/cmd/gomobile", "golang.org/x/mobile/cmd/gobind"))
 	build.MustRun(gomobileTool("init"))
-	bind := gomobileTool("bind", "-ldflags", "-s -w", "--target", "ios", "--tags", "ios", "-v", "github.com/ubiq/go-ubiq/mobile")
+	bind := gomobileTool("bind", "-ldflags", "-s -w", "--target", "ios", "--tags", "ios", "-v", "github.com/athofficial/go-ath/mobile")
 
 	if *local {
 		// If we're building locally, use the build folder and stop afterwards
@@ -935,7 +935,7 @@ func doXCodeFramework(cmdline []string) {
 		build.MustRun(bind)
 		return
 	}
-	archive := "gubiq-" + archiveBasename("ios", params.ArchiveVersion(env.Commit))
+	archive := "gath-" + archiveBasename("ios", params.ArchiveVersion(env.Commit))
 	if err := os.Mkdir(archive, os.ModePerm); err != nil {
 		log.Fatal(err)
 	}
@@ -953,8 +953,8 @@ func doXCodeFramework(cmdline []string) {
 	// Prepare and upload a PodSpec to CocoaPods
 	if *deploy != "" {
 		meta := newPodMetadata(env, archive)
-		build.Render("build/pod.podspec", "Gubiq.podspec", 0755, meta)
-		build.MustRunCommand("pod", *deploy, "push", "Gubiq.podspec", "--allow-warnings", "--verbose")
+		build.Render("build/pod.podspec", "gath.podspec", 0755, meta)
+		build.MustRunCommand("pod", *deploy, "push", "gath.podspec", "--allow-warnings", "--verbose")
 	}
 }
 
@@ -1059,7 +1059,7 @@ func xgoTool(args []string) *exec.Cmd {
 
 func doPurge(cmdline []string) {
 	var (
-		store = flag.String("store", "", `Destination from where to purge archives (usually "gubiqstore/builds")`)
+		store = flag.String("store", "", `Destination from where to purge archives (usually "gathstore/builds")`)
 		limit = flag.Int("days", 30, `Age threshold above which to delete unstable archives`)
 	)
 	flag.CommandLine.Parse(cmdline)

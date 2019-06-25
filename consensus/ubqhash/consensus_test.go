@@ -23,9 +23,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ubiq/go-ubiq/common/math"
-	"github.com/ubiq/go-ubiq/core/types"
-	"github.com/ubiq/go-ubiq/params"
+	"github.com/athofficial/go-ath/common/math"
+	"github.com/athofficial/go-ath/core/types"
+	"github.com/athofficial/go-ath/params"
 )
 
 type diffTest struct {

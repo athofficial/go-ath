@@ -20,8 +20,8 @@ import (
 	"context"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/p2p/enode"
-	"github.com/ubiq/go-ubiq/p2p/simulations"
+	"github.com/athofficial/go-ath/p2p/enode"
+	"github.com/athofficial/go-ath/p2p/simulations"
 )
 
 // PeerEvent is the type of the channel returned by Simulation.PeerEvents.

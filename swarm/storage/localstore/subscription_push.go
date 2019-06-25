@@ -20,9 +20,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/ubiq/go-ubiq/log"
-	"github.com/ubiq/go-ubiq/swarm/shed"
-	"github.com/ubiq/go-ubiq/swarm/storage"
+	"github.com/athofficial/go-ath/log"
+	"github.com/athofficial/go-ath/swarm/shed"
+	"github.com/athofficial/go-ath/swarm/storage"
 )
 
 // SubscribePush returns a channel that provides storage chunks with ordering from push syncing index.

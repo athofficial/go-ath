@@ -25,8 +25,8 @@ import (
 	"math/big"
 	"reflect"
 
-	"github.com/ubiq/go-ubiq/accounts/abi"
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/accounts/abi"
+	"github.com/athofficial/go-ath/common"
 )
 
 func verify(t *testing.T, jsondata, calldata string, exp []interface{}) {

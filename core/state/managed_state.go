@@ -19,7 +19,7 @@ package state
 import (
 	"sync"
 
-	"github.com/ubiq/go-ubiq/common"
+	"github.com/athofficial/go-ath/common"
 )
 
 type account struct {

@@ -20,9 +20,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/trie"
 )
 
 type DumpAccount struct {

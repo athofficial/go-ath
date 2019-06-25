@@ -19,9 +19,9 @@ package state
 import (
 	"bytes"
 
-	"github.com/ubiq/go-ubiq/common"
-	"github.com/ubiq/go-ubiq/rlp"
-	"github.com/ubiq/go-ubiq/trie"
+	"github.com/athofficial/go-ath/common"
+	"github.com/athofficial/go-ath/rlp"
+	"github.com/athofficial/go-ath/trie"
 )
 
 // NewStateSync create a new state trie download scheduler.

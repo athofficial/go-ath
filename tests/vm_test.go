@@ -19,7 +19,7 @@ package tests
 import (
 	"testing"
 
-	"github.com/ubiq/go-ubiq/core/vm"
+	"github.com/athofficial/go-ath/core/vm"
 )
 
 func TestVM(t *testing.T) {

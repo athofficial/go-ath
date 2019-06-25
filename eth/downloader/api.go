@@ -20,9 +20,9 @@ import (
 	"context"
 	"sync"
 
-	ethereum "github.com/ubiq/go-ubiq"
-	"github.com/ubiq/go-ubiq/event"
-	"github.com/ubiq/go-ubiq/rpc"
+	ethereum "github.com/athofficial/go-ath"
+	"github.com/athofficial/go-ath/event"
+	"github.com/athofficial/go-ath/rpc"
 )
 
 // PublicDownloaderAPI provides an API which gives information about the current synchronisation status.
@@ -89,7 +89,7 @@ func (api *PublicDownloaderAPI) eventLoop() {
 	}
 }
 
-// Syncing provides information when this nodes starts synchronising with the Ubiq network and when it's finished.
+// Syncing provides information when this nodes starts synchronising with the ATH network and when it's finished.
 func (api *PublicDownloaderAPI) Syncing(ctx context.Context) (*rpc.Subscription, error) {
 	notifier, supported := rpc.NotifierFromContext(ctx)
 	if !supported {
