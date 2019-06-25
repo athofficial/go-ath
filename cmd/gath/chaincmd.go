@@ -165,7 +165,7 @@ Remove blockchain and state databases`,
 		Category: "BLOCKCHAIN COMMANDS",
 		Description: `
 The arguments are interpreted as block numbers or hashes.
-Use "ubiq dump 0" to dump the genesis block.`,
+Use "ATH dump 0" to dump the genesis block.`,
 	}
 )
 

@@ -29,9 +29,9 @@
 # - sign installer
 CRCCheck on
 
-!define GROUPNAME "Ubiq"
+!define GROUPNAME "ATH"
 !define APPNAME "gath"
-!define DESCRIPTION "Official Go implementation of the Ubiq protocol"
+!define DESCRIPTION "Official Go implementation of the ATH protocol"
 !addplugindir .\
 
 # Require admin rights on NT6+ (When UAC is turned on)

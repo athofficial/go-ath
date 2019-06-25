@@ -66,7 +66,7 @@ var (
 	apiPortFlag = flag.Int("apiport", 8080, "Listener port for the HTTP API connection")
 	ethPortFlag = flag.Int("ethport", 30696, "Listener port for the devp2p connection")
 	bootFlag    = flag.String("bootnodes", "", "Comma separated bootnode enode URLs to seed with")
-	netFlag     = flag.Uint64("network", 0, "Network ID to use for the Ubiq protocol")
+	netFlag     = flag.Uint64("network", 11235813, "Network ID to use for the ATH protocol")
 	statsFlag   = flag.String("ethstats", "", "Ethstats network monitoring auth string")
 
 	netnameFlag = flag.String("faucet.name", "", "Network name to assign to the faucet")
@@ -193,8 +193,8 @@ type request struct {
 // faucet represents a crypto faucet backed by an Ethereum light client.
 type faucet struct {
 	config *params.ChainConfig // Chain configurations for signing
-	stack  *node.Node          // Ubiq protocol stack
-	client *ethclient.Client   // Client connection to the Ubiq chain
+	stack  *node.Node          // ATH protocol stack
+	client *ethclient.Client   // Client connection to the ATH chain
 	index  []byte              // Index page to serve up on the web
 
 	keystore *keystore.KeyStore // Keystore containing the single signer
@@ -280,7 +280,7 @@ func newFaucet(genesis *core.Genesis, port int, enodes []*discv5.Node, network u
 	}, nil
 }
 
-// close terminates the Ubiq connection and tears down the faucet.
+// close terminates the ATH connection and tears down the faucet.
 func (f *faucet) close() error {
 	return f.stack.Stop()
 }

@@ -185,7 +185,7 @@ func (pm *ProtocolManager) Start(maxPeers int) {
 func (pm *ProtocolManager) Stop() {
 	// Showing a log message. During download / process this could actually
 	// take between 5 to 10 seconds and therefor feedback is required.
-	log.Info("Stopping light Ubiq protocol")
+	log.Info("Stopping light ATH protocol")
 
 	// Quit the sync loop.
 	// After this send has completed, no new peers will be accepted.
@@ -205,7 +205,7 @@ func (pm *ProtocolManager) Stop() {
 	// Wait for any process action
 	pm.wg.Wait()
 
-	log.Info("Light Ubiq protocol stopped")
+	log.Info("Light ATH protocol stopped")
 }
 
 // runPeer is the p2p protocol run function for the given version.
@@ -246,7 +246,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 		return p2p.DiscTooManyPeers
 	}
 
-	p.Log().Debug("Light Ubiq peer connected", "name", p.Name())
+	p.Log().Debug("Light ATH peer connected", "name", p.Name())
 
 	// Execute the LES handshake
 	var (
@@ -257,7 +257,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 		td      = pm.blockchain.GetTd(hash, number)
 	)
 	if err := p.Handshake(td, hash, number, genesis.Hash(), pm.server); err != nil {
-		p.Log().Debug("Light Ubiq handshake failed", "err", err)
+		p.Log().Debug("Light ATH handshake failed", "err", err)
 		return err
 	}
 
@@ -278,7 +278,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 	}
 	// Register the peer locally
 	if err := pm.peers.Register(p); err != nil {
-		p.Log().Error("Light Ubiq peer registration failed", "err", err)
+		p.Log().Error("Light ATH peer registration failed", "err", err)
 		return err
 	}
 	defer func() {
@@ -318,7 +318,7 @@ func (pm *ProtocolManager) handle(p *peer) error {
 	// main loop. handle incoming messages.
 	for {
 		if err := pm.handleMsg(p); err != nil {
-			p.Log().Debug("Light Ubiq message handling failed", "err", err)
+			p.Log().Debug("Light ATH message handling failed", "err", err)
 			return err
 		}
 	}
@@ -338,7 +338,7 @@ func (pm *ProtocolManager) handleMsg(p *peer) error {
 	if err != nil {
 		return err
 	}
-	p.Log().Trace("Light Ubiq message arrived", "code", msg.Code, "bytes", msg.Size)
+	p.Log().Trace("Light ATH message arrived", "code", msg.Code, "bytes", msg.Size)
 
 	costs := p.fcCosts[msg.Code]
 	reject := func(reqCnt, maxCnt uint64) bool {

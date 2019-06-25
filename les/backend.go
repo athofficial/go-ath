@@ -229,7 +229,7 @@ func (s *LightEthereum) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Service, starting all internal goroutines needed by the
-// Ubiq protocol implementation.
+// ATH protocol implementation.
 func (s *LightEthereum) Start(srvr *p2p.Server) error {
 	log.Warn("Light client mode is an experimental feature")
 	s.startBloomHandlers(params.BloomBitsBlocksClient)
@@ -242,7 +242,7 @@ func (s *LightEthereum) Start(srvr *p2p.Server) error {
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Ubiq protocol.
+// ATH protocol.
 func (s *LightEthereum) Stop() error {
 	s.odr.Stop()
 	s.bloomIndexer.Close()

@@ -64,7 +64,7 @@ services:
       - "{{.RPCPort}}:8545"{{if not .VHost}}
       - "{{.WebPort}}:80"{{end}}
     volumes:
-      - {{.Datadir}}:/root/.ubiq
+      - {{.Datadir}}:/root/.atheios
     environment:
       - NODE_PORT={{.NodePort}}/tcp
       - STATS={{.Ethstats}}{{if .VHost}}
@@ -190,7 +190,7 @@ func checkWallet(client *sshClient, network string) (*walletInfos, error) {
 	}
 	// Assemble and return the useful infos
 	stats := &walletInfos{
-		datadir:  infos.volumes["/root/.ubiq"],
+		datadir:  infos.volumes["/root/.atheios"],
 		nodePort: nodePort,
 		rpcPort:  rpcPort,
 		webHost:  host,

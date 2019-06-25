@@ -73,7 +73,7 @@ type WatchOpts struct {
 }
 
 // BoundContract is the base wrapper object that reflects a contract on the
-// Ubiq network. It contains a collection of methods that are used by the
+// ATH network. It contains a collection of methods that are used by the
 // higher level contract bindings to operate.
 type BoundContract struct {
 	address    common.Address     // Deployment address of the contract on the Ethereum blockchain

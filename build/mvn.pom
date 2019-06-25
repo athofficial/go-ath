@@ -4,13 +4,13 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.ubiq</groupId>
+  <groupId>org.ATH</groupId>
   <artifactId>gath</artifactId>
   <version>{{.Version}}</version>
   <packaging>aar</packaging>
 
-  <name>Android Ubiq Client</name>
-  <description>Android port of the go-ubiq libraries and node</description>
+  <name>Android ATH Client</name>
+  <description>Android port of the go-ath libraries and node</description>
   <url>https://github.com/athofficial/go-ath</url>
   <inceptionYear>2015</inceptionYear>
 

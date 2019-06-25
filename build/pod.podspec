@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { {{range .Contributors}}
 		'{{.Name}}' => '{{.Email}}',{{end}}
 	}
-  spec.summary      = 'iOS Ubiq Client'
+  spec.summary      = 'iOS ATH Client'
   spec.source       = { :git => 'https://github.com/athofficial/go-ath.git', :commit => '{{.Commit}}' }
 
 	spec.platform = :ios

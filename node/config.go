@@ -419,7 +419,7 @@ func makeAccountManager(conf *Config) (*accounts.Manager, string, error) {
 	var ephemeral string
 	if keydir == "" {
 		// There is no datadir.
-		keydir, err = ioutil.TempDir("", "go-ubiq-keystore")
+		keydir, err = ioutil.TempDir("", "go-ath-keystore")
 		ephemeral = keydir
 	}
 

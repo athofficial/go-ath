@@ -2609,7 +2609,7 @@ var properties = function () {
             inputFormatter: utils.toDecimal
         }),
         new Property({
-            name: 'version.ubiq',
+            name: 'version.ath',
             getter: 'eth_protocolVersion',
             inputFormatter: utils.toDecimal
         }),

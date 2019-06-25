@@ -41,7 +41,7 @@ ADD genesis.json /genesis.json
 {{end}}
 RUN \
   echo 'gath --cache 512 init /genesis.json' > gath.sh && \{{if .Unlock}}
-	echo 'mkdir -p /root/.ubiq/keystore/ && cp /signer.json /root/.ubiq/keystore/' >> gath.sh && \{{end}}
+	echo 'mkdir -p /root/.atheios/keystore/ && cp /signer.json /root/.atheios/keystore/' >> gath.sh && \{{end}}
 	echo $'exec gath --networkid {{.NetworkID}} --cache 512 --port {{.Port}} --nat extip:{{.IP}} --maxpeers {{.Peers}} {{.LightFlag}} --ethstats \'{{.Ethstats}}\' {{if .Bootnodes}}--bootnodes {{.Bootnodes}}{{end}} {{if .Etherbase}}--miner.etherbase {{.Etherbase}} --mine --miner.threads 1{{end}} {{if .Unlock}}--unlock 0 --password /signer.pass --mine{{end}} --miner.gastarget {{.GasTarget}} --miner.gaslimit {{.GasLimit}} --miner.gasprice {{.GasPrice}}' >> gath.sh
 
 ENTRYPOINT ["/bin/sh", "gath.sh"]
@@ -60,7 +60,7 @@ services:
       - "{{.Port}}:{{.Port}}"
       - "{{.Port}}:{{.Port}}/udp"
     volumes:
-      - {{.Datadir}}:/root/.ubiq{{if .Ubqhashdir}}
+      - {{.Datadir}}:/root/.atheios{{if .Ubqhashdir}}
       - {{.Ubqhashdir}}:/root/.ubqhash{{end}}
     environment:
       - PORT={{.Port}}/tcp
@@ -254,7 +254,7 @@ func checkNode(client *sshClient, network string, boot bool) (*nodeInfos, error)
 	// Assemble and return the useful infos
 	stats := &nodeInfos{
 		genesis:    genesis,
-		datadir:    infos.volumes["/root/.ubiq"],
+		datadir:    infos.volumes["/root/.atheios"],
 		ubqhashdir:  infos.volumes["/root/.ubqhash"],
 		port:       port,
 		peersTotal: totalPeers,

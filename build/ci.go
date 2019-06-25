@@ -92,7 +92,7 @@ var (
 	debExecutables = []debExecutable{
 		{
 			BinaryName:  "abigen",
-			Description: "Source code generator to convert Ubiq contract definitions into easy to use, compile-time type-safe Go packages.",
+			Description: "Source code generator to convert ATH contract definitions into easy to use, compile-time type-safe Go packages.",
 		},
 		{
 			BinaryName:  "bootnode",
@@ -104,11 +104,11 @@ var (
 		},
 		{
 			BinaryName:  "gath",
-			Description: "Ubiq CLI client.",
+			Description: "ATH CLI client.",
 		},
 		{
 			BinaryName:  "puppeth",
-			Description: "Ubiq private network manager.",
+			Description: "ATH private network manager.",
 		},
 		{
 			BinaryName:  "rlpdump",
@@ -681,7 +681,7 @@ func (meta debMetadata) ExeConflicts(exe debExecutable) string {
 		// be preferred and the conflicting files should be handled via
 		// alternates. We might do this eventually but using a conflict is
 		// easier now.
-		return "ubiq, " + exe.Package()
+		return "ATH, " + exe.Package()
 	}
 	return ""
 }
@@ -806,7 +806,7 @@ func doAndroidArchive(cmdline []string) {
 	// Build the Android archive and Maven resources
 	build.MustRun(goTool("get", "golang.org/x/mobile/cmd/gomobile", "golang.org/x/mobile/cmd/gobind"))
 	build.MustRun(gomobileTool("init", "--ndk", os.Getenv("ANDROID_NDK")))
-	build.MustRun(gomobileTool("bind", "-ldflags", "-s -w", "--target", "android", "--javapkg", "org.ubiq", "-v", "github.com/athofficial/go-ath/mobile"))
+	build.MustRun(gomobileTool("bind", "-ldflags", "-s -w", "--target", "android", "--javapkg", "org.ATH", "-v", "github.com/athofficial/go-ath/mobile"))
 
 	if *local {
 		// If we're building locally, copy bundle to build dir and skip Maven
