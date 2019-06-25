@@ -118,7 +118,7 @@ One of the quickest ways to get Ubiq up and running on your machine is by using 
 
 ```
 docker run -d --name ubiq-node -v /Users/alice/ubiq:/root \
-           -p 8545:8545 -p 30388:30388 \
+           -p 8545:8545 -p 30696:30696 \
            ubiq/client-go
 ```
 

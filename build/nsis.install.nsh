@@ -5,7 +5,7 @@ OutFile "${OUTPUTFILE}" # set through command line arguments
 # Links for "Add/Remove Programs"
 !define HELPURL "https://github.com/athofficial/go-ath/issues"
 !define UPDATEURL "https://github.com/athofficial/go-ath/releases"
-!define ABOUTURL "https://github.com/athofficial/go-ath#ubiq-go"
+!define ABOUTURL "https://github.com/athofficial/go-ath"
 !define /date NOW "%Y%m%d"
 
 PageEx license
@@ -24,14 +24,14 @@ Section "gath" gath_IDX
   createShortCut "$SMPROGRAMS\${APPNAME}\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "" ""
 
   # Firewall - remove rules (if exists)
-  SimpleFC::AdvRemoveRule "gath incoming peers (TCP:30388)"
-  SimpleFC::AdvRemoveRule "gath outgoing peers (TCP:30388)"
-  SimpleFC::AdvRemoveRule "gath UDP discovery (UDP:30388)"
+  SimpleFC::AdvRemoveRule "gath incoming peers (TCP:30696)"
+  SimpleFC::AdvRemoveRule "gath outgoing peers (TCP:30696)"
+  SimpleFC::AdvRemoveRule "gath UDP discovery (UDP:30697)"
 
   # Firewall - add rules
-  SimpleFC::AdvAddRule "gath incoming peers (TCP:30388)" ""  6 1 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "Ubiq" 30388 "" "" ""
-  SimpleFC::AdvAddRule "gath outgoing peers (TCP:30388)" ""  6 2 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "Ubiq" "" 30388 "" ""
-  SimpleFC::AdvAddRule "gath UDP discovery (UDP:30388)" "" 17 2 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "Ubiq" "" 30388 "" ""
+  SimpleFC::AdvAddRule "gath incoming peers (TCP:30696)" ""  6 1 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "gath" 30696 "" "" ""
+  SimpleFC::AdvAddRule "gath outgoing peers (TCP:30696)" ""  6 2 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "gath" "" 30696 "" ""
+  SimpleFC::AdvAddRule "gath UDP discovery (UDP:30697)" "" 17 2 1 2147483647 1 "$INSTDIR\gath.exe" "" "" "gath" "" 30697 "" ""
 
   # Set default IPC endpoint (https://github.com/ethereum/EIPs/issues/147)
   ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "R" "HKLM" "\\.\pipe\gath.ipc"

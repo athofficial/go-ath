@@ -12,5 +12,5 @@ FROM alpine:latest
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /go-ubiq/build/bin/gath /usr/local/bin/
 
-EXPOSE 8696 8697 30696 30696/udp
+EXPOSE 8696 8697 30696 30697/udp
 ENTRYPOINT ["gath"]
