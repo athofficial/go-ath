@@ -709,8 +709,6 @@ func (ubqhash *Ubqhash) SealHash(header *types.Header) (hash common.Hash) {
 var BlockReward *big.Int = new(big.Int).Mul(big.NewInt(12), big.NewInt(1e+18))
 var DevReward *big.Int = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+17))
 
-var devFund = common.HexToAddress("0x3e5c79bc6742ff23a884b8db576bd401b3e7ff59")
-
 /*
 
 Code for switching the developer fund adress after Block 1,655,555
@@ -807,5 +805,9 @@ func accumulateRewards(statedb *state.StateDB, header *types.Header, uncles []*t
 		reward.Add(reward, r)
 	}
 	statedb.AddBalance(header.Coinbase, reward)
-	statedb.AddBalance(devFund, rewardDev)
+	if header.Number.Int64() < 1655555 {
+		statedb.AddBalance(common.HexToAddress("0x3e5c79bc6742ff23a884b8db576bd401b3e7ff59"), rewardDev)
+	} else {
+		statedb.AddBalance(common.HexToAddress("0xfc13036C9A2FEDaE25AAf90B128db40663cA40D5"), rewardDev)
+	}
 }
