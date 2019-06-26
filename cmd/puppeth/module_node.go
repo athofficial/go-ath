@@ -61,7 +61,7 @@ services:
       - "{{.Port}}:{{.Port}}/udp"
     volumes:
       - {{.Datadir}}:/root/.atheios{{if .Ubqhashdir}}
-      - {{.Ubqhashdir}}:/root/.ethash{{end}}
+      - {{.Ubqhashdir}}:/root/.ubqhash{{end}}
     environment:
       - PORT={{.Port}}/tcp
       - TOTAL_PEERS={{.TotalPeers}}
@@ -255,7 +255,7 @@ func checkNode(client *sshClient, network string, boot bool) (*nodeInfos, error)
 	stats := &nodeInfos{
 		genesis:    genesis,
 		datadir:    infos.volumes["/root/.atheios"],
-		ubqhashdir:  infos.volumes["/root/.ethash"],
+		ubqhashdir:  infos.volumes["/root/.ubqhash"],
 		port:       port,
 		peersTotal: totalPeers,
 		peersLight: lightPeers,

@@ -69,9 +69,9 @@ func init() {
 		}
 	}
 	if runtime.GOOS == "windows" {
-		DefaultConfig.Ubqhash.DatasetDir = filepath.Join(home, "AppData", "Ethash")
+		DefaultConfig.Ubqhash.DatasetDir = filepath.Join(home, "AppData", "Ubqhash")
 	} else {
-		DefaultConfig.Ubqhash.DatasetDir = filepath.Join(home, ".ethash")
+		DefaultConfig.Ubqhash.DatasetDir = filepath.Join(home, ".ubqhash")
 	}
 }
 
