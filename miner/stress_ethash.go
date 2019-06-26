@@ -54,7 +54,7 @@ func main() {
 		faucets[i], _ = crypto.GenerateKey()
 	}
 	// Pre-generate the ubqhash mining DAG so we don't race
-	ubqhash.MakeDataset(1, filepath.Join(os.Getenv("HOME"), ".ubqhash"))
+	ubqhash.MakeDataset(1, filepath.Join(os.Getenv("HOME"), ".ethash"))
 
 	// Create an Ubqhash network based off of the Ropsten config
 	genesis := makeGenesis(faucets)
