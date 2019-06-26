@@ -24,7 +24,6 @@ import (
 	"runtime"
 	"time"
 
-	mapset "github.com/deckarep/golang-set"
 	"github.com/athofficial/go-ath/common"
 	"github.com/athofficial/go-ath/consensus"
 	"github.com/athofficial/go-ath/consensus/misc"
@@ -33,6 +32,7 @@ import (
 	"github.com/athofficial/go-ath/log"
 	"github.com/athofficial/go-ath/params"
 	"github.com/athofficial/go-ath/rlp"
+	mapset "github.com/deckarep/golang-set"
 	"golang.org/x/crypto/sha3"
 )
 
@@ -709,7 +709,17 @@ func (ubqhash *Ubqhash) SealHash(header *types.Header) (hash common.Hash) {
 var BlockReward *big.Int = new(big.Int).Mul(big.NewInt(12), big.NewInt(1e+18))
 var DevReward *big.Int = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+17))
 
-var devFund = common.HexToAddress("0x3e5c79bc6742ff23a884b8db576bd401b3e7ff59")
+/*
+
+Code for switching the developer fund adress after Block 1,655,555
+
+if header.Number.Int64() < 1655555 {
+	state.AddBalance(common.HexToAddress("0x3e5c79bc6742ff23a884b8db576bd401b3e7ff59"), devReward)
+} else {
+	state.AddBalance(common.HexToAddress("New Address"), devReward)
+}
+
+*/
 
 func accumulateRewards(statedb *state.StateDB, header *types.Header, uncles []*types.Header) {
 	reward := new(big.Int).Set(BlockReward)
@@ -725,45 +735,50 @@ func accumulateRewards(statedb *state.StateDB, header *types.Header, uncles []*t
 		reward = new(big.Int).Mul(big.NewInt(9), big.NewInt(1e+18))
 		rewardDev = new(big.Int).Mul(big.NewInt(3), big.NewInt(1e+17))
 	}
+	// During Epoch 3 - Beyond Block Reward change (Beyond Block 1,655,555)
+	if header.Number.Cmp(big.NewInt(1655555)) > 0 {
+		reward = new(big.Int).Mul(big.NewInt(9), big.NewInt(1e+18))
+		rewardDev = big.NewInt(1.35e+18)
+	}
 	// Epoch 3 - Beyond Block 2866908
 	if header.Number.Cmp(big.NewInt(2866908)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(8), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(2), big.NewInt(1e+17))
+		rewardDev = big.NewInt(1.35e+18)
 	}
 	// Epoch 4 - Beyond Block 4300362
 	if header.Number.Cmp(big.NewInt(4300362)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(7), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(18), big.NewInt(1e+16))
+		rewardDev = big.NewInt(1.2e+18)
 	}
 	// Epoch 5 - Beyond Block 5733816
 	if header.Number.Cmp(big.NewInt(5733816)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(6), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(15), big.NewInt(1e+16))
+		rewardDev = big.NewInt(1.05e+18)
 	}
 	// Epoch 6 - Beyond Block 7167270
 	if header.Number.Cmp(big.NewInt(7167270)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(5), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+17))
+		rewardDev = big.NewInt(0.9e+18)
 	}
 	// Epoch 7 - Beyond Block 8600724
 	if header.Number.Cmp(big.NewInt(8600724)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(4), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(8), big.NewInt(1e+16))
+		rewardDev = big.NewInt(0.75e+18)
 	}
 	// Epoch 8 - Beyond Block 10034178
 	if header.Number.Cmp(big.NewInt(10034178)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(3), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(5), big.NewInt(1e+16))
+		rewardDev = big.NewInt(0.6e+18)
 	}
 	// Epoch 9 - Beyond Block 11467632
 	if header.Number.Cmp(big.NewInt(11467632)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(2), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(3), big.NewInt(1e+16))
+		rewardDev = big.NewInt(0.45e+18)
 	}
 	// Epoch 10 - Beyond Block 14334540
 	if header.Number.Cmp(big.NewInt(14334540)) > 0 {
 		reward = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+18))
-		rewardDev = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+16))
+		rewardDev = big.NewInt(0.3e+18)
 	}
 
 	r := new(big.Int)
@@ -790,5 +805,9 @@ func accumulateRewards(statedb *state.StateDB, header *types.Header, uncles []*t
 		reward.Add(reward, r)
 	}
 	statedb.AddBalance(header.Coinbase, reward)
-	statedb.AddBalance(devFund, rewardDev)
+	if header.Number.Int64() < 1655555 {
+		statedb.AddBalance(common.HexToAddress("0x3e5c79bc6742ff23a884b8db576bd401b3e7ff59"), rewardDev)
+	} else {
+		statedb.AddBalance(common.HexToAddress("0xfc13036C9A2FEDaE25AAf90B128db40663cA40D5"), rewardDev)
+	}
 }
