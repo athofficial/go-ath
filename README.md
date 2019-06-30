@@ -112,7 +112,7 @@ $ gath --your-favourite-flags dumpconfig
 
 *Note: This works only with gath v1.6.0 and above.*
 
-#### Docker quick start
+#### Docker quick start | DOCKER CURRENTLY IS NOT WORKING
 
 One of the quickest ways to get ATH up and running on your machine is by using Docker:
 
